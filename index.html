@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World of Warcraft Brazilian's Leader boards</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/title.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/table.css">
+    <link rel="stylesheet" href="./css/separator.css">
+    <link rel="stylesheet" href="./css/main_div.css">
+    <link rel="stylesheet" href="./css/button.css">
+</head>
+
+<body id="body_page">
+    <div class="main_div">
+        <!--Title-->
+        <div class="div_title">
+            <h1 class="title">World of Warcraft Brazilian's Leader boards</h1>
+        </div>
+
+        <!--More info about the website-->
+        <header class="header">
+            <p class="header_text">Here we have a simple list of all World of Warcraft brazilians rated players in the
+                3v3
+                bracket.
+                <br>Also, keep in mind that the realms i gathered here are Azralon, Nemesis, Goldrinn, Gallywix and
+                Tol-Barad.
+                <br>There are more rated brazilians players that could not be listed here.
+            </p>
+        </header>
+
+        <!--Separator-->
+        <hr class="separator">
+
+        <!--Action Button-->
+        <button id="button" onclick="get_json()" type="submit">Show Players</button>
+
+        <!--Content Tables-->
+        <table id="main_table">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Current Rating</th>
+                    <th>Name</th>
+                    <th>Realm</th>
+                    <th>Faction</th>
+                </tr>
+            </thead>
+
+            <tbody id="tbody"></tbody>
+        </table>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

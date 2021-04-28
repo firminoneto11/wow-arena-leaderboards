@@ -1,0 +1,28 @@
+
+/*Initial CSS settings*/
+#button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: block;
+    width: 150px;
+    height: 50px;
+    color: #eeeeee;
+    background-color: #819595;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Helvetica;
+    font-size: 1rem;
+}   
+
+#button {
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0 0 0 0 #696773;
+    transition: ease-out 0.3s;
+    outline: none;
+}
+
+#button:hover {
+    box-shadow: inset 150px 0 0 0 #696773;
+    cursor: pointer;
+}
