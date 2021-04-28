@@ -1,4 +1,8 @@
 
+String.prototype.toProperCase = function () {
+    return this.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+};
+
 function get_json() {
     const url = "https://us.api.blizzard.com/data/wow/pvp-season/30/pvp-leaderboard/3v3?namespace=dynamic-us&locale=en_US&access_token=USrrs2dmyy4hwhcOIVCJ7JpNBoA3eCCOYv"
     const br_realms = ['azralon', 'nemesis', 'goldrinn', 'gallywix', 'tol-barad']
@@ -41,8 +45,8 @@ function get_json() {
                         showed1.innerHTML = counter
                         showed2.innerHTML = rating
                         showed3.innerHTML = player_name
-                        showed4.innerHTML = realm
-                        showed5.innerHTML = faction
+                        showed4.innerHTML = realm.toProperCase()
+                        showed5.innerHTML = faction.toProperCase()
                         counter = counter + 1
                         document.getElementById('tbody').appendChild(row)
                         document.getElementById(row_id).appendChild(showed1)
