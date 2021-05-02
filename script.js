@@ -4,7 +4,25 @@ String.prototype.toProperCase = function () {
 };
 
 function get_json() {
-    const url = "https://us.api.blizzard.com/data/wow/pvp-season/30/pvp-leaderboard/3v3?namespace=dynamic-us&locale=en_US&access_token=USrrs2dmyy4hwhcOIVCJ7JpNBoA3eCCOYv"
+    // Removing the search button
+    let button = document.getElementById('button')
+    button.style.display = 'none'
+    // Showing to the user that his request is ongoing
+    let loading = document.createElement('p')
+    loading.innerHTML = "Loading the Blizzzard's information. This may take a while..."
+    loading.style.color = '#eeeeee'
+    loading.style.fontFamily = 'Helvetica'
+    loading.style.textAlign = 'center'
+    loading.style.marginTop = '1%'
+    loading.style.marginBottom = '1%'
+    loading.style.fontSize = '1.5rem'
+
+    let main_div = document.getElementsByClassName('main_div')
+    main_div = main_div[0]
+    main_div.appendChild(loading)
+
+    const access_token = 'USWM8VEj0dLd71b8i4oGMhCIsE5mZrSDrR'
+    const url = `https://us.api.blizzard.com/data/wow/pvp-season/30/pvp-leaderboard/3v3?namespace=dynamic-us&locale=en_US&access_token=${access_token}`
     const br_realms = ['azralon', 'nemesis', 'goldrinn', 'gallywix', 'tol-barad']
 
     let request = new XMLHttpRequest()
@@ -20,7 +38,6 @@ function get_json() {
                 }
             }
             let counter = 1
-
             for (let index in json_object) {
                 let char = json_object[index].character
                 let rating = json_object[index].rating
@@ -59,15 +76,26 @@ function get_json() {
                     }
                 }
             }
+            // Removing the loading label
+            main_div.removeChild(loading)
+
+            // Displaying the table with the returned data
+            let main_table = document.getElementById('main_table')
+            main_table.style.display = 'table'
+
         } else {
-            let error_msg = document.createElement("h2")
+            // Removing the loading label
+            main_div.removeChild(loading)
+
+            let error_msg = document.createElement('p')
             error_msg.innerHTML = "The API isn't working at the moment. Try again later."
-            document.body.appendChild(error_msg)
+            error_msg.style.color = '#eeeeee'
+            error_msg.style.textAlign = 'center'
+            error_msg.style.fontFamily = 'Helvetica'
+            error_msg.style.fontSize = '1.5rem'
+            error_msg.style.marginTop = '1%'
+            error_msg.style.marginBottom = '1%'
+            main_div.appendChild(error_msg)
         }
     }
-
-    let main_table = document.getElementById('main_table')
-    let button = document.getElementById('button')
-    main_table.style.display = 'table'
-    button.style.display = 'none'
 }
