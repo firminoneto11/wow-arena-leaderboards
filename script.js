@@ -87,7 +87,7 @@ function get_json(api_key) {
             main_div.removeChild(loading)
 
             let error_msg = document.createElement('p')
-            error_msg.innerHTML = "The API isn't working at the moment. Try again later."
+            error_msg.innerHTML = "An error occurred while trying to get the Blizzard's leader boards data. Try again later."
             error_msg.style.color = '#eeeeee'
             error_msg.style.textAlign = 'center'
             error_msg.style.fontFamily = 'Helvetica'
