@@ -46,13 +46,19 @@ After everything is done, you can open the 'index.html' file and see for yoursel
 <hr/>
 
 <div align='center'><h2>✔ The webpage ✔</h2></div>
+<p>When you open the 'index.html' file, there will be some information about the search and the 'Show Players' button. When pressed, it will make the request for the Blizzard's API and display the returned data filtered by the brazilian players.</p>
 
-- [] Need to add some content here.
+![Working gif](https://github.com/firminoneto11/wow-arena-leaderboards/blob/main/readme_content/working.gif)
+
+<p>If any errors occur while trying to get the data, the page will display a message saying that it happened, and ask to try again later.</p>
+
+![Not working gif](https://github.com/firminoneto11/wow-arena-leaderboards/blob/main/readme_content/not%20working.gif)
 
 <hr/>
 
 <div align='center'><h2>Author</h2></div>
-<p>Made with ❤ by <a href='github.com/firminoneto11'>Firmino Neto</a>.</p>
+<p>Made with ❤ by <a href='https://github.com/firminoneto11'>Firmino Neto</a>.</p>
+
 <!--
 <div align='center'></div>
 -->
