@@ -3,7 +3,7 @@ String.prototype.toProperCase = function () {
     return this.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 };
 
-function get_json() {
+function get_json(api_key) {
     // Removing the search button
     let button = document.getElementById('button')
     button.style.display = 'none'
@@ -21,8 +21,7 @@ function get_json() {
     main_div = main_div[0]
     main_div.appendChild(loading)
 
-    const access_token = 'USWM8VEj0dLd71b8i4oGMhCIsE5mZrSDrR'
-    const url = `https://us.api.blizzard.com/data/wow/pvp-season/30/pvp-leaderboard/3v3?namespace=dynamic-us&locale=en_US&access_token=${access_token}`
+    const url = `https://us.api.blizzard.com/data/wow/pvp-season/30/pvp-leaderboard/3v3?namespace=dynamic-us&locale=en_US&access_token=${api_key}`
     const br_realms = ['azralon', 'nemesis', 'goldrinn', 'gallywix', 'tol-barad']
 
     let request = new XMLHttpRequest()
