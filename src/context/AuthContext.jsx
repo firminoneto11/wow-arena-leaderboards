@@ -14,6 +14,7 @@ export function AuthProvider({ children }) {
 
     const [tokenStuff, setTokenStuff] = useState(null);
 
+    // Função que gera um novo access token
     const getAcessToken = async () => {
         let response;
 
