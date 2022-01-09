@@ -1,6 +1,12 @@
+import { AuthProvider } from "./context/AuthContext";
+import HelloWorld from "./components/HelloWorld";
+
 
 export default function App() {
+
     return (
-        <h1>Hello World!</h1>
+        <AuthProvider>
+            <HelloWorld />
+        </AuthProvider>
     );
 }
