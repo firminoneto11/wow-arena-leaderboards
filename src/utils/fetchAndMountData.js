@@ -1,10 +1,8 @@
 
 
-export default async function mountData(session, bracket, accessToken, setDataHandler) {
+export default async function mountData(session, bracket, accessToken, setData) {
 
     const leaderboardsUrl = `https://us.api.blizzard.com/data/wow/pvp-season/${session}/pvp-leaderboard/${bracket}?namespace=dynamic-us&locale=en_US&access_token=${accessToken}`;
-
-    console.log(leaderboardsUrl);
 
     let response;
 
@@ -13,7 +11,7 @@ export default async function mountData(session, bracket, accessToken, setDataHa
     }
     catch (error) {
         console.log(error);
-        setDataHandler(false);
+        setData(false);
         return;
     }
 
@@ -26,11 +24,17 @@ export default async function mountData(session, bracket, accessToken, setDataHa
             return brazilianRealms.includes(player.character.realm.slug);
         });
 
-        setDataHandler(brazilianPlayers);
+        setData(brazilianPlayers);
 
     }
     else {
-        setDataHandler(false);
+        setData(false);
     }
 
 }
+
+// -> Endpoint de avatar
+// https://us.api.blizzard.com/profile/wow/character/dalaran/kalvish/character-media?namespace=profile-us&locale=en_US&access_token=${access_token}
+
+// -> Endpoint de perfil
+// https://us.api.blizzard.com/profile/wow/character/dalaran/kalvish?namespace=profile-us&locale=en_US&access_token=${access_token}

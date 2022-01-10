@@ -52,10 +52,10 @@ export function AuthProvider({ children }) {
     }, []);
 
     const contextData = {
-        access_token: tokenStuff ? tokenStuff.access_token : "",
-        expires_in: tokenStuff ? tokenStuff.expires_in : 1,
-        sub: tokenStuff ? tokenStuff.sub : "",
-        token_type: tokenStuff ? tokenStuff.token_type : "",
+        access_token: tokenStuff?.access_token,
+        expires_in: tokenStuff?.expires_in,
+        sub: tokenStuff?.sub,
+        token_type: tokenStuff?.token_type,
     }
 
     return (

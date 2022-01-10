@@ -1,23 +1,7 @@
-import { Fragment, useContext, useState, useEffect } from "react";
-import { AuthContext } from "../context/AuthContext";
-import mountData from '../utils/fetchAndMountData';
+import { Fragment } from "react";
 
 
-export default function DataTable() {
-
-    const [data, setData] = useState(null);
-
-    const { access_token } = useContext(AuthContext);
-
-    const setDataHandler = (newData) => {
-        setData(newData);
-    }
-
-    useEffect(() => {
-        if (access_token) {
-            mountData(31, "3v3", access_token, setDataHandler);
-        }
-    }, []);
+export default function DataTable({ data }) {
 
     return (
         <Fragment>
