@@ -10,7 +10,7 @@ export default function ThreesLadder() {
     const [data, setData] = useState(null);
     const { access_token } = useContext(AuthContext);
 
-    const pvpSession = 31;
+    const pvpSession = 32;
     const bracket = "3v3";
 
     useEffect(() => {
