@@ -1,0 +1,53 @@
+Pegar os seguintes dados da api da blizz e colocar na base de dados:
+
+Global rank
+Tier (Duelist, Elite, etc) | Ícone dos tiers
+CR
+Avatar Icon + Player Name
+Class (Só o ícone)
+Spec (Só o ícone)
+Faction (Só o ícone)
+Realm
+Wins (De verde)
+Losses (De vermelho)
+
+--------------------------------------------------------------------
+
+Database design
+
+--------------------------------------------------------------------
+
+Session Table:
+
+id - Integer
+session - Integer
+
+Bracket Table:
+
+id - Integer
+type - Enum()  # Pode ser 2v2, 3v3 e 10v10
+
+### 
+Players Table:
+
+id - Integer
+global_rank - Integer
+tier - String(20)
+tier_icon - String(255)  # Um link para o ícone do tier
+cr - Integer
+avatar_icon - String(255)  # Um link para o avatar do player
+name - String(50)
+
+class - String(255)  # Um link para o ícone da classe
+class_name - String(50)
+
+spec - String(255)  # Um link para o ícone da spec
+spec_name - String(50)
+
+faction - String(255)  # Um link para o ícone da facção
+faction_name - String(50)
+
+realm - String(50)
+
+wins - Integer
+losses - Integer

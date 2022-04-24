@@ -1,0 +1,2 @@
+orm==0.3.1  # Já vem junto o 'databases' e 'sqlalchemy'
+aiosqlite==0.17.0  # Driver async para o sqlite
