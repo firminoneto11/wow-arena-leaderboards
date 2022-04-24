@@ -1,4 +1,4 @@
-from models.brackets import Brackets, BracketsEnum
+from models.brackets import Brackets
 from typing import List
 
 

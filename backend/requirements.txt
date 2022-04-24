@@ -3,3 +3,4 @@ aiosqlite==0.17.0  # Driver async para o sqlite
 fastapi==0.75.2  # Já vem com o 'pydantic' e 'starlette'
 python-decouple==3.6
 httpx==0.22.0  # Async HTTP client pro python
+uvicorn==0.17.6  # Web server para ASGI
