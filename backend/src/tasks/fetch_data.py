@@ -36,30 +36,31 @@ class RetriveBlizzardData:
             )))
 
         async def escrever_no_arquivo(dt, tipo: str):
-
             nome = None
-
             if tipo == '2v2':
                 nome = '../twos_data.json'
             elif tipo == '3v3':
                 nome = '../thres_data.json'
-
+            else:
+                nome = '../rbg_data.json'
             print(f"Escrevendo no arquivo '{nome}'")
-
             with open(file=nome, mode='w', encoding='utf-8') as f:
                 f.write(dt)
 
         twos = data[0]
         thres = data[1]
+        rbg = data[2]
 
         dados = await gather(
             gerar_dump(dt=twos.dados),
             gerar_dump(dt=thres.dados),
+            gerar_dump(dt=rbg.dados),
         )
 
         await gather(
             escrever_no_arquivo(dt=dados[0], tipo=twos.bracket),
-            escrever_no_arquivo(dt=dados[1], tipo=thres.bracket)
+            escrever_no_arquivo(dt=dados[1], tipo=thres.bracket),
+            escrever_no_arquivo(dt=dados[2], tipo=rbg.bracket),
         )
 
     @classmethod
@@ -156,17 +157,20 @@ class RetriveBlizzardData:
 
         data = await gather(
             cls.get_brazilian_data(session=32, bracket="2v2", access_token=access_token),
-            cls.get_brazilian_data(session=32, bracket="3v3", access_token=access_token)
+            cls.get_brazilian_data(session=32, bracket="3v3", access_token=access_token),
+            cls.get_brazilian_data(session=32, bracket="rbg", access_token=access_token),
         )
 
         mounted_data = await gather(
             cls.mount_data(data[0]),
             cls.mount_data(data[1]),
+            cls.mount_data(data[2]),
         )
 
         mounted_data = [
             DadosBracket(bracket='2v2', dados=mounted_data[0]),
             DadosBracket(bracket='3v3', dados=mounted_data[1]),
+            DadosBracket(bracket='rbg', dados=mounted_data[2]),
         ]
 
         await cls.write_to_json_file(data=mounted_data)

@@ -6,7 +6,7 @@ from enum import Enum
 class BracketsEnum(Enum):
     twos = "2v2"
     thres = "3v3"
-    rbg = "10v10"
+    rbg = "rbg"
 
 
 class Brackets(models.Model):
