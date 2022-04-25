@@ -1,9 +1,34 @@
 
 BLIZZARD_TOKENS_URL = "https://us.battle.net/oauth/token"
 
-LEADERBOARDS_URL = (
+REINOS_BR = ["azralon", "nemesis", "goldrinn", "gallywix", "tol-barad"]
+
+# API que provém os dados de PVP
+PVP_RATING_API = (
     "https://us.api.blizzard.com/data/wow/pvp-season/${session}/pvp-leaderboard/${bracket}?"
     "namespace=dynamic-us&locale=en_US&access_token=${accessToken}"
 )
 
-REINOS_BR = ["azralon", "nemesis", "goldrinn", "gallywix", "tol-barad"]
+# API que provém os dados do perfil personagem
+PROFILE_API = (
+    "https://us.api.blizzard.com/profile/wow/character/${realm_slug}/${char_name}?namespace=profile-us&locale=en_US"
+    "&access_token=${accessToken}"
+)
+
+# API que provém as imagens dos personagens
+CHAR_MEDIA_API = (
+    "https://us.api.blizzard.com/profile/wow/character/${realm_slug}/${char_name}/character-media?namespace=profile-us"
+    "&locale=en_US&access_token=${access_token}"
+)
+
+# API que provém os ícones das classes
+CLASS_MEDIA_API = (
+    "https://us.api.blizzard.com/data/wow/media/playable-class/${class_id}?namespace=static-us&locale=en_US"
+    "&access_token=${accessToken}"
+)
+
+# API que provém os ícones das specs das classes
+SPEC_MEDIA_API = (
+    "https://us.api.blizzard.com/data/wow/media/playable-specialization/${spec_id}?namespace=static-us&locale=en_US"
+    "&access_token=${accessToken}"
+)

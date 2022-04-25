@@ -32,27 +32,30 @@ Players Table:
 
 id - Integer
 
+# faction_icon - String(255) | Tratado pelo frontend
+
 tier - String(20)  # Nome do tier (Duelist, Rival, etc)
 tier_icon - String(255)  # Um link para o ícone do tier
 
-avatar_icon - String(255)  # Um link para o avatar do player
-
-class_icon - String(255)  # Um link para o ícone da classe
-class_name - String(50)  # Nome da classe do jogador
-
-spec_icon - String(255)  # Um link para o ícone da spec
-spec_name - String(50)  # Nome da spec da classe do jogador
-
--- JÁ ENCONTRADOS (ENDPOINT DE PVP) --
-
-# faction_icon - String(255)  # Um link para o ícone da facção
+-- JÁ ENCONTRADOS (ENDPOINTS EXTERNOS) --
 
 name - String(50)
 global_rank - Integer
 cr - Integer
-faction_name - String(50)  # Nome da facção do jogador
+faction_name - String(50)
 realm - String(50)
 played - Integer
 wins - Integer
 losses - Integer
 player_id_blizz_db - Integer
+class_name - String(50)
+spec_name - String(50)
+
+# Tem q fazer 1 fetch por player, passando o nome e reino do player
+avatar_icon - String(255)
+
+# Tem q fazer 1 fetch por player, passando o id da classe em 'character_class.id'
+class_icon - String(255)
+
+# Tem q fazer 1 fetch por player, passando o id da spec em 'active_spec.id'
+spec_icon - String(255)  # Um link para o ícone da spec

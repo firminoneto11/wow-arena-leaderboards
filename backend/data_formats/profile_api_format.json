@@ -1,0 +1,137 @@
+{
+    "_links": {
+        "self": {
+            "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes?namespace=profile-us"
+        }
+    },
+    "id": 187161385,
+    "name": "Mysthes",
+    "gender": {
+        "type": "FEMALE",
+        "name": "Female"
+    },
+    "faction": {
+        "type": "HORDE",
+        "name": "Horde"
+    },
+    "race": {
+        "key": {
+            "href": "https://us.api.blizzard.com/data/wow/playable-race/10?namespace=static-9.2.0_42277-us"
+        },
+        "name": "Blood Elf",
+        "id": 10
+    },
+    "character_class": {
+        "key": {
+            "href": "https://us.api.blizzard.com/data/wow/playable-class/2?namespace=static-9.2.0_42277-us"
+        },
+        "name": "Paladin",
+        "id": 2
+    },
+    "active_spec": {
+        "key": {
+            "href": "https://us.api.blizzard.com/data/wow/playable-specialization/65?namespace=static-9.2.0_42277-us"
+        },
+        "name": "Holy",
+        "id": 65
+    },
+    "realm": {
+        "key": {
+            "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
+        },
+        "name": "Azralon",
+        "id": 3209,
+        "slug": "azralon"
+    },
+    "guild": {
+        "key": {
+            "href": "https://us.api.blizzard.com/data/wow/guild/azralon/disney-world?namespace=profile-us"
+        },
+        "name": "Disney World",
+        "id": 64616423,
+        "realm": {
+            "key": {
+                "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
+            },
+            "name": "Azralon",
+            "id": 3209,
+            "slug": "azralon"
+        },
+        "faction": {
+            "type": "HORDE",
+            "name": "Horde"
+        }
+    },
+    "level": 60,
+    "experience": 0,
+    "achievement_points": 4155,
+    "achievements": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/achievements?namespace=profile-us"
+    },
+    "titles": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/titles?namespace=profile-us"
+    },
+    "pvp_summary": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/pvp-summary?namespace=profile-us"
+    },
+    "encounters": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/encounters?namespace=profile-us"
+    },
+    "media": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/character-media?namespace=profile-us"
+    },
+    "last_login_timestamp": 1650172123000,
+    "average_item_level": 260,
+    "equipped_item_level": 259,
+    "specializations": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/specializations?namespace=profile-us"
+    },
+    "statistics": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/statistics?namespace=profile-us"
+    },
+    "mythic_keystone_profile": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/mythic-keystone-profile?namespace=profile-us"
+    },
+    "equipment": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/equipment?namespace=profile-us"
+    },
+    "appearance": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/appearance?namespace=profile-us"
+    },
+    "collections": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/collections?namespace=profile-us"
+    },
+    "active_title": {
+        "key": {
+            "href": "https://us.api.blizzard.com/data/wow/title/356?namespace=static-9.2.0_42277-us"
+        },
+        "name": "Stylist",
+        "id": 356,
+        "display_string": "Stylist {name}"
+    },
+    "reputations": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/reputations?namespace=profile-us"
+    },
+    "quests": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/quests?namespace=profile-us"
+    },
+    "achievements_statistics": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/achievements/statistics?namespace=profile-us"
+    },
+    "professions": {
+        "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/professions?namespace=profile-us"
+    },
+    "covenant_progress": {
+        "chosen_covenant": {
+            "key": {
+                "href": "https://us.api.blizzard.com/data/wow/covenant/4?namespace=static-9.2.0_42277-us"
+            },
+            "name": "Necrolord",
+            "id": 4
+        },
+        "renown_level": 80,
+        "soulbinds": {
+            "href": "https://us.api.blizzard.com/profile/wow/character/azralon/mysthes/soulbinds?namespace=profile-us"
+        }
+    }
+}

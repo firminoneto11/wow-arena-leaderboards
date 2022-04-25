@@ -1,0 +1,15 @@
+{
+    "_links": {
+        "self": {
+            "href": "https://us.api.blizzard.com/data/wow/media/playable-class/7?namespace=static-9.2.0_42277-us"
+        }
+    },
+    "assets": [
+        {
+            "key": "icon",
+            "value": "https://render.worldofwarcraft.com/us/icons/56/classicon_shaman.jpg",
+            "file_data_id": 626006
+        }
+    ],
+    "id": 7
+}

@@ -1,7 +1,7 @@
 from asyncio import gather
 from httpx import AsyncClient
 from decouple import config
-from settings import BLIZZARD_TOKENS_URL, LEADERBOARDS_URL, REINOS_BR
+from settings import BLIZZARD_TOKENS_URL, PVP_RATING_API, REINOS_BR
 import json
 from asyncio import gather
 from utils import PlayerData, DadosBracket
@@ -17,11 +17,11 @@ token_stuff_format = {
 }
 
 
-class RetriveBlizzardData:
+class RetrievePvpData:
 
     @classmethod
     def refactor_endpoint(cls, session: int, bracket: str, access_token: str):
-        return LEADERBOARDS_URL.replace("${session}", str(session)).replace("${bracket}", bracket).replace(
+        return PVP_RATING_API.replace("${session}", str(session)).replace("${bracket}", bracket).replace(
             "${accessToken}", access_token
         )
 
@@ -175,6 +175,8 @@ class RetriveBlizzardData:
 
         await cls.write_to_json_file(data=mounted_data)
 
+        return mounted_data
+
     @classmethod
     async def run(cls):
 
@@ -184,11 +186,8 @@ class RetriveBlizzardData:
             print(key, val)
 
         if token_stuff is not None:
-            await cls.get_data(access_token=token_stuff.get("access_token"))
+            mounted_data = await cls.get_data(access_token=token_stuff.get("access_token"))
         else:
             raise Exception(
                 "Não será possível continuar pois ocorreu um problema ao solicitar o access token para a Blizzard"
             )
-
-
-# TODO: Ver como é a bracket de RBG
