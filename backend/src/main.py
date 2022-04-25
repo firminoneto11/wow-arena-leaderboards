@@ -7,7 +7,7 @@ api = FastAPI()
 
 @api.on_event("startup")
 async def startup():
-    await RetriveBlizzardData.mount_data()
+    await RetriveBlizzardData.run()
 
 
 @api.on_event("shutdown")

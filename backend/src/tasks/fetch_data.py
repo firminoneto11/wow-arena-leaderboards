@@ -4,6 +4,8 @@ from decouple import config
 from settings import BLIZZARD_TOKENS_URL, LEADERBOARDS_URL, REINOS_BR
 import json
 from asyncio import gather
+from utils import PlayerData, DadosBracket
+from typing import List
 
 
 # Formato do retorno da api da Blizzard
@@ -24,14 +26,16 @@ class RetriveBlizzardData:
         )
 
     @classmethod
-    async def write_to_json_file(cls, data):
+    async def write_to_json_file(cls, data: List[DadosBracket]):
 
-        async def gerar_dump(dt):
-            print('Gerando dump de string')
-            return json.dumps(dt)
+        async def gerar_dump(dt: List[PlayerData]):
+            print("Gerando dump dos dados")
+            return json.dumps(list(map(
+                lambda el: el.__dict__,
+                dt
+            )))
 
         async def escrever_no_arquivo(dt, tipo: str):
-            print('Escrevendo arquivo')
 
             nome = None
 
@@ -40,15 +44,22 @@ class RetriveBlizzardData:
             elif tipo == '3v3':
                 nome = '../thres_data.json'
 
+            print(f"Escrevendo no arquivo '{nome}'")
+
             with open(file=nome, mode='w', encoding='utf-8') as f:
                 f.write(dt)
 
+        twos = data[0]
+        thres = data[1]
+
         dados = await gather(
-            gerar_dump(dt=data[0]), gerar_dump(dt=data[1])
+            gerar_dump(dt=twos.dados),
+            gerar_dump(dt=thres.dados),
         )
 
         await gather(
-            escrever_no_arquivo(dt=dados[0], tipo='2v2'), escrever_no_arquivo(dt=dados[1], tipo='3v3')
+            escrever_no_arquivo(dt=dados[0], tipo=twos.bracket),
+            escrever_no_arquivo(dt=dados[1], tipo=thres.bracket)
         )
 
     @classmethod
@@ -90,30 +101,78 @@ class RetriveBlizzardData:
                 raise Exception("Houve um problema no status code ao solicitar o access token")
 
     @classmethod
-    async def get_data(cls, session: int, bracket: str, access_token: str):
+    async def get_brazilian_data(cls, session: int, bracket: str, access_token: str):
 
         # Remontando o endpoint para ser dinâmico
         endpoint = cls.refactor_endpoint(session=session, bracket=bracket, access_token=access_token)
 
         async with AsyncClient() as client:
             response = await client.get(endpoint)
-
             data = response.json()
-
             if response.status_code == 200:
-                jogadores_brasileiros = list(filter(
+                brazilian_players = list(filter(
                     lambda player: player["character"]["realm"]["slug"] in REINOS_BR,
                     data["entries"]
                 ))
-                return jogadores_brasileiros
+                return brazilian_players
             else:
                 print(response)
                 print(data)
                 raise Exception(f"Houve um problema no status code ao solicitar os dados para a bracket '{bracket}'")
 
     @classmethod
-    async def mount_data(cls):
-        """ Este método """
+    async def mount_data(cls, raw_data: List[dict]):
+        cleaned_data = []
+
+        for el in raw_data:
+            cleaned_data.append(
+                PlayerData(
+
+                    name=el["character"]["name"],
+
+                    global_rank=el["rank"],
+
+                    cr=el["rating"],
+
+                    faction_name=el["faction"]["type"],
+
+                    realm=el["character"]["realm"]["slug"],
+
+                    played=el["season_match_statistics"]["played"],
+
+                    wins=el["season_match_statistics"]["won"],
+
+                    losses=el["season_match_statistics"]["lost"],
+
+                    player_id_blizz_db=el["character"]["id"],
+
+                )
+            )
+
+        return cleaned_data
+
+    @classmethod
+    async def get_data(cls, access_token: str):
+
+        data = await gather(
+            cls.get_brazilian_data(session=32, bracket="2v2", access_token=access_token),
+            cls.get_brazilian_data(session=32, bracket="3v3", access_token=access_token)
+        )
+
+        mounted_data = await gather(
+            cls.mount_data(data[0]),
+            cls.mount_data(data[1]),
+        )
+
+        mounted_data = [
+            DadosBracket(bracket='2v2', dados=mounted_data[0]),
+            DadosBracket(bracket='3v3', dados=mounted_data[1]),
+        ]
+
+        await cls.write_to_json_file(data=mounted_data)
+
+    @classmethod
+    async def run(cls):
 
         token_stuff: dict = await cls.get_token_stuff()
 
@@ -121,22 +180,11 @@ class RetriveBlizzardData:
             print(key, val)
 
         if token_stuff is not None:
-
-            access_token = token_stuff.get("access_token")
-
-            requests = [
-                cls.get_data(session=32, bracket="2v2", access_token=access_token),
-                cls.get_data(session=32, bracket="3v3", access_token=access_token),
-                # cls.get_data(session=32, bracket="10v10", access_token=access_token),
-            ]
-
-            data = await gather(*requests)
-
-            await cls.write_to_json_file(data)
-
+            await cls.get_data(access_token=token_stuff.get("access_token"))
         else:
-            # Fazer algo quando não tiver access tokens
-            pass
+            raise Exception(
+                "Não será possível continuar pois ocorreu um problema ao solicitar o access token para a Blizzard"
+            )
 
 
 # TODO: Ver como é a bracket de RBG

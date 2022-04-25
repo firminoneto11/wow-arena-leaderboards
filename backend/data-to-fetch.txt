@@ -31,23 +31,28 @@ type - Enum()  # Pode ser 2v2, 3v3 e 10v10
 Players Table:
 
 id - Integer
-global_rank - Integer
-tier - String(20)
+
+tier - String(20)  # Nome do tier (Duelist, Rival, etc)
 tier_icon - String(255)  # Um link para o ícone do tier
-cr - Integer
+
 avatar_icon - String(255)  # Um link para o avatar do player
+
+class_icon - String(255)  # Um link para o ícone da classe
+class_name - String(50)  # Nome da classe do jogador
+
+spec_icon - String(255)  # Um link para o ícone da spec
+spec_name - String(50)  # Nome da spec da classe do jogador
+
+-- JÁ ENCONTRADOS (ENDPOINT DE PVP) --
+
+# faction_icon - String(255)  # Um link para o ícone da facção
+
 name - String(50)
-
-class - String(255)  # Um link para o ícone da classe
-class_name - String(50)
-
-spec - String(255)  # Um link para o ícone da spec
-spec_name - String(50)
-
-faction - String(255)  # Um link para o ícone da facção
-faction_name - String(50)
-
+global_rank - Integer
+cr - Integer
+faction_name - String(50)  # Nome da facção do jogador
 realm - String(50)
-
+played - Integer
 wins - Integer
 losses - Integer
+player_id_blizz_db - Integer

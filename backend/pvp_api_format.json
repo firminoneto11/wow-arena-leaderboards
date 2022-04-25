@@ -1,0 +1,29 @@
+{
+    "character": {
+        "name": "Vigarst",
+        "id": 153923830,
+        "realm": {
+            "key": {
+                "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
+            },
+            "id": 3209,
+            "slug": "azralon"
+        }
+    },
+    "faction": {
+        "type": "HORDE"
+    },
+    "rank": 85,
+    "rating": 2727,
+    "season_match_statistics": {
+        "played": 689,
+        "won": 372,
+        "lost": 317
+    },
+    "tier": {
+        "key": {
+            "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
+        },
+        "id": 14
+    }
+}

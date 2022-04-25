@@ -1,3192 +1,1234 @@
 [
     {
-        "character": {
-            "name": "Vigarst",
-            "id": 153923830,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 85,
-        "rating": 2727,
-        "season_match_statistics": {
-            "played": 689,
-            "won": 372,
-            "lost": 317
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "Met\u00e9ora",
-            "id": 221912709,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 240,
-        "rating": 2601,
-        "season_match_statistics": {
-            "played": 470,
-            "won": 258,
-            "lost": 212
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "Vctrphs",
-            "id": 202770376,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 243,
-        "rating": 2600,
-        "season_match_statistics": {
-            "played": 584,
-            "won": 318,
-            "lost": 266
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "Ellynaria",
-            "id": 172042213,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 262,
-        "rating": 2590,
-        "season_match_statistics": {
-            "played": 396,
-            "won": 215,
-            "lost": 181
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "Kynndra",
-            "id": 155847215,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 469,
-        "rating": 2479,
-        "season_match_statistics": {
-            "played": 222,
-            "won": 120,
-            "lost": 102
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "\u00c6n",
-            "id": 221298228,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 500,
-        "rating": 2471,
-        "season_match_statistics": {
-            "played": 348,
-            "won": 199,
-            "lost": 149
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "C\u00falhus",
-            "id": 192227243,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 511,
-        "rating": 2467,
-        "season_match_statistics": {
-            "played": 285,
-            "won": 171,
-            "lost": 114
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "Ellynaria",
-            "id": 221824942,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 557,
-        "rating": 2453,
-        "season_match_statistics": {
-            "played": 396,
-            "won": 221,
-            "lost": 175
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "Frehj",
-            "id": 172454013,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 595,
-        "rating": 2444,
-        "season_match_statistics": {
-            "played": 609,
-            "won": 310,
-            "lost": 299
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "Faketony",
-            "id": 186171773,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 616,
-        "rating": 2439,
-        "season_match_statistics": {
-            "played": 553,
-            "won": 293,
-            "lost": 260
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "Morangosaki",
-            "id": 190728426,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 648,
-        "rating": 2431,
-        "season_match_statistics": {
-            "played": 122,
-            "won": 67,
-            "lost": 55
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/14?namespace=static-9.2.0_42277-us"
-            },
-            "id": 14
-        }
-    },
-    {
-        "character": {
-            "name": "Lanadelbaile",
-            "id": 191987312,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 938,
-        "rating": 2370,
-        "season_match_statistics": {
-            "played": 406,
-            "won": 214,
-            "lost": 192
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Melz\u00edn",
-            "id": 150591892,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 976,
-        "rating": 2356,
-        "season_match_statistics": {
-            "played": 153,
-            "won": 89,
-            "lost": 64
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Abdulhadi",
-            "id": 191083946,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 1004,
-        "rating": 2347,
-        "season_match_statistics": {
-            "played": 478,
-            "won": 272,
-            "lost": 206
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Imissmymonks",
-            "id": 192172680,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1123,
-        "rating": 2321,
-        "season_match_statistics": {
-            "played": 348,
-            "won": 196,
-            "lost": 152
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Neabzilla",
-            "id": 191678439,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1150,
-        "rating": 2313,
-        "season_match_statistics": {
-            "played": 292,
-            "won": 172,
-            "lost": 120
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Repgodx",
-            "id": 181019198,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3207?namespace=dynamic-us"
-                },
-                "id": 3207,
-                "slug": "goldrinn"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1188,
-        "rating": 2305,
-        "season_match_statistics": {
-            "played": 113,
-            "won": 75,
-            "lost": 38
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Elfenl\u00eded",
-            "id": 192129239,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1290,
-        "rating": 2287,
-        "season_match_statistics": {
-            "played": 1258,
-            "won": 691,
-            "lost": 567
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Jairbolsosim",
-            "id": 186419650,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1414,
-        "rating": 2266,
-        "season_match_statistics": {
-            "played": 125,
-            "won": 75,
-            "lost": 50
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Ch\u00e1depilha",
-            "id": 221437621,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1438,
-        "rating": 2262,
-        "season_match_statistics": {
-            "played": 136,
-            "won": 78,
-            "lost": 58
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Baen",
-            "id": 189226261,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1505,
-        "rating": 2251,
-        "season_match_statistics": {
-            "played": 276,
-            "won": 148,
-            "lost": 128
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Kynndin",
-            "id": 168955427,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1510,
-        "rating": 2250,
-        "season_match_statistics": {
-            "played": 188,
-            "won": 104,
-            "lost": 84
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Vigaristaqt",
-            "id": 172736492,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1654,
-        "rating": 2230,
-        "season_match_statistics": {
-            "played": 194,
-            "won": 110,
-            "lost": 84
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Mysickboy",
-            "id": 191975727,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1898,
-        "rating": 2203,
-        "season_match_statistics": {
-            "played": 145,
-            "won": 91,
-            "lost": 54
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "M\u00e9u",
-            "id": 191186523,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 1898,
-        "rating": 2203,
-        "season_match_statistics": {
-            "played": 265,
-            "won": 159,
-            "lost": 106
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Contragolpe",
-            "id": 162080145,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 2148,
-        "rating": 2173,
-        "season_match_statistics": {
-            "played": 171,
-            "won": 97,
-            "lost": 74
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Nandieres",
-            "id": 164667529,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 2339,
-        "rating": 2153,
-        "season_match_statistics": {
-            "played": 546,
-            "won": 283,
-            "lost": 263
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Claudiaopro",
-            "id": 188489397,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 2532,
-        "rating": 2137,
-        "season_match_statistics": {
-            "played": 266,
-            "won": 147,
-            "lost": 119
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Murkmindkekw",
-            "id": 147944553,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 2589,
-        "rating": 2133,
-        "season_match_statistics": {
-            "played": 192,
-            "won": 111,
-            "lost": 81
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Madrugz",
-            "id": 136890073,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 2655,
-        "rating": 2127,
-        "season_match_statistics": {
-            "played": 643,
-            "won": 338,
-            "lost": 305
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Claudadinho",
-            "id": 178541807,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 2815,
-        "rating": 2117,
-        "season_match_statistics": {
-            "played": 187,
-            "won": 108,
-            "lost": 79
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Adamant\u00efum",
-            "id": 188297770,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 2830,
-        "rating": 2116,
-        "season_match_statistics": {
-            "played": 276,
-            "won": 137,
-            "lost": 139
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "K\u00edngkais\u00e9r",
-            "id": 192047999,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 2949,
-        "rating": 2111,
-        "season_match_statistics": {
-            "played": 577,
-            "won": 301,
-            "lost": 276
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Nescaup",
-            "id": 126598596,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3103,
-        "rating": 2106,
-        "season_match_statistics": {
-            "played": 235,
-            "won": 142,
-            "lost": 93
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Shahrokh",
-            "id": 219155567,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3103,
-        "rating": 2106,
-        "season_match_statistics": {
-            "played": 352,
-            "won": 188,
-            "lost": 164
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Jherf",
-            "id": 175796353,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3189,
-        "rating": 2103,
-        "season_match_statistics": {
-            "played": 344,
-            "won": 187,
-            "lost": 157
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Sick",
-            "id": 89150217,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3238,
-        "rating": 2101,
-        "season_match_statistics": {
-            "played": 170,
-            "won": 92,
-            "lost": 78
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Bumbleebolt",
-            "id": 85071178,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3274,
-        "rating": 2100,
-        "season_match_statistics": {
-            "played": 270,
-            "won": 139,
-            "lost": 131
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Onyankop\u00f8n",
-            "id": 192252102,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 3316,
-        "rating": 2099,
-        "season_match_statistics": {
-            "played": 282,
-            "won": 153,
-            "lost": 129
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Ograda",
-            "id": 172476652,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3341,
-        "rating": 2097,
-        "season_match_statistics": {
-            "played": 171,
-            "won": 89,
-            "lost": 82
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Netherzurl",
-            "id": 221735705,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3360,
-        "rating": 2095,
-        "season_match_statistics": {
-            "played": 502,
-            "won": 272,
-            "lost": 230
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Realtony",
-            "id": 192245428,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3360,
-        "rating": 2095,
-        "season_match_statistics": {
-            "played": 122,
-            "won": 65,
-            "lost": 57
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Neab",
-            "id": 141150101,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3375,
-        "rating": 2094,
-        "season_match_statistics": {
-            "played": 503,
-            "won": 275,
-            "lost": 228
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Rhemo",
-            "id": 150086144,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3426,
-        "rating": 2088,
-        "season_match_statistics": {
-            "played": 404,
-            "won": 215,
-            "lost": 189
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Sofytes",
-            "id": 190429914,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3441,
-        "rating": 2087,
-        "season_match_statistics": {
-            "played": 866,
-            "won": 447,
-            "lost": 419
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Tbcisbad",
-            "id": 190466201,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3460,
-        "rating": 2086,
-        "season_match_statistics": {
-            "played": 482,
-            "won": 253,
-            "lost": 229
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Konstanze",
-            "id": 96983851,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3480,
-        "rating": 2084,
-        "season_match_statistics": {
-            "played": 390,
-            "won": 213,
-            "lost": 177
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "\u00d8rio\u00f1",
-            "id": 192229758,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3480,
-        "rating": 2084,
-        "season_match_statistics": {
-            "played": 909,
-            "won": 455,
-            "lost": 454
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/13?namespace=static-9.2.0_42277-us"
-            },
-            "id": 13
-        }
-    },
-    {
-        "character": {
-            "name": "Palantyxyz",
-            "id": 192226818,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3514,
-        "rating": 2082,
-        "season_match_statistics": {
-            "played": 693,
-            "won": 368,
-            "lost": 325
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "M\u00f6ody",
-            "id": 222118775,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 3526,
-        "rating": 2081,
-        "season_match_statistics": {
-            "played": 163,
-            "won": 88,
-            "lost": 75
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Dead",
-            "id": 160995442,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3542,
-        "rating": 2080,
-        "season_match_statistics": {
-            "played": 295,
-            "won": 159,
-            "lost": 136
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Gugorio",
-            "id": 192243025,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3551,
-        "rating": 2079,
-        "season_match_statistics": {
-            "played": 263,
-            "won": 138,
-            "lost": 125
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Geloseco",
-            "id": 165662089,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3615,
-        "rating": 2074,
-        "season_match_statistics": {
-            "played": 134,
-            "won": 74,
-            "lost": 60
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Grounyl",
-            "id": 145170511,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3633,
-        "rating": 2072,
-        "season_match_statistics": {
-            "played": 479,
-            "won": 256,
-            "lost": 223
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Wchow",
-            "id": 172199167,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3210?namespace=dynamic-us"
-                },
-                "id": 3210,
-                "slug": "tol-barad"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 3676,
-        "rating": 2069,
-        "season_match_statistics": {
-            "played": 273,
-            "won": 149,
-            "lost": 124
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "G\u00e1mbit",
-            "id": 220902223,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 3702,
-        "rating": 2067,
-        "season_match_statistics": {
-            "played": 213,
-            "won": 127,
-            "lost": 86
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Oranokekw",
-            "id": 192330108,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3702,
-        "rating": 2067,
-        "season_match_statistics": {
-            "played": 170,
-            "won": 90,
-            "lost": 80
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Yogosun",
-            "id": 103282020,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3207?namespace=dynamic-us"
-                },
-                "id": 3207,
-                "slug": "goldrinn"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 3723,
-        "rating": 2066,
-        "season_match_statistics": {
-            "played": 138,
-            "won": 79,
-            "lost": 59
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Vit\u00e9ti",
-            "id": 86278215,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3723,
-        "rating": 2066,
-        "season_match_statistics": {
-            "played": 503,
-            "won": 276,
-            "lost": 227
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Avriam",
-            "id": 158640825,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3794,
-        "rating": 2061,
-        "season_match_statistics": {
-            "played": 782,
-            "won": 414,
-            "lost": 368
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Maivalentine",
-            "id": 160237178,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3850,
-        "rating": 2057,
-        "season_match_statistics": {
-            "played": 712,
-            "won": 382,
-            "lost": 330
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Troyana",
-            "id": 85732626,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3927,
-        "rating": 2052,
-        "season_match_statistics": {
-            "played": 124,
-            "won": 71,
-            "lost": 53
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Ellynar\u00eca",
-            "id": 217850511,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3952,
-        "rating": 2050,
-        "season_match_statistics": {
-            "played": 173,
-            "won": 102,
-            "lost": 71
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Executeqt",
-            "id": 191778631,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3952,
-        "rating": 2050,
-        "season_match_statistics": {
-            "played": 129,
-            "won": 71,
-            "lost": 58
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Frikatp",
-            "id": 189318477,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 3989,
-        "rating": 2048,
-        "season_match_statistics": {
-            "played": 145,
-            "won": 78,
-            "lost": 67
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Resendhe",
-            "id": 190586923,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4032,
-        "rating": 2045,
-        "season_match_statistics": {
-            "played": 77,
-            "won": 43,
-            "lost": 34
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "L\u00eb\u00f8n\u00eb",
-            "id": 221284654,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4047,
-        "rating": 2044,
-        "season_match_statistics": {
-            "played": 63,
-            "won": 45,
-            "lost": 18
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Kcis",
-            "id": 189274967,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4062,
-        "rating": 2043,
-        "season_match_statistics": {
-            "played": 262,
-            "won": 136,
-            "lost": 126
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "\u00c4ran",
-            "id": 176145827,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4081,
-        "rating": 2042,
-        "season_match_statistics": {
-            "played": 280,
-            "won": 156,
-            "lost": 124
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Norogojo",
-            "id": 188270802,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4081,
-        "rating": 2042,
-        "season_match_statistics": {
-            "played": 349,
-            "won": 191,
-            "lost": 158
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Unitedi",
-            "id": 186168706,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4113,
-        "rating": 2040,
-        "season_match_statistics": {
-            "played": 372,
-            "won": 221,
-            "lost": 151
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Fastmdlul",
-            "id": 187515882,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4113,
-        "rating": 2040,
-        "season_match_statistics": {
-            "played": 222,
-            "won": 113,
-            "lost": 109
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Falsonomicz",
-            "id": 149024496,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4132,
-        "rating": 2039,
-        "season_match_statistics": {
-            "played": 264,
-            "won": 150,
-            "lost": 114
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Brasilenha",
-            "id": 192238638,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4132,
-        "rating": 2039,
-        "season_match_statistics": {
-            "played": 175,
-            "won": 97,
-            "lost": 78
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Ylanglang",
-            "id": 192246498,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4132,
-        "rating": 2039,
-        "season_match_statistics": {
-            "played": 468,
-            "won": 251,
-            "lost": 217
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Raypinkz",
-            "id": 221915296,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4145,
-        "rating": 2038,
-        "season_match_statistics": {
-            "played": 147,
-            "won": 86,
-            "lost": 61
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Neabiz",
-            "id": 138655408,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4145,
-        "rating": 2038,
-        "season_match_statistics": {
-            "played": 328,
-            "won": 177,
-            "lost": 151
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Viguinha",
-            "id": 192180220,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4145,
-        "rating": 2038,
-        "season_match_statistics": {
-            "played": 174,
-            "won": 89,
-            "lost": 85
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Myfirstww",
-            "id": 191131350,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4166,
-        "rating": 2036,
-        "season_match_statistics": {
-            "played": 275,
-            "won": 147,
-            "lost": 128
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Ppgdxtres",
-            "id": 187697846,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4184,
-        "rating": 2035,
-        "season_match_statistics": {
-            "played": 200,
-            "won": 107,
-            "lost": 93
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "K\u00edngofpaypal",
-            "id": 192334980,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4214,
-        "rating": 2033,
-        "season_match_statistics": {
-            "played": 189,
-            "won": 101,
-            "lost": 88
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Kontchak",
-            "id": 192089770,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4301,
-        "rating": 2028,
-        "season_match_statistics": {
-            "played": 181,
-            "won": 107,
-            "lost": 74
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Homerfof\u00ednho",
-            "id": 185786279,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4361,
-        "rating": 2024,
-        "season_match_statistics": {
-            "played": 262,
-            "won": 150,
-            "lost": 112
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Squeezed",
-            "id": 190535848,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4383,
-        "rating": 2023,
-        "season_match_statistics": {
-            "played": 172,
-            "won": 101,
-            "lost": 71
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Mercen\u00e1rioh",
-            "id": 189955479,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4383,
-        "rating": 2023,
-        "season_match_statistics": {
-            "played": 217,
-            "won": 123,
-            "lost": 94
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Madrugadonna",
-            "id": 151691781,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4402,
-        "rating": 2022,
-        "season_match_statistics": {
-            "played": 572,
-            "won": 296,
-            "lost": 276
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Eskerda",
-            "id": 191426443,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3234?namespace=dynamic-us"
-                },
-                "id": 3234,
-                "slug": "gallywix"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4446,
-        "rating": 2019,
-        "season_match_statistics": {
-            "played": 435,
-            "won": 230,
-            "lost": 205
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Sacerdotas",
-            "id": 213646105,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4503,
-        "rating": 2016,
-        "season_match_statistics": {
-            "played": 282,
-            "won": 159,
-            "lost": 123
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Dathreana",
-            "id": 221453542,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4503,
-        "rating": 2016,
-        "season_match_statistics": {
-            "played": 239,
-            "won": 130,
-            "lost": 109
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Popwings",
-            "id": 153652022,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4503,
-        "rating": 2016,
-        "season_match_statistics": {
-            "played": 490,
-            "won": 257,
-            "lost": 233
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Bradockqt",
-            "id": 161060881,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4519,
-        "rating": 2015,
-        "season_match_statistics": {
-            "played": 804,
-            "won": 413,
-            "lost": 391
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Oramonk",
-            "id": 192384553,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4556,
-        "rating": 2013,
-        "season_match_statistics": {
-            "played": 76,
-            "won": 47,
-            "lost": 29
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Josephklimve",
-            "id": 91115306,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4556,
-        "rating": 2013,
-        "season_match_statistics": {
-            "played": 119,
-            "won": 70,
-            "lost": 49
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Maguimbolado",
-            "id": 90094819,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4556,
-        "rating": 2013,
-        "season_match_statistics": {
-            "played": 454,
-            "won": 230,
-            "lost": 224
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Illness",
-            "id": 127823144,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4574,
-        "rating": 2012,
-        "season_match_statistics": {
-            "played": 131,
-            "won": 77,
-            "lost": 54
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Aldda",
-            "id": 190486777,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4574,
-        "rating": 2012,
-        "season_match_statistics": {
-            "played": 520,
-            "won": 266,
-            "lost": 254
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Darkthink",
-            "id": 187911261,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4592,
-        "rating": 2011,
-        "season_match_statistics": {
-            "played": 229,
-            "won": 117,
-            "lost": 112
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Gugorian",
-            "id": 192235938,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4631,
-        "rating": 2009,
-        "season_match_statistics": {
-            "played": 367,
-            "won": 191,
-            "lost": 176
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Welldone",
-            "id": 192216284,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4631,
-        "rating": 2009,
-        "season_match_statistics": {
-            "played": 780,
-            "won": 388,
-            "lost": 392
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Smexantyr",
-            "id": 192284201,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4646,
-        "rating": 2008,
-        "season_match_statistics": {
-            "played": 390,
-            "won": 188,
-            "lost": 202
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Smukyh",
-            "id": 126211577,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4674,
-        "rating": 2007,
-        "season_match_statistics": {
-            "played": 479,
-            "won": 269,
-            "lost": 210
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Ashitakah",
-            "id": 190925569,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4693,
-        "rating": 2006,
-        "season_match_statistics": {
-            "played": 167,
-            "won": 98,
-            "lost": 69
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Drwarbanner",
-            "id": 174664953,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4693,
-        "rating": 2006,
-        "season_match_statistics": {
-            "played": 947,
-            "won": 483,
-            "lost": 464
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "K\u00e5dmus",
-            "id": 187789947,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4752,
-        "rating": 2003,
-        "season_match_statistics": {
-            "played": 153,
-            "won": 85,
-            "lost": 68
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Stingz",
-            "id": 91777381,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4819,
-        "rating": 2000,
-        "season_match_statistics": {
-            "played": 74,
-            "won": 49,
-            "lost": 25
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Har\u00f3kz",
-            "id": 192113736,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4859,
-        "rating": 1998,
-        "season_match_statistics": {
-            "played": 1132,
-            "won": 574,
-            "lost": 558
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Ppgdx",
-            "id": 170940422,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4908,
-        "rating": 1995,
-        "season_match_statistics": {
-            "played": 113,
-            "won": 66,
-            "lost": 47
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Hinaraa",
-            "id": 192115814,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4964,
-        "rating": 1991,
-        "season_match_statistics": {
-            "played": 131,
-            "won": 69,
-            "lost": 62
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "Jays",
-            "id": 175898951,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3209?namespace=dynamic-us"
-                },
-                "id": 3209,
-                "slug": "azralon"
-            }
-        },
-        "faction": {
-            "type": "HORDE"
-        },
-        "rank": 4983,
-        "rating": 1990,
-        "season_match_statistics": {
-            "played": 194,
-            "won": 109,
-            "lost": 85
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
-    },
-    {
-        "character": {
-            "name": "S\u00e9rg\u00efo",
-            "id": 192501165,
-            "realm": {
-                "key": {
-                    "href": "https://us.api.blizzard.com/data/wow/realm/3208?namespace=dynamic-us"
-                },
-                "id": 3208,
-                "slug": "nemesis"
-            }
-        },
-        "faction": {
-            "type": "ALLIANCE"
-        },
-        "rank": 4998,
-        "rating": 1989,
-        "season_match_statistics": {
-            "played": 79,
-            "won": 48,
-            "lost": 31
-        },
-        "tier": {
-            "key": {
-                "href": "https://us.api.blizzard.com/data/wow/pvp-tier/211?namespace=static-9.2.0_42277-us"
-            },
-            "id": 211
-        }
+        "name": "Vigarst",
+        "global_rank": 85,
+        "cr": 2727,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 689,
+        "wins": 372,
+        "losses": 317,
+        "player_id_blizz_db": 153923830
+    },
+    {
+        "name": "Met\u00e9ora",
+        "global_rank": 239,
+        "cr": 2601,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 470,
+        "wins": 258,
+        "losses": 212,
+        "player_id_blizz_db": 221912709
+    },
+    {
+        "name": "Vctrphs",
+        "global_rank": 242,
+        "cr": 2600,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 584,
+        "wins": 318,
+        "losses": 266,
+        "player_id_blizz_db": 202770376
+    },
+    {
+        "name": "Ellynaria",
+        "global_rank": 261,
+        "cr": 2590,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 396,
+        "wins": 215,
+        "losses": 181,
+        "player_id_blizz_db": 172042213
+    },
+    {
+        "name": "Kynndra",
+        "global_rank": 471,
+        "cr": 2479,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 222,
+        "wins": 120,
+        "losses": 102,
+        "player_id_blizz_db": 155847215
+    },
+    {
+        "name": "\u00c6n",
+        "global_rank": 501,
+        "cr": 2471,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 348,
+        "wins": 199,
+        "losses": 149,
+        "player_id_blizz_db": 221298228
+    },
+    {
+        "name": "C\u00falhus",
+        "global_rank": 514,
+        "cr": 2467,
+        "faction_name": "ALLIANCE",
+        "realm": "azralon",
+        "played": 285,
+        "wins": 171,
+        "losses": 114,
+        "player_id_blizz_db": 192227243
+    },
+    {
+        "name": "Ellynaria",
+        "global_rank": 558,
+        "cr": 2453,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 396,
+        "wins": 221,
+        "losses": 175,
+        "player_id_blizz_db": 221824942
+    },
+    {
+        "name": "Frehj",
+        "global_rank": 596,
+        "cr": 2444,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 609,
+        "wins": 310,
+        "losses": 299,
+        "player_id_blizz_db": 172454013
+    },
+    {
+        "name": "Faketony",
+        "global_rank": 615,
+        "cr": 2439,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 553,
+        "wins": 293,
+        "losses": 260,
+        "player_id_blizz_db": 186171773
+    },
+    {
+        "name": "Morangosaki",
+        "global_rank": 645,
+        "cr": 2431,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 122,
+        "wins": 67,
+        "losses": 55,
+        "player_id_blizz_db": 190728426
+    },
+    {
+        "name": "Lanadelbaile",
+        "global_rank": 938,
+        "cr": 2370,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 406,
+        "wins": 214,
+        "losses": 192,
+        "player_id_blizz_db": 191987312
+    },
+    {
+        "name": "Melz\u00edn",
+        "global_rank": 982,
+        "cr": 2356,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 153,
+        "wins": 89,
+        "losses": 64,
+        "player_id_blizz_db": 150591892
+    },
+    {
+        "name": "Abdulhadi",
+        "global_rank": 1015,
+        "cr": 2347,
+        "faction_name": "ALLIANCE",
+        "realm": "azralon",
+        "played": 478,
+        "wins": 272,
+        "losses": 206,
+        "player_id_blizz_db": 191083946
+    },
+    {
+        "name": "Imissmymonks",
+        "global_rank": 1129,
+        "cr": 2321,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 348,
+        "wins": 196,
+        "losses": 152,
+        "player_id_blizz_db": 192172680
+    },
+    {
+        "name": "Neabzilla",
+        "global_rank": 1157,
+        "cr": 2313,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 292,
+        "wins": 172,
+        "losses": 120,
+        "player_id_blizz_db": 191678439
+    },
+    {
+        "name": "Repgodx",
+        "global_rank": 1194,
+        "cr": 2305,
+        "faction_name": "HORDE",
+        "realm": "goldrinn",
+        "played": 113,
+        "wins": 75,
+        "losses": 38,
+        "player_id_blizz_db": 181019198
+    },
+    {
+        "name": "Elfenl\u00eded",
+        "global_rank": 1291,
+        "cr": 2287,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 1258,
+        "wins": 691,
+        "losses": 567,
+        "player_id_blizz_db": 192129239
+    },
+    {
+        "name": "Jairbolsosim",
+        "global_rank": 1420,
+        "cr": 2266,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 125,
+        "wins": 75,
+        "losses": 50,
+        "player_id_blizz_db": 186419650
+    },
+    {
+        "name": "Ch\u00e1depilha",
+        "global_rank": 1444,
+        "cr": 2262,
+        "faction_name": "HORDE",
+        "realm": "nemesis",
+        "played": 136,
+        "wins": 78,
+        "losses": 58,
+        "player_id_blizz_db": 221437621
+    },
+    {
+        "name": "Baen",
+        "global_rank": 1512,
+        "cr": 2251,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 276,
+        "wins": 148,
+        "losses": 128,
+        "player_id_blizz_db": 189226261
+    },
+    {
+        "name": "Kynndin",
+        "global_rank": 1516,
+        "cr": 2250,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 188,
+        "wins": 104,
+        "losses": 84,
+        "player_id_blizz_db": 168955427
+    },
+    {
+        "name": "Vigaristaqt",
+        "global_rank": 1657,
+        "cr": 2230,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 194,
+        "wins": 110,
+        "losses": 84,
+        "player_id_blizz_db": 172736492
+    },
+    {
+        "name": "Mysickboy",
+        "global_rank": 1899,
+        "cr": 2203,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 145,
+        "wins": 91,
+        "losses": 54,
+        "player_id_blizz_db": 191975727
+    },
+    {
+        "name": "M\u00e9u",
+        "global_rank": 1899,
+        "cr": 2203,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 265,
+        "wins": 159,
+        "losses": 106,
+        "player_id_blizz_db": 191186523
+    },
+    {
+        "name": "Contragolpe",
+        "global_rank": 2155,
+        "cr": 2173,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 171,
+        "wins": 97,
+        "losses": 74,
+        "player_id_blizz_db": 162080145
+    },
+    {
+        "name": "Nandieres",
+        "global_rank": 2351,
+        "cr": 2153,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 546,
+        "wins": 283,
+        "losses": 263,
+        "player_id_blizz_db": 164667529
+    },
+    {
+        "name": "Claudiaopro",
+        "global_rank": 2541,
+        "cr": 2137,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 266,
+        "wins": 147,
+        "losses": 119,
+        "player_id_blizz_db": 188489397
+    },
+    {
+        "name": "Murkmindkekw",
+        "global_rank": 2600,
+        "cr": 2133,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 192,
+        "wins": 111,
+        "losses": 81,
+        "player_id_blizz_db": 147944553
+    },
+    {
+        "name": "Madrugz",
+        "global_rank": 2667,
+        "cr": 2127,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 643,
+        "wins": 338,
+        "losses": 305,
+        "player_id_blizz_db": 136890073
+    },
+    {
+        "name": "Claudadinho",
+        "global_rank": 2827,
+        "cr": 2117,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 187,
+        "wins": 108,
+        "losses": 79,
+        "player_id_blizz_db": 178541807
+    },
+    {
+        "name": "Adamant\u00efum",
+        "global_rank": 2842,
+        "cr": 2116,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 276,
+        "wins": 137,
+        "losses": 139,
+        "player_id_blizz_db": 188297770
+    },
+    {
+        "name": "K\u00edngkais\u00e9r",
+        "global_rank": 2960,
+        "cr": 2111,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 577,
+        "wins": 301,
+        "losses": 276,
+        "player_id_blizz_db": 192047999
+    },
+    {
+        "name": "Nescaup",
+        "global_rank": 3117,
+        "cr": 2106,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 235,
+        "wins": 142,
+        "losses": 93,
+        "player_id_blizz_db": 126598596
+    },
+    {
+        "name": "Shahrokh",
+        "global_rank": 3117,
+        "cr": 2106,
+        "faction_name": "HORDE",
+        "realm": "nemesis",
+        "played": 352,
+        "wins": 188,
+        "losses": 164,
+        "player_id_blizz_db": 219155567
+    },
+    {
+        "name": "Jherf",
+        "global_rank": 3203,
+        "cr": 2103,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 344,
+        "wins": 187,
+        "losses": 157,
+        "player_id_blizz_db": 175796353
+    },
+    {
+        "name": "Sick",
+        "global_rank": 3254,
+        "cr": 2101,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 170,
+        "wins": 92,
+        "losses": 78,
+        "player_id_blizz_db": 89150217
+    },
+    {
+        "name": "Bumbleebolt",
+        "global_rank": 3288,
+        "cr": 2100,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 270,
+        "wins": 139,
+        "losses": 131,
+        "player_id_blizz_db": 85071178
+    },
+    {
+        "name": "Onyankop\u00f8n",
+        "global_rank": 3328,
+        "cr": 2099,
+        "faction_name": "ALLIANCE",
+        "realm": "azralon",
+        "played": 282,
+        "wins": 153,
+        "losses": 129,
+        "player_id_blizz_db": 192252102
+    },
+    {
+        "name": "Ograda",
+        "global_rank": 3353,
+        "cr": 2097,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 171,
+        "wins": 89,
+        "losses": 82,
+        "player_id_blizz_db": 172476652
+    },
+    {
+        "name": "Netherzurl",
+        "global_rank": 3374,
+        "cr": 2095,
+        "faction_name": "HORDE",
+        "realm": "nemesis",
+        "played": 502,
+        "wins": 272,
+        "losses": 230,
+        "player_id_blizz_db": 221735705
+    },
+    {
+        "name": "Maivalentine",
+        "global_rank": 3374,
+        "cr": 2095,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 723,
+        "wins": 390,
+        "losses": 333,
+        "player_id_blizz_db": 160237178
+    },
+    {
+        "name": "Realtony",
+        "global_rank": 3374,
+        "cr": 2095,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 122,
+        "wins": 65,
+        "losses": 57,
+        "player_id_blizz_db": 192245428
+    },
+    {
+        "name": "Neab",
+        "global_rank": 3391,
+        "cr": 2094,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 503,
+        "wins": 275,
+        "losses": 228,
+        "player_id_blizz_db": 141150101
+    },
+    {
+        "name": "Sofytes",
+        "global_rank": 3450,
+        "cr": 2087,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 866,
+        "wins": 447,
+        "losses": 419,
+        "player_id_blizz_db": 190429914
+    },
+    {
+        "name": "Tbcisbad",
+        "global_rank": 3469,
+        "cr": 2086,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 482,
+        "wins": 253,
+        "losses": 229,
+        "player_id_blizz_db": 190466201
+    },
+    {
+        "name": "Konstanze",
+        "global_rank": 3491,
+        "cr": 2084,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 390,
+        "wins": 213,
+        "losses": 177,
+        "player_id_blizz_db": 96983851
+    },
+    {
+        "name": "Wchow",
+        "global_rank": 3491,
+        "cr": 2084,
+        "faction_name": "ALLIANCE",
+        "realm": "tol-barad",
+        "played": 285,
+        "wins": 155,
+        "losses": 130,
+        "player_id_blizz_db": 172199167
+    },
+    {
+        "name": "\u00d8rio\u00f1",
+        "global_rank": 3491,
+        "cr": 2084,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 909,
+        "wins": 455,
+        "losses": 454,
+        "player_id_blizz_db": 192229758
+    },
+    {
+        "name": "Palantyxyz",
+        "global_rank": 3528,
+        "cr": 2082,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 693,
+        "wins": 368,
+        "losses": 325,
+        "player_id_blizz_db": 192226818
+    },
+    {
+        "name": "M\u00f6ody",
+        "global_rank": 3539,
+        "cr": 2081,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 163,
+        "wins": 88,
+        "losses": 75,
+        "player_id_blizz_db": 222118775
+    },
+    {
+        "name": "Gugorio",
+        "global_rank": 3564,
+        "cr": 2079,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 263,
+        "wins": 138,
+        "losses": 125,
+        "player_id_blizz_db": 192243025
+    },
+    {
+        "name": "Geloseco",
+        "global_rank": 3590,
+        "cr": 2077,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 141,
+        "wins": 78,
+        "losses": 63,
+        "player_id_blizz_db": 165662089
+    },
+    {
+        "name": "Grounyl",
+        "global_rank": 3639,
+        "cr": 2072,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 479,
+        "wins": 256,
+        "losses": 223,
+        "player_id_blizz_db": 145170511
+    },
+    {
+        "name": "G\u00e1mbit",
+        "global_rank": 3706,
+        "cr": 2067,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 213,
+        "wins": 127,
+        "losses": 86,
+        "player_id_blizz_db": 220902223
+    },
+    {
+        "name": "Oranokekw",
+        "global_rank": 3706,
+        "cr": 2067,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 170,
+        "wins": 90,
+        "losses": 80,
+        "player_id_blizz_db": 192330108
+    },
+    {
+        "name": "Yogosun",
+        "global_rank": 3727,
+        "cr": 2066,
+        "faction_name": "ALLIANCE",
+        "realm": "goldrinn",
+        "played": 138,
+        "wins": 79,
+        "losses": 59,
+        "player_id_blizz_db": 103282020
+    },
+    {
+        "name": "Vit\u00e9ti",
+        "global_rank": 3727,
+        "cr": 2066,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 503,
+        "wins": 276,
+        "losses": 227,
+        "player_id_blizz_db": 86278215
+    },
+    {
+        "name": "Avriam",
+        "global_rank": 3801,
+        "cr": 2061,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 782,
+        "wins": 414,
+        "losses": 368,
+        "player_id_blizz_db": 158640825
+    },
+    {
+        "name": "Troyana",
+        "global_rank": 3922,
+        "cr": 2052,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 124,
+        "wins": 71,
+        "losses": 53,
+        "player_id_blizz_db": 85732626
+    },
+    {
+        "name": "Ellynar\u00eca",
+        "global_rank": 3946,
+        "cr": 2050,
+        "faction_name": "HORDE",
+        "realm": "nemesis",
+        "played": 173,
+        "wins": 102,
+        "losses": 71,
+        "player_id_blizz_db": 217850511
+    },
+    {
+        "name": "Executeqt",
+        "global_rank": 3946,
+        "cr": 2050,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 129,
+        "wins": 71,
+        "losses": 58,
+        "player_id_blizz_db": 191778631
+    },
+    {
+        "name": "Frikatp",
+        "global_rank": 3985,
+        "cr": 2048,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 145,
+        "wins": 78,
+        "losses": 67,
+        "player_id_blizz_db": 189318477
+    },
+    {
+        "name": "Rhemo",
+        "global_rank": 3985,
+        "cr": 2048,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 409,
+        "wins": 216,
+        "losses": 193,
+        "player_id_blizz_db": 150086144
+    },
+    {
+        "name": "Oramonk",
+        "global_rank": 4018,
+        "cr": 2046,
+        "faction_name": "ALLIANCE",
+        "realm": "azralon",
+        "played": 88,
+        "wins": 53,
+        "losses": 35,
+        "player_id_blizz_db": 192384553
+    },
+    {
+        "name": "Resendhe",
+        "global_rank": 4031,
+        "cr": 2045,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 77,
+        "wins": 43,
+        "losses": 34,
+        "player_id_blizz_db": 190586923
+    },
+    {
+        "name": "L\u00eb\u00f8n\u00eb",
+        "global_rank": 4045,
+        "cr": 2044,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 63,
+        "wins": 45,
+        "losses": 18,
+        "player_id_blizz_db": 221284654
+    },
+    {
+        "name": "Kcis",
+        "global_rank": 4059,
+        "cr": 2043,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 262,
+        "wins": 136,
+        "losses": 126,
+        "player_id_blizz_db": 189274967
+    },
+    {
+        "name": "\u00c4ran",
+        "global_rank": 4080,
+        "cr": 2042,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 280,
+        "wins": 156,
+        "losses": 124,
+        "player_id_blizz_db": 176145827
+    },
+    {
+        "name": "Norogojo",
+        "global_rank": 4080,
+        "cr": 2042,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 349,
+        "wins": 191,
+        "losses": 158,
+        "player_id_blizz_db": 188270802
+    },
+    {
+        "name": "Dead",
+        "global_rank": 4080,
+        "cr": 2042,
+        "faction_name": "HORDE",
+        "realm": "nemesis",
+        "played": 300,
+        "wins": 160,
+        "losses": 140,
+        "player_id_blizz_db": 160995442
+    },
+    {
+        "name": "Unitedi",
+        "global_rank": 4116,
+        "cr": 2040,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 372,
+        "wins": 221,
+        "losses": 151,
+        "player_id_blizz_db": 186168706
+    },
+    {
+        "name": "Fastmdlul",
+        "global_rank": 4116,
+        "cr": 2040,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 222,
+        "wins": 113,
+        "losses": 109,
+        "player_id_blizz_db": 187515882
+    },
+    {
+        "name": "Brasilenha",
+        "global_rank": 4135,
+        "cr": 2039,
+        "faction_name": "ALLIANCE",
+        "realm": "azralon",
+        "played": 175,
+        "wins": 97,
+        "losses": 78,
+        "player_id_blizz_db": 192238638
+    },
+    {
+        "name": "Ylanglang",
+        "global_rank": 4135,
+        "cr": 2039,
+        "faction_name": "ALLIANCE",
+        "realm": "azralon",
+        "played": 468,
+        "wins": 251,
+        "losses": 217,
+        "player_id_blizz_db": 192246498
+    },
+    {
+        "name": "Raypinkz",
+        "global_rank": 4145,
+        "cr": 2038,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 147,
+        "wins": 86,
+        "losses": 61,
+        "player_id_blizz_db": 221915296
+    },
+    {
+        "name": "Neabiz",
+        "global_rank": 4145,
+        "cr": 2038,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 328,
+        "wins": 177,
+        "losses": 151,
+        "player_id_blizz_db": 138655408
+    },
+    {
+        "name": "Viguinha",
+        "global_rank": 4145,
+        "cr": 2038,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 174,
+        "wins": 89,
+        "losses": 85,
+        "player_id_blizz_db": 192180220
+    },
+    {
+        "name": "Myfirstww",
+        "global_rank": 4165,
+        "cr": 2036,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 275,
+        "wins": 147,
+        "losses": 128,
+        "player_id_blizz_db": 191131350
+    },
+    {
+        "name": "Ppgdxtres",
+        "global_rank": 4184,
+        "cr": 2035,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 200,
+        "wins": 107,
+        "losses": 93,
+        "player_id_blizz_db": 187697846
+    },
+    {
+        "name": "K\u00edngofpaypal",
+        "global_rank": 4217,
+        "cr": 2033,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 189,
+        "wins": 101,
+        "losses": 88,
+        "player_id_blizz_db": 192334980
+    },
+    {
+        "name": "Kontchak",
+        "global_rank": 4306,
+        "cr": 2028,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 181,
+        "wins": 107,
+        "losses": 74,
+        "player_id_blizz_db": 192089770
+    },
+    {
+        "name": "Homerfof\u00ednho",
+        "global_rank": 4372,
+        "cr": 2024,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 262,
+        "wins": 150,
+        "losses": 112,
+        "player_id_blizz_db": 185786279
+    },
+    {
+        "name": "Falsonomicz",
+        "global_rank": 4372,
+        "cr": 2024,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 278,
+        "wins": 157,
+        "losses": 121,
+        "player_id_blizz_db": 149024496
+    },
+    {
+        "name": "Liveletdie",
+        "global_rank": 4395,
+        "cr": 2023,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 162,
+        "wins": 99,
+        "losses": 63,
+        "player_id_blizz_db": 221612935
+    },
+    {
+        "name": "Squeezed",
+        "global_rank": 4395,
+        "cr": 2023,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 172,
+        "wins": 101,
+        "losses": 71,
+        "player_id_blizz_db": 190535848
+    },
+    {
+        "name": "Mercen\u00e1rioh",
+        "global_rank": 4395,
+        "cr": 2023,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 217,
+        "wins": 123,
+        "losses": 94,
+        "player_id_blizz_db": 189955479
+    },
+    {
+        "name": "Madrugadonna",
+        "global_rank": 4414,
+        "cr": 2022,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 572,
+        "wins": 296,
+        "losses": 276,
+        "player_id_blizz_db": 151691781
+    },
+    {
+        "name": "Eskerda",
+        "global_rank": 4456,
+        "cr": 2019,
+        "faction_name": "HORDE",
+        "realm": "gallywix",
+        "played": 435,
+        "wins": 230,
+        "losses": 205,
+        "player_id_blizz_db": 191426443
+    },
+    {
+        "name": "Sacerdotas",
+        "global_rank": 4510,
+        "cr": 2016,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 282,
+        "wins": 159,
+        "losses": 123,
+        "player_id_blizz_db": 213646105
+    },
+    {
+        "name": "Dathreana",
+        "global_rank": 4510,
+        "cr": 2016,
+        "faction_name": "HORDE",
+        "realm": "nemesis",
+        "played": 239,
+        "wins": 130,
+        "losses": 109,
+        "player_id_blizz_db": 221453542
+    },
+    {
+        "name": "Popwings",
+        "global_rank": 4510,
+        "cr": 2016,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 490,
+        "wins": 257,
+        "losses": 233,
+        "player_id_blizz_db": 153652022
+    },
+    {
+        "name": "Har\u00f3kz",
+        "global_rank": 4510,
+        "cr": 2016,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 1139,
+        "wins": 578,
+        "losses": 561,
+        "player_id_blizz_db": 192113736
+    },
+    {
+        "name": "Bradockqt",
+        "global_rank": 4530,
+        "cr": 2015,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 804,
+        "wins": 413,
+        "losses": 391,
+        "player_id_blizz_db": 161060881
+    },
+    {
+        "name": "Xido",
+        "global_rank": 4569,
+        "cr": 2013,
+        "faction_name": "HORDE",
+        "realm": "nemesis",
+        "played": 273,
+        "wins": 163,
+        "losses": 110,
+        "player_id_blizz_db": 202861874
+    },
+    {
+        "name": "Josephklimve",
+        "global_rank": 4569,
+        "cr": 2013,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 119,
+        "wins": 70,
+        "losses": 49,
+        "player_id_blizz_db": 91115306
+    },
+    {
+        "name": "Maguimbolado",
+        "global_rank": 4569,
+        "cr": 2013,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 454,
+        "wins": 230,
+        "losses": 224,
+        "player_id_blizz_db": 90094819
+    },
+    {
+        "name": "Illness",
+        "global_rank": 4587,
+        "cr": 2012,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 131,
+        "wins": 77,
+        "losses": 54,
+        "player_id_blizz_db": 127823144
+    },
+    {
+        "name": "Aldda",
+        "global_rank": 4587,
+        "cr": 2012,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 520,
+        "wins": 266,
+        "losses": 254,
+        "player_id_blizz_db": 190486777
+    },
+    {
+        "name": "Darkthink",
+        "global_rank": 4606,
+        "cr": 2011,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 229,
+        "wins": 117,
+        "losses": 112,
+        "player_id_blizz_db": 187911261
+    },
+    {
+        "name": "Gugorian",
+        "global_rank": 4645,
+        "cr": 2009,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 367,
+        "wins": 191,
+        "losses": 176,
+        "player_id_blizz_db": 192235938
+    },
+    {
+        "name": "Welldone",
+        "global_rank": 4645,
+        "cr": 2009,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 780,
+        "wins": 388,
+        "losses": 392,
+        "player_id_blizz_db": 192216284
+    },
+    {
+        "name": "Jays",
+        "global_rank": 4661,
+        "cr": 2008,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 201,
+        "wins": 113,
+        "losses": 88,
+        "player_id_blizz_db": 175898951
+    },
+    {
+        "name": "Smexantyr",
+        "global_rank": 4661,
+        "cr": 2008,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 390,
+        "wins": 188,
+        "losses": 202,
+        "player_id_blizz_db": 192284201
+    },
+    {
+        "name": "Smukyh",
+        "global_rank": 4690,
+        "cr": 2007,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 479,
+        "wins": 269,
+        "losses": 210,
+        "player_id_blizz_db": 126211577
+    },
+    {
+        "name": "Ashitakah",
+        "global_rank": 4709,
+        "cr": 2006,
+        "faction_name": "ALLIANCE",
+        "realm": "azralon",
+        "played": 167,
+        "wins": 98,
+        "losses": 69,
+        "player_id_blizz_db": 190925569
+    },
+    {
+        "name": "Drwarbanner",
+        "global_rank": 4709,
+        "cr": 2006,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 947,
+        "wins": 483,
+        "losses": 464,
+        "player_id_blizz_db": 174664953
+    },
+    {
+        "name": "Huntmon",
+        "global_rank": 4750,
+        "cr": 2004,
+        "faction_name": "ALLIANCE",
+        "realm": "nemesis",
+        "played": 246,
+        "wins": 130,
+        "losses": 116,
+        "player_id_blizz_db": 199269093
+    },
+    {
+        "name": "K\u00e5dmus",
+        "global_rank": 4767,
+        "cr": 2003,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 153,
+        "wins": 85,
+        "losses": 68,
+        "player_id_blizz_db": 187789947
+    },
+    {
+        "name": "Stingz",
+        "global_rank": 4841,
+        "cr": 2000,
+        "faction_name": "HORDE",
+        "realm": "nemesis",
+        "played": 74,
+        "wins": 49,
+        "losses": 25,
+        "player_id_blizz_db": 91777381
+    },
+    {
+        "name": "Ppgdx",
+        "global_rank": 4931,
+        "cr": 1995,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 113,
+        "wins": 66,
+        "losses": 47,
+        "player_id_blizz_db": 170940422
+    },
+    {
+        "name": "Hinaraa",
+        "global_rank": 4984,
+        "cr": 1991,
+        "faction_name": "HORDE",
+        "realm": "azralon",
+        "played": 132,
+        "wins": 69,
+        "losses": 63,
+        "player_id_blizz_db": 192115814
     }
 ]
