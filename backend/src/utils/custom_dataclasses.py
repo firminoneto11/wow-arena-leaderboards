@@ -19,3 +19,10 @@ class PlayerData:
 class DadosBracket:
     bracket: str
     dados: List[PlayerData]
+
+
+@dataclass
+class WowClassesDataclass:
+    blizz_id: int = 0
+    class_name: str = ""
+    class_icon: str = ""

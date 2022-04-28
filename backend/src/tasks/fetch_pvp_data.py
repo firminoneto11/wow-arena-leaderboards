@@ -8,15 +8,6 @@ from utils import PlayerData, DadosBracket
 from typing import List
 
 
-# Formato do retorno da api da Blizzard
-token_stuff_format = {
-    "access_token": str,
-    "token_type": str,
-    "expires_in": int,
-    "sub": str,
-}
-
-
 class RetrievePvpData:
 
     @classmethod
