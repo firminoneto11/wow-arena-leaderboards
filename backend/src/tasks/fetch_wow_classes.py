@@ -22,7 +22,6 @@ class FetchWowClasses:
 
         for index, wow_class in enumerate(wow_classes):
             wow_class.class_icon = _futures[index]
-            print(wow_class)
 
         return wow_classes
 

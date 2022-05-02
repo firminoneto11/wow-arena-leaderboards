@@ -3,8 +3,8 @@ from connection_layer import objects
 from .wow_classes import WowClasses
 
 
-class SpecsWowClasses(models.Model):
-    tablename = "specs_wow_classes"
+class WowSpecs(models.Model):
+    tablename = "wow_specs"
     registry = objects
     fields = {
         "id": models.Integer(primary_key=True, index=True),

@@ -26,3 +26,11 @@ class WowClassesDataclass:
     blizz_id: int = 0
     class_name: str = ""
     class_icon: str = ""
+
+
+@dataclass
+class WowSpecsDataclass:
+    blizz_id: int = 0
+    spec_name: str = ""
+    spec_icon: str = ""
+    class_id: int = 0

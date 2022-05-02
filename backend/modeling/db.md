@@ -10,7 +10,7 @@
 
 **class_icon** -> Text
 
-## Tabela 'SpecsWowClasses'
+## Tabela 'WowSpecs'
 
 **id** -> Integer
 
@@ -25,4 +25,4 @@
 ### Processo de fetching (Implementado ou não)
 
 -   [x] WowClasses
--   [] SpecsWowClasses
+-   [x] SpecsWowClasses
