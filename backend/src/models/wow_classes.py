@@ -11,3 +11,8 @@ class WowClasses(models.Model):
         "class_name": models.String(max_length=50),
         "class_icon": models.Text()
     }
+
+
+async def create_wow_class(**kwargs):
+    blizz_id = kwargs.get("blizz_id")
+    await WowClasses.objects.update_or_create(blizz_id=blizz_id, defaults=kwargs)

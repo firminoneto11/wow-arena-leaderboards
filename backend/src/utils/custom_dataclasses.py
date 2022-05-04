@@ -27,10 +27,15 @@ class WowClassesDataclass:
     class_name: str = ""
     class_icon: str = ""
 
+    def to_dict(self) -> dict:
+        return self.__dict__
+
 
 @dataclass
 class WowSpecsDataclass:
     blizz_id: int = 0
     spec_name: str = ""
     spec_icon: str = ""
-    class_id: int = 0
+
+    def to_dict(self) -> dict:
+        return self.__dict__
