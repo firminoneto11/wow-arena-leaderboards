@@ -1,5 +1,6 @@
 import orm as models
 from connection_layer import objects
+from datetime import datetime
 
 
 class PvpData(models.Model):
@@ -18,4 +19,5 @@ class PvpData(models.Model):
         "losses": models.Integer(),
         "faction_name": models.String(max_length=50),
         "realm": models.String(max_length=50),
+        "updated_at": models.DateTime(default=lambda: datetime.now(), allow_null=True)
     }

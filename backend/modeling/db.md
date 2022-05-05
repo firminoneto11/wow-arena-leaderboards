@@ -10,6 +10,8 @@
 
 **class_icon** -> Text
 
+**updated_at** -> DateTime
+
 ## Tabela 'WowSpecs'
 
 **id** -> Integer
@@ -21,6 +23,8 @@
 **spec_icon** -> Text
 
 **class_id** -> ForeignKey
+
+**updated_at** -> DateTime
 
 ## Tabela PvpData
 
@@ -47,6 +51,8 @@
 **faction_name** -> String(50)
 
 **realm** -> String(50)
+
+**updated_at** -> DateTime
 
 ### Processo de fetching (Implementado ou não)
 

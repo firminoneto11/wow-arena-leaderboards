@@ -1,24 +1,22 @@
 from dataclasses import dataclass
-from typing import List
 
 
 @dataclass
-class PlayerData:
-    name: str  # 'character.name'
-    global_rank: int  # 'rank'
-    cr: int  # 'rating'
-    faction_name: str  # 'faction.type'
-    realm: str  # 'character.realm.slug'
-    played: int  # 'season_match_statistics.played'
-    wins: int  # 'season_match_statistics.won'
-    losses: int  # 'season_match_statistics.lost'
-    player_id_blizz_db: int  # 'character.id'
+class PvpDataDataclass:
+    blizz_id: int
+    name: str
+    class_id: int  # 
+    spec_id: int  # 
+    global_rank: int
+    cr: int
+    played: int
+    wins: int
+    losses: int
+    faction_name: str
+    realm: str
 
-
-@dataclass
-class DadosBracket:
-    bracket: str
-    dados: List[PlayerData]
+    def to_dict(self) -> dict:
+        return self.__dict__
 
 
 @dataclass

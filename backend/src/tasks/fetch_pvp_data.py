@@ -1,9 +1,8 @@
 from asyncio import gather
 from httpx import AsyncClient
 from settings import PVP_RATING_API, REINOS_BR
-import json
 from asyncio import gather
-from utils import PlayerData, DadosBracket
+from utils import PvpDataDataclass
 from typing import List
 
 
@@ -16,7 +15,7 @@ class FetchPvpData:
             "${accessToken}", self.access_token
         )
 
-    async def run(self, access_token: str):
+    async def run(self, access_token: str) -> List[PvpDataDataclass]:
         self.access_token = access_token
         return await self.get_data()
 
@@ -34,8 +33,6 @@ class FetchPvpData:
             "thres": self.clean_data(data[1]),
             "rbg": self.clean_data(data[2]),
         }
-
-        await self.write_to_json_file(data=data)
 
         return data
 
@@ -60,7 +57,9 @@ class FetchPvpData:
         cleaned_data = []
         for el in raw_data:
             cleaned_data.append(
-                PlayerData(
+                PvpDataDataclass(
+
+                    blizz_id=el["character"]["id"],
 
                     name=el["character"]["name"],
 
@@ -68,25 +67,27 @@ class FetchPvpData:
 
                     cr=el["rating"],
 
-                    faction_name=el["faction"]["type"],
-
-                    realm=el["character"]["realm"]["slug"],
-
                     played=el["season_match_statistics"]["played"],
 
                     wins=el["season_match_statistics"]["won"],
 
                     losses=el["season_match_statistics"]["lost"],
 
-                    player_id_blizz_db=el["character"]["id"],
+                    faction_name=el["faction"]["type"],
+
+                    realm=el["character"]["realm"]["slug"],
+
+                    class_id=None,
+
+                    spec_id=None,
 
                 )
             )
         return cleaned_data
 
-    # TODO: Refatorar esse método
+    """
     async def write_to_json_file(self, data: List[DadosBracket]):
-        async def gerar_dump(dt: List[PlayerData]):
+        async def gerar_dump(dt: List[PvpDataDataclass]):
             print("Gerando dump dos dados")
             return json.dumps(list(map(
                 lambda el: el.__dict__,
@@ -119,3 +120,4 @@ class FetchPvpData:
             escrever_no_arquivo(dt=dados[1], tipo=thres.bracket),
             escrever_no_arquivo(dt=dados[2], tipo=rbg.bracket),
         )
+    """

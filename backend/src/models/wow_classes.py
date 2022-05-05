@@ -1,5 +1,6 @@
 import orm as models
 from connection_layer import objects
+from datetime import datetime
 
 
 class WowClasses(models.Model):
@@ -9,7 +10,8 @@ class WowClasses(models.Model):
         "id": models.Integer(primary_key=True, index=True),
         "blizz_id": models.Integer(),
         "class_name": models.String(max_length=50),
-        "class_icon": models.Text()
+        "class_icon": models.Text(),
+        "updated_at": models.DateTime(default=lambda: datetime.now(), allow_null=True)
     }
 
 
