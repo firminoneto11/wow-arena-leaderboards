@@ -1,5 +1,6 @@
 from settings import ALL_SPECS_API, SPEC_MEDIA_API
 from httpx import AsyncClient
+from settings import TIMEOUT
 from utils import WowSpecsDataclass
 from typing import List
 from asyncio import gather
@@ -39,7 +40,7 @@ class FetchWowSpecs:
 
         endpoint = self.refactor_endpoint()
 
-        async with AsyncClient() as client:
+        async with AsyncClient(timeout=TIMEOUT) as client:
 
             response = await client.get(endpoint)
 
@@ -70,7 +71,7 @@ class FetchWowSpecs:
 
         endpoint = self.refactor_endpoint(tipo="spec-icon", blizz_id=blizz_id)
 
-        async with AsyncClient() as client:
+        async with AsyncClient(timeout=TIMEOUT) as client:
 
             response = await client.get(endpoint)
 

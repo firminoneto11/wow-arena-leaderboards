@@ -34,8 +34,3 @@ Players Table:
 
 tier - String(20)  # Nome do tier (Duelist, Rival, etc)
 tier_icon - String(255)  # Um link para o ícone do tier
-
--- JÁ ENCONTRADOS (ENDPOINTS EXTERNOS) --
-
-# Tem q fazer 1 fetch por player, passando o nome e reino do player
-avatar_icon - String(255)

@@ -3,6 +3,7 @@ from httpx import AsyncClient
 from utils import WowClassesDataclass
 from typing import List
 from asyncio import gather
+from settings import TIMEOUT
 
 
 class FetchWowClasses:
@@ -39,7 +40,7 @@ class FetchWowClasses:
 
         endpoint = self.refactor_endpoint()
 
-        async with AsyncClient() as client:
+        async with AsyncClient(timeout=TIMEOUT) as client:
 
             response = await client.get(endpoint)
 
@@ -70,7 +71,7 @@ class FetchWowClasses:
 
         endpoint = self.refactor_endpoint(tipo="class-icon", blizz_id=blizz_id)
 
-        async with AsyncClient() as client:
+        async with AsyncClient(timeout=TIMEOUT) as client:
 
             response = await client.get(endpoint)
 

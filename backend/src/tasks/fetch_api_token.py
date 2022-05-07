@@ -1,6 +1,7 @@
 from settings import BLIZZARD_TOKENS_URL
 from httpx import AsyncClient
 from decouple import config as get_env_var
+from settings import TIMEOUT
 
 
 class FetchApiToken:
@@ -31,7 +32,7 @@ class FetchApiToken:
 
         body = "grant_type=client_credentials"
 
-        async with AsyncClient() as client:
+        async with AsyncClient(timeout=TIMEOUT) as client:
 
             response = None
 

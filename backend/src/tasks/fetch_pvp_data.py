@@ -3,7 +3,8 @@ from httpx import AsyncClient
 from settings import PVP_RATING_API, REINOS_BR
 from asyncio import gather
 from utils import PvpDataDataclass
-from typing import List
+from typing import List, Dict
+from settings import TIMEOUT
 
 
 class FetchPvpData:
@@ -15,17 +16,17 @@ class FetchPvpData:
             "${accessToken}", self.access_token
         )
 
-    async def run(self, access_token: str) -> List[PvpDataDataclass]:
+    async def run(self, access_token: str):
         self.access_token = access_token
         return await self.get_data()
 
-    async def get_data(self):
+    async def get_data(self) -> Dict[str, List[PvpDataDataclass]]:
 
         # TODO: Passar o 'session' e a 'bracket' como parâmetro
         data = await gather(
-            self.get_brazilian_data(session=32, bracket="2v2", access_token=self.access_token),
-            self.get_brazilian_data(session=32, bracket="3v3", access_token=self.access_token),
-            self.get_brazilian_data(session=32, bracket="rbg", access_token=self.access_token),
+            self.get_brazilian_data(session=32, bracket="2v2"),
+            self.get_brazilian_data(session=32, bracket="3v3"),
+            self.get_brazilian_data(session=32, bracket="rbg"),
         )
 
         data = {
@@ -41,7 +42,7 @@ class FetchPvpData:
         # Remontando o endpoint para ser dinâmico
         endpoint = self.refactor_endpoint(session=session, bracket=bracket)
 
-        async with AsyncClient() as client:
+        async with AsyncClient(timeout=TIMEOUT) as client:
             response = await client.get(endpoint)
             data = response.json()
             if response.status_code == 200:
@@ -80,6 +81,8 @@ class FetchPvpData:
                     class_id=None,
 
                     spec_id=None,
+
+                    avatar_icon=None,
 
                 )
             )

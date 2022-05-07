@@ -5,8 +5,8 @@ from dataclasses import dataclass
 class PvpDataDataclass:
     blizz_id: int
     name: str
-    class_id: int  # 
-    spec_id: int  # 
+    class_id: int
+    spec_id: int
     global_rank: int
     cr: int
     played: int
@@ -14,6 +14,7 @@ class PvpDataDataclass:
     losses: int
     faction_name: str
     realm: str
+    avatar_icon: str
 
     def to_dict(self) -> dict:
         return self.__dict__

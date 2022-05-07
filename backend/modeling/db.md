@@ -22,8 +22,6 @@
 
 **spec_icon** -> Text
 
-**class_id** -> ForeignKey
-
 **updated_at** -> DateTime
 
 ## Tabela PvpData
@@ -52,9 +50,8 @@
 
 **realm** -> String(50)
 
+**avatar_icon** -> Text
+
+**bracket_id** -> ForeignKey
+
 **updated_at** -> DateTime
-
-### Processo de fetching (Implementado ou não)
-
--   [x] WowClasses
--   [x] SpecsWowClasses

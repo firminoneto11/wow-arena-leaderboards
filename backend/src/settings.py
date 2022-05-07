@@ -18,7 +18,7 @@ PROFILE_API = (
 # API que provém as imagens dos personagens
 CHAR_MEDIA_API = (
     "https://us.api.blizzard.com/profile/wow/character/${realm_slug}/${char_name}/character-media?namespace=profile-us"
-    "&locale=en_US&access_token=${access_token}"
+    "&locale=en_US&access_token=${accessToken}"
 )
 
 # API que provém todas as classes
@@ -42,3 +42,12 @@ SPEC_MEDIA_API = (
     "https://us.api.blizzard.com/data/wow/media/playable-specialization/${spec_id}?namespace=static-us&locale=en_US"
     "&access_token=${accessToken}"
 )
+
+# Configuração do tempo de timeout para as requisições (Em segundos)
+TIMEOUT = 60
+
+# Configuração do tempo de delay para aguardar entre as requisições, afim de não ser afetado pelo throttle
+DELAY = 5
+
+# Configuração do limite de requisições por segundo
+REQUESTS_PER_SEC = 90

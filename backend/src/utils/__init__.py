@@ -1,2 +1,2 @@
-from .custom_dataclasses import WowClassesDataclass, PvpDataDataclass, DadosBracket, WowSpecsDataclass
+from .custom_dataclasses import WowClassesDataclass, PvpDataDataclass, WowSpecsDataclass
 from .migrations import migrate, reset_db
