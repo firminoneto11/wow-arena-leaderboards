@@ -34,19 +34,19 @@ async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pv
             bracket = await Brackets.objects.get(type="2v2")
             for pd in pvp_data[key]:
                 pvp_data_tasks.append(
-                    create_pvp_data(bracket=bracket, **pd.to_dict())
+                    create_pvp_data(bracket_id=bracket, **pd.to_dict())
                 )
         elif key == "thres":
             bracket = await Brackets.objects.get(type="3v3")
             for pd in pvp_data[key]:
                 pvp_data_tasks.append(
-                    create_pvp_data(bracket=bracket, **pd.to_dict())
+                    create_pvp_data(bracket_id=bracket, **pd.to_dict())
                 )
         else:
             bracket = await Brackets.objects.get(type="rbg")
             for pd in pvp_data[key]:
                 pvp_data_tasks.append(
-                    create_pvp_data(bracket=bracket, **pd.to_dict())
+                    create_pvp_data(bracket_id=bracket, **pd.to_dict())
                 )
 
     await gather(*classes_tasks, *specs_tasks, *pvp_data_tasks)
@@ -60,34 +60,32 @@ async def fetcher():
     fetch_pvp_data = FetchPvpData()
     fetch_wow_media = FetchWowMedia()
 
-    print("\nFazendo um fetch no access token...\n")
+    print("\n1 - Fazendo um fetch no access token...\n")
 
     # Pegando um access token
     response = await fetch_api_token.run()
+    print(response)
 
     # Checando se não houve erro na primeira etapa (Autenticação)
     if not response["error"]:
 
         access_token = response["token_stuff"]["access_token"]
 
-        print("\nFazendo um fetch nos dados das classes e specs...\n")
+        print("\n2 - Fazendo um fetch nos dados das classes e specs...\n")
         wow_classes, wow_specs = await gather(
             fetch_wow_class.run(access_token=access_token),
             fetch_wow_specs.run(access_token=access_token)
         )
 
-        # Esperando pra não tomar throtlle da api da blizz
-        print(f"\nEsperando {DELAY} segundos para anti-throttle\n")
-        await sleep(DELAY)
-
-        print("\nFazendo um fetch nos dados de pvp do wow...\n")
+        print("\n3 - Fazendo um fetch nos dados de pvp do wow...\n")
         pvp_data = await fetch_pvp_data.run(access_token=access_token)
 
         # Esperando pra não tomar throtlle da api da blizz
         print(f"\nEsperando {DELAY} segundos para anti-throttle\n")
         await sleep(DELAY)
 
-        print("\nFazendo um fetch nos dados de media dos jogadores...\n")
+        print("\n4 - Fazendo um fetch nos dados de media dos jogadores...\n")
         pvp_data = await fetch_wow_media.run(access_token=access_token, pvp_data=pvp_data)
 
+        print("\n5 - Salvando os dados coletados na base de dados...\n")
         await to_db(wow_classes=wow_classes, wow_specs=wow_specs, pvp_data=pvp_data)

@@ -11,8 +11,8 @@ class PvpData(models.Model):
         "id": models.Integer(primary_key=True, index=True),
         "blizz_id": models.Integer(),
         "name": models.String(max_length=100),
-        "class_id": models.Integer(),
-        "spec_id": models.Integer(),
+        "class_id": models.Integer(allow_null=True),
+        "spec_id": models.Integer(allow_null=True),
         "global_rank": models.Integer(),
         "cr": models.Integer(),
         "played": models.Integer(),
@@ -20,7 +20,7 @@ class PvpData(models.Model):
         "losses": models.Integer(),
         "faction_name": models.String(max_length=50),
         "realm": models.String(max_length=50),
-        "avatar_icon": models.Text(),
+        "avatar_icon": models.Text(allow_null=True),
         "bracket_id": models.ForeignKey(to=Brackets, on_delete=models.CASCADE),
         "updated_at": models.DateTime(default=lambda: datetime.now(), allow_null=True)
     }
