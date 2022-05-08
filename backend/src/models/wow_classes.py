@@ -17,4 +17,5 @@ class WowClasses(models.Model):
 
 async def create_wow_class(**kwargs):
     blizz_id = kwargs.get("blizz_id")
-    await WowClasses.objects.update_or_create(blizz_id=blizz_id, defaults=kwargs)
+    defaults = {**kwargs, "updated_at": datetime.now()}
+    await WowClasses.objects.update_or_create(blizz_id=blizz_id, defaults=defaults)

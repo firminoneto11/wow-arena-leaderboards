@@ -47,7 +47,10 @@ SPEC_MEDIA_API = (
 TIMEOUT = 60
 
 # Configuração do tempo de delay para aguardar entre as requisições, afim de não ser afetado pelo throttle
-DELAY = 3
+DELAY = 5
 
 # Configuração do limite de requisições por segundo
 REQUESTS_PER_SEC = 90
+
+# Configuração para a recorrência do processo de atualização (Em segundos)
+UPDATE_EVERY = 3

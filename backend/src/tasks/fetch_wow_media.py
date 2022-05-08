@@ -4,6 +4,12 @@ from utils import PvpDataDataclass
 from typing import List, Dict
 from asyncio import gather, sleep
 from itertools import chain
+from dataclasses import dataclass
+
+
+@dataclass
+class UniquePlayerDataclass:
+    blizz_id: int
 
 
 class FetchWowMedia:
@@ -128,7 +134,7 @@ class FetchWowMedia:
 
             responses: List[dict] = [response.json() for response in responses if response.status_code == 200]
             for response in responses:
-                blizz_id: int = response["id"]
+                blizz_id = int(response["id"])
                 class_id: int = response["character_class"]["id"]
                 spec_id: int = response["active_spec"]["id"]
                 for player in unique_players:
@@ -150,12 +156,11 @@ class FetchWowMedia:
                     responses.append(client.get(endpoint))
                 responses = await gather(*responses)
             else:
-                pass
                 responses = await self.fetch_em_all(lists=unique_players_lists, client=client, is_avatar=True)
                 print(f"\n# Total de requests respondidas no helper: {len(responses)}")
             responses: List[dict] = [response.json() for response in responses if response.status_code == 200]
             for response in responses:
-                blizz_id: int = response["character"]["id"]
+                blizz_id = int(response["character"]["id"])
                 avatar_icon: str = response["assets"][0]["value"]
                 for player in unique_players:
                     if player.blizz_id == blizz_id:

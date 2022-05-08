@@ -1,24 +1,32 @@
 from fastapi import FastAPI
-from utils import migrate
+from utils import migrate, start_sub_process
 from tasks import fetcher
-from time import time
 
 
 api = FastAPI()
+sub_process = None
+
+
+async def hello_world():
+    print('ATUALIZANDO O SISTEMAHHHH!!!')
 
 
 @api.on_event("startup")
 async def startup():
-    inicio = time()
+    global sub_process
     await migrate()
     await fetcher()
-    total = time() - inicio
-    print(f"\nDemorou {total:.2f} segundos para fazer todos os fetches e inicar o sistema!\n")
+    sub_process = start_sub_process(task=hello_world)  # TODO: Trocar o argumento para a função 'fetcher'
 
 
 @api.on_event("shutdown")
 async def shutdown():
-    pass
+    global sub_process
+    if sub_process is not None:
+        try:
+            sub_process.terminate()
+        except Exception as e:
+            print(f"Error while terminating the sub process: {e}")
 
 
 @api.get("/")
