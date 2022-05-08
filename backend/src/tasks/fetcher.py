@@ -89,3 +89,5 @@ async def fetcher():
 
         print("\n5 - Salvando os dados coletados na base de dados...\n")
         await to_db(wow_classes=wow_classes, wow_specs=wow_specs, pvp_data=pvp_data)
+
+        # TODO: Checar problema na atualização dos dados

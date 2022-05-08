@@ -22,7 +22,7 @@ class PvpData(models.Model):
         "realm": models.String(max_length=50),
         "avatar_icon": models.Text(allow_null=True),
         "bracket_id": models.ForeignKey(to=Brackets, on_delete=models.CASCADE),
-        "updated_at": models.DateTime(default=lambda: datetime.now(), allow_null=True)
+        "updated_at": models.DateTime(default=lambda: datetime.now())
     }
 
 

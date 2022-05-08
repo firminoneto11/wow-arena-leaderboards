@@ -11,7 +11,7 @@ class WowClasses(models.Model):
         "blizz_id": models.Integer(),
         "class_name": models.String(max_length=50),
         "class_icon": models.Text(),
-        "updated_at": models.DateTime(default=lambda: datetime.now(), allow_null=True)
+        "updated_at": models.DateTime(default=lambda: datetime.now())
     }
 
 

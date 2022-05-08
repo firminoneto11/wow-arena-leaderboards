@@ -34,7 +34,9 @@ class FetchWowMedia:
         helper_list = []
         counter = 0
         if len(workload) <= REQUESTS_PER_SEC:
-            self.divided_workload.append(workload)
+            for _ in range(len(workload)):
+                helper_list.append(workload.pop())
+            self.divided_workload.append(helper_list)
             return self.divided_workload
         else:
             for _ in range(REQUESTS_PER_SEC):
@@ -42,6 +44,23 @@ class FetchWowMedia:
                 counter += 1
             self.divided_workload.append(helper_list)
             return self.divide_workload(workload=workload)
+
+    async def fetch_em_all(self, lists: List[List[PvpDataDataclass]], client: AsyncClient, is_avatar=False):
+        responses_helper = []
+        for idx, _list in enumerate(lists):
+            anti_throttle = []
+            for player in _list:
+                endpoint = self.refactor_endpoint(
+                    tipo="char-media" if is_avatar else "profile",
+                    realm=player.realm, name=player.name.lower()
+                )
+                anti_throttle.append(client.get(endpoint))
+            print(f"Fazendo fetch de {len(anti_throttle)} jogadores")
+            responses_helper.append(await gather(*anti_throttle))
+            if idx != len(lists) - 1:
+                print(f"\nEsperando {DELAY} segundos para não tomar throttle. Anti Throttle mechanism!\n")
+                await sleep(DELAY)
+        return list(chain(*responses_helper))
 
     async def update_data(self) -> Dict[str, List[PvpDataDataclass]]:
 
@@ -89,7 +108,11 @@ class FetchWowMedia:
 
                 # -- TESTING --
                 print(f"Total de requests: {total_de_requests}")
+                unique_players_copy = unique_players.copy()
                 unique_players_lists = self.divide_workload(workload=unique_players)
+                print(f"Len do unique_players pós divisão: {len(unique_players)}")
+                unique_players = unique_players_copy
+                print(f"Len do unique_players pós atribuição de cópia: {len(unique_players)}")
                 print(f"Total de listas: {len(unique_players_lists)}")
                 somatorio = 0
                 for l in unique_players_lists:
@@ -97,18 +120,7 @@ class FetchWowMedia:
                 print(f"Total de requests dps do split: {somatorio}\n")
                 # -- TESTING --
 
-                responses_helper = []
-                for idx, _list in enumerate(unique_players_lists):
-                    anti_throttle = []
-                    for player in _list:
-                        endpoint = self.refactor_endpoint(realm=player.realm, name=player.name.lower())
-                        anti_throttle.append(client.get(endpoint))
-                    print(f"Fazendo fetch de {len(anti_throttle)} jogadores")
-                    responses_helper.append(await gather(*anti_throttle))
-                    if idx != len(unique_players_lists) - 1:
-                        print(f"\nEsperando {DELAY} segundos para não tomar throttle. Anti Throttle mechanism!\n")
-                        await sleep(DELAY)
-                responses = list(chain(*responses_helper))
+                responses = await self.fetch_em_all(lists=unique_players_lists, client=client)
 
                 # -- TESTING -- 
                 print(f"\n# Total de requests respondidas no helper: {len(responses)}")
@@ -132,11 +144,15 @@ class FetchWowMedia:
             # Fazendo um fetch para cada jogador único para pegar o link do avatar de cada um pois o avatar é o mesmo independente da
             # bracket
             responses = []
-            print(f"Realizando {len(unique_players)} requisições")
-            for player in unique_players:
-                endpoint = self.refactor_endpoint(tipo="char-media", realm=player.realm, name=player.name.lower())
-                responses.append(client.get(endpoint))
-            responses = await gather(*responses)
+            if unique_players_lists is None:
+                for player in unique_players:
+                    endpoint = self.refactor_endpoint(tipo="char-media", realm=player.realm, name=player.name.lower())
+                    responses.append(client.get(endpoint))
+                responses = await gather(*responses)
+            else:
+                pass
+                responses = await self.fetch_em_all(lists=unique_players_lists, client=client, is_avatar=True)
+                print(f"\n# Total de requests respondidas no helper: {len(responses)}")
             responses: List[dict] = [response.json() for response in responses if response.status_code == 200]
             for response in responses:
                 blizz_id: int = response["character"]["id"]
@@ -152,19 +168,19 @@ class FetchWowMedia:
                 if player.blizz_id == unique_player.blizz_id:
                     player.class_id = unique_player.class_id
                     player.spec_id = unique_player.spec_id
-                    player.avatar_icon = avatar_icon
+                    player.avatar_icon = unique_player.avatar_icon
                     break
             for player in thres:
                 if player.blizz_id == unique_player.blizz_id:
                     player.class_id = unique_player.class_id
                     player.spec_id = unique_player.spec_id
-                    player.avatar_icon = avatar_icon
+                    player.avatar_icon = unique_player.avatar_icon
                     break
             for player in rbg:
                 if player.blizz_id == unique_player.blizz_id:
                     player.class_id = unique_player.class_id
                     player.spec_id = unique_player.spec_id
-                    player.avatar_icon = avatar_icon
+                    player.avatar_icon = unique_player.avatar_icon
                     break
 
         return { "twos": twos, "thres": thres, "rbg": rbg }
