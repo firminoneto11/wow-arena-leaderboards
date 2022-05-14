@@ -16,10 +16,6 @@ from utils import (
 from time import time
 
 
-async def reset_data(bracket: Brackets):
-    pass
-
-
 async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pvp_data: Dict[str, List[PvpDataDt]]):
     classes_tasks = []
     for wow_class in wow_classes:
@@ -37,27 +33,21 @@ async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pv
     for key in pvp_data.keys():
         if key == "twos":
             bracket = await Brackets.objects.get(type="2v2")
-            if len(pvp_data[key]):
-                await PvpData.objects.filter(bracket__id=bracket.id).delete()
             for pd in pvp_data[key]:
                 pvp_data_tasks.append(
-                    create_pvp_data(**pd.to_dict(), bracket=bracket)
+                    create_pvp_data(pd=pd, bracket=bracket)
                 )
         elif key == "thres":
             bracket = await Brackets.objects.get(type="3v3")
-            if len(pvp_data[key]):
-                await PvpData.objects.filter(bracket__id=bracket.id).delete()
             for pd in pvp_data[key]:
                 pvp_data_tasks.append(
-                    create_pvp_data(**pd.to_dict(), bracket=bracket)
+                    create_pvp_data(pd=pd, bracket=bracket)
                 )
         else:
             bracket = await Brackets.objects.get(type="rbg")
-            if len(pvp_data[key]):
-                await PvpData.objects.filter(bracket__id=bracket.id).delete()
             for pd in pvp_data[key]:
                 pvp_data_tasks.append(
-                    create_pvp_data(**pd.to_dict(), bracket=bracket)
+                    create_pvp_data(pd=pd, bracket=bracket)
                 )
 
     await gather(*classes_tasks, *specs_tasks, *pvp_data_tasks)
@@ -84,7 +74,10 @@ async def fetcher():
 
         access_token = response["token_stuff"]["access_token"]
 
-        print("\n2 - Fazendo um fetch nos dados das classes e specs...\n")
+        print("\n2 - Fazendo um fetch nos dados de pvp do wow...\n")
+        pvp_data = await fetch_pvp_data.run(access_token=access_token)
+
+        print("\n3 - Fazendo um fetch nos dados das classes e specs...\n")
         wow_classes, wow_specs = await gather(
             fetch_wow_class.run(access_token=access_token),
             fetch_wow_specs.run(access_token=access_token)
@@ -94,14 +87,7 @@ async def fetcher():
         print(f"\nEsperando {DELAY} segundos para anti-throttle\n")
         await sleep(DELAY)
 
-        print("\n3 - Fazendo um fetch nos dados de pvp do wow...\n")
-        pvp_data = await fetch_pvp_data.run(access_token=access_token)
-
-        # Esperando pra não tomar throtlle da api da blizz
-        print(f"\nEsperando {DELAY} segundos para anti-throttle\n")
-        await sleep(DELAY)
-
-        print("\n4 - Fazendo um fetch nos dados de media dos jogadores...\n")
+        print("\n4 - Fazendo um fetch nos dados de classes/specs dos jogadores...\n")
         pvp_data = await fetch_wow_media.run(access_token=access_token, pvp_data=pvp_data)
 
         print("\n5 - Salvando os dados coletados na base de dados...\n")

@@ -50,7 +50,10 @@ TIMEOUT = 60
 DELAY = 5
 
 # Configuração do limite de requisições por segundo
-REQUESTS_PER_SEC = 90
+REQUESTS_PER_SEC = 100
+
+# Configuração do máximo de retries para realizar conexões http
+MAX_RETRIES = 5
 
 # Configuração para a recorrência do processo de atualização (Em segundos)
 UPDATE_EVERY = 3

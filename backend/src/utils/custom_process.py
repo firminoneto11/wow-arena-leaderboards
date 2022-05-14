@@ -16,7 +16,7 @@ class AsyncProcess(Process):
             try:
                 run_in_event_loop(self.target_handler(target=self._target))
             except KeyboardInterrupt:
-                pass
+                print('Keyboard interruption of the subprocess!')
             except Exception as e:
                 print(f"Error while closing the event loop: {e}")
 

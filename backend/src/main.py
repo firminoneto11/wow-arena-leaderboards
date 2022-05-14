@@ -16,7 +16,7 @@ async def startup():
     global sub_process
     await migrate()
     await fetcher()
-    sub_process = start_sub_process(task=hello_world)  # TODO: Trocar o argumento para a função 'fetcher'
+    # sub_process = start_sub_process(task=hello_world)  # TODO: Trocar o argumento para a função 'fetcher'
 
 
 @api.on_event("shutdown")
