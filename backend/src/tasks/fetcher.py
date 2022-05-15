@@ -8,7 +8,7 @@ from models.wow_classes import create_wow_class
 from models.wow_specs import create_wow_spec
 from models.pvp_data import create_pvp_data
 from typing import List, Dict
-from models import Brackets, PvpData
+from models import Brackets
 from settings import DELAY
 from utils import (
     WowClassesDataclass as WowClassesDt, WowSpecsDataclass as WowSpecsDt, PvpDataDataclass as PvpDataDt

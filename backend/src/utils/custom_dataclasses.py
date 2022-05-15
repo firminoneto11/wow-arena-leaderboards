@@ -38,3 +38,6 @@ class WowSpecsDataclass:
 
     def to_dict(self) -> dict:
         return self.__dict__
+
+
+# TIP: Sempre que realizar alguma alteração no dataclass, replique a alteração no schema correspondente!
