@@ -7,16 +7,13 @@ api = FastAPI()
 sub_process = None
 
 
-async def hello_world():
-    print('ATUALIZANDO O SISTEMAHHHH!!!')
-
-
 @api.on_event("startup")
 async def startup():
-    global sub_process
-    await migrate()
-    await fetcher()
+    # global sub_process
+    # await migrate()
+    # await fetcher()
     # sub_process = start_sub_process(task=hello_world)  # TODO: Trocar o argumento para a função 'fetcher'
+    pass
 
 
 @api.on_event("shutdown")
@@ -29,6 +26,16 @@ async def shutdown():
             print(f"Error while terminating the sub process: {e}")
 
 
-@api.get("/")
-async def root():
-    return {"detail": "Hello World"}
+@api.get("/thres_data")
+async def thres_data():
+    pass
+
+
+@api.get("/twos_data")
+async def twos_data():
+    pass
+
+
+@api.get("/rbg_data")
+async def rbg_data():
+    pass

@@ -1,4 +1,4 @@
-from settings import PROFILE_API, CHAR_MEDIA_API, TIMEOUT, DELAY, REQUESTS_PER_SEC
+from settings import PROFILE_API, CHAR_MEDIA_API, TIMEOUT, DELAY, REQUESTS_PER_SEC, MAX_RETRIES
 from httpx import AsyncClient, ConnectError
 from utils import PvpDataDataclass
 from typing import List, Dict
@@ -59,27 +59,44 @@ class FetchWowMedia:
     async def fetch_em_all(self, lists: List[List[UniquePlayerDataclass]], client: AsyncClient, is_avatar=False):
         responses_helper = []
         for idx, _list in enumerate(lists):
-            anti_throttle = []
-            for player in _list:
-                endpoint = self.refactor_endpoint(
-                    tipo="char-media" if is_avatar else "profile",
-                    realm=player.realm, name=player.name.lower()
-                )
-                anti_throttle.append(client.get(endpoint))
-            print(f"Fazendo fetch de {len(anti_throttle)} jogadores")
 
-            try:
-                responses_helper.append(await gather(*anti_throttle))
-            except ConnectError:
-                if is_avatar:
-                    print("\n- Não foi possível estabelecer uma conexão com o servidor na requisição de avatares.")
+            def get_new_awaitables(lista, cliente):
+                anti_throttle = []
+                for player in lista:
+                    endpoint = self.refactor_endpoint(
+                        tipo="char-media" if is_avatar else "profile",
+                        realm=player.realm, name=player.name.lower()
+                    )
+                    anti_throttle.append(cliente.get(endpoint))
+                return anti_throttle
+
+            gather_return = None
+            for idx in range(MAX_RETRIES):
+                anti_throttle = get_new_awaitables(lista=_list, cliente=client)
+                total_de_reqs = len(anti_throttle)
+
+                try:
+                    print(f"\nTentando realizar o fetch de {total_de_reqs} jogadores. {idx + 1}/{MAX_RETRIES} tentativas.")
+                    gather_return = await gather(*anti_throttle)
+                except ConnectError:
+                    if idx == MAX_RETRIES:
+                        print(f"\nÚltima tentativa realizada sem sucesso.")
+                        if is_avatar:
+                            print(f"Dados de avatares não foram coletados para {total_de_reqs} jogadores.")
+                        else:
+                            print(f"Dados de class/spec não foram coletados para {total_de_reqs} jogadores.")
+                    continue
                 else:
-                    print("\n- Não foi possível estabelecer uma conexão com o servidor na requisição de dados de classes e specs.")
-                print(f"Ficou faltando dar fetch em: {len(anti_throttle)} jogadores.")
+                    print("Fetch efetuado com sucesso!")
+                    break
+
+            if gather_return is not None:
+                responses_helper.append(gather_return)
 
             if idx != len(lists) - 1:
                 print(f"\nEsperando {DELAY} segundos para não tomar throttle. Anti Throttle mechanism!\n")
                 await sleep(DELAY)
+
         return list(chain(*responses_helper))
 
     async def update_data(self) -> Dict[str, List[PvpDataDataclass]]:
@@ -91,21 +108,21 @@ class FetchWowMedia:
 
         # Criando uma lista somente com jogadores únicos
         unique_players = [
-            UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.realm)
+            UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.name)
             for player in twos
         ]
 
         # Iterando na lista de jogadores da bracket de 3s e checando se o jogador se encontra na lista de jogadores únicos. Caso ele não
         # se encontre ele é adicionado
         for player in thres:
-            pl = UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.realm)
+            pl = UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.name)
             if pl not in unique_players:
                 unique_players.append(pl)
 
         # Iterando na lista de jogadores da bracket de rbg e checando se o jogador se encontra na lista de jogadores únicos. Caso ele 
         # não se encontre ele é adicionado
         for player in rbg:
-            pl = UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.realm)
+            pl = UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.name)
             if pl not in unique_players:
                 unique_players.append(pl)
 
@@ -138,7 +155,7 @@ class FetchWowMedia:
                 responses = await self.fetch_em_all(lists=unique_players_lists, client=client)
 
                 # -- TESTING -- 
-                print(f"\n# Total de requests respondidas no helper: {len(responses)}")
+                print(f"\n# Total de requests respondidas pós divisão: {len(responses)}")
                 # -- TESTING -- 
 
             if responses:
@@ -167,7 +184,7 @@ class FetchWowMedia:
                 responses = await gather(*responses)
             else:
                 responses = await self.fetch_em_all(lists=unique_players_lists, client=client, is_avatar=True)
-                print(f"\n# Total de requests respondidas no helper: {len(responses)}")
+                print(f"\n# Total de requests respondidas pós divisão: {len(responses)}")
             if responses:
                 responses: List[dict] = [response.json() for response in responses if response.status_code == 200]
             for response in responses:
@@ -177,14 +194,6 @@ class FetchWowMedia:
                     if player.blizz_id == blizz_id:
                         player.avatar_icon = avatar_icon
                         break
-
-        print("\n---|---\n")
-        for up in unique_players_copy:
-            print(up)
-        print("\n---|---\n")
-        # TODO: Os dados que foram buscados não estão sendo colocados nos elementos
-        # TODO: Colocar um loop while enquanto não for processado a requisição com um número máximo de retries
-        # TODO: Remover o delay nas primeiras requisições
 
         # Atualizando as listas com os dados que foram buscados pelo fetch
         for unique_player in unique_players_copy:

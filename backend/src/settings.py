@@ -44,7 +44,7 @@ SPEC_MEDIA_API = (
 )
 
 # Configuração do tempo de timeout para as requisições (Em segundos)
-TIMEOUT = 60
+TIMEOUT = 30
 
 # Configuração do tempo de delay para aguardar entre as requisições, afim de não ser afetado pelo throttle
 DELAY = 5
