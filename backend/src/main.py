@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from utils import migrate, start_sub_process
 from tasks import fetcher
 from schemas import WowDataSchema
-from controllers import ThressController
+from controllers import DataController
 
 
 api = FastAPI()
@@ -30,14 +30,14 @@ async def shutdown():
 
 @api.get("/threes_data/", response_model=WowDataSchema)
 async def threes_data(request: Request):
-    return await ThressController(req=request).get()
+    return await DataController(req=request).get(tp="3v3")
 
 
-@api.get("/twos_data/")
-async def twos_data():
-    pass
+@api.get("/twos_data/", response_model=WowDataSchema)
+async def twos_data(request: Request):
+    return await DataController(req=request).get(tp="2v2")
 
 
-@api.get("/rbg_data/")
-async def rbg_data():
-    pass
+@api.get("/rbg_data/", response_model=WowDataSchema)
+async def rbg_data(request: Request):
+    return await DataController(req=request).get(tp="rbg")

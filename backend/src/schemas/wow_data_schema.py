@@ -6,4 +6,5 @@ from .player_schema import PlayerSchema
 class WowDataSchema(BaseModel):
     bracket_id: int
     bracket_type: str
-    data: Union[List[PlayerSchema], None]
+    total: int
+    data: Union[List[PlayerSchema], List]

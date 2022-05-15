@@ -5,24 +5,24 @@ from asyncio import gather
 from typing import List, Union
 
 
-class ThressController:
+class DataController:
 
-    req: Request
-    wow_classes: List[WowClasses]
-    wow_specs: List[WowSpecs]
+    __req: Request
+    __wow_classes: List[WowClasses]
+    __wow_specs: List[WowSpecs]
 
     def __init__(self, req: Request):
-        self.req = req
+        self.__req = req
 
     def find_spec_or_class(self, tp: str, player: PvpData) -> Union[WowClassSchema, WowSpecSchema, None]:
         if tp == "class":
-            for klass in self.wow_classes:
+            for klass in self.__wow_classes:
                 if klass.blizz_id == player.class_id:
                     return WowClassSchema(
                         id=klass.id, blizz_id=klass.blizz_id, class_name=klass.class_name, class_icon=klass.class_icon
                     )
         else:
-            for spec in self.wow_specs:
+            for spec in self.__wow_specs:
                 if spec.blizz_id == player.spec_id:
                     return WowSpecSchema(
                         id=spec.id, blizz_id=spec.blizz_id, spec_name=spec.spec_name, spec_icon=spec.spec_icon
@@ -39,7 +39,7 @@ class ThressController:
             avatar_icon=player.avatar_icon, wow_class=wow_class, wow_spec=wow_spec
         )
 
-    async def fetch_thress_data_from_db(self, bracket: Brackets) -> Union[List[PlayerSchema], List]:
+    async def fetch_data_from_db(self, bracket: Brackets) -> Union[List[PlayerSchema], List]:
 
         wow_player_schema_list = []
 
@@ -51,15 +51,16 @@ class ThressController:
 
         if pvp_data and wow_classes and wow_specs:
 
-            self.wow_classes = wow_classes
-            self.wow_specs = wow_specs
+            self.__wow_classes = wow_classes
+            self.__wow_specs = wow_specs
 
             for player in pvp_data:
                 wow_player_schema_list.append(self.mount_data(player))
 
         return wow_player_schema_list
 
-    async def get(self) -> WowDataSchema:
-        bracket = await Brackets.objects.get(type="3v3")
-        thress_data = await self.fetch_thress_data_from_db(bracket=bracket)
-        return WowDataSchema(bracket_id=bracket.id, bracket_type=bracket.type, data=thress_data if thress_data else None)
+    async def get(self, tp: str) -> WowDataSchema:
+        bracket = await Brackets.objects.get(type=tp)
+        data = await self.fetch_data_from_db(bracket=bracket)
+        total = len(data)
+        return WowDataSchema(bracket_id=bracket.id, bracket_type=bracket.type, data=data, total=total)
