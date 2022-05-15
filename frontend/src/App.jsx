@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { DataContextProvider } from "./context/DataContext";
 import Threes from "./pages/Threes";
 import Twos from "./pages/Twos";
 import Rbg from "./pages/Rbg";
 
 
 export default function App() {
-
     return (
         <BrowserRouter>
             <nav>
@@ -16,12 +16,14 @@ export default function App() {
                 <Link to="/rbg">Rbg</Link>
                 <br />
             </nav>
-            <Routes>
-                <Route path="/" element={<Threes />} />
-                <Route path="/2s" element={<Twos />} />
-                <Route path="/rbg" element={<Rbg />} />
-                <Route path="*" />
-            </Routes>
+            <DataContextProvider>
+                <Routes>
+                    <Route path="/" element={<Threes />} />
+                    <Route path="/2s" element={<Twos />} />
+                    <Route path="/rbg" element={<Rbg />} />
+                    <Route path="*" />
+                </Routes>
+            </DataContextProvider>
         </BrowserRouter>
     );
 }

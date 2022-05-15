@@ -3,9 +3,12 @@ from utils import migrate, start_sub_process
 from tasks import fetcher
 from schemas import WowDataSchema
 from controllers import DataController
+from middlewares import cors_middleware_config
 
 
 api = FastAPI()
+api.add_middleware(**cors_middleware_config)
+
 sub_process = None
 
 
