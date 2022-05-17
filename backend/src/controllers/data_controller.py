@@ -62,5 +62,4 @@ class DataController:
     async def get(self, tp: str) -> WowDataSchema:
         bracket = await Brackets.objects.get(type=tp)
         data = await self.fetch_data_from_db(bracket=bracket)
-        total = len(data)
-        return WowDataSchema(bracket_id=bracket.id, bracket_type=bracket.type, data=data, total=total)
+        return WowDataSchema(bracket_id=bracket.id, bracket_type=bracket.type, data=data, total=len(data))

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from utils import migrate, start_sub_process
 from tasks import fetcher
 from schemas import WowDataSchema
@@ -31,16 +31,14 @@ async def shutdown():
             print(f"Error while terminating the sub process: {e}")
 
 
-@api.get("/threes_data/", response_model=WowDataSchema)
-async def threes_data(request: Request):
-    return await DataController(req=request).get(tp="3v3")
-
-
-@api.get("/twos_data/", response_model=WowDataSchema)
-async def twos_data(request: Request):
-    return await DataController(req=request).get(tp="2v2")
-
-
-@api.get("/rbg_data/", response_model=WowDataSchema)
-async def rbg_data(request: Request):
-    return await DataController(req=request).get(tp="rbg")
+@api.get("/data/{bracket}/", response_model=WowDataSchema)
+async def data(request: Request, bracket: str):
+    match bracket:
+        case "3s":
+            return await DataController(req=request).get(tp="3v3")
+        case "2s":
+            return await DataController(req=request).get(tp="2v2")
+        case "rbg":
+            return await DataController(req=request).get(tp="rbg")
+        case _:
+            raise HTTPException(status_code=400, detail="Endpoint inválido")
