@@ -8,13 +8,13 @@ export default function Threes() {
     const { getData } = useContext(DataContext);
     const [data, setData] = useState([]);
 
-    const fetch_api = async () => {
+    const getApiData = async () => {
         const data = await getData('3s');
         console.log(data);
     }
 
     useEffect(() => {
-        fetch_api();
+        getApiData();
     }, []);
 
     return (

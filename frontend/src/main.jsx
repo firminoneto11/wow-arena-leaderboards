@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
-const stricModeOn = false;
+const strictMode = false;
 
 function renderApp() {
-    if (stricModeOn) {
+    if (strictMode) {
         return (
             <React.StrictMode>
                 <App />
