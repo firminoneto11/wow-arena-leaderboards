@@ -1,9 +1,10 @@
-from settings import ALL_CLASSES_API, CLASS_MEDIA_API
 from httpx import AsyncClient
-from utils import WowClassesDataclass
 from typing import List
 from asyncio import gather
-from settings import TIMEOUT
+from utils import WowClassesDataclass
+from settings import (
+    ALL_CLASSES_API, CLASS_MEDIA_API, TIMEOUT
+)
 
 
 class FetchWowClasses:
@@ -13,7 +14,8 @@ class FetchWowClasses:
     async def run(self, access_token: str):
         self.access_token = access_token
         wow_classes: List[WowClassesDataclass] = await self.get_wow_classes()
-        
+        wow_classes = await self.get_wow_classes()
+
         _futures = []
         for wow_class in wow_classes:
             _futures.append(

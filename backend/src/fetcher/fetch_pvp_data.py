@@ -1,10 +1,11 @@
 from asyncio import gather
 from httpx import AsyncClient
-from settings import PVP_RATING_API, REINOS_BR
 from asyncio import gather
-from utils import PvpDataDataclass
 from typing import List, Dict
-from settings import TIMEOUT
+from utils import PvpDataDataclass
+from settings import (
+    TIMEOUT, REINOS_BR, PVP_RATING_API
+)
 
 
 class FetchPvpData:
@@ -87,40 +88,3 @@ class FetchPvpData:
                 )
             )
         return cleaned_data
-
-    """
-    async def write_to_json_file(self, data: List[DadosBracket]):
-        async def gerar_dump(dt: List[PvpDataDataclass]):
-            print("Gerando dump dos dados")
-            return json.dumps(list(map(
-                lambda el: el.__dict__,
-                dt
-            )))
-        async def escrever_no_arquivo(dt, tipo: str):
-            nome = None
-            if tipo == '2v2':
-                nome = '../twos_data.json'
-            elif tipo == '3v3':
-                nome = '../thres_data.json'
-            else:
-                nome = '../rbg_data.json'
-            print(f"Escrevendo no arquivo '{nome}'")
-            with open(file=nome, mode='w', encoding='utf-8') as f:
-                f.write(dt)
-
-        twos = data[0]
-        thres = data[1]
-        rbg = data[2]
-
-        dados = await gather(
-            gerar_dump(dt=twos.dados),
-            gerar_dump(dt=thres.dados),
-            gerar_dump(dt=rbg.dados),
-        )
-
-        await gather(
-            escrever_no_arquivo(dt=dados[0], tipo=twos.bracket),
-            escrever_no_arquivo(dt=dados[1], tipo=thres.bracket),
-            escrever_no_arquivo(dt=dados[2], tipo=rbg.bracket),
-        )
-    """

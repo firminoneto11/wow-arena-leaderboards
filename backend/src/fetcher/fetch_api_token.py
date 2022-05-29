@@ -1,7 +1,8 @@
-from settings import BLIZZARD_TOKENS_URL
 from httpx import AsyncClient
 from decouple import config as get_env_var
-from settings import TIMEOUT
+from settings import (
+    TIMEOUT, BLIZZARD_TOKENS_URL
+)
 
 
 class FetchApiToken:

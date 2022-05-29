@@ -1,54 +1,39 @@
-from .fetch_api_token import FetchApiToken
-from .fetch_wow_classes import FetchWowClasses
-from .fetch_wow_specs import FetchWowSpecs
-from .fetch_pvp_data import FetchPvpData
-from .fetch_wow_media import FetchWowMedia
-from asyncio import gather, sleep
-from models.wow_classes import create_wow_class
-from models.wow_specs import create_wow_spec
-from models.pvp_data import create_pvp_data
-from typing import List, Dict
-from models import Brackets
-from settings import DELAY
-from utils import (
-    WowClassesDataclass as WowClassesDt, WowSpecsDataclass as WowSpecsDt, PvpDataDataclass as PvpDataDt
-)
+from fetcher import FetchApiToken, FetchWowClasses, FetchWowSpecs, FetchPvpData, FetchWowMedia
+
+from models import Brackets, create_wow_class, create_wow_spec, create_pvp_data
+
+from utils import WowClassesDataclass as WowClassesDt, WowSpecsDataclass as WowSpecsDt, PvpDataDataclass as PvpDataDt
+
+from settings import DELAY, UPDATE_EVERY
+
+from asyncio import gather, sleep, run as run_in_async_mode
 from time import time
+from typing import List, Dict
 
 
 async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pvp_data: Dict[str, List[PvpDataDt]]):
     classes_tasks = []
     for wow_class in wow_classes:
-        classes_tasks.append(
-            create_wow_class(**wow_class.to_dict())
-        )
+        classes_tasks.append(create_wow_class(**wow_class.to_dict()))
 
     specs_tasks = []
     for wow_spec in wow_specs:
-        specs_tasks.append(
-            create_wow_spec(**wow_spec.to_dict())
-        )
+        specs_tasks.append(create_wow_spec(**wow_spec.to_dict()))
 
     pvp_data_tasks = []
     for key in pvp_data.keys():
         if key == "twos":
             bracket = await Brackets.objects.get(type="2v2")
             for pd in pvp_data[key]:
-                pvp_data_tasks.append(
-                    create_pvp_data(pd=pd, bracket=bracket)
-                )
+                pvp_data_tasks.append(create_pvp_data(pd=pd, bracket=bracket))
         elif key == "thres":
             bracket = await Brackets.objects.get(type="3v3")
             for pd in pvp_data[key]:
-                pvp_data_tasks.append(
-                    create_pvp_data(pd=pd, bracket=bracket)
-                )
+                pvp_data_tasks.append(create_pvp_data(pd=pd, bracket=bracket))
         else:
             bracket = await Brackets.objects.get(type="rbg")
             for pd in pvp_data[key]:
-                pvp_data_tasks.append(
-                    create_pvp_data(pd=pd, bracket=bracket)
-                )
+                pvp_data_tasks.append(create_pvp_data(pd=pd, bracket=bracket))
 
     await gather(*classes_tasks, *specs_tasks, *pvp_data_tasks)
 
@@ -79,8 +64,7 @@ async def fetcher():
 
         print("\n3 - Fazendo um fetch nos dados das classes e specs...\n")
         wow_classes, wow_specs = await gather(
-            fetch_wow_class.run(access_token=access_token),
-            fetch_wow_specs.run(access_token=access_token)
+            fetch_wow_class.run(access_token=access_token), fetch_wow_specs.run(access_token=access_token)
         )
 
         # Esperando pra não tomar throtlle da api da blizz
@@ -95,3 +79,18 @@ async def fetcher():
 
     total = time() - inicio
     print(f"\nDemorou {total:.2f} segundos para realizar todas as requisições.\n")
+
+
+async def main():
+    while True:
+        # try:
+        await fetcher()
+        # except Exception as error:
+        #     print(f"\nOcorreu um erro ao tentar fazer a atualização dos dados junto a api da blizzard!")
+        #     print(f"Mais detalhes sobre o erro: {error}\n")
+        print(f"\nAguardando {UPDATE_EVERY} segundos para realizar uma nova atualização da base...\n")
+        await sleep(UPDATE_EVERY)
+
+
+if __name__ == "__main__":
+    run_in_async_mode(main())

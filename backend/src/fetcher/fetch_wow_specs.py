@@ -1,9 +1,10 @@
-from settings import ALL_SPECS_API, SPEC_MEDIA_API
-from httpx import AsyncClient
-from settings import TIMEOUT
 from utils import WowSpecsDataclass
+from httpx import AsyncClient
 from typing import List
 from asyncio import gather
+from settings import (
+    ALL_SPECS_API, SPEC_MEDIA_API, TIMEOUT
+)
 
 
 class FetchWowSpecs:
