@@ -34,9 +34,19 @@ class DataController:
         wow_spec = self.find_spec_or_class(tp="spec", player=player)
 
         return PlayerSchema(
-            id=player.id, blizz_id=player.blizz_id, name=player.name, global_rank=player.global_rank, cr=player.cr,
-            played=player.played, wins=player.wins, losses=player.losses, faction_name=player.faction_name, realm=player.realm,
-            avatar_icon=player.avatar_icon, wow_class=wow_class, wow_spec=wow_spec
+            id=player.id,
+            blizz_id=player.blizz_id,
+            name=player.name,
+            global_rank=player.global_rank,
+            cr=player.cr,
+            played=player.played,
+            wins=player.wins,
+            losses=player.losses,
+            faction_name=player.faction_name,
+            realm=player.realm,
+            avatar_icon=player.avatar_icon,
+            wow_class=wow_class,
+            wow_spec=wow_spec,
         )
 
     async def fetch_data_from_db(self, bracket: Brackets) -> Union[List[PlayerSchema], List]:
@@ -44,9 +54,7 @@ class DataController:
         wow_player_schema_list = []
 
         pvp_data, wow_classes, wow_specs = await gather(
-            PvpData.objects.filter(bracket=bracket).all(),
-            WowClasses.objects.all(),
-            WowSpecs.objects.all()
+            PvpData.objects.filter(bracket=bracket).all(), WowClasses.objects.all(), WowSpecs.objects.all()
         )
 
         if pvp_data and wow_classes and wow_specs:
@@ -63,3 +71,7 @@ class DataController:
         bracket = await Brackets.objects.get(type=tp)
         data = await self.fetch_data_from_db(bracket=bracket)
         return WowDataSchema(bracket_id=bracket.id, bracket_type=bracket.type, data=data, total=len(data))
+
+    @classmethod
+    async def handle(cls, request: Request, bracket: str) -> dict:
+        ...

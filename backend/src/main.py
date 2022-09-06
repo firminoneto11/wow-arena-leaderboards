@@ -1,32 +1,28 @@
-from fastapi import FastAPI, Request, HTTPException
-from utils import migrate
-from schemas import WowDataSchema
-from controllers import DataController
+from fastapi import FastAPI
+
+from apps.brackets.views import brackets_router
 from middlewares import cors_middleware_config
+from connection_layer import *
 
 
+# Instantiating the FastAPI
 api = FastAPI()
+
+# Adding CORS middleware to it
 api.add_middleware(**cors_middleware_config)
+
+# Including routers
+api.include_router(brackets_router)
+
+
+# Startup and shutdown event handlers
 
 
 @api.on_event("startup")
-async def startup():
-    await migrate()
+async def startup() -> None:
+    ...
 
 
 @api.on_event("shutdown")
-async def shutdown():
-    pass
-
-
-@api.get("/data/{bracket}/", response_model=WowDataSchema)
-async def data(request: Request, bracket: str):
-    match bracket:
-        case "3s":
-            return await DataController(req=request).get(tp="3v3")
-        case "2s":
-            return await DataController(req=request).get(tp="2v2")
-        case "rbg":
-            return await DataController(req=request).get(tp="rbg")
-        case _:
-            raise HTTPException(status_code=400, detail="Endpoint inválido")
+async def shutdown() -> None:
+    ...

@@ -1,4 +1,3 @@
-
 BLIZZARD_TOKENS_URL = "https://us.battle.net/oauth/token"
 
 REINOS_BR = ["azralon", "nemesis", "goldrinn", "gallywix", "tol-barad"]
@@ -22,9 +21,7 @@ CHAR_MEDIA_API = (
 )
 
 # API que provém todas as classes
-ALL_CLASSES_API = (
-    "https://us.api.blizzard.com/data/wow/playable-class/index?namespace=static-us&locale=en_US&access_token=${accessToken}"
-)
+ALL_CLASSES_API = "https://us.api.blizzard.com/data/wow/playable-class/index?namespace=static-us&locale=en_US&access_token=${accessToken}"
 
 # API que provém os ícones das classes
 CLASS_MEDIA_API = (
@@ -33,9 +30,7 @@ CLASS_MEDIA_API = (
 )
 
 # API que provém todas as specs
-ALL_SPECS_API = (
-    "https://us.api.blizzard.com/data/wow/playable-specialization/index?namespace=static-us&locale=en_US&access_token=${accessToken}"
-)
+ALL_SPECS_API = "https://us.api.blizzard.com/data/wow/playable-specialization/index?namespace=static-us&locale=en_US&access_token=${accessToken}"
 
 # API que provém os ícones das specs das classes
 SPEC_MEDIA_API = (
