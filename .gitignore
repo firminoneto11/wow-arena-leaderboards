@@ -1,4 +1,6 @@
 *.env
+*.db
+*.log
 venv
 .vscode
 .idea

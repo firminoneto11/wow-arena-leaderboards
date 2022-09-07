@@ -1,3 +1,5 @@
+from logging import Logger
+
 from fetcher import FetchApiToken, FetchWowClasses, FetchWowSpecs, FetchPvpData, FetchWowMedia
 
 from models import Brackets, create_wow_class, create_wow_spec, create_pvp_data
@@ -38,7 +40,7 @@ async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pv
     await gather(*classes_tasks, *specs_tasks, *pvp_data_tasks)
 
 
-async def fetcher():
+async def fetcher(logger: Logger) -> None:
 
     inicio = time()
 
@@ -79,18 +81,3 @@ async def fetcher():
 
     total = time() - inicio
     print(f"\nDemorou {total:.2f} segundos para realizar todas as requisições.\n")
-
-
-async def main():
-    while True:
-        # try:
-        await fetcher()
-        # except Exception as error:
-        #     print(f"\nOcorreu um erro ao tentar fazer a atualização dos dados junto a api da blizzard!")
-        #     print(f"Mais detalhes sobre o erro: {error}\n")
-        print(f"\nAguardando {UPDATE_EVERY} segundos para realizar uma nova atualização da base...\n")
-        await sleep(UPDATE_EVERY)
-
-
-if __name__ == "__main__":
-    run_in_async_mode(main())

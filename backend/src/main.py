@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
 from apps.brackets.views import brackets_router
-from middlewares import cors_middleware_config
-from connection_layer import *
+from middleware import cors_middleware_config
+from connection_layer import db_engine
 
 
 # Instantiating the FastAPI
@@ -20,7 +20,7 @@ api.include_router(brackets_router)
 
 @api.on_event("startup")
 async def startup() -> None:
-    ...
+    await db_engine.create_all()
 
 
 @api.on_event("shutdown")
