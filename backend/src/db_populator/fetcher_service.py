@@ -1,10 +1,14 @@
-from logging import Logger
-
 from fetcher import FetchApiToken, FetchWowClasses, FetchWowSpecs, FetchPvpData, FetchWowMedia
 
 from models import Brackets, create_wow_class, create_wow_spec, create_pvp_data
 
-from utils import WowClassesDataclass as WowClassesDt, WowSpecsDataclass as WowSpecsDt, PvpDataDataclass as PvpDataDt
+from shared.utils import (
+    WowClassesDataclass as WowClassesDt,
+    WowSpecsDataclass as WowSpecsDt,
+    PvpDataDataclass as PvpDataDt,
+)
+
+from shared import AsyncLogger
 
 from settings import DELAY, UPDATE_EVERY
 
@@ -40,7 +44,7 @@ async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pv
     await gather(*classes_tasks, *specs_tasks, *pvp_data_tasks)
 
 
-async def fetcher(logger: Logger) -> None:
+async def fetch_blizzard_api(logger: AsyncLogger) -> None:
 
     inicio = time()
 

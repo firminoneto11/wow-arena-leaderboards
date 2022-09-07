@@ -2,7 +2,7 @@ import orm as models
 from connection_layer import objects
 from datetime import datetime
 from .brackets import Brackets
-from utils import PvpDataDataclass
+from shared.utils import PvpDataDataclass
 
 
 class PvpData(models.Model):
@@ -23,7 +23,7 @@ class PvpData(models.Model):
         "realm": models.String(max_length=50),
         "avatar_icon": models.Text(allow_null=True),
         "bracket": models.ForeignKey(to=Brackets, on_delete=models.CASCADE),  # N tem no PvpDataDataclass
-        "updated_at": models.DateTime(default=lambda: datetime.now())  # N tem no PvpDataDataclass
+        "updated_at": models.DateTime(default=lambda: datetime.now()),  # N tem no PvpDataDataclass
     }
 
 
@@ -47,7 +47,7 @@ async def create_pvp_data(pd: PvpDataDataclass, bracket: Brackets):
         for key in old_values.keys():
 
             # Checando se a chave é um campo que existe no 'PvpDataDataclass'
-            if key != 'bracket' and key != 'id' and key != 'updated_at':
+            if key != "bracket" and key != "id" and key != "updated_at":
 
                 # Checando se o valor que está no banco é diferente do que está no 'PvpDataDataclass'
                 if old_values[key] != new_values[key]:
@@ -55,7 +55,7 @@ async def create_pvp_data(pd: PvpDataDataclass, bracket: Brackets):
                     # Caso seja, atualizar o 'altered_values' dict com o novo valor
                     altered_values[key] = new_values[key]
 
-            elif key == 'updated_at':
+            elif key == "updated_at":
 
                 # Mudando o dado no campo 'updated_at'
                 altered_values[key] = datetime.now()

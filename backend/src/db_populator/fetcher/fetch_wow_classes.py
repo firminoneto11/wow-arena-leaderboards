@@ -1,10 +1,8 @@
 from httpx import AsyncClient
 from typing import List
 from asyncio import gather
-from utils import WowClassesDataclass
-from settings import (
-    ALL_CLASSES_API, CLASS_MEDIA_API, TIMEOUT
-)
+from shared.utils import WowClassesDataclass
+from settings import ALL_CLASSES_API, CLASS_MEDIA_API, TIMEOUT
 
 
 class FetchWowClasses:
@@ -18,9 +16,7 @@ class FetchWowClasses:
 
         _futures = []
         for wow_class in wow_classes:
-            _futures.append(
-                self.get_icon_for_wow_class(blizz_id=wow_class.blizz_id)
-            )
+            _futures.append(self.get_icon_for_wow_class(blizz_id=wow_class.blizz_id))
         _futures = await gather(*_futures)
 
         for index, wow_class in enumerate(wow_classes):
@@ -34,8 +30,7 @@ class FetchWowClasses:
                 return ALL_CLASSES_API.replace("${accessToken}", self.access_token)
             case "class-icon":
                 return CLASS_MEDIA_API.replace("${accessToken}", self.access_token).replace(
-                    "${class_id}",
-                    str(kwargs.get("blizz_id"))
+                    "${class_id}", str(kwargs.get("blizz_id"))
                 )
 
     async def get_wow_classes(self):
@@ -60,12 +55,7 @@ class FetchWowClasses:
         for key, val in data.items():
             if key == "classes":
                 for wow_class in val:
-                    instances.append(
-                        WowClassesDataclass(
-                            blizz_id=wow_class["id"],
-                            class_name=wow_class["name"]
-                        )
-                    )
+                    instances.append(WowClassesDataclass(blizz_id=wow_class["id"], class_name=wow_class["name"]))
 
         return instances
 
@@ -82,4 +72,6 @@ class FetchWowClasses:
             if response.status_code == 200:
                 return data["assets"][0]["value"]
             else:
-                raise Exception(f"Houve um problema no status code ao solicitar o ícone para a classe de blizz id {blizz_id}")
+                raise Exception(
+                    f"Houve um problema no status code ao solicitar o ícone para a classe de blizz id {blizz_id}"
+                )

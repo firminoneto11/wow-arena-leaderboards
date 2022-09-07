@@ -1,30 +1,27 @@
 from asyncio import sleep, run as run_async
-from typing import Final, NoReturn
-import logging
+from typing import NoReturn, Final
+from logging import FileHandler
 
-from db_populator.settings import UPDATE_EVERY
-from utils import as_async
+from db_populator.constants import UPDATE_EVERY
+from shared import AsyncLogger
 
 
 async def main() -> NoReturn:
     """Entrypoint of this service."""
 
-    # Creating the log format to be used. Format options can be found at:
-    # https://docs.python.org/3/library/logging.html#logrecord-attributes
-    LOG_FORMAT: Final[str] = "%(levelname)s - %(asctime)s - %(name)s - %(message)s"
-
-    # Logs file name
+    # Logs' file name
     LOG_FILENAME: Final[str] = "db_populator_service.log"
 
-    # Setting the basic log level to INFO, meaning that will be logged anything that is info or higher
-    logging.basicConfig(level=logging.INFO, filename=LOG_FILENAME, format=LOG_FORMAT)
+    # Creating a FileHandler for the logger
+    file_handler = FileHandler(filename=LOG_FILENAME)
 
-    # Creating a logger
-    logger = logging.getLogger(name="Populator Logs")
+    # Creating a logger with a custom name and the file handler
+    logger = AsyncLogger(name="Populator Logs", file_handler=file_handler)
 
-    # Loop that will be running forever to keep the database up to date
+    # Loop that will be running forever to keep the database up to date with blizzard's data
     while True:
-        await as_async(lambda: logger.info("Awaiting %s seconds before the next requests round", UPDATE_EVERY))
+        # await fetch_blizzard_api(logger=logger)
+        await logger.log(f"Awaiting {UPDATE_EVERY} seconds before the next requests round", level="debug")
         await sleep(UPDATE_EVERY)
 
 

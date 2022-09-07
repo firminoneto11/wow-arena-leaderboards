@@ -2,10 +2,8 @@ from asyncio import gather
 from httpx import AsyncClient
 from asyncio import gather
 from typing import List, Dict
-from utils import PvpDataDataclass
-from settings import (
-    TIMEOUT, REINOS_BR, PVP_RATING_API
-)
+from shared.utils import PvpDataDataclass
+from settings import TIMEOUT, REINOS_BR, PVP_RATING_API
 
 
 class FetchPvpData:
@@ -13,8 +11,10 @@ class FetchPvpData:
     access_token: str
 
     def refactor_endpoint(self, session: int, bracket: str):
-        return PVP_RATING_API.replace("${session}", str(session)).replace("${bracket}", bracket).replace(
-            "${accessToken}", self.access_token
+        return (
+            PVP_RATING_API.replace("${session}", str(session))
+            .replace("${bracket}", bracket)
+            .replace("${accessToken}", self.access_token)
         )
 
     async def run(self, access_token: str):
@@ -47,10 +47,9 @@ class FetchPvpData:
             response = await client.get(endpoint)
             data = response.json()
             if response.status_code == 200:
-                brazilian_players = list(filter(
-                    lambda player: player["character"]["realm"]["slug"] in REINOS_BR,
-                    data["entries"]
-                ))
+                brazilian_players = list(
+                    filter(lambda player: player["character"]["realm"]["slug"] in REINOS_BR, data["entries"])
+                )
                 return brazilian_players
             else:
                 raise Exception(f"Houve um problema no status code ao solicitar os dados para a bracket '{bracket}'")
@@ -60,31 +59,18 @@ class FetchPvpData:
         for el in raw_data:
             cleaned_data.append(
                 PvpDataDataclass(
-
                     blizz_id=el["character"]["id"],
-
                     name=el["character"]["name"],
-
                     global_rank=el["rank"],
-
                     cr=el["rating"],
-
                     played=el["season_match_statistics"]["played"],
-
                     wins=el["season_match_statistics"]["won"],
-
                     losses=el["season_match_statistics"]["lost"],
-
                     faction_name=el["faction"]["type"],
-
                     realm=el["character"]["realm"]["slug"],
-
                     class_id=None,
-
                     spec_id=None,
-
                     avatar_icon=None,
-
                 )
             )
         return cleaned_data

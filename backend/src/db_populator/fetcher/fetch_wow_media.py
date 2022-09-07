@@ -1,6 +1,6 @@
 from settings import PROFILE_API, CHAR_MEDIA_API, TIMEOUT, DELAY, REQUESTS_PER_SEC, MAX_RETRIES
 from httpx import AsyncClient, ConnectError
-from utils import PvpDataDataclass
+from shared.utils import PvpDataDataclass
 from typing import List, Dict
 from asyncio import gather, sleep
 from itertools import chain
@@ -33,13 +33,17 @@ class FetchWowMedia:
     def refactor_endpoint(self, tipo: str = "profile", *args, **kwargs):
         match tipo:
             case "profile":
-                return PROFILE_API.replace("${accessToken}", self.access_token).replace(
-                    "${realm_slug}", kwargs.get("realm")
-                ).replace("${char_name}", kwargs.get("name"))
+                return (
+                    PROFILE_API.replace("${accessToken}", self.access_token)
+                    .replace("${realm_slug}", kwargs.get("realm"))
+                    .replace("${char_name}", kwargs.get("name"))
+                )
             case "char-media":
-                return CHAR_MEDIA_API.replace("${accessToken}", self.access_token).replace(
-                    "${realm_slug}", kwargs.get("realm")
-                ).replace("${char_name}", kwargs.get("name"))
+                return (
+                    CHAR_MEDIA_API.replace("${accessToken}", self.access_token)
+                    .replace("${realm_slug}", kwargs.get("realm"))
+                    .replace("${char_name}", kwargs.get("name"))
+                )
 
     def divide_workload(self, workload: List[UniquePlayerDataclass]) -> List[List[UniquePlayerDataclass]]:
         helper_list = []
@@ -64,8 +68,7 @@ class FetchWowMedia:
                 anti_throttle = []
                 for player in lista:
                     endpoint = self.refactor_endpoint(
-                        tipo="char-media" if is_avatar else "profile",
-                        realm=player.realm, name=player.name.lower()
+                        tipo="char-media" if is_avatar else "profile", realm=player.realm, name=player.name.lower()
                     )
                     anti_throttle.append(cliente.get(endpoint))
                 return anti_throttle
@@ -76,7 +79,9 @@ class FetchWowMedia:
                 total_de_reqs = len(anti_throttle)
 
                 try:
-                    print(f"\nTentando realizar o fetch de {total_de_reqs} jogadores. {idx + 1}/{MAX_RETRIES} tentativas.")
+                    print(
+                        f"\nTentando realizar o fetch de {total_de_reqs} jogadores. {idx + 1}/{MAX_RETRIES} tentativas."
+                    )
                     gather_return = await gather(*anti_throttle)
                 except ConnectError:
                     if idx == MAX_RETRIES:
@@ -108,8 +113,7 @@ class FetchWowMedia:
 
         # Criando uma lista somente com jogadores únicos
         unique_players = [
-            UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.name)
-            for player in twos
+            UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.name) for player in twos
         ]
 
         # Iterando na lista de jogadores da bracket de 3s e checando se o jogador se encontra na lista de jogadores únicos. Caso ele não
@@ -119,7 +123,7 @@ class FetchWowMedia:
             if pl not in unique_players:
                 unique_players.append(pl)
 
-        # Iterando na lista de jogadores da bracket de rbg e checando se o jogador se encontra na lista de jogadores únicos. Caso ele 
+        # Iterando na lista de jogadores da bracket de rbg e checando se o jogador se encontra na lista de jogadores únicos. Caso ele
         # não se encontre ele é adicionado
         for player in rbg:
             pl = UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.name)
@@ -154,9 +158,9 @@ class FetchWowMedia:
 
                 responses = await self.fetch_em_all(lists=unique_players_lists, client=client)
 
-                # -- TESTING -- 
+                # -- TESTING --
                 print(f"\n# Total de requests respondidas pós divisão: {len(responses)}")
-                # -- TESTING -- 
+                # -- TESTING --
 
             if responses:
                 responses: List[dict] = [response.json() for response in responses if response.status_code == 200]
@@ -216,4 +220,4 @@ class FetchWowMedia:
                     player.avatar_icon = unique_player.avatar_icon
                     break
 
-        return { "twos": twos, "thres": thres, "rbg": rbg }
+        return {"twos": twos, "thres": thres, "rbg": rbg}
