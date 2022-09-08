@@ -1,9 +1,18 @@
+from enum import Enum
 import logging
 
 from .utils import as_async
 
 
-class UnexpectedLevelError(Exception):
+class LogLevels(Enum):
+    DEBUG: int = logging.DEBUG
+    INFO: int = logging.INFO
+    WARNING: int = logging.WARNING
+    ERROR: int = logging.ERROR
+    CRITICAL: int = logging.CRITICAL
+
+
+class InvalidLogLevel(Exception):
     ...
 
 
@@ -48,6 +57,17 @@ class AsyncLogger:
     async def log(self, message: str, /, *, level: str = "INFO") -> None:
         """This method takes a message and logs it using the logger created."""
 
+        chosen_level: int | None = getattr(LogLevels, level.upper(), None)
+
+        if chosen_level is None:
+            raise InvalidLogLevel(f"The log level set is not valid. Valid options are: {LogLevels._member_names_}")
+
+        if chosen_level < self._logger.level:
+            raise InvalidLogLevel(
+                f"The message won't be logged because the chosen log level is lower than the logger's level. Logger's level is"
+                f"{self._logger.level} and the chosen level is {chosen_level}"
+            )
+
         match level.upper():
             case "DEBUG":
                 return await as_async(lambda: self._logger.debug(msg=message))
@@ -59,5 +79,3 @@ class AsyncLogger:
                 return await as_async(lambda: self._logger.error(msg=message))
             case "CRITICAL":
                 return await as_async(lambda: self._logger.critical(msg=message))
-            case _:
-                raise UnexpectedLevelError("The level set to log the message is not valid")
