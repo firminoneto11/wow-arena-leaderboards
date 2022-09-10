@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from apps.brackets.views import brackets_router
 from middleware import cors_middleware_config
-from connection_layer import db_engine
+from database import db_engine
 
 
 # Instantiating the FastAPI

@@ -1,5 +1,5 @@
 import orm as models
-from connection_layer import objects
+from database.connection_layer import objects
 from datetime import datetime
 from .brackets import Brackets
 from shared.utils import PvpDataDataclass

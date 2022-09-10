@@ -1,5 +1,5 @@
 import orm as models
-from connection_layer import objects
+from database.connection_layer import objects
 from datetime import datetime
 
 
@@ -11,7 +11,7 @@ class WowSpecs(models.Model):
         "blizz_id": models.Integer(),
         "spec_name": models.String(max_length=50),
         "spec_icon": models.Text(),
-        "updated_at": models.DateTime(default=lambda: datetime.now())
+        "updated_at": models.DateTime(default=lambda: datetime.now()),
     }
 
 
