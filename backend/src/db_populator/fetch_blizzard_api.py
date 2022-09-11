@@ -1,22 +1,9 @@
-from fetcher import FetchApiToken, FetchWowClasses, FetchWowSpecs, FetchPvpData, FetchWowMedia
-
-from models import Brackets, create_wow_class, create_wow_spec, create_pvp_data
-
-from shared.utils import (
-    WowClassesDataclass as WowClassesDt,
-    WowSpecsDataclass as WowSpecsDt,
-    PvpDataDataclass as PvpDataDt,
-)
-
-from shared import AsyncLogger
-
-from settings import DELAY, UPDATE_EVERY
-
-from asyncio import gather, sleep, run as run_in_async_mode
+from asyncio import gather, sleep
 from time import time
-from typing import List, Dict
 
+from shared import AsyncLogger, async_timer
 
+"""
 async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pvp_data: Dict[str, List[PvpDataDt]]):
     classes_tasks = []
     for wow_class in wow_classes:
@@ -28,11 +15,11 @@ async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pv
 
     pvp_data_tasks = []
     for key in pvp_data.keys():
-        if key == "twos":
+        if key == "2s":
             bracket = await Brackets.objects.get(type="2v2")
             for pd in pvp_data[key]:
                 pvp_data_tasks.append(create_pvp_data(pd=pd, bracket=bracket))
-        elif key == "thres":
+        elif key == "3s":
             bracket = await Brackets.objects.get(type="3v3")
             for pd in pvp_data[key]:
                 pvp_data_tasks.append(create_pvp_data(pd=pd, bracket=bracket))
@@ -42,25 +29,19 @@ async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pv
                 pvp_data_tasks.append(create_pvp_data(pd=pd, bracket=bracket))
 
     await gather(*classes_tasks, *specs_tasks, *pvp_data_tasks)
+"""
 
 
-async def fetch_blizzard_api(logger: AsyncLogger) -> None:
+@async_timer(precision_level=5)
+async def fetch_blizzard_api(*, logger: AsyncLogger) -> None:
 
-    inicio = time()
+    await logger.log("1: Fetching access token...")
+    await sleep(1)
+    await logger.log("Access token fetched successfully!")
 
-    fetch_api_token = FetchApiToken()
-    fetch_wow_class = FetchWowClasses()
-    fetch_wow_specs = FetchWowSpecs()
-    fetch_pvp_data = FetchPvpData()
-    fetch_wow_media = FetchWowMedia()
+    return
 
-    print("\n1 - Fazendo um fetch no access token...\n")
-
-    # Pegando um access token
-    response = await fetch_api_token.run()
-    print(response)
-
-    # Checando se não houve erro na primeira etapa (Autenticação)
+    # Checking if there were no errors in the first phase (Authentication)
     if not response["error"]:
 
         access_token = response["token_stuff"]["access_token"]

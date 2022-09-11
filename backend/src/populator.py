@@ -1,22 +1,23 @@
-from asyncio import sleep, run as run_async
-from typing import NoReturn, Final
-from logging import FileHandler
+from asyncio import run, sleep
+from logging import DEBUG, ERROR, INFO, FileHandler
+from typing import NoReturn
 
-from db_populator import fetch_blizzard_api, UPDATE_EVERY
+from db_populator import UPDATE_EVERY, fetch_blizzard_api
 from shared import AsyncLogger
 
 
 async def main() -> NoReturn:
     """Entrypoint of this service."""
 
-    # Logs' file name
-    LOG_FILENAME: Final[str] = "db_populator_service.log"
-
-    # Creating a FileHandler for the logger
-    file_handler = FileHandler(filename=LOG_FILENAME)
+    # Creating the file handlers for the logger
+    handlers = [
+        {"handler": FileHandler(filename="populator_service.debug.log"), "level": DEBUG},
+        {"handler": FileHandler(filename="populator_service.info.log"), "level": INFO},
+        {"handler": FileHandler(filename="populator_service.error.log"), "level": ERROR},
+    ]
 
     # Creating a logger with a custom name and the file handler
-    logger = AsyncLogger(name="Populator Logs", file_handler=file_handler)
+    logger = AsyncLogger(name="Populator Logs", file_handlers=handlers)
 
     # Loop that will be running forever to keep the database up to date with blizzard's data
     while True:
@@ -26,4 +27,4 @@ async def main() -> NoReturn:
 
 
 if __name__ == "__main__":
-    run_async(main(), debug=True)
+    run(main(), debug=True)

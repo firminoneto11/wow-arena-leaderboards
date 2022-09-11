@@ -1,5 +1,6 @@
-from enum import Enum
 import logging
+from enum import Enum
+from typing import List, TypedDict
 
 from .utils import as_async
 
@@ -12,8 +13,27 @@ class LogLevels(Enum):
     CRITICAL: int = logging.CRITICAL
 
 
-class InvalidLogLevel(Exception):
+class InvalidLogLevelError(Exception):
     ...
+
+
+class FileHandlersInterface(TypedDict):
+    handler: logging.FileHandler
+    level: int
+
+
+class LogFilter:
+    _level: int
+
+    def __init__(self, level: int):
+        self._level = level
+
+    @property
+    def level(self) -> int:
+        return self._level
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        return self.level == record.levelno
 
 
 class AsyncLogger:
@@ -28,9 +48,9 @@ class AsyncLogger:
         self,
         *,
         name: str,
-        level: int = logging.INFO,
+        level: int = logging.DEBUG,
         fmt: logging.Formatter | None = None,
-        file_handler: logging.FileHandler | None = None,
+        file_handlers: List[FileHandlersInterface] | None = None,
     ) -> None:
 
         # Creating the log format to be used. Format options can be found at:
@@ -42,12 +62,19 @@ class AsyncLogger:
         self._logger = logging.getLogger(name=name)
         self._logger.setLevel(level=level)
 
-        # Setting the file handler of the logger. A file handler can have a different level set, that way is possible to have a file
+        # Setting the file handlers of the logger. A file handler can have different levels set, that way is possible to have a file
         # handler that only writes to the log file in case of errors for example.
-        if file_handler is not None:
-            # file_handler.setLevel(level=logging.CRITICAL) -> Possible, but not needed right now
-            file_handler.setFormatter(fmt=fmt)
-            self._logger.addHandler(file_handler)
+        if file_handlers is not None:
+            for handler in file_handlers:
+                _handler, _level = handler["handler"], handler["level"]
+
+                _filter = LogFilter(level=_level)
+
+                _handler.setLevel(level=_level)
+                _handler.setFormatter(fmt=fmt)
+                _handler.addFilter(filter=_filter)
+
+                self._logger.addHandler(_handler)
 
         # Adding a stream handler to spit the logs out in the console as well
         stream_handler = logging.StreamHandler()
@@ -57,13 +84,15 @@ class AsyncLogger:
     async def log(self, message: str, /, *, level: str = "INFO") -> None:
         """This method takes a message and logs it using the logger created."""
 
-        chosen_level: int | None = getattr(LogLevels, level.upper(), None)
+        chosen_level: LogLevels | None = getattr(LogLevels, level.upper(), None)
 
         if chosen_level is None:
-            raise InvalidLogLevel(f"The log level set is not valid. Valid options are: {LogLevels._member_names_}")
+            raise InvalidLogLevelError(f"The log level set is not valid. Valid options are: {LogLevels._member_names_}")
+
+        chosen_level: int = chosen_level.value
 
         if chosen_level < self._logger.level:
-            raise InvalidLogLevel(
+            raise InvalidLogLevelError(
                 f"The message won't be logged because the chosen log level is lower than the logger's level. Logger's level is"
                 f"{self._logger.level} and the chosen level is {chosen_level}"
             )
@@ -79,3 +108,37 @@ class AsyncLogger:
                 return await as_async(lambda: self._logger.error(msg=message))
             case "CRITICAL":
                 return await as_async(lambda: self._logger.critical(msg=message))
+
+
+class SyncLogger(AsyncLogger):
+    """
+    This Logger class is a nice wrapper around the regular Logger from the logging module. We can easily instantiate new loggers with it.
+    """
+
+    def log(self, message: str, /, *, level: str = "INFO") -> None:
+        """This method takes a message and logs it using the logger created."""
+
+        chosen_level: LogLevels | None = getattr(LogLevels, level.upper(), None)
+
+        if chosen_level is None:
+            raise InvalidLogLevelError(f"The log level set is not valid. Valid options are: {LogLevels._member_names_}")
+
+        chosen_level: int = chosen_level.value
+
+        if chosen_level < self._logger.level:
+            raise InvalidLogLevelError(
+                f"The message won't be logged because the chosen log level is lower than the logger's level. Logger's level is"
+                f"{self._logger.level} and the chosen level is {chosen_level}"
+            )
+
+        match level.upper():
+            case "DEBUG":
+                return self._logger.debug(msg=message)
+            case "INFO":
+                return self._logger.info(msg=message)
+            case "WARNING":
+                return self._logger.warning(msg=message)
+            case "ERROR":
+                return self._logger.error(msg=message)
+            case "CRITICAL":
+                return self._logger.critical(msg=message)

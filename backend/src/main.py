@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 
 from apps.brackets.views import brackets_router
-from middleware import cors_middleware_config
 from database import db_engine
-
+from middleware import cors_middleware_config
 
 # Instantiating the FastAPI
 api = FastAPI()
