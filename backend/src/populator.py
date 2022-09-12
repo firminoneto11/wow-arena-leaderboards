@@ -1,19 +1,29 @@
 from asyncio import run, sleep
-from logging import DEBUG, ERROR, INFO, FileHandler
+from logging import CRITICAL, DEBUG, ERROR, INFO, WARNING, FileHandler
+from os import mkdir
+from os.path import exists, join
 from typing import NoReturn
 
 from db_populator import UPDATE_EVERY, fetch_blizzard_api
-from shared import AsyncLogger
+from shared import AsyncLogger, as_async, graceful_shutdown
 
 
+@graceful_shutdown
 async def main() -> NoReturn:
     """Entrypoint of this service."""
 
+    LOGS_PATH = "./logs"
+
+    if not exists(LOGS_PATH):
+        await as_async(lambda: mkdir(LOGS_PATH))
+
     # Creating the file handlers for the logger
     handlers = [
-        {"handler": FileHandler(filename="populator_service.debug.log"), "level": DEBUG},
-        {"handler": FileHandler(filename="populator_service.info.log"), "level": INFO},
-        {"handler": FileHandler(filename="populator_service.error.log"), "level": ERROR},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "populator_service.debug.log")), "level": DEBUG},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "populator_service.info.log")), "level": INFO},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "populator_service.warning.log")), "level": WARNING},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "populator_service.error.log")), "level": ERROR},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "populator_service.critical.log")), "level": CRITICAL},
     ]
 
     # Creating a logger with a custom name and the file handler

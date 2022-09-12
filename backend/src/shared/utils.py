@@ -1,10 +1,10 @@
-from asyncio import to_thread
+from asyncio import all_tasks, get_running_loop, to_thread
 from decimal import Decimal, getcontext
 from time import time
 from typing import Callable, Coroutine
 
 
-async def as_async(sync_callable):
+async def as_async(sync_callable: Callable):
     """
     This function is a simple wrapper to the asyncio.to_thread function. It takes a synchronous function and runs it in a separated thread
     where the GIL will be unlocked whenever an IO operation happens.
@@ -63,5 +63,23 @@ def sync_timer(function: Callable, /, *, precision_level: int = 2):
         message = f"Took {total:.(precision_level)f} seconds to run the {function.__name__} function"
         logger.log(message, level="DEBUG")
         return function_return
+
+    return decorator
+
+
+def graceful_shutdown(coroutine: Coroutine):
+
+    # TODO: Implement the functionality to await all pending tasks and then finish the execution of the program. Check Lynn's Root video
+
+    async def decorator(*args, **kwargs):
+        try:
+            return await coroutine(*args, **kwargs)
+        except Exception as err:
+            print("An error ocurred. Cancelling all pending tasks from within loop. Error: %s" % err)
+            for task in all_tasks():
+                task.cancel()
+        finally:
+            loop = get_running_loop()
+            loop.close()
 
     return decorator

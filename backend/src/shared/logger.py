@@ -40,6 +40,8 @@ class AsyncLogger:
     """
     This Logger class is a nice wrapper around the regular Logger from the logging module. We can easily instantiate new loggers with it
     and also makes the log action asynchronous, because sometimes logging involves work with IO operations.
+
+    The logger's level will always be DEBUG, but it is possible to set multiple file handlers to log different levels to different files.
     """
 
     _logger: logging.Logger
@@ -48,7 +50,6 @@ class AsyncLogger:
         self,
         *,
         name: str,
-        level: int = logging.DEBUG,
         fmt: logging.Formatter | None = None,
         file_handlers: List[FileHandlersInterface] | None = None,
     ) -> None:
@@ -60,7 +61,7 @@ class AsyncLogger:
 
         # Creating or getting a logger object, and setting its level to the chosen level
         self._logger = logging.getLogger(name=name)
-        self._logger.setLevel(level=level)
+        self._logger.setLevel(level=LogLevels.DEBUG.value)
 
         # Setting the file handlers of the logger. A file handler can have different levels set, that way is possible to have a file
         # handler that only writes to the log file in case of errors for example.
@@ -68,11 +69,9 @@ class AsyncLogger:
             for handler in file_handlers:
                 _handler, _level = handler["handler"], handler["level"]
 
-                _filter = LogFilter(level=_level)
-
                 _handler.setLevel(level=_level)
                 _handler.setFormatter(fmt=fmt)
-                _handler.addFilter(filter=_filter)
+                _handler.addFilter(filter=LogFilter(level=_level))
 
                 self._logger.addHandler(_handler)
 
@@ -113,6 +112,7 @@ class AsyncLogger:
 class SyncLogger(AsyncLogger):
     """
     This Logger class is a nice wrapper around the regular Logger from the logging module. We can easily instantiate new loggers with it.
+    The logger's level will always be DEBUG, but it is possible to set multiple file handlers to log different levels to different files.
     """
 
     def log(self, message: str, /, *, level: str = "INFO") -> None:
