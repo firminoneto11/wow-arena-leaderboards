@@ -46,25 +46,34 @@ def async_timer(*, precision_level: int = 2):
     return _async_timer
 
 
-def sync_timer(function: Callable, /, *, precision_level: int = 2):
+def sync_timer(*, precision_level: int = 2):
     """
     This function works as a decorator for functions in order to capture their execution time and log it to the log's handlers
     """
 
-    # TODO: Reimplement this function using the logic from async_timer
-
     from .logger import SyncLogger
 
-    def decorator(*args, **kwargs):
-        start = time()
-        logger: SyncLogger = kwargs["logger"]
-        function_return = function(*args, **kwargs)
-        total = time() - start
-        message = f"Took {total:.(precision_level)f} seconds to run the {function.__name__} function"
-        logger.log(message, level="DEBUG")
-        return function_return
+    def _sync_timer(function: Callable, /):
+        def decorator(*args, **kwargs):
 
-    return decorator
+            # Setting the precision level from the decimal class
+            getcontext().prec = precision_level
+
+            start = Decimal(time())
+
+            logger: SyncLogger = kwargs["logger"]
+            function_return = function(*args, **kwargs)
+
+            end = Decimal(time())
+            total = end - start
+
+            logger.log(f"Took {total} seconds to run the {function.__name__} coroutine", level="DEBUG")
+
+            return function_return
+
+        return decorator
+
+    return _sync_timer
 
 
 def graceful_shutdown(coroutine: Coroutine):
