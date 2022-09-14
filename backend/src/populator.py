@@ -1,11 +1,12 @@
-from asyncio import run, sleep
 from logging import CRITICAL, DEBUG, ERROR, INFO, WARNING, FileHandler
-from os import mkdir
 from os.path import exists, join
+from asyncio import run, sleep
 from typing import NoReturn
+from os import mkdir
 
 from db_populator import UPDATE_EVERY, fetch_blizzard_api
-from shared import AsyncLogger, as_async, graceful_shutdown
+from shared.logging import AsyncLogger
+from shared import as_async, graceful_shutdown
 
 
 @graceful_shutdown
@@ -19,11 +20,11 @@ async def main() -> NoReturn:
 
     # Creating the file handlers for the logger
     handlers = [
-        {"handler": FileHandler(filename=join(LOGS_PATH, "populator_service.debug.log")), "level": DEBUG},
-        {"handler": FileHandler(filename=join(LOGS_PATH, "populator_service.info.log")), "level": INFO},
-        {"handler": FileHandler(filename=join(LOGS_PATH, "populator_service.warning.log")), "level": WARNING},
-        {"handler": FileHandler(filename=join(LOGS_PATH, "populator_service.error.log")), "level": ERROR},
-        {"handler": FileHandler(filename=join(LOGS_PATH, "populator_service.critical.log")), "level": CRITICAL},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "debug.log")), "level": DEBUG},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "info.log")), "level": INFO},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "warning.log")), "level": WARNING},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "error.log")), "level": ERROR},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "critical.log")), "level": CRITICAL},
     ]
 
     # Creating a logger with a custom name and the file handler

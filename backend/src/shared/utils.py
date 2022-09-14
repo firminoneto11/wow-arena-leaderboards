@@ -21,7 +21,7 @@ def async_timer(*, precision_level: int = 2):
     """
     This function works as a decorator for coroutines in order to capture their execution time and log it to the log's handlers
     """
-    from .logger import AsyncLogger
+    from .logging.logger import AsyncLogger
 
     def _async_timer(coroutine: Coroutine, /):
         async def decorator(*args, **kwargs):
@@ -51,7 +51,7 @@ def sync_timer(*, precision_level: int = 2):
     This function works as a decorator for functions in order to capture their execution time and log it to the log's handlers
     """
 
-    from .logger import SyncLogger
+    from .logging.logger import SyncLogger
 
     def _sync_timer(function: Callable, /):
         def decorator(*args, **kwargs):

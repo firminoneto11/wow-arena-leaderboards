@@ -1,39 +1,11 @@
+from typing import List
 import logging
-from enum import Enum
-from typing import List, TypedDict
 
-from .utils import as_async
-
-
-class LogLevels(Enum):
-    DEBUG: int = logging.DEBUG
-    INFO: int = logging.INFO
-    WARNING: int = logging.WARNING
-    ERROR: int = logging.ERROR
-    CRITICAL: int = logging.CRITICAL
-
-
-class InvalidLogLevelError(Exception):
-    ...
-
-
-class FileHandlersInterface(TypedDict):
-    handler: logging.FileHandler
-    level: int
-
-
-class LogFilter:
-    _level: int
-
-    def __init__(self, level: int):
-        self._level = level
-
-    @property
-    def level(self) -> int:
-        return self._level
-
-    def filter(self, record: logging.LogRecord) -> bool:
-        return self.level == record.levelno
+from .exceptions import InvalidLogLevelError
+from .types import FileHandlersInterface
+from .enums import LogLevels
+from .filters import LogFilter
+from ..utils import as_async
 
 
 class AsyncLogger:
@@ -118,7 +90,9 @@ class SyncLogger(AsyncLogger):
     def log(self, message: str, /, *, level: str = "INFO") -> None:
         """This method takes a message and logs it using the logger created."""
 
-        chosen_level: LogLevels | None = getattr(LogLevels, level.upper(), None)
+        _level = level.upper()
+
+        chosen_level: LogLevels | None = getattr(LogLevels, _level, None)
 
         if chosen_level is None:
             raise InvalidLogLevelError(f"The log level set is not valid. Valid options are: {LogLevels._member_names_}")
@@ -131,7 +105,7 @@ class SyncLogger(AsyncLogger):
                 f"{self._logger.level} and the chosen level is {chosen_level}"
             )
 
-        match level.upper():
+        match _level:
             case "DEBUG":
                 return self._logger.debug(msg=message)
             case "INFO":
