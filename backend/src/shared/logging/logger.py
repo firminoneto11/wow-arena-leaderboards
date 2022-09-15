@@ -5,7 +5,7 @@ from .exceptions import InvalidLogLevelError
 from .types import FileHandlersInterface
 from .enums import LogLevels
 from .filters import LogFilter
-from ..utils import as_async
+from ..utils import to_async
 
 
 class AsyncLogger:
@@ -70,15 +70,15 @@ class AsyncLogger:
 
         match level.upper():
             case "DEBUG":
-                return await as_async(lambda: self._logger.debug(msg=message))
+                return await to_async(self._logger.debug, msg=message)
             case "INFO":
-                return await as_async(lambda: self._logger.info(msg=message))
+                return await to_async(self._logger.info, msg=message)
             case "WARNING":
-                return await as_async(lambda: self._logger.warning(msg=message))
+                return await to_async(self._logger.warning, msg=message)
             case "ERROR":
-                return await as_async(lambda: self._logger.error(msg=message))
+                return await to_async(self._logger.error, msg=message)
             case "CRITICAL":
-                return await as_async(lambda: self._logger.critical(msg=message))
+                return await to_async(self._logger.critical, msg=message)
 
 
 class SyncLogger(AsyncLogger):

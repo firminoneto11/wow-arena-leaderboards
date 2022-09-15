@@ -1,2 +1,2 @@
 from .logging import AsyncLogger, SyncLogger
-from .utils import as_async, async_timer, graceful_shutdown, sync_timer
+from .utils import to_async, graceful_shutdown

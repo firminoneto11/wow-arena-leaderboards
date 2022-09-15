@@ -5,8 +5,8 @@ from typing import NoReturn
 from os import mkdir
 
 from db_populator import UPDATE_EVERY, fetch_blizzard_api
+from shared.utils import to_async, graceful_shutdown
 from shared.logging import AsyncLogger
-from shared import as_async, graceful_shutdown
 
 
 @graceful_shutdown
@@ -16,7 +16,7 @@ async def main() -> NoReturn:
     LOGS_PATH = "./logs"
 
     if not exists(LOGS_PATH):
-        await as_async(lambda: mkdir(LOGS_PATH))
+        await to_async(mkdir, LOGS_PATH)
 
     # Creating the file handlers for the logger
     handlers = [
