@@ -1,11 +1,11 @@
 from logging import CRITICAL, DEBUG, ERROR, INFO, WARNING, FileHandler
 from os.path import exists, join
-from asyncio import run, sleep
+from asyncio import run, sleep, to_thread as as_async
 from typing import NoReturn
 from os import mkdir
 
 from db_populator import UPDATE_EVERY, fetch_blizzard_api
-from shared.utils import to_async, graceful_shutdown
+from shared.utils import graceful_shutdown
 from shared.logging import AsyncLogger
 
 
@@ -16,7 +16,7 @@ async def main() -> NoReturn:
     LOGS_PATH = "./logs"
 
     if not exists(LOGS_PATH):
-        await to_async(mkdir, LOGS_PATH)
+        await as_async(mkdir, LOGS_PATH)
 
     # Creating the file handlers for the logger
     handlers = [
