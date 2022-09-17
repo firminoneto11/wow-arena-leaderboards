@@ -32,10 +32,10 @@ class AsyncLogger:
 
         # Creating or getting a logger object, and setting its level to the chosen level
         self._logger = logging.getLogger(name=name)
-        self._logger.setLevel(level=LogLevels.DEBUG.value)
+        self._logger.setLevel(level=LogLevels.DEBUG.value)  # Always DEBUG
 
         # Setting the file handlers of the logger. A file handler can have different levels set, that way is possible to have a file
-        # handler that only writes to the log file in case of errors for example.
+        # handler that only writes to the error log file in case of errors for example.
         if file_handlers is not None:
             for handler in file_handlers:
                 _handler, _level = handler["handler"], handler["level"]

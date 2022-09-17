@@ -1,15 +1,13 @@
 from logging import CRITICAL, DEBUG, ERROR, INFO, WARNING, FileHandler
+from asyncio import sleep, to_thread as as_async
 from os.path import exists, join
-from asyncio import run, sleep, to_thread as as_async
 from typing import NoReturn
 from os import mkdir
 
 from db_populator import UPDATE_EVERY, fetch_blizzard_api
-from shared.utils import graceful_shutdown
-from shared.logging import AsyncLogger
+from shared import AsyncLogger, run_main_coroutine
 
 
-@graceful_shutdown
 async def main() -> NoReturn:
     """Entrypoint of this service."""
 
@@ -28,14 +26,14 @@ async def main() -> NoReturn:
     ]
 
     # Creating a logger with a custom name and the file handler
-    logger = AsyncLogger(name="Populator Logs", file_handlers=handlers)
+    async_logger = AsyncLogger(name="Populator Logs", file_handlers=handlers)
 
     # Loop that will be running forever to keep the database up to date with blizzard's data
     while True:
-        await fetch_blizzard_api(logger=logger)
-        await logger.log(f"Awaiting {UPDATE_EVERY} seconds before the next requests round")
+        await fetch_blizzard_api(logger=async_logger)
+        await async_logger.log(f"Awaiting {UPDATE_EVERY} seconds before the next requests round")
         await sleep(UPDATE_EVERY)
 
 
 if __name__ == "__main__":
-    run(main(), debug=True)
+    run_main_coroutine(main, debug=True)

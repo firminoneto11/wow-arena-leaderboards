@@ -1,8 +1,7 @@
 from asyncio import gather, sleep
 from time import time
 
-from shared.logging import AsyncLogger
-from shared.decorators import async_timer
+from shared import AsyncLogger, async_timer
 
 """
 async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pvp_data: Dict[str, List[PvpDataDt]]):

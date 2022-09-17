@@ -1,1 +1,1 @@
-from .graceful_shutdown import graceful_shutdown
+from .runner import run_main_coroutine
