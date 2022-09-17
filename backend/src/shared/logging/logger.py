@@ -28,7 +28,9 @@ class AsyncLogger:
         # Creating the log format to be used. Format options can be found at:
         # https://docs.python.org/3/library/logging.html#logrecord-attributes
         if fmt is None:
-            fmt = logging.Formatter("%(levelname)s - %(name)s - %(asctime)s - %(message)s")
+            fmt = logging.Formatter(
+                fmt="%(levelname)s - %(name)s - %(asctime)s,%(msecs)d - %(message)s", datefmt="%d/%m/%Y %H:%M:%S"
+            )
 
         # Creating or getting a logger object, and setting its level to the chosen level
         self._logger = logging.getLogger(name=name)

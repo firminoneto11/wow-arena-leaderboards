@@ -6,12 +6,12 @@ authors = ["Firmino Neto <firminoneto11@hotmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-orm = "^0.3.1"
-aiosqlite = "^0.17.0"
-fastapi = "^0.82.0"
-python-decouple = "^3.6"
-httpx = "^0.23.0"
-uvicorn = "^0.18.3"
+orm = "latest"
+aiosqlite = "latest"
+fastapi = "latest"
+python-decouple = "latest"
+httpx = "latest"
+uvicorn = "latest"
 
 [tool.poetry.dev-dependencies]
 black = "^22.8.0"
