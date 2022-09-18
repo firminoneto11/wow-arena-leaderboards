@@ -3,7 +3,7 @@ from typing import Coroutine
 from time import time
 
 
-def async_timer(*, precision_level: int = 2):
+def async_timer(precision_level: int, /):
     """
     This function works as a decorator for coroutines in order to capture their execution time and log it to the log's handlers
     """

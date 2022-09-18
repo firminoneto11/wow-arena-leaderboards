@@ -3,7 +3,7 @@ from typing import Callable
 from time import time
 
 
-def sync_timer(*, precision_level: int = 2):
+def sync_timer(precision_level: int, /):
     """
     This function works as a decorator for functions in order to capture their execution time and log it to the log's handlers
     """

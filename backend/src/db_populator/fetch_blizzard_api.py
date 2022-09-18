@@ -2,6 +2,7 @@ from asyncio import gather, sleep
 from time import time
 
 from shared import AsyncLogger, async_timer
+from .fetcher import fetch_token
 
 """
 async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pvp_data: Dict[str, List[PvpDataDt]]):
@@ -32,17 +33,12 @@ async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pv
 """
 
 
-@async_timer(precision_level=5)
+@async_timer(5)
 async def fetch_blizzard_api(*, logger: AsyncLogger) -> None:
-    from random import randint
 
-    await logger.log("1: Fetching access token...")
-    await sleep(1)
-    await logger.log("Access token fetched successfully!")
+    response = await fetch_token(logger=logger)
 
-    if randint(1, 6) == 6:
-        raise Exception("Aha")
-    # raise Exception("Aha")
+    print(response.data)
 
     return
 

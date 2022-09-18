@@ -1,3 +1,4 @@
+# Endpoint to request access tokens
 BLIZZARD_TOKENS_URL = "https://us.battle.net/oauth/token"
 
 REINOS_BR = ["azralon", "nemesis", "goldrinn", "gallywix", "tol-barad"]
@@ -47,8 +48,8 @@ DELAY = 5
 # Configuração do limite de requisições por segundo
 REQUESTS_PER_SEC = 100
 
-# Configuração do máximo de retries para realizar conexões http
+# Amount of time a HTTP request must be re-sent
 MAX_RETRIES = 5
 
 # Setting for the recurrence time of the fetching process (In seconds)
-UPDATE_EVERY = 1
+UPDATE_EVERY = 30

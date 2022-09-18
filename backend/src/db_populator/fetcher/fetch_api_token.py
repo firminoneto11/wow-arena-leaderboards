@@ -1,58 +1,45 @@
-from httpx import AsyncClient
 from decouple import config as get_env_var
-from settings import (
-    TIMEOUT, BLIZZARD_TOKENS_URL
-)
+from httpx import AsyncClient
+
+from db_populator.constants import TIMEOUT, BLIZZARD_TOKENS_URL, MAX_RETRIES
+from shared import async_timer, AsyncLogger
+from ..schemas import OAuthTokenResponse, OAuthTokenData
+from ..utils import re_try
 
 
-class FetchApiToken:
+@re_try(MAX_RETRIES)
+@async_timer(5)
+async def fetch_token(logger: AsyncLogger) -> OAuthTokenResponse:
+    """
+    This function makes a request to blizzard's server to get an updated access token.
+    """
 
-    async def run(self):
-        """ Método principal da classe. Retorna um access_token """
-        return await self.fetch_token()
+    credential_string: str = get_env_var("ENCODED_CREDENTIALS")
+    content_type = "application/x-www-form-urlencoded"
+    body = "grant_type=client_credentials"
 
-    async def fetch_token(self):
-        """
-        Este método faz uma requisição ao servidor da blizzard para pegar um access token atualizado. Retorna um dicionário contendo 
-        informações sobre o processo e a resposta recebida
-        """
+    headers = {"Authorization": f"Basic {credential_string}", "Content-Type": content_type}
 
-        resposta = {
-            "error": False,
-            "token_stuff": "",
-            "error_message": ""
-        }
+    raise Exception
 
-        credential_string = get_env_var("ENCODED_CREDENTIALS")
-        content_type = "application/x-www-form-urlencoded"
+    async with AsyncClient(timeout=TIMEOUT, headers=headers) as client:
 
-        headers = {
-            "Authorization": credential_string,
-            "Content-Type": content_type
-        }
+        schema = OAuthTokenResponse()
 
-        body = "grant_type=client_credentials"
+        await logger.log("1: Fetching access token...")
 
-        async with AsyncClient(timeout=TIMEOUT) as client:
-
-            response = None
-
-            try:
-                response = await client.post(
-                    url=BLIZZARD_TOKENS_URL,
-                    headers=headers,
-                    data=body
-                )
-            except Exception as error:
-                resposta["error"] = True
-                resposta["error_message"] = error
-
-            data = response.json()
-
-            if response.status_code == 200:
-                resposta["token_stuff"] = data
+        try:
+            response = await client.post(url=BLIZZARD_TOKENS_URL, data=body)
+        except Exception as error:
+            schema.error, schema.message = True, str(error)
+            await logger.log("An error occurred while fetching access token", level="error")
+        else:
+            schema.status_code = response.status_code
+            if schema.status_code == 200:
+                schema.data = OAuthTokenData(**response.json())
+                await logger.log("Access token fetched successfully!")
             else:
-                resposta["error"] = True
-                resposta["error_message"] = "Status code da response foi diferente de 200. Verificar o ocorrido"
-
-            return resposta
+                schema.message = response.text
+                await logger.log("The server didn't send an OK response", level="error")
+        finally:
+            return schema

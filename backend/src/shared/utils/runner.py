@@ -14,7 +14,7 @@ logger = SyncLogger(name="Event Loop logs")
 def exception_handler(loop: AbstractEventLoop, context: dict) -> None:
     # context["message"] will always be there; but context["exception"] may not
     msg = context.get("exception", context["message"])
-    logger.log(f"Caught exception: {msg}", level="error")
+    logger.log(f"Caught exception: {msg}", level="critical")
     loop.create_task(coro=shutdown_handler(loop=loop, by_exception=True))
 
 
