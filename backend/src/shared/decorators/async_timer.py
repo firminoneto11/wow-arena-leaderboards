@@ -23,7 +23,7 @@ def async_timer(precision_level: int, /):
             end = Decimal(time())
             total = end - start
 
-            await logger.log(f"Took {total} seconds to run the {coroutine.__name__} coroutine", level="DEBUG")
+            await logger.debug(f"Took {total} seconds to run the '{coroutine.__name__}' coroutine")
 
             return coroutine_return
 

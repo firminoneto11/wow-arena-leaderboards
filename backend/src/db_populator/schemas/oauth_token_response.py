@@ -8,8 +8,11 @@ class OAuthTokenData(BaseSchema):
     sub: str
 
 
+class OAuthTokenErrorResponse(BaseSchema):
+    error: str
+    error_description: str
+
+
 class OAuthTokenResponse(BaseSchema):
-    error: bool | None
-    message: str | None
-    status_code: int | None
     data: OAuthTokenData | None
+    server_info: OAuthTokenErrorResponse | None

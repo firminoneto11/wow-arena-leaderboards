@@ -24,7 +24,7 @@ def sync_timer(precision_level: int, /):
             end = Decimal(time())
             total = end - start
 
-            logger.log(f"Took {total} seconds to run the {function.__name__} coroutine", level="DEBUG")
+            logger.debug(f"Took {total} seconds to run the '{function.__name__}' function")
 
             return function_return
 

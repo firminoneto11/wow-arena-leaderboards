@@ -38,7 +38,8 @@ async def fetch_blizzard_api(*, logger: AsyncLogger) -> None:
 
     response = await fetch_token(logger=logger)
 
-    print(response.data)
+    if response.data is not None:
+        await logger.info("Got it")
 
     return
 

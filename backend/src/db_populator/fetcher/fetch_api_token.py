@@ -2,14 +2,13 @@ from decouple import config as get_env_var
 from httpx import AsyncClient
 
 from db_populator.constants import TIMEOUT, BLIZZARD_TOKENS_URL, MAX_RETRIES
-from shared import async_timer, AsyncLogger
-from ..schemas import OAuthTokenResponse, OAuthTokenData
-from ..utils import re_try
+from shared import async_timer, AsyncLogger, re_try
+from ..schemas import OAuthTokenResponse, OAuthTokenData, OAuthTokenErrorResponse
 
 
 @re_try(MAX_RETRIES)
 @async_timer(5)
-async def fetch_token(logger: AsyncLogger) -> OAuthTokenResponse:
+async def fetch_token(logger: AsyncLogger) -> OAuthTokenData | OAuthTokenErrorResponse:
     """
     This function makes a request to blizzard's server to get an updated access token.
     """
@@ -20,26 +19,22 @@ async def fetch_token(logger: AsyncLogger) -> OAuthTokenResponse:
 
     headers = {"Authorization": f"Basic {credential_string}", "Content-Type": content_type}
 
-    raise Exception
-
     async with AsyncClient(timeout=TIMEOUT, headers=headers) as client:
 
-        schema = OAuthTokenResponse()
-
-        await logger.log("1: Fetching access token...")
+        await logger.info("1: Fetching access token...")
 
         try:
             response = await client.post(url=BLIZZARD_TOKENS_URL, data=body)
         except Exception as error:
-            schema.error, schema.message = True, str(error)
-            await logger.log("An error occurred while fetching access token", level="error")
+            await logger.error("An error occurred while fetching access token:")
+            await logger.error(error)
         else:
-            schema.status_code = response.status_code
-            if schema.status_code == 200:
-                schema.data = OAuthTokenData(**response.json())
-                await logger.log("Access token fetched successfully!")
+            if response.status_code == 200:
+                await logger.info("Access token fetched successfully!")
+                return OAuthTokenData(**response.json())
             else:
-                schema.message = response.text
-                await logger.log("The server didn't send an OK response", level="error")
-        finally:
-            return schema
+                schema = OAuthTokenErrorResponse(**response.json())
+                await logger.warning("The server did not returned an OK response. Details:")
+                await logger.warning(schema.error)
+                await logger.warning(schema.error_description)
+                return schema

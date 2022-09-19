@@ -4,6 +4,8 @@ from typing import Callable, Coroutine, Final
 from platform import system
 import signal
 
+from decouple import config as get_env_var
+
 from shared import SyncLogger
 
 
@@ -12,9 +14,12 @@ logger = SyncLogger(name="Event Loop logs")
 
 
 def exception_handler(loop: AbstractEventLoop, context: dict) -> None:
-    # context["message"] will always be there; but context["exception"] may not
+    # context["message"] will always be there, but context["exception"] may not
     msg = context.get("exception", context["message"])
-    logger.log(f"Caught exception: {msg}", level="critical")
+
+    logger.critical(f"Unhandled exception during 'run_main_coroutine()' shutdown:")
+    logger.critical(msg)
+
     loop.create_task(coro=shutdown_handler(loop=loop, by_exception=True))
 
 
@@ -43,7 +48,7 @@ async def shutdown_handler(
     if not by_exception:
         msg = f"Received exit signal: {signal.name if signal is not None else 'SIGINT'}. " + msg
 
-    logger.log(msg)
+    logger.info(msg)
 
     # Collecting the remaining tasks
     remaining_tasks = [t for t in all_tasks(loop=loop) if t is not current_task()]
@@ -52,7 +57,7 @@ async def shutdown_handler(
         await finish_loop()
         return
 
-    logger.log(f"Cancelling {len(remaining_tasks)} tasks")
+    logger.info(f"Cancelling {len(remaining_tasks)} tasks.")
 
     # Cancelling them
     for task in remaining_tasks:
@@ -79,19 +84,20 @@ async def shutdown_handler(
     await finish_loop()
 
 
-def run_main_coroutine(async_function: Callable[..., Coroutine], debug: bool | None = None) -> None:
+def run_main_coroutine(async_function: Callable[..., Coroutine]) -> None:
 
     CUR_OS: Final[str] = system().upper()
 
     # Creating a new event loop
     event_loop = get_event_loop()
 
-    # Setting the event's loop global exception handler
-    event_loop.set_exception_handler(handler=exception_handler)
-
-    # Setting the event's loop debug level
-    if debug is not None:
-        event_loop.set_debug(enabled=debug)
+    is_dev: bool = get_env_var("IS_DEV", default=True, cast=bool)
+    if is_dev:
+        # Setting the event's loop debug level
+        event_loop.set_debug(enabled=True)
+    else:
+        # Setting the event's loop global exception handler (Avoiding massive crashes on production)
+        event_loop.set_exception_handler(handler=exception_handler)
 
     # Adding a signal handler for each signal (Only for non Windows platforms)
     if CUR_OS != "WINDOWS":
@@ -122,7 +128,7 @@ def run_main_coroutine(async_function: Callable[..., Coroutine], debug: bool | N
         finally:
             set_event_loop(loop=None)
             event_loop.close()
-            logger.log("Successfully shutdown the service.")
+            logger.info("Successfully shutdown the service.")
     else:
         try:
             # Creating a task and running the loop forever. This way, the default exception handler will always be called, in case of
@@ -133,4 +139,4 @@ def run_main_coroutine(async_function: Callable[..., Coroutine], debug: bool | N
         finally:
             set_event_loop(loop=None)
             event_loop.close()
-            logger.log("Successfully shutdown the service.")
+            logger.info("Successfully shutdown the service.")

@@ -1,10 +1,12 @@
 from asyncio import to_thread as as_async
 import logging
 
-from .exceptions import InvalidLogLevelError
 from .types import FileHandlersInterface
 from .enums import LogLevels
 from .filters import LogFilter
+
+
+# TODO: Provide a single logger, with sync and async apis to log data
 
 
 class AsyncLogger:
@@ -13,6 +15,7 @@ class AsyncLogger:
     and also makes the log action asynchronous, because sometimes logging involves work with IO operations.
 
     The logger's level will always be DEBUG, but it is possible to set multiple file handlers to log different levels to different files.
+    The stream handler's level will always be INFO
     """
 
     _logger: logging.Logger
@@ -32,7 +35,7 @@ class AsyncLogger:
                 fmt="%(levelname)s - %(name)s - %(asctime)s,%(msecs)d - %(message)s", datefmt="%d/%m/%Y %H:%M:%S"
             )
 
-        # Creating or getting a logger object, and setting its level to the chosen level
+        # Creating or getting a logger object, and setting its level
         self._logger = logging.getLogger(name=name)
         self._logger.setLevel(level=LogLevels.DEBUG.value)  # Always DEBUG
 
@@ -50,52 +53,50 @@ class AsyncLogger:
 
         # Adding a stream handler to spit the logs out in the console as well
         stream_handler = logging.StreamHandler()
+        stream_handler.setLevel(level=LogLevels.INFO.value)  # Always INFO
         stream_handler.setFormatter(fmt=fmt)
         self._logger.addHandler(stream_handler)
 
-    async def log(self, message: str, /, *, level: str = "INFO") -> None:
-        """This method takes a message and logs it using the logger created."""
+    async def debug(self, *args, **kwargs) -> None:
+        await as_async(self._logger.debug, *args, **kwargs)
 
-        _level = level.upper()
+    async def info(self, *args, **kwargs) -> None:
+        await as_async(self._logger.info, *args, **kwargs)
 
-        if getattr(LogLevels, _level, None) is None:
-            raise InvalidLogLevelError(f"The log level set is not valid. Valid options are: {LogLevels._member_names_}")
+    async def warning(self, *args, **kwargs) -> None:
+        await as_async(self._logger.warning, *args, **kwargs)
 
-        match _level:
-            case "DEBUG":
-                return await as_async(self._logger.debug, msg=message)
-            case "INFO":
-                return await as_async(self._logger.info, msg=message)
-            case "WARNING":
-                return await as_async(self._logger.warning, msg=message)
-            case "ERROR":
-                return await as_async(self._logger.error, msg=message)
-            case "CRITICAL":
-                return await as_async(self._logger.critical, msg=message)
+    async def error(self, *args, **kwargs) -> None:
+        await as_async(self._logger.error, *args, **kwargs)
+
+    async def critical(self, *args, **kwargs) -> None:
+        await as_async(self._logger.critical, *args, **kwargs)
+
+    async def exception(self, *args, **kwargs) -> None:
+        await as_async(self._logger.exception, *args, **kwargs)
 
 
 class SyncLogger(AsyncLogger):
     """
     This Logger class is a nice wrapper around the regular Logger from the logging module. We can easily instantiate new loggers with it.
     The logger's level will always be DEBUG, but it is possible to set multiple file handlers to log different levels to different files.
+    The stream handler's level will always be INFO
     """
 
-    def log(self, message: str, /, *, level: str = "INFO") -> None:
-        """This method takes a message and logs it using the logger created."""
+    def debug(self, *args, **kwargs) -> None:
+        self._logger.debug(*args, **kwargs)
 
-        _level = level.upper()
+    def info(self, *args, **kwargs) -> None:
+        self._logger.info(*args, **kwargs)
 
-        if getattr(LogLevels, _level, None) is None:
-            raise InvalidLogLevelError(f"The log level set is not valid. Valid options are: {LogLevels._member_names_}")
+    def warning(self, *args, **kwargs) -> None:
+        self._logger.warning(*args, **kwargs)
 
-        match _level:
-            case "DEBUG":
-                return self._logger.debug(msg=message)
-            case "INFO":
-                return self._logger.info(msg=message)
-            case "WARNING":
-                return self._logger.warning(msg=message)
-            case "ERROR":
-                return self._logger.error(msg=message)
-            case "CRITICAL":
-                return self._logger.critical(msg=message)
+    def error(self, *args, **kwargs) -> None:
+        self._logger.error(*args, **kwargs)
+
+    def critical(self, *args, **kwargs) -> None:
+        self._logger.critical(*args, **kwargs)
+
+    def exception(self, *args, **kwargs) -> None:
+        self._logger.exception(*args, **kwargs)
