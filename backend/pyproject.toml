@@ -5,18 +5,16 @@ description = ""
 authors = ["Firmino Neto <firminoneto11@hotmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-orm = "latest"
-aiosqlite = "latest"
-fastapi = "latest"
-python-decouple = "latest"
-httpx = "latest"
-uvicorn = "latest"
+python = "3.10"
+orm = "0.3.1"
+fastapi = "0.85.0"
+python-decouple = "3.6"
+httpx = "0.23.0"
+uvicorn = "0.18.3"
 
 [tool.poetry.dev-dependencies]
-black = "^22.8.0"
-ipython = "^8.5.0"
-isort = "^5.10.1"
+black = "22.8.0"
+ipython = "8.5.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
