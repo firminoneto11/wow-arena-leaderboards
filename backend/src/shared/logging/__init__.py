@@ -1,1 +1,1 @@
-from .logger import AsyncLogger, SyncLogger
+from .logger import Logger

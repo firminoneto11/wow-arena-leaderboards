@@ -1,1 +1,1 @@
-from .oauth_token_response import OAuthTokenResponse, OAuthTokenData, OAuthTokenErrorResponse
+from .oauth_token_schemas import OAuthTokenData, OAuthTokenError

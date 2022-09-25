@@ -1,14 +1,14 @@
 from decouple import config as get_env_var
-from httpx import AsyncClient
+from httpx import AsyncClient, ConnectError
 
 from db_populator.constants import TIMEOUT, BLIZZARD_TOKENS_URL, MAX_RETRIES
-from shared import async_timer, AsyncLogger, re_try
-from ..schemas import OAuthTokenResponse, OAuthTokenData, OAuthTokenErrorResponse
+from shared import async_timer, Logger, re_try
+from ..schemas import OAuthTokenData, OAuthTokenError
 
 
 @re_try(MAX_RETRIES)
 @async_timer(5)
-async def fetch_token(logger: AsyncLogger) -> OAuthTokenData | OAuthTokenErrorResponse:
+async def fetch_token(logger: Logger) -> OAuthTokenData | None:
     """
     This function makes a request to blizzard's server to get an updated access token.
     """
@@ -25,16 +25,18 @@ async def fetch_token(logger: AsyncLogger) -> OAuthTokenData | OAuthTokenErrorRe
 
         try:
             response = await client.post(url=BLIZZARD_TOKENS_URL, data=body)
-        except Exception as error:
-            await logger.error("An error occurred while fetching access token:")
+        except ConnectError as error:
+            await logger.error("A ConnectError occurred while fetching the access token:")
             await logger.error(error)
         else:
             if response.status_code == 200:
+                schema = OAuthTokenData(**response.json())
                 await logger.info("Access token fetched successfully!")
-                return OAuthTokenData(**response.json())
+                return schema
             else:
-                schema = OAuthTokenErrorResponse(**response.json())
-                await logger.warning("The server did not returned an OK response. Details:")
+                schema = OAuthTokenError(**response.json())
+                await logger.warning(
+                    "The server did not returned an OK response while fetching the access token. Details:"
+                )
                 await logger.warning(schema.error)
                 await logger.warning(schema.error_description)
-                return schema

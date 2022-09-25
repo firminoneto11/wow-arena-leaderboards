@@ -1,7 +1,7 @@
 from asyncio import gather, sleep
 from time import time
 
-from shared import AsyncLogger, async_timer
+from shared import Logger, async_timer
 from .fetcher import fetch_token
 
 """
@@ -34,12 +34,12 @@ async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pv
 
 
 @async_timer(5)
-async def fetch_blizzard_api(*, logger: AsyncLogger) -> None:
+async def fetch_blizzard_api(*, logger: Logger) -> None:
 
     response = await fetch_token(logger=logger)
 
-    if response.data is not None:
-        await logger.info("Got it")
+    if response is not None:
+        print(response)
 
     return
 
@@ -65,6 +65,3 @@ async def fetch_blizzard_api(*, logger: AsyncLogger) -> None:
 
         print("\n5 - Salvando os dados coletados na base de dados...\n")
         await to_db(wow_classes=wow_classes, wow_specs=wow_specs, pvp_data=pvp_data)
-
-    total = time() - inicio
-    print(f"\nDemorou {total:.2f} segundos para realizar todas as requisições.\n")

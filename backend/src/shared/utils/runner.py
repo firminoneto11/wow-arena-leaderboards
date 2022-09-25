@@ -1,24 +1,24 @@
 from asyncio import all_tasks, current_task, get_event_loop, AbstractEventLoop, gather
-from asyncio.events import set_event_loop
 from typing import Callable, Coroutine, Final
+from asyncio.events import set_event_loop
 from platform import system
 import signal
 
 from decouple import config as get_env_var
 
-from shared import SyncLogger
+from shared import Logger
 
 
-# Creating a sync logger
-logger = SyncLogger(name="Event Loop logs")
+# Creating a logger
+logger = Logger(name="Event Loop logs")
 
 
 def exception_handler(loop: AbstractEventLoop, context: dict) -> None:
     # context["message"] will always be there, but context["exception"] may not
     msg = context.get("exception", context["message"])
 
-    logger.critical(f"Unhandled exception during 'run_main_coroutine()' shutdown:")
-    logger.critical(msg)
+    logger.sCritical(f"Unhandled exception during 'run_main_coroutine()' shutdown:")
+    logger.sCritical(msg)
 
     loop.create_task(coro=shutdown_handler(loop=loop, by_exception=True))
 
@@ -48,7 +48,7 @@ async def shutdown_handler(
     if not by_exception:
         msg = f"Received exit signal: {signal.name if signal is not None else 'SIGINT'}. " + msg
 
-    logger.info(msg)
+    await logger.info(msg)
 
     # Collecting the remaining tasks
     remaining_tasks = [t for t in all_tasks(loop=loop) if t is not current_task()]
@@ -57,7 +57,7 @@ async def shutdown_handler(
         await finish_loop()
         return
 
-    logger.info(f"Cancelling {len(remaining_tasks)} tasks.")
+    await logger.info(f"Cancelling {len(remaining_tasks)} tasks.")
 
     # Cancelling them
     for task in remaining_tasks:
@@ -85,6 +85,17 @@ async def shutdown_handler(
 
 
 def run_main_coroutine(async_function: Callable[..., Coroutine]) -> None:
+    def start_loop(loop: AbstractEventLoop, coro: Callable[..., Coroutine]):
+        # Creating a task and running the loop forever. This way, the default exception handler will always be called, in case of
+        # exceptions. If we were using 'run_until_complete', the loop would be closed because this method raises the exception that the
+        # coroutine raised without the default exception handler being called.
+        loop.create_task(coro=coro())
+        loop.run_forever()
+
+    def close_loop(loop: AbstractEventLoop):
+        set_event_loop(loop=None)
+        loop.close()
+        logger.sInfo("Successfully shutdown the service.")
 
     CUR_OS: Final[str] = system().upper()
 
@@ -117,26 +128,13 @@ def run_main_coroutine(async_function: Callable[..., Coroutine]) -> None:
 
     if CUR_OS == "WINDOWS":
         try:
-            # Creating a task and running the loop forever. This way, the default exception handler will always be called, in case of
-            # exceptions. If we were using 'run_until_complete', the loop would be closed because this method raises the exception that the
-            # coroutine raised without the default exception handler being called.
-            event_loop.create_task(coro=async_function())
-            event_loop.run_forever()
+            start_loop(loop=event_loop, coro=async_function)
         except KeyboardInterrupt:
-            if CUR_OS == "WINDOWS":
-                event_loop.run_until_complete(future=shutdown_handler(loop=event_loop))
+            event_loop.run_until_complete(future=shutdown_handler(loop=event_loop))
         finally:
-            set_event_loop(loop=None)
-            event_loop.close()
-            logger.info("Successfully shutdown the service.")
+            close_loop(loop=event_loop)
     else:
         try:
-            # Creating a task and running the loop forever. This way, the default exception handler will always be called, in case of
-            # exceptions. If we were using 'run_until_complete', the loop would be closed because this method raises the exception that the
-            # coroutine raised without the default exception handler being called.
-            event_loop.create_task(coro=async_function())
-            event_loop.run_forever()
+            start_loop(loop=event_loop, coro=async_function)
         finally:
-            set_event_loop(loop=None)
-            event_loop.close()
-            logger.info("Successfully shutdown the service.")
+            close_loop(loop=event_loop)

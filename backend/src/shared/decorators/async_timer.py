@@ -1,5 +1,6 @@
 from decimal import Decimal, getcontext
 from typing import Coroutine
+from functools import wraps
 from time import time
 
 
@@ -7,9 +8,10 @@ def async_timer(precision_level: int, /):
     """
     This function works as a decorator for coroutines in order to capture their execution time and log it to the log's handlers
     """
-    from shared.logging import AsyncLogger
+    from shared import Logger
 
     def _async_timer(coroutine: Coroutine, /):
+        @wraps(coroutine)
         async def decorator(*args, **kwargs):
 
             # Setting the precision level from the decimal class
@@ -17,7 +19,7 @@ def async_timer(precision_level: int, /):
 
             start = Decimal(time())
 
-            logger: AsyncLogger = kwargs["logger"]
+            logger: Logger = kwargs["logger"]
             coroutine_return = await coroutine(*args, **kwargs)
 
             end = Decimal(time())
