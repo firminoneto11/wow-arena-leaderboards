@@ -18,20 +18,26 @@ def re_try(number_of_tries: int, /):
         @wraps(coroutine)
         async def decorator(*args, **kwargs):
             logger: Logger = kwargs["logger"]
-            for _ in range(number_of_tries):
+            for n in range(number_of_tries):
+                cur = n + 1
                 try:
+                    await logger.info(
+                        f"Executing the '{coroutine.__name__}' coroutine. {cur} out of {number_of_tries} tries."
+                    )
                     return await coroutine(*args, **kwargs)
                 except Exception as err:
-                    message = (
-                        f"The following exception occurred while trying to execute the '{coroutine.__name__}' coroutine. "
-                        f"Retrying in {DELAY} seconds."
-                    )
+
+                    message = f"The following exception occurred while trying to execute the '{coroutine.__name__}' coroutine."
+
+                    if cur != number_of_tries:
+                        message += f" Retrying in {DELAY} seconds."
+
                     await logger.error(message)
                     await logger.error(err)
-                    # await sleep(DELAY)
-                    await sleep(1)
+                    await sleep(DELAY)
+
             await logger.warning(
-                f"Could not execute the '{coroutine.__name__}' coroutine after {number_of_tries} tries"
+                f"Could not execute the '{coroutine.__name__}' coroutine after {number_of_tries} tries."
             )
 
         return decorator

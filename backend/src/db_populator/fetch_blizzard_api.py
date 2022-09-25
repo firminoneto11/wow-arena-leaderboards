@@ -1,7 +1,6 @@
 from asyncio import gather, sleep
-from time import time
 
-from shared import Logger, async_timer
+from shared import Logger
 from .fetcher import fetch_token
 
 """
@@ -33,7 +32,6 @@ async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pv
 """
 
 
-@async_timer(5)
 async def fetch_blizzard_api(*, logger: Logger) -> None:
 
     response = await fetch_token(logger=logger)

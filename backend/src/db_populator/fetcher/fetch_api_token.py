@@ -2,12 +2,11 @@ from decouple import config as get_env_var
 from httpx import AsyncClient, ConnectError
 
 from db_populator.constants import TIMEOUT, BLIZZARD_TOKENS_URL, MAX_RETRIES
-from shared import async_timer, Logger, re_try
+from shared import Logger, re_try
 from ..schemas import OAuthTokenData, OAuthTokenError
 
 
 @re_try(MAX_RETRIES)
-@async_timer(5)
 async def fetch_token(logger: Logger) -> OAuthTokenData | None:
     """
     This function makes a request to blizzard's server to get an updated access token.
