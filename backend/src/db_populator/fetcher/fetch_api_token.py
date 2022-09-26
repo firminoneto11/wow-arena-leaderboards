@@ -24,18 +24,16 @@ async def fetch_token(logger: Logger) -> OAuthTokenData | None:
 
         try:
             response = await client.post(url=BLIZZARD_TOKENS_URL, data=body)
-        except ConnectError as error:
+        except ConnectError as err:
             await logger.error("A ConnectError occurred while fetching the access token:")
-            await logger.error(error)
+            await logger.error(err)
         else:
             if response.status_code == 200:
                 schema = OAuthTokenData(**response.json())
                 await logger.info("Access token fetched successfully!")
                 return schema
-            else:
-                schema = OAuthTokenError(**response.json())
-                await logger.warning(
-                    "The server did not returned an OK response while fetching the access token. Details:"
-                )
-                await logger.warning(schema.error)
-                await logger.warning(schema.error_description)
+
+            schema = OAuthTokenError(**response.json())
+            await logger.warning("The server did not returned an OK response while fetching the access token. Details:")
+            await logger.warning(schema.error)
+            await logger.warning(schema.error_description)

@@ -1,12 +1,13 @@
 # Endpoint to request access tokens
 BLIZZARD_TOKENS_URL = "https://us.battle.net/oauth/token"
 
-REINOS_BR = ["azralon", "nemesis", "goldrinn", "gallywix", "tol-barad"]
+# Brazilian Realms
+BRAZILIAN_REALMS = ["azralon", "nemesis", "goldrinn", "gallywix", "tol-barad"]
 
-# API que provém os dados de PVP
+# Endpoint that provides the PVP Data
 PVP_RATING_API = (
-    "https://us.api.blizzard.com/data/wow/pvp-season/${session}/pvp-leaderboard/${bracket}?"
-    "namespace=dynamic-us&locale=en_US&access_token=${accessToken}"
+    "https://us.api.blizzard.com/data/wow/pvp-season/{session}/pvp-leaderboard/{bracket}?"
+    "namespace=dynamic-us&locale=en_US&access_token={accessToken}"
 )
 
 # API que provém os dados do perfil personagem
@@ -39,7 +40,7 @@ SPEC_MEDIA_API = (
     "&access_token=${accessToken}"
 )
 
-# Configuração do tempo de timeout para as requisições (Em segundos)
+# Timeout setting for the requests (In seconds)
 TIMEOUT = 30
 
 # Delay time between requests in order to not be affected by throttle

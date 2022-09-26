@@ -1,65 +1,69 @@
 from asyncio import gather
-from httpx import AsyncClient
-from asyncio import gather
-from typing import List, Dict
-from shared.utils import PvpDataDataclass
-from settings import TIMEOUT, REINOS_BR, PVP_RATING_API
+
+from httpx import AsyncClient, ConnectError
+
+from db_populator.constants import TIMEOUT, BRAZILIAN_REALMS, PVP_RATING_API, MAX_RETRIES
+from shared import Logger, re_try
+
+from ..schemas import PvpDataSchema
 
 
-class FetchPvpData:
+class FetchHandler:
 
+    logger: Logger
     access_token: str
 
-    def refactor_endpoint(self, session: int, bracket: str):
-        return (
-            PVP_RATING_API.replace("${session}", str(session))
-            .replace("${bracket}", bracket)
-            .replace("${accessToken}", self.access_token)
-        )
-
-    async def run(self, access_token: str):
+    def __init__(self, logger: Logger, access_token: str) -> None:
+        self.logger = logger
         self.access_token = access_token
-        return await self.get_data()
 
-    async def get_data(self) -> Dict[str, List[PvpDataDataclass]]:
-
-        # TODO: Passar o 'session' e a 'bracket' como parâmetro
-        data = await gather(
-            self.get_brazilian_data(session=32, bracket="2v2"),
-            self.get_brazilian_data(session=32, bracket="3v3"),
-            self.get_brazilian_data(session=32, bracket="rbg"),
+    async def __call__(self) -> list[list[PvpDataSchema] | None]:
+        _2s, _3s, rbg = await gather(
+            self.fetch_data(session=33, bracket="2v2"),
+            self.fetch_data(session=33, bracket="3v3"),
+            self.fetch_data(session=33, bracket="rbg"),
         )
 
-        data = {
-            "twos": self.clean_data(data[0]),
-            "thres": self.clean_data(data[1]),
-            "rbg": self.clean_data(data[2]),
-        }
+        return [self.clean_data(raw_data=el) for el in [_2s, _3s, rbg]]
 
-        return data
+    def refactor_endpoint(self, session: int, bracket: str) -> str:
+        return (
+            PVP_RATING_API.replace("{session}", str(session))
+            .replace("{bracket}", bracket)
+            .replace("{accessToken}", self.access_token)
+        )
 
-    async def get_brazilian_data(self, session: int, bracket: str):
-
-        # Remontando o endpoint para ser dinâmico
+    async def fetch_data(self, session: int, bracket: str) -> list[dict] | None:
         endpoint = self.refactor_endpoint(session=session, bracket=bracket)
-
         async with AsyncClient(timeout=TIMEOUT) as client:
-            response = await client.get(endpoint)
-            data = response.json()
-            if response.status_code == 200:
-                brazilian_players = list(
-                    filter(lambda player: player["character"]["realm"]["slug"] in REINOS_BR, data["entries"])
-                )
-                return brazilian_players
+            try:
+                response = await client.get(endpoint)
+            except ConnectError as err:
+                await self.logger.error("A ConnectError occurred while fetching the pvp data:")
+                await self.logger.error(err)
             else:
-                raise Exception(f"Houve um problema no status code ao solicitar os dados para a bracket '{bracket}'")
+                if response.status_code == 200:
+                    data = response.json()
+                    return list(
+                        filter(lambda player: player["character"]["realm"]["slug"] in BRAZILIAN_REALMS, data["entries"])
+                    )
 
-    def clean_data(self, raw_data: List[dict]):
-        cleaned_data = []
-        for el in raw_data:
-            cleaned_data.append(
-                PvpDataDataclass(
-                    blizz_id=el["character"]["id"],
+                # TODO: Check how the response is returned
+                await self.logger.warning(
+                    "The server did not returned an OK response while fetching the pvp data. Details:"
+                )
+
+    def clean_data(self, raw_data: list[dict] | None):
+
+        # TODO: Check the types of the 'PvpDataSchema'
+
+        if raw_data is None:
+            return raw_data
+
+        return list(
+            map(
+                lambda el: PvpDataSchema(
+                    blizzard_id=el["character"]["id"],
                     name=el["character"]["name"],
                     global_rank=el["rank"],
                     cr=el["rating"],
@@ -71,6 +75,14 @@ class FetchPvpData:
                     class_id=None,
                     spec_id=None,
                     avatar_icon=None,
-                )
+                ),
+                raw_data,
             )
-        return cleaned_data
+        )
+
+
+@re_try(MAX_RETRIES)
+async def fetch_pvp_data(logger: Logger, access_token: str) -> dict[str, list[PvpDataSchema] | None]:
+    await logger.info("2: Fetching wow pvp data...")
+    handler = FetchHandler(logger=logger, access_token=access_token)
+    return await handler()
