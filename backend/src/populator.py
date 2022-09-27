@@ -5,7 +5,7 @@ from typing import NoReturn
 from os import mkdir
 
 from db_populator import UPDATE_EVERY, fetch_blizzard_api
-from shared import Logger, run_main_coroutine
+from shared import Logger, run_main
 
 
 async def main() -> NoReturn:
@@ -37,4 +37,4 @@ async def main() -> NoReturn:
 
 
 if __name__ == "__main__":
-    run_main_coroutine(main)
+    run_main(main)

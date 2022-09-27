@@ -1,1 +1,1 @@
-from .runner import run_main_coroutine
+from .runner import run_main

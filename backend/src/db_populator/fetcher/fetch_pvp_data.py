@@ -17,14 +17,18 @@ class FetchHandler:
         self.logger = logger
         self.access_token = access_token
 
-    async def __call__(self) -> list[list[PvpDataSchema] | None]:
+    async def __call__(self) -> dict[str, list[PvpDataSchema] | None]:
         _2s, _3s, rbg = await gather(
             self.fetch_data(session=33, bracket="2v2"),
             self.fetch_data(session=33, bracket="3v3"),
             self.fetch_data(session=33, bracket="rbg"),
         )
 
-        return [self.clean_data(raw_data=el) for el in [_2s, _3s, rbg]]
+        return {
+            "2s": self.clean_data(raw_data=_2s),
+            "3s": self.clean_data(raw_data=_3s),
+            "rbg": self.clean_data(raw_data=rbg),
+        }
 
     def refactor_endpoint(self, session: int, bracket: str) -> str:
         return (
@@ -53,9 +57,7 @@ class FetchHandler:
                     "The server did not returned an OK response while fetching the pvp data. Details:"
                 )
 
-    def clean_data(self, raw_data: list[dict] | None):
-
-        # TODO: Check the types of the 'PvpDataSchema'
+    def clean_data(self, raw_data: list[dict] | None) -> list[PvpDataSchema] | None:
 
         if raw_data is None:
             return raw_data
