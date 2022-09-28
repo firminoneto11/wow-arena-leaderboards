@@ -1,17 +1,18 @@
-from shared.utils import WowSpecsDataclass
-from httpx import AsyncClient
-from typing import List
 from asyncio import gather
-from settings import ALL_SPECS_API, SPEC_MEDIA_API, TIMEOUT
+
+from httpx import AsyncClient
+
+from shared import Logger, re_try
+from ..constants import MAX_RETRIES, ALL_SPECS_API, SPEC_MEDIA_API, TIMEOUT
 
 
-class FetchWowSpecs:
+class FetchWowSpecsHandler:
 
     access_token: str
 
     async def run(self, access_token: str):
         self.access_token = access_token
-        wow_specs: List[WowSpecsDataclass] = await self.get_wow_specs()
+        wow_specs: list[WowSpecsDataclass] = await self.get_wow_specs()
 
         _futures = []
         for wow_spec in wow_specs:
@@ -74,3 +75,10 @@ class FetchWowSpecs:
                 raise Exception(
                     f"Houve um problema no status code ao solicitar o ícone para a classe de blizz id {blizz_id}"
                 )
+
+
+@re_try(MAX_RETRIES)
+async def fetch_wow_specs(logger: Logger, access_token: str):
+    await logger.info("4 - Fetching specs' data from classes...")
+    handler = FetchWowSpecsHandler(logger=logger, access_token=access_token)
+    return await handler()

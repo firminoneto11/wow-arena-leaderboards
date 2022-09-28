@@ -1,7 +1,8 @@
 from asyncio import gather, sleep
 
 from shared import Logger
-from .fetcher import fetch_token, fetch_pvp_data
+from .constants import DELAY
+from .fetcher import fetch_token, fetch_pvp_data, fetch_wow_classes, fetch_wow_specs
 
 """
 async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pvp_data: Dict[str, List[PvpDataDt]]):
@@ -41,16 +42,16 @@ async def fetch_blizzard_api(*, logger: Logger) -> None:
 
         pvp_data = await fetch_pvp_data(logger=logger, access_token=response.access_token)
 
-        return
-
-        print("\n3 - Fazendo um fetch nos dados das classes e specs...\n")
         wow_classes, wow_specs = await gather(
-            fetch_wow_class.run(access_token=access_token), fetch_wow_specs.run(access_token=access_token)
+            fetch_wow_classes(logger=logger, access_token=response.access_token),
+            fetch_wow_specs(logger=logger, access_token=response.access_token),
         )
 
-        # Esperando pra não tomar throtlle da api da blizz
-        print(f"\nEsperando {DELAY} segundos para anti-throttle\n")
+        # Waiting so we dont get throttled
+        await logger.info(f"Waiting {DELAY} seconds in order to not get throttled")
         await sleep(DELAY)
+
+        return
 
         print("\n4 - Fazendo um fetch nos dados de classes/specs dos jogadores...\n")
         pvp_data = await fetch_wow_media.run(access_token=access_token, pvp_data=pvp_data)

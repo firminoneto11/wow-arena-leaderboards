@@ -1,17 +1,22 @@
-from httpx import AsyncClient
-from typing import List
 from asyncio import gather
-from shared.utils import WowClassesDataclass
-from settings import ALL_CLASSES_API, CLASS_MEDIA_API, TIMEOUT
+
+from httpx import AsyncClient
+
+from shared import Logger, re_try
+from ..constants import MAX_RETRIES, TIMEOUT, ALL_CLASSES_API, CLASS_MEDIA_API
 
 
-class FetchWowClasses:
+class FetchWowClassesHandler:
 
+    logger: Logger
     access_token: str
 
-    async def run(self, access_token: str):
+    def __init__(self, logger: Logger, access_token: str) -> None:
+        self.logger = logger
         self.access_token = access_token
-        wow_classes: List[WowClassesDataclass] = await self.get_wow_classes()
+
+    async def __call__(self):
+        wow_classes: list[WowClassesDataclass] = await self.get_wow_classes()
         wow_classes = await self.get_wow_classes()
 
         _futures = []
@@ -75,3 +80,10 @@ class FetchWowClasses:
                 raise Exception(
                     f"Houve um problema no status code ao solicitar o ícone para a classe de blizz id {blizz_id}"
                 )
+
+
+@re_try(MAX_RETRIES)
+async def fetch_wow_classes(logger: Logger, access_token: str):
+    await logger.info("3 - Fetching wow classes data...")
+    handler = FetchWowClassesHandler(logger=logger, access_token=access_token)
+    return await handler()
