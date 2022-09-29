@@ -10,34 +10,37 @@ PVP_RATING_API = (
     "namespace=dynamic-us&locale=en_US&access_token={accessToken}"
 )
 
-# API que provém os dados do perfil personagem
+# Endpoint that returns the character's profile data
 PROFILE_API = (
-    "https://us.api.blizzard.com/profile/wow/character/${realm_slug}/${char_name}?namespace=profile-us&locale=en_US"
-    "&access_token=${accessToken}"
+    "https://us.api.blizzard.com/profile/wow/character/{realmSlug}/{charName}?namespace=profile-us&locale=en_US"
+    "&access_token={accessToken}"
 )
 
-# API que provém as imagens dos personagens
+# Endpoint that returns the character's pictures
 CHAR_MEDIA_API = (
-    "https://us.api.blizzard.com/profile/wow/character/${realm_slug}/${char_name}/character-media?namespace=profile-us"
-    "&locale=en_US&access_token=${accessToken}"
+    "https://us.api.blizzard.com/profile/wow/character/{realmSlug}/{charName}/character-media?namespace=profile-us"
+    "&locale=en_US&access_token={accessToken}"
 )
 
-# API que provém todas as classes
-ALL_CLASSES_API = "https://us.api.blizzard.com/data/wow/playable-class/index?namespace=static-us&locale=en_US&access_token=${accessToken}"
+# Endpoint that returns all the data from wow classes
+ALL_CLASSES_API = "https://us.api.blizzard.com/data/wow/playable-class/index?namespace=static-us&locale=en_US&access_token={accessToken}"
 
-# API que provém os ícones das classes
+# Endpoint that returns the icon for a wow class
 CLASS_MEDIA_API = (
-    "https://us.api.blizzard.com/data/wow/media/playable-class/${class_id}?namespace=static-us&locale=en_US"
-    "&access_token=${accessToken}"
+    "https://us.api.blizzard.com/data/wow/media/playable-class/{classId}?namespace=static-us&locale=en_US"
+    "&access_token={accessToken}"
 )
 
-# API que provém todas as specs
-ALL_SPECS_API = "https://us.api.blizzard.com/data/wow/playable-specialization/index?namespace=static-us&locale=en_US&access_token=${accessToken}"
+# Endpoint that returns all the data from specs
+ALL_SPECS_API = (
+    "https://us.api.blizzard.com/data/wow/playable-specialization/index?namespace=static-us&locale=en_US"
+    "&access_token={accessToken}"
+)
 
-# API que provém os ícones das specs das classes
+# Endpoint that returns the icon for a class spec
 SPEC_MEDIA_API = (
-    "https://us.api.blizzard.com/data/wow/media/playable-specialization/${spec_id}?namespace=static-us&locale=en_US"
-    "&access_token=${accessToken}"
+    "https://us.api.blizzard.com/data/wow/media/playable-specialization/{specId}?namespace=static-us&locale=en_US"
+    "&access_token={accessToken}"
 )
 
 # Timeout setting for the requests (In seconds)

@@ -4,7 +4,6 @@ from httpx import AsyncClient, ConnectError
 
 from db_populator.constants import TIMEOUT, BRAZILIAN_REALMS, PVP_RATING_API, MAX_RETRIES
 from shared import Logger, re_try
-
 from ..schemas import PvpDataSchema
 
 
@@ -43,7 +42,7 @@ class FetchHandler:
             try:
                 response = await client.get(endpoint)
             except ConnectError as err:
-                await self.logger.error("A ConnectError occurred while fetching the pvp data:")
+                await self.logger.error("A ConnectError occurred while fetching the pvp data. Details:")
                 await self.logger.error(err)
             else:
                 if response.status_code == 200:
@@ -52,16 +51,12 @@ class FetchHandler:
                         filter(lambda player: player["character"]["realm"]["slug"] in BRAZILIAN_REALMS, data["entries"])
                     )
 
-                # TODO: Check how the response is returned
-                await self.logger.warning(
-                    "The server did not returned an OK response while fetching the pvp data. Details:"
-                )
+                # TODO: Check how the non 200 response is returned
+                await self.logger.warning("The server did not returned an OK response while fetching the pvp data.")
 
     def clean_data(self, raw_data: list[dict] | None) -> list[PvpDataSchema] | None:
-
         if raw_data is None:
             return raw_data
-
         return list(
             map(
                 lambda el: PvpDataSchema(

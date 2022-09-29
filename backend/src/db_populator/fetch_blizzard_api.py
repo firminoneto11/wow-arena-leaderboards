@@ -4,34 +4,6 @@ from shared import Logger
 from .constants import DELAY
 from .fetcher import fetch_token, fetch_pvp_data, fetch_wow_classes, fetch_wow_specs
 
-"""
-async def to_db(wow_classes: List[WowClassesDt], wow_specs: List[WowSpecsDt], pvp_data: Dict[str, List[PvpDataDt]]):
-    classes_tasks = []
-    for wow_class in wow_classes:
-        classes_tasks.append(create_wow_class(**wow_class.to_dict()))
-
-    specs_tasks = []
-    for wow_spec in wow_specs:
-        specs_tasks.append(create_wow_spec(**wow_spec.to_dict()))
-
-    pvp_data_tasks = []
-    for key in pvp_data.keys():
-        if key == "2s":
-            bracket = await Brackets.objects.get(type="2v2")
-            for pd in pvp_data[key]:
-                pvp_data_tasks.append(create_pvp_data(pd=pd, bracket=bracket))
-        elif key == "3s":
-            bracket = await Brackets.objects.get(type="3v3")
-            for pd in pvp_data[key]:
-                pvp_data_tasks.append(create_pvp_data(pd=pd, bracket=bracket))
-        else:
-            bracket = await Brackets.objects.get(type="rbg")
-            for pd in pvp_data[key]:
-                pvp_data_tasks.append(create_pvp_data(pd=pd, bracket=bracket))
-
-    await gather(*classes_tasks, *specs_tasks, *pvp_data_tasks)
-"""
-
 
 async def fetch_blizzard_api(*, logger: Logger) -> None:
 
@@ -40,15 +12,14 @@ async def fetch_blizzard_api(*, logger: Logger) -> None:
     # Checking if the first phase (Authentication) was successfully completed
     if response is not None:
 
-        pvp_data = await fetch_pvp_data(logger=logger, access_token=response.access_token)
-
-        wow_classes, wow_specs = await gather(
+        pvp_data, wow_classes = await gather(
+            fetch_pvp_data(logger=logger, access_token=response.access_token),
             fetch_wow_classes(logger=logger, access_token=response.access_token),
-            fetch_wow_specs(logger=logger, access_token=response.access_token),
+            # fetch_wow_specs(logger=logger, access_token=response.access_token),
         )
 
         # Waiting so we dont get throttled
-        await logger.info(f"Waiting {DELAY} seconds in order to not get throttled")
+        await logger.info(f"Awaiting {DELAY} seconds in order to not get throttled.")
         await sleep(DELAY)
 
         return

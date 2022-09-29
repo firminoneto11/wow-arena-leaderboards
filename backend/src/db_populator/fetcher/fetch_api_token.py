@@ -19,13 +19,11 @@ async def fetch_token(logger: Logger) -> OAuthTokenData | None:
     headers = {"Authorization": f"Basic {credential_string}", "Content-Type": content_type}
 
     async with AsyncClient(timeout=TIMEOUT, headers=headers) as client:
-
         await logger.info("1: Fetching access token...")
-
         try:
             response = await client.post(url=BLIZZARD_TOKENS_URL, data=body)
         except ConnectError as err:
-            await logger.error("A ConnectError occurred while fetching the access token:")
+            await logger.error("A ConnectError occurred while fetching the access token. Details:")
             await logger.error(err)
         else:
             if response.status_code == 200:

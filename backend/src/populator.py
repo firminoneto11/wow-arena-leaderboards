@@ -32,7 +32,7 @@ async def main() -> NoReturn:
     # Loop that will be running forever to keep the database up to date with blizzard's data
     while True:
         await fetch_blizzard_api(logger=logger)
-        await logger.info(f"Awaiting {UPDATE_EVERY} seconds before the next requests round")
+        await logger.info(f"Awaiting {UPDATE_EVERY} seconds before the next requests round.")
         await sleep(UPDATE_EVERY)
 
 

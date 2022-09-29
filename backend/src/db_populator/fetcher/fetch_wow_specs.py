@@ -24,14 +24,12 @@ class FetchWowSpecsHandler:
 
         return wow_specs
 
-    def refactor_endpoint(self, tipo: str = "all-specs", *args, **kwargs):
-        match tipo:
-            case "all-specs":
-                return ALL_SPECS_API.replace("${accessToken}", self.access_token)
-            case "spec-icon":
-                return SPEC_MEDIA_API.replace("${accessToken}", self.access_token).replace(
-                    "${spec_id}", str(kwargs.get("blizz_id"))
-                )
+    def refactor_endpoint(self, _type: str = "specs", blizzard_id: int | None = None) -> str:
+        match _type:
+            case "specs":
+                return ALL_SPECS_API.replace("{accessToken}", self.access_token)
+            case "icons":
+                return SPEC_MEDIA_API.replace("{accessToken}", self.access_token).replace("{specId}", str(blizzard_id))
 
     async def get_wow_specs(self):
 
@@ -81,4 +79,6 @@ class FetchWowSpecsHandler:
 async def fetch_wow_specs(logger: Logger, access_token: str):
     await logger.info("4 - Fetching specs' data from classes...")
     handler = FetchWowSpecsHandler(logger=logger, access_token=access_token)
+    return None
+    # TODO: Refactor __call__
     return await handler()
