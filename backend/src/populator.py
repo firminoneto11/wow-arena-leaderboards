@@ -5,7 +5,7 @@ from typing import NoReturn
 from os import mkdir
 
 from db_populator import UPDATE_EVERY, fetch_blizzard_api
-from shared import Logger, run_main
+from shared import Logger, run_main, CouldNotExecuteError
 
 
 async def main() -> NoReturn:
@@ -18,12 +18,12 @@ async def main() -> NoReturn:
 
     # Creating the file handlers for the logger
     handlers = [
-        {"handler": FileHandler(filename=join(LOGS_PATH, "debug.log")), "level": DEBUG, "log_every_level": False},
-        {"handler": FileHandler(filename=join(LOGS_PATH, "info.log")), "level": INFO, "log_every_level": False},
-        {"handler": FileHandler(filename=join(LOGS_PATH, "warning.log")), "level": WARNING, "log_every_level": False},
-        {"handler": FileHandler(filename=join(LOGS_PATH, "error.log")), "level": ERROR, "log_every_level": False},
-        {"handler": FileHandler(filename=join(LOGS_PATH, "critical.log")), "level": CRITICAL, "log_every_level": False},
-        {"handler": FileHandler(filename=join(LOGS_PATH, "logs.log")), "level": DEBUG, "log_every_level": True},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "debug.log")), "level": DEBUG, "lock_log_level": True},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "info.log")), "level": INFO, "lock_log_level": True},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "warning.log")), "level": WARNING, "lock_log_level": True},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "error.log")), "level": ERROR, "lock_log_level": True},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "critical.log")), "level": CRITICAL, "lock_log_level": True},
+        {"handler": FileHandler(filename=join(LOGS_PATH, "logs.log")), "level": DEBUG, "lock_log_level": False},
     ]
 
     # Creating a logger with a custom name and the file handler
@@ -31,7 +31,14 @@ async def main() -> NoReturn:
 
     # Loop that will be running forever to keep the database up to date with blizzard's data
     while True:
-        await fetch_blizzard_api(logger=logger)
+        try:
+            await fetch_blizzard_api(logger=logger)
+        except CouldNotExecuteError as err:
+            await logger.critical(
+                f"The execution of the '{fetch_blizzard_api.__name__}' coroutine could not finish. Details:"
+            )
+            await logger.critical(err)
+
         await logger.info(f"Awaiting {UPDATE_EVERY} seconds before the next requests round.")
         await sleep(UPDATE_EVERY)
 

@@ -9,23 +9,20 @@ async def fetch_blizzard_api(*, logger: Logger) -> None:
 
     response = await fetch_token(logger=logger)
 
-    # Checking if the first phase (Authentication) was successfully completed
-    if response is not None:
+    pvp_data, wow_classes = await gather(
+        fetch_pvp_data(logger=logger, access_token=response.access_token),
+        fetch_wow_classes(logger=logger, access_token=response.access_token),
+        # fetch_wow_specs(logger=logger, access_token=response.access_token),
+    )
 
-        pvp_data, wow_classes = await gather(
-            fetch_pvp_data(logger=logger, access_token=response.access_token),
-            fetch_wow_classes(logger=logger, access_token=response.access_token),
-            # fetch_wow_specs(logger=logger, access_token=response.access_token),
-        )
+    # Waiting so we dont get throttled
+    await logger.info(f"Awaiting {DELAY} seconds in order to not get throttled.")
+    await sleep(DELAY)
 
-        # Waiting so we dont get throttled
-        await logger.info(f"Awaiting {DELAY} seconds in order to not get throttled.")
-        await sleep(DELAY)
+    return
 
-        return
+    print("\n4 - Fazendo um fetch nos dados de classes/specs dos jogadores...\n")
+    pvp_data = await fetch_wow_media.run(access_token=access_token, pvp_data=pvp_data)
 
-        print("\n4 - Fazendo um fetch nos dados de classes/specs dos jogadores...\n")
-        pvp_data = await fetch_wow_media.run(access_token=access_token, pvp_data=pvp_data)
-
-        print("\n5 - Salvando os dados coletados na base de dados...\n")
-        await to_db(wow_classes=wow_classes, wow_specs=wow_specs, pvp_data=pvp_data)
+    print("\n5 - Salvando os dados coletados na base de dados...\n")
+    await to_db(wow_classes=wow_classes, wow_specs=wow_specs, pvp_data=pvp_data)

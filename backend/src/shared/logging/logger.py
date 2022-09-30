@@ -39,9 +39,9 @@ class Logger:
         # handler that only writes to the error log file in case of errors for example.
         if file_handlers is not None:
             for handler in file_handlers:
-                _handler, _level, log_every_level = handler["handler"], handler["level"], handler["log_every_level"]
+                _handler, _level, lock_log_level = handler["handler"], handler["level"], handler["lock_log_level"]
 
-                if not log_every_level:
+                if lock_log_level:
                     _handler.addFilter(filter=LogFilter(level=_level))
 
                 _handler.setLevel(level=_level)

@@ -3,6 +3,8 @@ from functools import wraps
 from asyncio import sleep
 
 from db_populator.constants import DELAY
+from db_populator.exceptions import CouldNotFetchError
+from ..exceptions import CouldNotExecuteError
 
 
 # TODO: Check if the coroutine has to be re created, because it was awaited already
@@ -18,6 +20,7 @@ def re_try(number_of_tries: int, /):
         @wraps(coroutine)
         async def decorator(*args, **kwargs):
             logger: Logger = kwargs["logger"]
+            latest_exception = None
             for n in range(number_of_tries):
                 cur = n + 1
                 try:
@@ -25,20 +28,24 @@ def re_try(number_of_tries: int, /):
                         f"Executing the '{coroutine.__name__}' coroutine. {cur} out of {number_of_tries} tries."
                     )
                     return await coroutine(*args, **kwargs)
-                except Exception as err:
+                except CouldNotFetchError as err:
 
-                    message = f"The following exception occurred while trying to execute the '{coroutine.__name__}' coroutine."
+                    latest_exception = err
+
+                    await logger.error(
+                        f"The following exception occurred while trying to execute the '{coroutine.__name__}' coroutine."
+                    )
+                    await logger.error(err)
 
                     if cur != number_of_tries:
-                        message += f" Retrying in {DELAY} seconds."
-
-                    await logger.error(message)
-                    await logger.error(err)
-                    await sleep(DELAY)
+                        await logger.warning(f"Retrying in {DELAY} seconds.")
+                        await sleep(DELAY)
 
             await logger.warning(
                 f"Could not execute the '{coroutine.__name__}' coroutine after {number_of_tries} tries."
             )
+
+            raise CouldNotExecuteError from latest_exception
 
         return decorator
 

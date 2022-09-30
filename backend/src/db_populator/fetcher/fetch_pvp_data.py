@@ -1,10 +1,18 @@
+from typing import TypedDict
 from asyncio import gather
 
-from httpx import AsyncClient, ConnectError
+from httpx import AsyncClient, ConnectError, ConnectTimeout
 
 from db_populator.constants import TIMEOUT, BRAZILIAN_REALMS, PVP_RATING_API, MAX_RETRIES
 from shared import Logger, re_try
 from ..schemas import PvpDataSchema
+from ..exceptions import CouldNotFetchError
+
+
+class PvpDataType(TypedDict):
+    _2s: list[PvpDataSchema]
+    _3s: list[PvpDataSchema]
+    rbg: list[PvpDataSchema]
 
 
 class FetchHandler:
@@ -16,7 +24,7 @@ class FetchHandler:
         self.logger = logger
         self.access_token = access_token
 
-    async def __call__(self) -> dict[str, list[PvpDataSchema] | None]:
+    async def __call__(self) -> PvpDataType:
         _2s, _3s, rbg = await gather(
             self.fetch_data(session=33, bracket="2v2"),
             self.fetch_data(session=33, bracket="3v3"),
@@ -36,27 +44,31 @@ class FetchHandler:
             .replace("{accessToken}", self.access_token)
         )
 
-    async def fetch_data(self, session: int, bracket: str) -> list[dict] | None:
+    async def fetch_data(self, session: int, bracket: str) -> list[dict]:
+
         endpoint = self.refactor_endpoint(session=session, bracket=bracket)
+
         async with AsyncClient(timeout=TIMEOUT) as client:
+
             try:
                 response = await client.get(endpoint)
-            except ConnectError as err:
-                await self.logger.error("A ConnectError occurred while fetching the pvp data. Details:")
-                await self.logger.error(err)
-            else:
-                if response.status_code == 200:
-                    data = response.json()
-                    return list(
-                        filter(lambda player: player["character"]["realm"]["slug"] in BRAZILIAN_REALMS, data["entries"])
+            except (ConnectError, ConnectTimeout) as err:
+                raise CouldNotFetchError(f"A '{err.__class__.__name__}' occurred while fetching the pvp data.") from err
+
+            if response.status_code == 200:
+                return list(
+                    filter(
+                        lambda player: player["character"]["realm"]["slug"] in BRAZILIAN_REALMS,
+                        response.json()["entries"],
                     )
+                )
 
-                # TODO: Check how the non 200 response is returned
-                await self.logger.warning("The server did not returned an OK response while fetching the pvp data.")
+            # TODO: Check how the non 200 response is returned
+            # message = "The server did not returned an OK response while fetching the pvp data."
+            # await self.logger.warning(message)
+            raise CouldNotFetchError("The server did not returned an OK response while fetching the pvp data.")
 
-    def clean_data(self, raw_data: list[dict] | None) -> list[PvpDataSchema] | None:
-        if raw_data is None:
-            return raw_data
+    def clean_data(self, raw_data: list[dict]) -> list[PvpDataSchema]:
         return list(
             map(
                 lambda el: PvpDataSchema(
@@ -79,7 +91,9 @@ class FetchHandler:
 
 
 @re_try(MAX_RETRIES)
-async def fetch_pvp_data(logger: Logger, access_token: str) -> dict[str, list[PvpDataSchema] | None]:
+async def fetch_pvp_data(logger: Logger, access_token: str) -> PvpDataType:
     await logger.info("2: Fetching wow pvp data...")
     handler = FetchHandler(logger=logger, access_token=access_token)
-    return await handler()
+    response = await handler()
+    await logger.info("Wow pvp data fetched successfully!")
+    return response
