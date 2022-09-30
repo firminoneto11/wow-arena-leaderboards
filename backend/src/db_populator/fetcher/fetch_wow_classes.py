@@ -19,19 +19,17 @@ class FetchWowClassesHandler:
 
     async def __call__(self) -> list[WowClassSchema]:
 
-        wow_classes = await self.fetch_wow_classes()
-
-        classes_map = {el.blizzard_id: el for el in wow_classes}
+        wow_classes = {el.blizzard_id: el for el in await self.fetch_wow_classes()}
 
         icons: list[tuple[int, str]] = await gather(
-            *[self.fetch_icon(blizzard_id=wow_class.blizzard_id) for wow_class in wow_classes]
+            *[self.fetch_icon(blizzard_id=wow_classes[key].blizzard_id) for key in wow_classes.keys()]
         )
 
         for icon in icons:
             class_id, icon_url = icon
-            classes_map[class_id].icon_url = icon_url
+            wow_classes[class_id].icon_url = icon_url
 
-        return wow_classes
+        return list(map(lambda key: wow_classes[key], wow_classes.keys()))
 
     def refactor_endpoint(self, which: str, blizzard_id: int = 0) -> str:
         match which:
@@ -55,16 +53,18 @@ class FetchWowClassesHandler:
                 response = await client.get(endpoint)
             except (ConnectError, ConnectTimeout) as err:
                 raise CouldNotFetchError(
-                    f"A '{err.__class__.__name__}' occurred while fetching the wow classes data."
+                    f"A '{err.__class__.__name__}' occurred while fetching the wow classes's data."
                 ) from err
 
             if response.status_code == 200:
                 return self.format_api_data(data=response.json())
 
             # TODO: Check how the non 200 response is returned
-            # message = "The server did not returned an OK response while fetching the wow classes data."
+            # message = "The server did not returned an OK response while fetching the wow classes's data."
             # await self.logger.warning(message)
-            raise CouldNotFetchError("The server did not returned an OK response while fetching the wow classes data.")
+            raise CouldNotFetchError(
+                "The server did not returned an OK response while fetching the wow classes's data."
+            )
 
     async def fetch_icon(self, blizzard_id: int) -> tuple[int, str]:
 
@@ -92,8 +92,8 @@ class FetchWowClassesHandler:
 
 @re_try(MAX_RETRIES)
 async def fetch_wow_classes(logger: Logger, access_token: str) -> list[WowClassSchema]:
-    await logger.info("3: Fetching wow classes data...")
+    await logger.info("3: Fetching wow classes's data...")
     handler = FetchWowClassesHandler(logger=logger, access_token=access_token)
     response = await handler()
-    await logger.info("Wow classes data fetched successfully!")
+    await logger.info("Wow classes's data fetched successfully!")
     return response

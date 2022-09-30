@@ -1,15 +1,28 @@
-from settings import PROFILE_API, CHAR_MEDIA_API, TIMEOUT, DELAY, REQUESTS_PER_SEC, MAX_RETRIES
-from httpx import AsyncClient, ConnectError
-from shared.utils import PvpDataDataclass
-from typing import List, Dict
 from asyncio import gather, sleep
-from itertools import chain
 from dataclasses import dataclass
+from itertools import chain
+
+from httpx import AsyncClient, ConnectError, ConnectTimeout
+
+from shared import Logger
+from .fetch_pvp_data import PvpDataType
+from db_populator.constants import (
+    PROFILE_API,
+    CHAR_MEDIA_API,
+    TIMEOUT,
+    DELAY,
+    REQUESTS_PER_SEC,
+    MAX_RETRIES,
+)
+from ..schemas import PvpDataSchema
+
+
+# TODO: Refactor all of it
 
 
 @dataclass
 class UniquePlayerDataclass:
-    blizz_id: int
+    blizzard_id: int
     realm: str
     name: str
     class_id = None
@@ -17,17 +30,20 @@ class UniquePlayerDataclass:
     avatar_icon = None
 
 
-class FetchWowMedia:
+class FetchWowMediaHandler:
 
+    logger: Logger
     access_token: str
-    pvp_data: Dict[str, List[PvpDataDataclass]]
+    pvp_data: dict[str, list[PvpDataSchema]]
     divided_workload = []
 
-    async def run(self, access_token: str, pvp_data: Dict[str, List[PvpDataDataclass]]):
+    def __init__(self, logger: Logger, access_token: str, pvp_data: PvpDataType) -> None:
+        self.logger = logger
         self.access_token = access_token
         self.pvp_data = pvp_data
-        self.pvp_data = await self.update_data()
 
+    async def __call__(self):
+        self.pvp_data = await self.update_data()
         return self.pvp_data
 
     def refactor_endpoint(self, tipo: str = "profile", *args, **kwargs):
@@ -45,7 +61,7 @@ class FetchWowMedia:
                     .replace("${char_name}", kwargs.get("name"))
                 )
 
-    def divide_workload(self, workload: List[UniquePlayerDataclass]) -> List[List[UniquePlayerDataclass]]:
+    def divide_workload(self, workload: list[UniquePlayerDataclass]) -> list[list[UniquePlayerDataclass]]:
         helper_list = []
         counter = 0
         if len(workload) <= REQUESTS_PER_SEC:
@@ -60,7 +76,7 @@ class FetchWowMedia:
             self.divided_workload.append(helper_list)
             return self.divide_workload(workload=workload)
 
-    async def fetch_em_all(self, lists: List[List[UniquePlayerDataclass]], client: AsyncClient, is_avatar=False):
+    async def fetch_em_all(self, lists: list[list[UniquePlayerDataclass]], client: AsyncClient, is_avatar=False):
         responses_helper = []
         for idx, _list in enumerate(lists):
 
@@ -104,7 +120,7 @@ class FetchWowMedia:
 
         return list(chain(*responses_helper))
 
-    async def update_data(self) -> Dict[str, List[PvpDataDataclass]]:
+    async def update_data(self) -> dict[str, list[PvpDataSchema]]:
 
         # Separando os dados
         twos = self.pvp_data["twos"]
@@ -163,7 +179,7 @@ class FetchWowMedia:
                 # -- TESTING --
 
             if responses:
-                responses: List[dict] = [response.json() for response in responses if response.status_code == 200]
+                responses: list[dict] = [response.json() for response in responses if response.status_code == 200]
             for response in responses:
                 blizz_id = int(response["id"])
                 class_id = int(response["character_class"]["id"])
@@ -190,7 +206,7 @@ class FetchWowMedia:
                 responses = await self.fetch_em_all(lists=unique_players_lists, client=client, is_avatar=True)
                 print(f"\n# Total de requests respondidas pós divisão: {len(responses)}")
             if responses:
-                responses: List[dict] = [response.json() for response in responses if response.status_code == 200]
+                responses: list[dict] = [response.json() for response in responses if response.status_code == 200]
             for response in responses:
                 blizz_id = int(response["character"]["id"])
                 avatar_icon: str = response["assets"][0]["value"]
@@ -221,3 +237,11 @@ class FetchWowMedia:
                     break
 
         return {"twos": twos, "thres": thres, "rbg": rbg}
+
+
+async def fetch_wow_media(logger: Logger, access_token: str, pvp_data: PvpDataType) -> PvpDataType:
+    await logger.info("5: Fetching the media data from the wow players...")
+    handler = FetchWowMediaHandler(logger=logger, access_token=access_token, pvp_data=pvp_data)
+    response = await handler()
+    await logger.info("Media data fetching completed succesfully!")
+    return response

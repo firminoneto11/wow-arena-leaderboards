@@ -1,84 +1,89 @@
 from asyncio import gather
 
-from httpx import AsyncClient
+from httpx import AsyncClient, ConnectError, ConnectTimeout
 
+from db_populator.constants import MAX_RETRIES, TIMEOUT, ALL_SPECS_API, SPEC_MEDIA_API
 from shared import Logger, re_try
-from ..constants import MAX_RETRIES, ALL_SPECS_API, SPEC_MEDIA_API, TIMEOUT
+from ..schemas import WowSpecsSchema
+from ..exceptions import CouldNotFetchError
 
 
 class FetchWowSpecsHandler:
 
+    logger: Logger
     access_token: str
 
-    async def run(self, access_token: str):
+    def __init__(self, logger: Logger, access_token: str) -> None:
+        self.logger = logger
         self.access_token = access_token
-        wow_specs: list[WowSpecsDataclass] = await self.get_wow_specs()
 
-        _futures = []
-        for wow_spec in wow_specs:
-            _futures.append(self.get_icon_for_wow_spec(blizz_id=wow_spec.blizz_id))
-        _futures = await gather(*_futures)
+    async def __call__(self) -> list[WowSpecsSchema]:
 
-        for index, wow_spec in enumerate(wow_specs):
-            wow_spec.spec_icon = _futures[index]
+        wow_specs = {el.blizzard_id: el for el in await self.fetch_wow_specs()}
 
-        return wow_specs
+        icons: list[tuple[int, str]] = await gather(
+            *[self.fetch_icon_for_wow_spec(blizzard_id=wow_specs[key].blizzard_id) for key in wow_specs.keys()]
+        )
 
-    def refactor_endpoint(self, _type: str = "specs", blizzard_id: int | None = None) -> str:
-        match _type:
+        for icon in icons:
+            spec_id, icon_url = icon
+            wow_specs[spec_id].icon_url = icon_url
+
+        return list(map(lambda key: wow_specs[key], wow_specs.keys()))
+
+    def refactor_endpoint(self, which: str, blizzard_id: int = 0) -> str:
+        match which:
             case "specs":
                 return ALL_SPECS_API.replace("{accessToken}", self.access_token)
-            case "icons":
+            case "icon":
                 return SPEC_MEDIA_API.replace("{accessToken}", self.access_token).replace("{specId}", str(blizzard_id))
 
-    async def get_wow_specs(self):
+    async def fetch_wow_specs(self) -> list[WowSpecsSchema]:
 
-        endpoint = self.refactor_endpoint()
-
-        async with AsyncClient(timeout=TIMEOUT) as client:
-
-            response = await client.get(endpoint)
-
-            data = response.json()
-
-            if response.status_code == 200:
-                return self.format_returned_api_data(data=data)
-            else:
-                raise Exception(f"Houve um problema no status code ao solicitar os dados de todas as specs")
-
-    def format_returned_api_data(self, data: dict):
-
-        instances = []
-
-        for key, val in data.items():
-            if key == "character_specializations":
-                for wow_spec in val:
-                    instances.append(WowSpecsDataclass(blizz_id=wow_spec["id"], spec_name=wow_spec["name"]))
-
-        return instances
-
-    async def get_icon_for_wow_spec(self, blizz_id: int):
-
-        endpoint = self.refactor_endpoint(tipo="spec-icon", blizz_id=blizz_id)
+        endpoint = self.refactor_endpoint(which="specs")
 
         async with AsyncClient(timeout=TIMEOUT) as client:
 
-            response = await client.get(endpoint)
-
-            data = response.json()
+            try:
+                response = await client.get(endpoint)
+            except (ConnectError, ConnectTimeout) as err:
+                raise CouldNotFetchError(
+                    f"A '{err.__class__.__name__}' occurred while fetching the wow specs's data."
+                ) from err
 
             if response.status_code == 200:
-                return data["assets"][0]["value"]
-            else:
-                raise Exception(
-                    f"Houve um problema no status code ao solicitar o ícone para a classe de blizz id {blizz_id}"
-                )
+                return self.format_returned_api_data(data=response.json())
+
+            raise CouldNotFetchError("The server did not returned an OK response while fetching the wow specs's data")
+
+    def format_returned_api_data(self, data: dict) -> list[WowSpecsSchema]:
+        return [WowSpecsSchema(blizzard_id=spec["id"], name=spec["name"]) for spec in data["character_specializations"]]
+
+    async def fetch_icon_for_wow_spec(self, blizzard_id: int) -> tuple[int, str]:
+
+        endpoint = self.refactor_endpoint(which="icon", blizzard_id=blizzard_id)
+
+        async with AsyncClient(timeout=TIMEOUT) as client:
+
+            try:
+                response = await client.get(endpoint)
+            except (ConnectError, ConnectTimeout) as err:
+                raise CouldNotFetchError(
+                    f"A '{err.__class__.__name__}' occurred while fetching the icon for the wow spec of id {blizzard_id}."
+                ) from err
+
+            if response.status_code == 200:
+                return blizzard_id, response.json()["assets"][0]["value"]
+
+            raise CouldNotFetchError(
+                f"The server did not returned an OK response while fetching the icon for the wow spec of id {blizzard_id}."
+            )
 
 
 @re_try(MAX_RETRIES)
-async def fetch_wow_specs(logger: Logger, access_token: str):
-    await logger.info("4 - Fetching specs' data from classes...")
+async def fetch_wow_specs(logger: Logger, access_token: str) -> list[WowSpecsSchema]:
+    await logger.info("4: Fetching wow specs's data...")
     handler = FetchWowSpecsHandler(logger=logger, access_token=access_token)
-    return None
-    # TODO: Refactor __call__
-    return await handler()
+    response = await handler()
+    await logger.info("Wow specs's data fetched successfully!")
+    return response
