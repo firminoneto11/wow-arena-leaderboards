@@ -6,21 +6,21 @@ from db_populator.constants import DELAY
 from db_populator.exceptions import CouldNotFetchError
 from ..exceptions import CouldNotExecuteError
 
-
 # TODO: Check if the coroutine has to be re created, because it was awaited already
 # TODO: An Exception should be raised when the 'number_of_tries' is not enough to execute the coroutine
 # TODO: Use regular profiling instead of timing decorators
 
 
 def re_try(number_of_tries: int, /):
-
-    from shared import Logger
-
     def _re_try(coroutine: Coroutine, /):
         @wraps(coroutine)
         async def decorator(*args, **kwargs):
-            logger: Logger = kwargs["logger"]
+
+            from db_populator import get_global_logger
+
+            logger = get_global_logger()
             latest_exception = None
+
             for n in range(number_of_tries):
                 cur = n + 1
                 try:

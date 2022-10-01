@@ -32,8 +32,8 @@ class FetchHandler:
         )
 
         return {
-            "2s": self.clean_data(raw_data=_2s),
-            "3s": self.clean_data(raw_data=_3s),
+            "_2s": self.clean_data(raw_data=_2s),
+            "_3s": self.clean_data(raw_data=_3s),
             "rbg": self.clean_data(raw_data=rbg),
         }
 

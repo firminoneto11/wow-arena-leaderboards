@@ -1,10 +1,12 @@
+from typing import Final
+from copy import copy as shallow_copy
 from asyncio import gather, sleep
 from dataclasses import dataclass
 from itertools import chain
 
 from httpx import AsyncClient, ConnectError, ConnectTimeout
 
-from shared import Logger
+from shared import Logger, re_try
 from .fetch_pvp_data import PvpDataType
 from db_populator.constants import (
     PROFILE_API,
@@ -17,24 +19,22 @@ from db_populator.constants import (
 from ..schemas import PvpDataSchema
 
 
-# TODO: Refactor all of it
-
-
 @dataclass
 class UniquePlayerDataclass:
     blizzard_id: int
     realm: str
     name: str
-    class_id = None
-    spec_id = None
-    avatar_icon = None
+    class_id: int | None = None
+    spec_id: int | None = None
+    avatar_icon: str | None = None
 
 
 class FetchWowMediaHandler:
 
     logger: Logger
     access_token: str
-    pvp_data: dict[str, list[PvpDataSchema]]
+    pvp_data: PvpDataType
+
     divided_workload = []
 
     def __init__(self, logger: Logger, access_token: str, pvp_data: PvpDataType) -> None:
@@ -42,23 +42,19 @@ class FetchWowMediaHandler:
         self.access_token = access_token
         self.pvp_data = pvp_data
 
-    async def __call__(self):
-        self.pvp_data = await self.update_data()
-        return self.pvp_data
-
-    def refactor_endpoint(self, tipo: str = "profile", *args, **kwargs):
-        match tipo:
+    def refactor_endpoint(self, which: str, realm: str, name: str) -> str:
+        match which:
             case "profile":
                 return (
                     PROFILE_API.replace("${accessToken}", self.access_token)
-                    .replace("${realm_slug}", kwargs.get("realm"))
-                    .replace("${char_name}", kwargs.get("name"))
+                    .replace("${realmSlug}", realm)
+                    .replace("${charName}", name)
                 )
-            case "char-media":
+            case "media":
                 return (
                     CHAR_MEDIA_API.replace("${accessToken}", self.access_token)
-                    .replace("${realm_slug}", kwargs.get("realm"))
-                    .replace("${char_name}", kwargs.get("name"))
+                    .replace("${realmSlug}", realm)
+                    .replace("${charName}", name)
                 )
 
     def divide_workload(self, workload: list[UniquePlayerDataclass]) -> list[list[UniquePlayerDataclass]]:
@@ -120,45 +116,59 @@ class FetchWowMediaHandler:
 
         return list(chain(*responses_helper))
 
-    async def update_data(self) -> dict[str, list[PvpDataSchema]]:
+    async def __call__(self):
 
-        # Separando os dados
-        twos = self.pvp_data["twos"]
-        thres = self.pvp_data["thres"]
+        # Splitting the data
+        _2s = self.pvp_data["_2s"]
+        _3s = self.pvp_data["_3s"]
         rbg = self.pvp_data["rbg"]
 
-        # Criando uma lista somente com jogadores únicos
-        unique_players = [
-            UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.name) for player in twos
-        ]
+        # TODO: Create a hash map that contains lists pointing to the original data
 
-        # Iterando na lista de jogadores da bracket de 3s e checando se o jogador se encontra na lista de jogadores únicos. Caso ele não
-        # se encontre ele é adicionado
-        for player in thres:
-            pl = UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.name)
-            if pl not in unique_players:
-                unique_players.append(pl)
+        # Creating a hash map with the unique players only
+        unique_players_map = {
+            player.blizzard_id: UniquePlayerDataclass(
+                blizzard_id=player.blizzard_id, realm=player.realm, name=player.name
+            )
+            for player in _2s
+        }
 
-        # Iterando na lista de jogadores da bracket de rbg e checando se o jogador se encontra na lista de jogadores únicos. Caso ele
-        # não se encontre ele é adicionado
+        for player in _3s:
+            if player.blizzard_id not in unique_players_map:
+                unique_players_map[player.blizzard_id] = UniquePlayerDataclass(
+                    blizzard_id=player.blizzard_id, realm=player.realm, name=player.name
+                )
+
         for player in rbg:
-            pl = UniquePlayerDataclass(blizz_id=player.blizz_id, realm=player.realm, name=player.name)
-            if pl not in unique_players:
-                unique_players.append(pl)
+            if player.blizzard_id not in unique_players_map:
+                unique_players_map[player.blizzard_id] = UniquePlayerDataclass(
+                    blizzard_id=player.blizzard_id, realm=player.realm, name=player.name
+                )
 
-        # Copiando a lista de unique_players para ter duas referências na memória
-        unique_players_copy = unique_players.copy()
+        TOTAL_AMOUNT_OF_REQUESTS: Final[int] = len(unique_players_map)
 
-        # Fazendo um fetch para pegar a classe e a spec de cada jogador único pois a spec e classe são as mesmas independente da bracket
+        await self.logger.info(f"Total amount of players to request after remapping: {TOTAL_AMOUNT_OF_REQUESTS}")
+        await self.logger.info(f"Amount of 2s players: {len(_2s)}")
+        await self.logger.info(f"Amount of 3s players: {len(_3s)}")
+        await self.logger.info(f"Amount of rbg players: {len(rbg)}")
+
+        # Copying the unique players map to have references in memory
+        unique_players_copy = shallow_copy(unique_players_map)
+
+        return
+
+        # Starting an async client and starting the requests
         async with AsyncClient(timeout=TIMEOUT) as client:
+
             responses = []
-            total_de_requests = len(unique_players)
-            unique_players_lists = None
-            if total_de_requests <= REQUESTS_PER_SEC:
-                for player in unique_players:
+
+            if TOTAL_AMOUNT_OF_REQUESTS <= REQUESTS_PER_SEC:
+
+                for player in unique_players_map.values():
                     endpoint = self.refactor_endpoint(realm=player.realm, name=player.name.lower())
                     responses.append(client.get(endpoint))
                 responses = await gather(*responses)
+
             else:
 
                 # -- TESTING --
@@ -215,33 +225,37 @@ class FetchWowMediaHandler:
                         player.avatar_icon = avatar_icon
                         break
 
-        # Atualizando as listas com os dados que foram buscados pelo fetch
-        for unique_player in unique_players_copy:
-            for player in twos:
-                if player.blizz_id == unique_player.blizz_id:
+        # Updating the lists with the fetched data
+        for unique_player in unique_players_copy.values():
+            for player in _2s:
+                if player.blizzard_id == unique_player.blizzard_id:
                     player.class_id = unique_player.class_id
                     player.spec_id = unique_player.spec_id
                     player.avatar_icon = unique_player.avatar_icon
                     break
-            for player in thres:
-                if player.blizz_id == unique_player.blizz_id:
+            for player in _3s:
+                if player.blizzard_id == unique_player.blizzard_id:
                     player.class_id = unique_player.class_id
                     player.spec_id = unique_player.spec_id
                     player.avatar_icon = unique_player.avatar_icon
                     break
             for player in rbg:
-                if player.blizz_id == unique_player.blizz_id:
+                if player.blizzard_id == unique_player.blizzard_id:
                     player.class_id = unique_player.class_id
                     player.spec_id = unique_player.spec_id
                     player.avatar_icon = unique_player.avatar_icon
                     break
 
-        return {"twos": twos, "thres": thres, "rbg": rbg}
+        return {
+            "_2s": _2s,
+            "_3s": _3s,
+            "rbg": rbg,
+        }
 
 
 async def fetch_wow_media(logger: Logger, access_token: str, pvp_data: PvpDataType) -> PvpDataType:
     await logger.info("5: Fetching the media data from the wow players...")
     handler = FetchWowMediaHandler(logger=logger, access_token=access_token, pvp_data=pvp_data)
     response = await handler()
-    await logger.info("Media data fetching completed succesfully!")
+    await logger.info("Media data fetching completed successfully!")
     return response

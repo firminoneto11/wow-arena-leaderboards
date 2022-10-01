@@ -1,0 +1,182 @@
+[
+    {
+        "blizzard_id": 263,
+        "name": "Enhancement",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_shaman_improvedstormstrike.jpg"
+    },
+    {
+        "blizzard_id": 270,
+        "name": "Mistweaver",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_monk_mistweaver_spec.jpg"
+    },
+    {
+        "blizzard_id": 66,
+        "name": "Protection",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_paladin_shieldofthetemplar.jpg"
+    },
+    {
+        "blizzard_id": 255,
+        "name": "Survival",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_hunter_camouflage.jpg"
+    },
+    {
+        "blizzard_id": 256,
+        "name": "Discipline",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_holy_powerwordshield.jpg"
+    },
+    {
+        "blizzard_id": 268,
+        "name": "Brewmaster",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_monk_brewmaster_spec.jpg"
+    },
+    {
+        "blizzard_id": 72,
+        "name": "Fury",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_warrior_innerrage.jpg"
+    },
+    {
+        "blizzard_id": 252,
+        "name": "Unholy",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_deathknight_unholypresence.jpg"
+    },
+    {
+        "blizzard_id": 259,
+        "name": "Assassination",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_rogue_deadlybrew.jpg"
+    },
+    {
+        "blizzard_id": 264,
+        "name": "Restoration",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_nature_magicimmunity.jpg"
+    },
+    {
+        "blizzard_id": 64,
+        "name": "Frost",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_frost_frostbolt02.jpg"
+    },
+    {
+        "blizzard_id": 62,
+        "name": "Arcane",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_holy_magicalsentry.jpg"
+    },
+    {
+        "blizzard_id": 65,
+        "name": "Holy",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_holy_holybolt.jpg"
+    },
+    {
+        "blizzard_id": 70,
+        "name": "Retribution",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_holy_auraoflight.jpg"
+    },
+    {
+        "blizzard_id": 71,
+        "name": "Arms",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_warrior_savageblow.jpg"
+    },
+    {
+        "blizzard_id": 73,
+        "name": "Protection",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_warrior_defensivestance.jpg"
+    },
+    {
+        "blizzard_id": 253,
+        "name": "Beast Mastery",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_hunter_bestialdiscipline.jpg"
+    },
+    {
+        "blizzard_id": 254,
+        "name": "Marksmanship",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_hunter_focusedaim.jpg"
+    },
+    {
+        "blizzard_id": 258,
+        "name": "Shadow",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_shadow_shadowwordpain.jpg"
+    },
+    {
+        "blizzard_id": 261,
+        "name": "Subtlety",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_stealth.jpg"
+    },
+    {
+        "blizzard_id": 103,
+        "name": "Feral",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_druid_catform.jpg"
+    },
+    {
+        "blizzard_id": 104,
+        "name": "Guardian",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_racial_bearform.jpg"
+    },
+    {
+        "blizzard_id": 105,
+        "name": "Restoration",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_nature_healingtouch.jpg"
+    },
+    {
+        "blizzard_id": 267,
+        "name": "Destruction",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_shadow_rainoffire.jpg"
+    },
+    {
+        "blizzard_id": 257,
+        "name": "Holy",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_holy_guardianspirit.jpg"
+    },
+    {
+        "blizzard_id": 63,
+        "name": "Fire",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_fire_firebolt02.jpg"
+    },
+    {
+        "blizzard_id": 250,
+        "name": "Blood",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_deathknight_bloodpresence.jpg"
+    },
+    {
+        "blizzard_id": 251,
+        "name": "Frost",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_deathknight_frostpresence.jpg"
+    },
+    {
+        "blizzard_id": 260,
+        "name": "Outlaw",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_rogue_waylay.jpg"
+    },
+    {
+        "blizzard_id": 262,
+        "name": "Elemental",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_nature_lightning.jpg"
+    },
+    {
+        "blizzard_id": 265,
+        "name": "Affliction",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_shadow_deathcoil.jpg"
+    },
+    {
+        "blizzard_id": 266,
+        "name": "Demonology",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_shadow_metamorphosis.jpg"
+    },
+    {
+        "blizzard_id": 269,
+        "name": "Windwalker",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_monk_windwalker_spec.jpg"
+    },
+    {
+        "blizzard_id": 102,
+        "name": "Balance",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_nature_starfall.jpg"
+    },
+    {
+        "blizzard_id": 577,
+        "name": "Havoc",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_demonhunter_specdps.jpg"
+    },
+    {
+        "blizzard_id": 581,
+        "name": "Vengeance",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/ability_demonhunter_spectank.jpg"
+    }
+]
