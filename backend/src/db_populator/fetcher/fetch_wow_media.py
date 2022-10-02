@@ -38,6 +38,11 @@ class FetchWowMediaHandler:
 
     divided_workload = []
 
+    def __init__(self, logger: Logger, access_token: str, pvp_data: PvpDataType) -> None:
+        self.logger = logger
+        self.access_token = access_token
+        self.pvp_data = pvp_data
+
     def refactor_endpoint(self, which: str, realm: str, name: str) -> str:
         match which:
             case "profile":
@@ -60,66 +65,11 @@ class FetchWowMediaHandler:
         except (ConnectError, ConnectTimeout) as err:
             raise CouldNotFetchError(f"A '{err.__class__.__name__}' occurred while fetching an endpoint.") from err
 
-    def __init__(self, logger: Logger, access_token: str, pvp_data: PvpDataType) -> None:
-        self.logger = logger
-        self.access_token = access_token
-        self.pvp_data = pvp_data
-
-    async def __call__(self) -> PvpDataType:
-
-        # Splitting the data for fast access
-        players_map: dict[int, dict[str, PvpDataSchema]] = dict()
-
-        for player in self.pvp_data["_2s"]:
-            players_map[player.blizzard_id] = dict()
-            players_map[player.blizzard_id].update({"_2s": player})
-
-        for player in self.pvp_data["_3s"]:
-            if player.blizzard_id not in players_map:
-                players_map[player.blizzard_id] = dict()
-
-            players_map[player.blizzard_id].update({"_3s": player})
-
-        for player in self.pvp_data["rbg"]:
-            if player.blizzard_id not in players_map:
-                players_map[player.blizzard_id] = dict()
-
-            players_map[player.blizzard_id].update({"rbg": player})
-
-        # Creating a hash map with UniquePlayerDataclass only
-        unique_players_map: dict[int, UniquePlayerDataclass] = dict()
-        for _key in players_map:
-            player_dict = players_map[_key]
-            first_key = tuple(player_dict.keys())[0]
-            _player: PvpDataSchema = player_dict[first_key]
-
-            unique_players_map[player.blizzard_id] = UniquePlayerDataclass(
-                blizzard_id=_player.blizzard_id, realm=_player.realm, name=_player.name
-            )
-
-        TOTAL_AMOUNT_OF_REQUESTS: Final[int] = len(unique_players_map)
-
-        await self.logger.info(f"Total amount of players to request after remapping: {TOTAL_AMOUNT_OF_REQUESTS}")
-
-        data = []
-        for key in players_map:
-            el = players_map[key]
-            if "_2s" in el:
-                data.append(1)
-            if "_3s" in el:
-                data.append(1)
-            if "rbg" in el:
-                data.append(1)
-
-        total_bracket_records = len(self.pvp_data["_2s"]) + len(self.pvp_data["_3s"]) + len(self.pvp_data["rbg"])
-
-        await self.logger.info(
-            f"Total records amount in all 3 brackets is correct? {sum(data) == total_bracket_records}. {total_bracket_records}"
-        )
-
-        # Copying the unique players map to have references in memory
-        unique_players_copy = shallow_copy(unique_players_map)
-
+    async def make_requests(
+        self,
+        players_map: dict[int, dict[str, PvpDataSchema]],
+        unique_players_map: dict[int, UniquePlayerDataclass],
+    ) -> None:
         # Starting an async client and starting the requests
         async with AsyncClient(timeout=TIMEOUT) as client:
 
@@ -189,6 +139,53 @@ class FetchWowMediaHandler:
                     if player.blizz_id == blizz_id:
                         player.avatar_icon = avatar_icon
                         break
+
+    async def __call__(self) -> PvpDataType:
+
+        # Splitting the data for fast access
+        players_map: dict[int, dict[str, PvpDataSchema]] = dict()
+
+        for player in self.pvp_data["_2s"]:
+            players_map[player.blizzard_id] = dict()
+            players_map[player.blizzard_id].update({"_2s": player})
+
+        for player in self.pvp_data["_3s"]:
+            if player.blizzard_id not in players_map:
+                players_map[player.blizzard_id] = dict()
+
+            players_map[player.blizzard_id].update({"_3s": player})
+
+        for player in self.pvp_data["rbg"]:
+            if player.blizzard_id not in players_map:
+                players_map[player.blizzard_id] = dict()
+
+            players_map[player.blizzard_id].update({"rbg": player})
+
+        # Creating a hash map with UniquePlayerDataclass only
+        unique_players_map: dict[int, UniquePlayerDataclass] = dict()
+        for key in players_map:
+            player_dict = players_map[key]
+            first_key = tuple(player_dict.keys())[0]
+            player = player_dict[first_key]
+
+            unique_players_map[player.blizzard_id] = UniquePlayerDataclass(
+                blizzard_id=player.blizzard_id, realm=player.realm, name=player.name
+            )
+
+        TOTAL_AMOUNT_OF_UNIQUE_PLAYERS: Final[int] = len(unique_players_map)
+
+        await self.logger.info(
+            f"Total amount of unique players to request after remapping: {TOTAL_AMOUNT_OF_UNIQUE_PLAYERS}"
+        )
+
+        count = [len(players_map[key]) for key in players_map]
+        total_bracket_records = len(self.pvp_data["_2s"]) + len(self.pvp_data["_3s"]) + len(self.pvp_data["rbg"])
+
+        await self.logger.info(
+            f"Total records amount in all 3 brackets is correct? {sum(count) == total_bracket_records}. {total_bracket_records}"
+        )
+
+        await self.make_requests(players_map=players_map, unique_players_map=unique_players_map)
 
         # Updating the lists with the fetched data
         def set_attributes(original: PvpDataSchema, new: UniquePlayerDataclass) -> None:

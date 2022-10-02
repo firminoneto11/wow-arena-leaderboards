@@ -17,7 +17,8 @@ from .utils import dump_data, read_data
 
 async def fetch_blizzard_api(logger: Logger) -> None:
 
-    response = await fetch_token(logger=logger)
+    # Fetching the access token in order to make the other requests
+    # response = await fetch_token(logger=logger)
 
     # Fetching pvp data, wow classes's data and wow specs's data concurrently
     # pvp_data, wow_classes, wow_specs = await gather(
@@ -33,8 +34,10 @@ async def fetch_blizzard_api(logger: Logger) -> None:
     # await logger.info(f"Awaiting {DELAY} seconds in order to not get throttled.")
     # await sleep(DELAY)
 
+    access_token = "USwgFVBttgL26SuCIYPWQ442ivh62i9Mvj"
+
     # Fetching the wow players's media
-    pvp_data = await fetch_wow_media(logger=logger, access_token=response.access_token, pvp_data=pvp_data)
+    pvp_data = await fetch_wow_media(logger=logger, access_token=access_token, pvp_data=pvp_data)
 
     return
 
