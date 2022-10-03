@@ -1,9 +1,9 @@
+from asyncio import sleep, create_task
 from typing import Coroutine
 from functools import wraps
-from asyncio import sleep
 
-from db_populator.constants import DELAY
 from db_populator.exceptions import CouldNotFetchError
+from db_populator.constants import DELAY
 from ..exceptions import CouldNotExecuteError
 
 # TODO: Check if the coroutine has to be re created, because it was awaited already
@@ -12,6 +12,9 @@ from ..exceptions import CouldNotExecuteError
 
 
 def re_try(number_of_tries: int, /):
+
+    SPAN_COROUTINE_NAMES = ["fetch"]
+
     def _re_try(coroutine: Coroutine, /):
         @wraps(coroutine)
         async def decorator(*args, **kwargs):
@@ -20,29 +23,36 @@ def re_try(number_of_tries: int, /):
 
             logger = get_global_logger()
             latest_exception = None
+            coroutine_name = coroutine.__name__
 
             for n in range(number_of_tries):
                 cur = n + 1
                 try:
-                    await logger.info(
-                        f"Executing the '{coroutine.__name__}' coroutine. {cur} out of {number_of_tries} tries."
-                    )
+                    if coroutine_name not in SPAN_COROUTINE_NAMES:
+                        create_task(
+                            logger.info(
+                                f"Executing the '{coroutine_name}' coroutine. {cur} out of {number_of_tries} tries."
+                            )
+                        )
                     return await coroutine(*args, **kwargs)
                 except CouldNotFetchError as err:
 
                     latest_exception = err
 
-                    await logger.error(
-                        f"The following exception occurred while trying to execute the '{coroutine.__name__}' coroutine."
+                    create_task(
+                        logger.error(
+                            f"The following exception occurred while trying to execute the '{coroutine_name}' coroutine."
+                        )
                     )
-                    await logger.error(err)
+
+                    create_task(logger.error(latest_exception))
 
                     if cur != number_of_tries:
-                        await logger.warning(f"Retrying in {DELAY} seconds.")
+                        create_task(logger.warning(f"Retrying in {DELAY} seconds."))
                         await sleep(DELAY)
 
-            await logger.warning(
-                f"Could not execute the '{coroutine.__name__}' coroutine after {number_of_tries} tries."
+            create_task(
+                logger.warning(f"Could not execute the '{coroutine_name}' coroutine after {number_of_tries} tries.")
             )
 
             raise CouldNotExecuteError from latest_exception
