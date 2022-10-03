@@ -29,11 +29,10 @@ def re_try(number_of_tries: int, /):
                 cur = n + 1
                 try:
                     if coroutine_name not in SPAN_COROUTINE_NAMES:
-                        create_task(
-                            logger.info(
-                                f"Executing the '{coroutine_name}' coroutine. {cur} out of {number_of_tries} tries."
-                            )
+                        await logger.info(
+                            f"Executing the '{coroutine_name}' coroutine. {cur} out of {number_of_tries} tries."
                         )
+
                     return await coroutine(*args, **kwargs)
                 except CouldNotFetchError as err:
 
@@ -41,10 +40,9 @@ def re_try(number_of_tries: int, /):
 
                     create_task(
                         logger.error(
-                            f"The following exception occurred while trying to execute the '{coroutine_name}' coroutine."
+                            f"The following exception occurred while trying to execute the '{coroutine_name}' coroutine. Details:"
                         )
                     )
-
                     create_task(logger.error(latest_exception))
 
                     if cur != number_of_tries:
@@ -54,7 +52,6 @@ def re_try(number_of_tries: int, /):
             create_task(
                 logger.warning(f"Could not execute the '{coroutine_name}' coroutine after {number_of_tries} tries.")
             )
-
             raise CouldNotExecuteError from latest_exception
 
         return decorator

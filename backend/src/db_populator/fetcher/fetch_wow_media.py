@@ -6,7 +6,6 @@ from itertools import chain
 from httpx import AsyncClient, ConnectError, ConnectTimeout, Response
 
 from shared import Logger, re_try
-from .fetch_pvp_data import PvpDataType
 from db_populator.constants import (
     PROFILE_API,
     CHAR_MEDIA_API,
@@ -15,8 +14,9 @@ from db_populator.constants import (
     REQUESTS_PER_SEC,
     MAX_RETRIES,
 )
-from ..schemas import PvpDataSchema
 from ..exceptions import CouldNotFetchError
+from .fetch_pvp_data import PvpDataType
+from ..schemas import PvpDataSchema
 
 
 @dataclass
@@ -80,8 +80,7 @@ class FetchWowMediaHandler:
         responses: list[tuple[Response, EndpointDataInterface]],
     ) -> None:
 
-        for response in responses:
-            resp, endpoint_data = response
+        for (resp, endpoint_data) in responses:
             unique_player = unique_players_map[endpoint_data["blizzard_id"]]
 
             if resp.status_code == 200:
