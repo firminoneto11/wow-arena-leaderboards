@@ -1,4 +1,4 @@
-from asyncio import gather, sleep
+from asyncio import gather, sleep, create_task
 
 from shared import Logger
 from .schemas import PvpDataSchema, WowClassSchema, WowSpecsSchema
@@ -9,6 +9,7 @@ from .fetcher import (
     fetch_wow_classes,
     fetch_wow_specs,
     fetch_wow_media,
+    save,
 )
 
 # For local development
@@ -34,12 +35,7 @@ async def fetch_blizzard_api(logger: Logger) -> None:
     # await logger.info(f"Awaiting {DELAY} seconds in order to not get throttled.")
     # await sleep(DELAY)
 
-    access_token = "USwgFVBttgL26SuCIYPWQ442ivh62i9Mvj"
-
     # Fetching the wow players's media
-    pvp_data = await fetch_wow_media(logger=logger, access_token=access_token, pvp_data=pvp_data)
+    # pvp_data = await fetch_wow_media(logger=logger, access_token=response.access_token, pvp_data=pvp_data)
 
-    return
-
-    print("\n5 - Salvando os dados coletados na base de dados...\n")
-    await to_db(wow_classes=wow_classes, wow_specs=wow_specs, pvp_data=pvp_data)
+    create_task(save(logger=logger, pvp_data=pvp_data, wow_classes=wow_classes, wow_specs=wow_specs))
