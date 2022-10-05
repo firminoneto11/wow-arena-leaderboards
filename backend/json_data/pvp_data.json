@@ -10,9 +10,9 @@
             "losses": 244,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/0/193035520-avatar.jpg"
         },
         {
             "blizzard_id": 193062456,
@@ -24,9 +24,9 @@
             "losses": 47,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/56/193062456-avatar.jpg"
         },
         {
             "blizzard_id": 221284654,
@@ -38,9 +38,9 @@
             "losses": 45,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/46/221284654-avatar.jpg"
         },
         {
             "blizzard_id": 193157578,
@@ -52,9 +52,9 @@
             "losses": 169,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 65,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/202/193157578-avatar.jpg"
         },
         {
             "blizzard_id": 222737315,
@@ -66,9 +66,9 @@
             "losses": 69,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/163/222737315-avatar.jpg"
         },
         {
             "blizzard_id": 193205228,
@@ -80,9 +80,9 @@
             "losses": 164,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 259,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/236/193205228-avatar.jpg"
         },
         {
             "blizzard_id": 148334727,
@@ -94,9 +94,9 @@
             "losses": 179,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/135/148334727-avatar.jpg"
         },
         {
             "blizzard_id": 202770376,
@@ -108,9 +108,9 @@
             "losses": 94,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/200/202770376-avatar.jpg"
         },
         {
             "blizzard_id": 187391361,
@@ -122,9 +122,9 @@
             "losses": 50,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/129/187391361-avatar.jpg"
         },
         {
             "blizzard_id": 181081342,
@@ -136,9 +136,9 @@
             "losses": 58,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/254/181081342-avatar.jpg"
         },
         {
             "blizzard_id": 193059751,
@@ -150,9 +150,9 @@
             "losses": 68,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/167/193059751-avatar.jpg"
         },
         {
             "blizzard_id": 221617501,
@@ -178,9 +178,9 @@
             "losses": 237,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 261,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/113/192407921-avatar.jpg"
         },
         {
             "blizzard_id": 223143029,
@@ -206,9 +206,9 @@
             "losses": 173,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/79/145170511-avatar.jpg"
         },
         {
             "blizzard_id": 153119508,
@@ -220,9 +220,9 @@
             "losses": 191,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/20/153119508-avatar.jpg"
         },
         {
             "blizzard_id": 220677631,
@@ -234,9 +234,9 @@
             "losses": 229,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/255/220677631-avatar.jpg"
         },
         {
             "blizzard_id": 219620504,
@@ -248,9 +248,9 @@
             "losses": 82,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 263,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/152/219620504-avatar.jpg"
         },
         {
             "blizzard_id": 192826317,
@@ -262,9 +262,9 @@
             "losses": 87,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/205/192826317-avatar.jpg"
         },
         {
             "blizzard_id": 213938497,
@@ -276,9 +276,9 @@
             "losses": 148,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 255,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/65/213938497-avatar.jpg"
         },
         {
             "blizzard_id": 168706866,
@@ -290,9 +290,9 @@
             "losses": 169,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 254,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/50/168706866-avatar.jpg"
         },
         {
             "blizzard_id": 190720330,
@@ -304,9 +304,9 @@
             "losses": 89,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/74/190720330-avatar.jpg"
         },
         {
             "blizzard_id": 160802447,
@@ -318,9 +318,9 @@
             "losses": 250,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/143/160802447-avatar.jpg"
         },
         {
             "blizzard_id": 190625165,
@@ -332,9 +332,9 @@
             "losses": 60,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/141/190625165-avatar.jpg"
         },
         {
             "blizzard_id": 193284706,
@@ -346,9 +346,9 @@
             "losses": 45,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 269,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/98/193284706-avatar.jpg"
         },
         {
             "blizzard_id": 141150101,
@@ -360,9 +360,9 @@
             "losses": 39,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 65,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/149/141150101-avatar.jpg"
         },
         {
             "blizzard_id": 187138500,
@@ -374,9 +374,9 @@
             "losses": 61,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 261,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/196/187138500-avatar.jpg"
         },
         {
             "blizzard_id": 183156181,
@@ -388,9 +388,9 @@
             "losses": 176,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/213/183156181-avatar.jpg"
         },
         {
             "blizzard_id": 192973619,
@@ -402,9 +402,9 @@
             "losses": 24,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/51/192973619-avatar.jpg"
         },
         {
             "blizzard_id": 190472172,
@@ -416,9 +416,9 @@
             "losses": 68,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 65,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/236/190472172-avatar.jpg"
         },
         {
             "blizzard_id": 174266632,
@@ -430,9 +430,9 @@
             "losses": 89,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 251,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/8/174266632-avatar.jpg"
         },
         {
             "blizzard_id": 194225296,
@@ -444,9 +444,9 @@
             "losses": 67,
             "faction_name": "ALLIANCE",
             "realm": "tol-barad",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 262,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/tol-barad/144/194225296-avatar.jpg"
         },
         {
             "blizzard_id": 152429501,
@@ -458,9 +458,9 @@
             "losses": 82,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/189/152429501-avatar.jpg"
         },
         {
             "blizzard_id": 192244484,
@@ -472,9 +472,9 @@
             "losses": 91,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 254,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/4/192244484-avatar.jpg"
         },
         {
             "blizzard_id": 192955757,
@@ -486,9 +486,9 @@
             "losses": 92,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 8,
+            "spec_id": 63,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/109/192955757-avatar.jpg"
         },
         {
             "blizzard_id": 154986619,
@@ -500,9 +500,9 @@
             "losses": 47,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/123/154986619-avatar.jpg"
         },
         {
             "blizzard_id": 191698814,
@@ -528,9 +528,9 @@
             "losses": 42,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/47/165044271-avatar.jpg"
         },
         {
             "blizzard_id": 191721239,
@@ -542,9 +542,9 @@
             "losses": 48,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 269,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/23/191721239-avatar.jpg"
         },
         {
             "blizzard_id": 199269093,
@@ -556,9 +556,9 @@
             "losses": 99,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 255,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/229/199269093-avatar.jpg"
         },
         {
             "blizzard_id": 193354661,
@@ -570,9 +570,9 @@
             "losses": 93,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 264,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/165/193354661-avatar.jpg"
         },
         {
             "blizzard_id": 222794262,
@@ -584,9 +584,9 @@
             "losses": 91,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 255,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/22/222794262-avatar.jpg"
         },
         {
             "blizzard_id": 189012038,
@@ -598,9 +598,9 @@
             "losses": 172,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/70/189012038-avatar.jpg"
         },
         {
             "blizzard_id": 86486948,
@@ -612,9 +612,9 @@
             "losses": 99,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/164/86486948-avatar.jpg"
         },
         {
             "blizzard_id": 86547772,
@@ -626,9 +626,9 @@
             "losses": 99,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/60/86547772-avatar.jpg"
         },
         {
             "blizzard_id": 193125016,
@@ -640,9 +640,9 @@
             "losses": 248,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/152/193125016-avatar.jpg"
         },
         {
             "blizzard_id": 148127293,
@@ -654,9 +654,9 @@
             "losses": 159,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 66,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/61/148127293-avatar.jpg"
         },
         {
             "blizzard_id": 191079837,
@@ -668,9 +668,9 @@
             "losses": 59,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/157/191079837-avatar.jpg"
         },
         {
             "blizzard_id": 221801259,
@@ -682,9 +682,9 @@
             "losses": 60,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 264,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/43/221801259-avatar.jpg"
         },
         {
             "blizzard_id": 158379039,
@@ -696,9 +696,9 @@
             "losses": 75,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/31/158379039-avatar.jpg"
         },
         {
             "blizzard_id": 188991260,
@@ -710,9 +710,9 @@
             "losses": 71,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 264,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/28/188991260-avatar.jpg"
         },
         {
             "blizzard_id": 141516925,
@@ -724,9 +724,9 @@
             "losses": 124,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/125/141516925-avatar.jpg"
         },
         {
             "blizzard_id": 176266486,
@@ -738,9 +738,9 @@
             "losses": 84,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/246/176266486-avatar.jpg"
         },
         {
             "blizzard_id": 192965746,
@@ -752,9 +752,9 @@
             "losses": 63,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/114/192965746-avatar.jpg"
         },
         {
             "blizzard_id": 189087743,
@@ -766,9 +766,9 @@
             "losses": 73,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 264,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/255/189087743-avatar.jpg"
         },
         {
             "blizzard_id": 192422940,
@@ -780,9 +780,9 @@
             "losses": 462,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/28/192422940-avatar.jpg"
         },
         {
             "blizzard_id": 223185588,
@@ -794,9 +794,9 @@
             "losses": 56,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/180/223185588-avatar.jpg"
         },
         {
             "blizzard_id": 186634298,
@@ -808,9 +808,9 @@
             "losses": 180,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 66,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/58/186634298-avatar.jpg"
         },
         {
             "blizzard_id": 198071670,
@@ -822,9 +822,9 @@
             "losses": 43,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/118/198071670-avatar.jpg"
         },
         {
             "blizzard_id": 191778631,
@@ -836,9 +836,9 @@
             "losses": 50,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/71/191778631-avatar.jpg"
         },
         {
             "blizzard_id": 222769106,
@@ -850,9 +850,9 @@
             "losses": 73,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/210/222769106-avatar.jpg"
         },
         {
             "blizzard_id": 192670443,
@@ -864,9 +864,9 @@
             "losses": 53,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/235/192670443-avatar.jpg"
         },
         {
             "blizzard_id": 189745571,
@@ -878,9 +878,9 @@
             "losses": 122,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 104,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/163/189745571-avatar.jpg"
         },
         {
             "blizzard_id": 85732626,
@@ -892,9 +892,9 @@
             "losses": 75,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/18/85732626-avatar.jpg"
         },
         {
             "blizzard_id": 160420130,
@@ -906,9 +906,9 @@
             "losses": 187,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/34/160420130-avatar.jpg"
         },
         {
             "blizzard_id": 212134044,
@@ -920,9 +920,9 @@
             "losses": 94,
             "faction_name": "ALLIANCE",
             "realm": "tol-barad",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 254,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/tol-barad/156/212134044-avatar.jpg"
         },
         {
             "blizzard_id": 248382451,
@@ -934,9 +934,9 @@
             "losses": 280,
             "faction_name": "ALLIANCE",
             "realm": "gallywix",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 8,
+            "spec_id": 63,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/gallywix/243/248382451-avatar.jpg"
         },
         {
             "blizzard_id": 223174849,
@@ -948,9 +948,9 @@
             "losses": 113,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/193/223174849-avatar.jpg"
         },
         {
             "blizzard_id": 222642618,
@@ -962,9 +962,9 @@
             "losses": 95,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/186/222642618-avatar.jpg"
         },
         {
             "blizzard_id": 192171387,
@@ -976,9 +976,9 @@
             "losses": 212,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/123/192171387-avatar.jpg"
         },
         {
             "blizzard_id": 191602538,
@@ -990,9 +990,9 @@
             "losses": 375,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/106/191602538-avatar.jpg"
         },
         {
             "blizzard_id": 103282020,
@@ -1004,9 +1004,9 @@
             "losses": 38,
             "faction_name": "ALLIANCE",
             "realm": "goldrinn",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/goldrinn/100/103282020-avatar.jpg"
         },
         {
             "blizzard_id": 192529786,
@@ -1018,9 +1018,9 @@
             "losses": 315,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/122/192529786-avatar.jpg"
         },
         {
             "blizzard_id": 164667529,
@@ -1032,9 +1032,9 @@
             "losses": 83,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/137/164667529-avatar.jpg"
         },
         {
             "blizzard_id": 85071178,
@@ -1046,9 +1046,9 @@
             "losses": 47,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/74/85071178-avatar.jpg"
         },
         {
             "blizzard_id": 192555031,
@@ -1060,9 +1060,9 @@
             "losses": 219,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 269,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/23/192555031-avatar.jpg"
         },
         {
             "blizzard_id": 191956111,
@@ -1074,9 +1074,9 @@
             "losses": 181,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/143/191956111-avatar.jpg"
         },
         {
             "blizzard_id": 176214871,
@@ -1088,9 +1088,9 @@
             "losses": 75,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/87/176214871-avatar.jpg"
         },
         {
             "blizzard_id": 221277866,
@@ -1102,9 +1102,9 @@
             "losses": 252,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/170/221277866-avatar.jpg"
         },
         {
             "blizzard_id": 193035221,
@@ -1130,9 +1130,9 @@
             "losses": 76,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 253,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/180/191940788-avatar.jpg"
         },
         {
             "blizzard_id": 192901860,
@@ -1144,9 +1144,9 @@
             "losses": 332,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/228/192901860-avatar.jpg"
         },
         {
             "blizzard_id": 133897751,
@@ -1158,9 +1158,9 @@
             "losses": 125,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 269,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/23/133897751-avatar.jpg"
         },
         {
             "blizzard_id": 92388202,
@@ -1172,9 +1172,9 @@
             "losses": 127,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 264,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/106/92388202-avatar.jpg"
         },
         {
             "blizzard_id": 223446916,
@@ -1186,9 +1186,9 @@
             "losses": 125,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/132/223446916-avatar.jpg"
         },
         {
             "blizzard_id": 90163629,
@@ -1200,9 +1200,9 @@
             "losses": 37,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/173/90163629-avatar.jpg"
         },
         {
             "blizzard_id": 187736145,
@@ -1214,9 +1214,9 @@
             "losses": 193,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/81/187736145-avatar.jpg"
         },
         {
             "blizzard_id": 223537580,
@@ -1228,9 +1228,9 @@
             "losses": 87,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/172/223537580-avatar.jpg"
         },
         {
             "blizzard_id": 242637970,
@@ -1242,9 +1242,9 @@
             "losses": 36,
             "faction_name": "ALLIANCE",
             "realm": "gallywix",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/gallywix/146/242637970-avatar.jpg"
         },
         {
             "blizzard_id": 192710479,
@@ -1256,9 +1256,9 @@
             "losses": 56,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 65,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/79/192710479-avatar.jpg"
         },
         {
             "blizzard_id": 247649411,
@@ -1270,9 +1270,9 @@
             "losses": 150,
             "faction_name": "HORDE",
             "realm": "gallywix",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 269,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/gallywix/131/247649411-avatar.jpg"
         },
         {
             "blizzard_id": 192226818,
@@ -1284,9 +1284,9 @@
             "losses": 72,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/2/192226818-avatar.jpg"
         },
         {
             "blizzard_id": 175804289,
@@ -1298,9 +1298,9 @@
             "losses": 77,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 65,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/129/175804289-avatar.jpg"
         },
         {
             "blizzard_id": 193370636,
@@ -1312,9 +1312,9 @@
             "losses": 134,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 264,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/12/193370636-avatar.jpg"
         },
         {
             "blizzard_id": 193173143,
@@ -1326,9 +1326,9 @@
             "losses": 153,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/151/193173143-avatar.jpg"
         },
         {
             "blizzard_id": 191794357,
@@ -1340,9 +1340,9 @@
             "losses": 226,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/181/191794357-avatar.jpg"
         }
     ],
     "_3s": [
@@ -1356,9 +1356,9 @@
             "losses": 42,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/82/192881746-avatar.jpg"
         },
         {
             "blizzard_id": 223128471,
@@ -1370,9 +1370,9 @@
             "losses": 153,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/151/223128471-avatar.jpg"
         },
         {
             "blizzard_id": 193062456,
@@ -1384,9 +1384,9 @@
             "losses": 139,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/56/193062456-avatar.jpg"
         },
         {
             "blizzard_id": 158379039,
@@ -1398,9 +1398,9 @@
             "losses": 271,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/31/158379039-avatar.jpg"
         },
         {
             "blizzard_id": 153923830,
@@ -1412,9 +1412,9 @@
             "losses": 132,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/246/153923830-avatar.jpg"
         },
         {
             "blizzard_id": 223537580,
@@ -1426,9 +1426,9 @@
             "losses": 218,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/172/223537580-avatar.jpg"
         },
         {
             "blizzard_id": 193125016,
@@ -1440,9 +1440,9 @@
             "losses": 465,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/152/193125016-avatar.jpg"
         },
         {
             "blizzard_id": 247313798,
@@ -1454,9 +1454,9 @@
             "losses": 138,
             "faction_name": "ALLIANCE",
             "realm": "gallywix",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/gallywix/134/247313798-avatar.jpg"
         },
         {
             "blizzard_id": 193168575,
@@ -1468,9 +1468,9 @@
             "losses": 198,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/191/193168575-avatar.jpg"
         },
         {
             "blizzard_id": 202770376,
@@ -1482,9 +1482,9 @@
             "losses": 124,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/200/202770376-avatar.jpg"
         },
         {
             "blizzard_id": 190486777,
@@ -1496,9 +1496,9 @@
             "losses": 311,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/249/190486777-avatar.jpg"
         },
         {
             "blizzard_id": 222642618,
@@ -1510,9 +1510,9 @@
             "losses": 478,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/186/222642618-avatar.jpg"
         },
         {
             "blizzard_id": 187138500,
@@ -1524,9 +1524,9 @@
             "losses": 727,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 261,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/196/187138500-avatar.jpg"
         },
         {
             "blizzard_id": 221284654,
@@ -1538,9 +1538,9 @@
             "losses": 176,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/46/221284654-avatar.jpg"
         },
         {
             "blizzard_id": 172438084,
@@ -1552,9 +1552,9 @@
             "losses": 107,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/68/172438084-avatar.jpg"
         },
         {
             "blizzard_id": 248382451,
@@ -1566,9 +1566,9 @@
             "losses": 326,
             "faction_name": "ALLIANCE",
             "realm": "gallywix",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 8,
+            "spec_id": 63,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/gallywix/243/248382451-avatar.jpg"
         },
         {
             "blizzard_id": 221617501,
@@ -1594,9 +1594,9 @@
             "losses": 284,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/0/193035520-avatar.jpg"
         },
         {
             "blizzard_id": 154986619,
@@ -1608,9 +1608,9 @@
             "losses": 75,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/123/154986619-avatar.jpg"
         },
         {
             "blizzard_id": 222769106,
@@ -1622,9 +1622,9 @@
             "losses": 183,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/210/222769106-avatar.jpg"
         },
         {
             "blizzard_id": 193059751,
@@ -1636,9 +1636,9 @@
             "losses": 169,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/167/193059751-avatar.jpg"
         },
         {
             "blizzard_id": 223185588,
@@ -1650,9 +1650,9 @@
             "losses": 71,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/180/223185588-avatar.jpg"
         },
         {
             "blizzard_id": 176145827,
@@ -1664,9 +1664,9 @@
             "losses": 175,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/163/176145827-avatar.jpg"
         },
         {
             "blizzard_id": 143135223,
@@ -1678,9 +1678,9 @@
             "losses": 208,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/247/143135223-avatar.jpg"
         },
         {
             "blizzard_id": 192866283,
@@ -1706,9 +1706,9 @@
             "losses": 401,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/106/191602538-avatar.jpg"
         },
         {
             "blizzard_id": 172736492,
@@ -1720,9 +1720,9 @@
             "losses": 127,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/236/172736492-avatar.jpg"
         },
         {
             "blizzard_id": 191678439,
@@ -1734,9 +1734,9 @@
             "losses": 61,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 65,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/231/191678439-avatar.jpg"
         },
         {
             "blizzard_id": 192679058,
@@ -1748,9 +1748,9 @@
             "losses": 113,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/146/192679058-avatar.jpg"
         },
         {
             "blizzard_id": 194225296,
@@ -1762,9 +1762,9 @@
             "losses": 166,
             "faction_name": "ALLIANCE",
             "realm": "tol-barad",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 262,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/tol-barad/144/194225296-avatar.jpg"
         },
         {
             "blizzard_id": 190625165,
@@ -1776,9 +1776,9 @@
             "losses": 220,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/141/190625165-avatar.jpg"
         },
         {
             "blizzard_id": 222992905,
@@ -1790,9 +1790,9 @@
             "losses": 109,
             "faction_name": "ALLIANCE",
             "realm": "tol-barad",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/tol-barad/9/222992905-avatar.jpg"
         },
         {
             "blizzard_id": 222667985,
@@ -1804,9 +1804,9 @@
             "losses": 140,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/209/222667985-avatar.jpg"
         },
         {
             "blizzard_id": 187391361,
@@ -1818,9 +1818,9 @@
             "losses": 113,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/129/187391361-avatar.jpg"
         },
         {
             "blizzard_id": 219620504,
@@ -1832,9 +1832,9 @@
             "losses": 148,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 263,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/152/219620504-avatar.jpg"
         },
         {
             "blizzard_id": 190438642,
@@ -1846,9 +1846,9 @@
             "losses": 100,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 65,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/242/190438642-avatar.jpg"
         },
         {
             "blizzard_id": 193370636,
@@ -1860,9 +1860,9 @@
             "losses": 132,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 264,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/12/193370636-avatar.jpg"
         },
         {
             "blizzard_id": 222253416,
@@ -1874,9 +1874,9 @@
             "losses": 86,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/104/222253416-avatar.jpg"
         },
         {
             "blizzard_id": 126765038,
@@ -1888,9 +1888,9 @@
             "losses": 101,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/238/126765038-avatar.jpg"
         },
         {
             "blizzard_id": 150429202,
@@ -1902,9 +1902,9 @@
             "losses": 78,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/18/150429202-avatar.jpg"
         },
         {
             "blizzard_id": 192407921,
@@ -1916,9 +1916,9 @@
             "losses": 862,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 261,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/113/192407921-avatar.jpg"
         },
         {
             "blizzard_id": 198071670,
@@ -1930,9 +1930,9 @@
             "losses": 281,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/118/198071670-avatar.jpg"
         },
         {
             "blizzard_id": 189874972,
@@ -1944,9 +1944,9 @@
             "losses": 146,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/28/189874972-avatar.jpg"
         },
         {
             "blizzard_id": 192897774,
@@ -1972,9 +1972,9 @@
             "losses": 146,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/197/193336773-avatar.jpg"
         },
         {
             "blizzard_id": 222863876,
@@ -1986,9 +1986,9 @@
             "losses": 308,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 8,
+            "spec_id": 64,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/4/222863876-avatar.jpg"
         },
         {
             "blizzard_id": 85113189,
@@ -2000,9 +2000,9 @@
             "losses": 74,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/101/85113189-avatar.jpg"
         },
         {
             "blizzard_id": 178541807,
@@ -2014,9 +2014,9 @@
             "losses": 128,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/239/178541807-avatar.jpg"
         },
         {
             "blizzard_id": 90163629,
@@ -2028,9 +2028,9 @@
             "losses": 187,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/173/90163629-avatar.jpg"
         },
         {
             "blizzard_id": 141516925,
@@ -2042,9 +2042,9 @@
             "losses": 191,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/125/141516925-avatar.jpg"
         },
         {
             "blizzard_id": 213938497,
@@ -2056,9 +2056,9 @@
             "losses": 169,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 255,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/65/213938497-avatar.jpg"
         },
         {
             "blizzard_id": 192041378,
@@ -2070,9 +2070,9 @@
             "losses": 149,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/162/192041378-avatar.jpg"
         },
         {
             "blizzard_id": 192113736,
@@ -2084,9 +2084,9 @@
             "losses": 124,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 251,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/72/192113736-avatar.jpg"
         },
         {
             "blizzard_id": 219769786,
@@ -2098,9 +2098,9 @@
             "losses": 302,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/186/219769786-avatar.jpg"
         },
         {
             "blizzard_id": 192555031,
@@ -2112,9 +2112,9 @@
             "losses": 38,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 269,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/23/192555031-avatar.jpg"
         },
         {
             "blizzard_id": 192973619,
@@ -2126,9 +2126,9 @@
             "losses": 97,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/51/192973619-avatar.jpg"
         },
         {
             "blizzard_id": 192826317,
@@ -2140,9 +2140,9 @@
             "losses": 118,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/205/192826317-avatar.jpg"
         },
         {
             "blizzard_id": 193173143,
@@ -2154,9 +2154,9 @@
             "losses": 134,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/151/193173143-avatar.jpg"
         },
         {
             "blizzard_id": 193205228,
@@ -2168,9 +2168,9 @@
             "losses": 174,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 259,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/236/193205228-avatar.jpg"
         },
         {
             "blizzard_id": 192965746,
@@ -2182,9 +2182,9 @@
             "losses": 96,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/114/192965746-avatar.jpg"
         },
         {
             "blizzard_id": 136890073,
@@ -2196,9 +2196,9 @@
             "losses": 165,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/217/136890073-avatar.jpg"
         },
         {
             "blizzard_id": 179327222,
@@ -2210,9 +2210,9 @@
             "losses": 121,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/246/179327222-avatar.jpg"
         },
         {
             "blizzard_id": 190720330,
@@ -2224,9 +2224,9 @@
             "losses": 72,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/74/190720330-avatar.jpg"
         },
         {
             "blizzard_id": 213990823,
@@ -2238,9 +2238,9 @@
             "losses": 129,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/167/213990823-avatar.jpg"
         },
         {
             "blizzard_id": 193164690,
@@ -2252,9 +2252,9 @@
             "losses": 108,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/146/193164690-avatar.jpg"
         },
         {
             "blizzard_id": 193153403,
@@ -2266,9 +2266,9 @@
             "losses": 118,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 259,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/123/193153403-avatar.jpg"
         },
         {
             "blizzard_id": 193267779,
@@ -2280,9 +2280,9 @@
             "losses": 219,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/67/193267779-avatar.jpg"
         },
         {
             "blizzard_id": 152160382,
@@ -2294,9 +2294,9 @@
             "losses": 123,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/126/152160382-avatar.jpg"
         },
         {
             "blizzard_id": 188297770,
@@ -2308,9 +2308,9 @@
             "losses": 50,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/42/188297770-avatar.jpg"
         },
         {
             "blizzard_id": 192244484,
@@ -2322,9 +2322,9 @@
             "losses": 121,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 254,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/4/192244484-avatar.jpg"
         },
         {
             "blizzard_id": 103282020,
@@ -2336,9 +2336,9 @@
             "losses": 76,
             "faction_name": "ALLIANCE",
             "realm": "goldrinn",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/goldrinn/100/103282020-avatar.jpg"
         },
         {
             "blizzard_id": 141150101,
@@ -2350,9 +2350,9 @@
             "losses": 40,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 65,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/149/141150101-avatar.jpg"
         },
         {
             "blizzard_id": 145170511,
@@ -2364,9 +2364,9 @@
             "losses": 322,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/79/145170511-avatar.jpg"
         },
         {
             "blizzard_id": 145198164,
@@ -2378,9 +2378,9 @@
             "losses": 127,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 8,
+            "spec_id": 64,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/84/145198164-avatar.jpg"
         },
         {
             "blizzard_id": 221815243,
@@ -2392,9 +2392,9 @@
             "losses": 89,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/203/221815243-avatar.jpg"
         },
         {
             "blizzard_id": 88415122,
@@ -2406,9 +2406,9 @@
             "losses": 236,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/146/88415122-avatar.jpg"
         },
         {
             "blizzard_id": 186191130,
@@ -2420,9 +2420,9 @@
             "losses": 60,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/26/186191130-avatar.jpg"
         },
         {
             "blizzard_id": 153652022,
@@ -2434,9 +2434,9 @@
             "losses": 145,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/54/153652022-avatar.jpg"
         },
         {
             "blizzard_id": 192866291,
@@ -2462,9 +2462,9 @@
             "losses": 106,
             "faction_name": "ALLIANCE",
             "realm": "tol-barad",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 254,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/tol-barad/156/212134044-avatar.jpg"
         },
         {
             "blizzard_id": 193157578,
@@ -2476,9 +2476,9 @@
             "losses": 427,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 65,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/202/193157578-avatar.jpg"
         },
         {
             "blizzard_id": 192526379,
@@ -2490,9 +2490,9 @@
             "losses": 130,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/43/192526379-avatar.jpg"
         },
         {
             "blizzard_id": 192296377,
@@ -2504,9 +2504,9 @@
             "losses": 67,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/185/192296377-avatar.jpg"
         },
         {
             "blizzard_id": 85732626,
@@ -2518,9 +2518,9 @@
             "losses": 61,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/18/85732626-avatar.jpg"
         },
         {
             "blizzard_id": 192227243,
@@ -2532,9 +2532,9 @@
             "losses": 67,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 8,
+            "spec_id": 63,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/171/192227243-avatar.jpg"
         },
         {
             "blizzard_id": 223211030,
@@ -2546,9 +2546,9 @@
             "losses": 116,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/22/223211030-avatar.jpg"
         },
         {
             "blizzard_id": 192471876,
@@ -2560,9 +2560,9 @@
             "losses": 114,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/68/192471876-avatar.jpg"
         },
         {
             "blizzard_id": 174266632,
@@ -2574,9 +2574,9 @@
             "losses": 84,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 251,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/8/174266632-avatar.jpg"
         },
         {
             "blizzard_id": 192679745,
@@ -2588,9 +2588,9 @@
             "losses": 346,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/65/192679745-avatar.jpg"
         },
         {
             "blizzard_id": 189285982,
@@ -2602,9 +2602,9 @@
             "losses": 93,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/94/189285982-avatar.jpg"
         },
         {
             "blizzard_id": 189672800,
@@ -2616,9 +2616,9 @@
             "losses": 73,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/96/189672800-avatar.jpg"
         },
         {
             "blizzard_id": 192702739,
@@ -2630,9 +2630,9 @@
             "losses": 137,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/19/192702739-avatar.jpg"
         },
         {
             "blizzard_id": 164667529,
@@ -2644,9 +2644,9 @@
             "losses": 133,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/137/164667529-avatar.jpg"
         },
         {
             "blizzard_id": 144752426,
@@ -2658,9 +2658,9 @@
             "losses": 92,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 255,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/42/144752426-avatar.jpg"
         },
         {
             "blizzard_id": 172199167,
@@ -2672,9 +2672,9 @@
             "losses": 123,
             "faction_name": "ALLIANCE",
             "realm": "tol-barad",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 263,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/tol-barad/255/172199167-avatar.jpg"
         },
         {
             "blizzard_id": 141327523,
@@ -2686,9 +2686,9 @@
             "losses": 256,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/163/141327523-avatar.jpg"
         },
         {
             "blizzard_id": 191079837,
@@ -2700,9 +2700,9 @@
             "losses": 233,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/157/191079837-avatar.jpg"
         },
         {
             "blizzard_id": 144212102,
@@ -2714,9 +2714,9 @@
             "losses": 280,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/134/144212102-avatar.jpg"
         },
         {
             "blizzard_id": 181403297,
@@ -2728,9 +2728,9 @@
             "losses": 64,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/161/181403297-avatar.jpg"
         },
         {
             "blizzard_id": 220199892,
@@ -2742,9 +2742,9 @@
             "losses": 78,
             "faction_name": "HORDE",
             "realm": "goldrinn",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/goldrinn/212/220199892-avatar.jpg"
         },
         {
             "blizzard_id": 191850627,
@@ -2756,9 +2756,9 @@
             "losses": 56,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/131/191850627-avatar.jpg"
         },
         {
             "blizzard_id": 223336157,
@@ -2770,9 +2770,9 @@
             "losses": 114,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/221/223336157-avatar.jpg"
         },
         {
             "blizzard_id": 186171773,
@@ -2784,9 +2784,9 @@
             "losses": 49,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/125/186171773-avatar.jpg"
         },
         {
             "blizzard_id": 193336727,
@@ -2798,9 +2798,9 @@
             "losses": 39,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/151/193336727-avatar.jpg"
         },
         {
             "blizzard_id": 192670443,
@@ -2812,9 +2812,9 @@
             "losses": 120,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/235/192670443-avatar.jpg"
         },
         {
             "blizzard_id": 193354661,
@@ -2826,9 +2826,9 @@
             "losses": 72,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 264,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/165/193354661-avatar.jpg"
         },
         {
             "blizzard_id": 108489202,
@@ -2840,9 +2840,9 @@
             "losses": 165,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/242/108489202-avatar.jpg"
         },
         {
             "blizzard_id": 192226818,
@@ -2854,9 +2854,9 @@
             "losses": 159,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/2/192226818-avatar.jpg"
         },
         {
             "blizzard_id": 191345861,
@@ -2868,9 +2868,9 @@
             "losses": 74,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/197/191345861-avatar.jpg"
         },
         {
             "blizzard_id": 190429914,
@@ -2882,9 +2882,9 @@
             "losses": 123,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/218/190429914-avatar.jpg"
         },
         {
             "blizzard_id": 86278215,
@@ -2896,9 +2896,9 @@
             "losses": 68,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/71/86278215-avatar.jpg"
         },
         {
             "blizzard_id": 189829620,
@@ -2910,9 +2910,9 @@
             "losses": 77,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/244/189829620-avatar.jpg"
         },
         {
             "blizzard_id": 192472525,
@@ -2924,9 +2924,9 @@
             "losses": 33,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/205/192472525-avatar.jpg"
         }
     ],
     "rbg": [
@@ -2940,9 +2940,9 @@
             "losses": 53,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/53/221293365-avatar.jpg"
         },
         {
             "blizzard_id": 176145827,
@@ -2954,9 +2954,9 @@
             "losses": 23,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/163/176145827-avatar.jpg"
         },
         {
             "blizzard_id": 192630193,
@@ -2968,9 +2968,9 @@
             "losses": 55,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/177/192630193-avatar.jpg"
         },
         {
             "blizzard_id": 189745571,
@@ -2982,9 +2982,9 @@
             "losses": 174,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 104,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/163/189745571-avatar.jpg"
         },
         {
             "blizzard_id": 192679058,
@@ -2996,9 +2996,9 @@
             "losses": 42,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/146/192679058-avatar.jpg"
         },
         {
             "blizzard_id": 189029331,
@@ -3010,9 +3010,9 @@
             "losses": 49,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 104,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/211/189029331-avatar.jpg"
         },
         {
             "blizzard_id": 91087653,
@@ -3024,9 +3024,9 @@
             "losses": 72,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/37/91087653-avatar.jpg"
         },
         {
             "blizzard_id": 152160382,
@@ -3038,9 +3038,9 @@
             "losses": 37,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/126/152160382-avatar.jpg"
         },
         {
             "blizzard_id": 219785975,
@@ -3052,9 +3052,9 @@
             "losses": 15,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 261,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/247/219785975-avatar.jpg"
         },
         {
             "blizzard_id": 223392426,
@@ -3066,9 +3066,9 @@
             "losses": 137,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/170/223392426-avatar.jpg"
         },
         {
             "blizzard_id": 88553427,
@@ -3080,9 +3080,9 @@
             "losses": 52,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/211/88553427-avatar.jpg"
         },
         {
             "blizzard_id": 216335807,
@@ -3094,9 +3094,9 @@
             "losses": 45,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 254,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/191/216335807-avatar.jpg"
         },
         {
             "blizzard_id": 191025684,
@@ -3108,9 +3108,9 @@
             "losses": 55,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/20/191025684-avatar.jpg"
         },
         {
             "blizzard_id": 161366338,
@@ -3122,9 +3122,9 @@
             "losses": 16,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/66/161366338-avatar.jpg"
         },
         {
             "blizzard_id": 192674401,
@@ -3136,9 +3136,9 @@
             "losses": 27,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/97/192674401-avatar.jpg"
         },
         {
             "blizzard_id": 218960369,
@@ -3150,9 +3150,9 @@
             "losses": 37,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/241/218960369-avatar.jpg"
         },
         {
             "blizzard_id": 219224762,
@@ -3164,9 +3164,9 @@
             "losses": 98,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 261,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/186/219224762-avatar.jpg"
         },
         {
             "blizzard_id": 218543065,
@@ -3178,9 +3178,9 @@
             "losses": 69,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/217/218543065-avatar.jpg"
         },
         {
             "blizzard_id": 87471013,
@@ -3192,9 +3192,9 @@
             "losses": 45,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/165/87471013-avatar.jpg"
         },
         {
             "blizzard_id": 189874972,
@@ -3206,9 +3206,9 @@
             "losses": 37,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/28/189874972-avatar.jpg"
         },
         {
             "blizzard_id": 122229092,
@@ -3220,9 +3220,9 @@
             "losses": 104,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/100/122229092-avatar.jpg"
         },
         {
             "blizzard_id": 85619386,
@@ -3234,9 +3234,9 @@
             "losses": 13,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/186/85619386-avatar.jpg"
         },
         {
             "blizzard_id": 192881746,
@@ -3248,9 +3248,9 @@
             "losses": 16,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/82/192881746-avatar.jpg"
         },
         {
             "blizzard_id": 97833871,
@@ -3262,9 +3262,9 @@
             "losses": 84,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/143/97833871-avatar.jpg"
         },
         {
             "blizzard_id": 192067883,
@@ -3276,9 +3276,9 @@
             "losses": 19,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/43/192067883-avatar.jpg"
         },
         {
             "blizzard_id": 192675897,
@@ -3290,9 +3290,9 @@
             "losses": 28,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 251,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/57/192675897-avatar.jpg"
         },
         {
             "blizzard_id": 174750969,
@@ -3304,9 +3304,9 @@
             "losses": 13,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/249/174750969-avatar.jpg"
         },
         {
             "blizzard_id": 177351211,
@@ -3318,9 +3318,9 @@
             "losses": 37,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 269,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/43/177351211-avatar.jpg"
         },
         {
             "blizzard_id": 165305488,
@@ -3332,9 +3332,9 @@
             "losses": 57,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/144/165305488-avatar.jpg"
         },
         {
             "blizzard_id": 192075485,
@@ -3346,9 +3346,9 @@
             "losses": 33,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 258,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/221/192075485-avatar.jpg"
         },
         {
             "blizzard_id": 183962258,
@@ -3360,9 +3360,9 @@
             "losses": 41,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/146/183962258-avatar.jpg"
         },
         {
             "blizzard_id": 97650559,
@@ -3374,9 +3374,9 @@
             "losses": 75,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/127/97650559-avatar.jpg"
         },
         {
             "blizzard_id": 223466077,
@@ -3388,9 +3388,9 @@
             "losses": 46,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 255,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/93/223466077-avatar.jpg"
         },
         {
             "blizzard_id": 110305015,
@@ -3402,9 +3402,9 @@
             "losses": 84,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 261,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/247/110305015-avatar.jpg"
         },
         {
             "blizzard_id": 194225296,
@@ -3416,9 +3416,9 @@
             "losses": 30,
             "faction_name": "ALLIANCE",
             "realm": "tol-barad",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 262,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/tol-barad/144/194225296-avatar.jpg"
         },
         {
             "blizzard_id": 122230088,
@@ -3430,9 +3430,9 @@
             "losses": 21,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/72/122230088-avatar.jpg"
         },
         {
             "blizzard_id": 157680172,
@@ -3444,9 +3444,9 @@
             "losses": 51,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/44/157680172-avatar.jpg"
         },
         {
             "blizzard_id": 203220659,
@@ -3458,9 +3458,9 @@
             "losses": 46,
             "faction_name": "ALLIANCE",
             "realm": "goldrinn",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 3,
+            "spec_id": 254,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/goldrinn/179/203220659-avatar.jpg"
         },
         {
             "blizzard_id": 191778631,
@@ -3472,9 +3472,9 @@
             "losses": 18,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/71/191778631-avatar.jpg"
         },
         {
             "blizzard_id": 191956178,
@@ -3486,9 +3486,9 @@
             "losses": 34,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 260,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/210/191956178-avatar.jpg"
         },
         {
             "blizzard_id": 178541807,
@@ -3500,9 +3500,9 @@
             "losses": 44,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/239/178541807-avatar.jpg"
         },
         {
             "blizzard_id": 221608924,
@@ -3514,9 +3514,9 @@
             "losses": 30,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 104,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/220/221608924-avatar.jpg"
         },
         {
             "blizzard_id": 85205765,
@@ -3528,9 +3528,9 @@
             "losses": 30,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/5/85205765-avatar.jpg"
         },
         {
             "blizzard_id": 222660662,
@@ -3542,9 +3542,9 @@
             "losses": 65,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/54/222660662-avatar.jpg"
         },
         {
             "blizzard_id": 218849188,
@@ -3556,9 +3556,9 @@
             "losses": 30,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 261,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/164/218849188-avatar.jpg"
         },
         {
             "blizzard_id": 215453451,
@@ -3570,9 +3570,9 @@
             "losses": 202,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/11/215453451-avatar.jpg"
         },
         {
             "blizzard_id": 186072971,
@@ -3584,9 +3584,9 @@
             "losses": 26,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 261,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/139/186072971-avatar.jpg"
         },
         {
             "blizzard_id": 143135223,
@@ -3598,9 +3598,9 @@
             "losses": 27,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 266,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/247/143135223-avatar.jpg"
         },
         {
             "blizzard_id": 89076547,
@@ -3612,9 +3612,9 @@
             "losses": 92,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/67/89076547-avatar.jpg"
         },
         {
             "blizzard_id": 221899306,
@@ -3626,9 +3626,9 @@
             "losses": 50,
             "faction_name": "HORDE",
             "realm": "tol-barad",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/tol-barad/42/221899306-avatar.jpg"
         },
         {
             "blizzard_id": 186122528,
@@ -3640,9 +3640,9 @@
             "losses": 14,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/32/186122528-avatar.jpg"
         },
         {
             "blizzard_id": 154739425,
@@ -3654,9 +3654,9 @@
             "losses": 28,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/225/154739425-avatar.jpg"
         },
         {
             "blizzard_id": 192706202,
@@ -3668,9 +3668,9 @@
             "losses": 30,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 262,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/154/192706202-avatar.jpg"
         },
         {
             "blizzard_id": 193173143,
@@ -3682,9 +3682,9 @@
             "losses": 14,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/151/193173143-avatar.jpg"
         },
         {
             "blizzard_id": 168996783,
@@ -3696,9 +3696,9 @@
             "losses": 15,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 260,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/175/168996783-avatar.jpg"
         },
         {
             "blizzard_id": 189955479,
@@ -3710,9 +3710,9 @@
             "losses": 9,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 259,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/151/189955479-avatar.jpg"
         },
         {
             "blizzard_id": 151858348,
@@ -3724,9 +3724,9 @@
             "losses": 16,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/172/151858348-avatar.jpg"
         },
         {
             "blizzard_id": 223425938,
@@ -3738,9 +3738,9 @@
             "losses": 14,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/146/223425938-avatar.jpg"
         },
         {
             "blizzard_id": 191892504,
@@ -3752,9 +3752,9 @@
             "losses": 61,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 267,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/24/191892504-avatar.jpg"
         },
         {
             "blizzard_id": 174266632,
@@ -3766,9 +3766,9 @@
             "losses": 42,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 251,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/8/174266632-avatar.jpg"
         },
         {
             "blizzard_id": 221281146,
@@ -3780,9 +3780,9 @@
             "losses": 72,
             "faction_name": "HORDE",
             "realm": "tol-barad",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/tol-barad/122/221281146-avatar.jpg"
         },
         {
             "blizzard_id": 172575744,
@@ -3794,9 +3794,9 @@
             "losses": 19,
             "faction_name": "HORDE",
             "realm": "tol-barad",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/tol-barad/0/172575744-avatar.jpg"
         },
         {
             "blizzard_id": 185450609,
@@ -3808,9 +3808,9 @@
             "losses": 36,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/113/185450609-avatar.jpg"
         },
         {
             "blizzard_id": 88948246,
@@ -3822,9 +3822,9 @@
             "losses": 15,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 257,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/22/88948246-avatar.jpg"
         },
         {
             "blizzard_id": 221911365,
@@ -3836,9 +3836,9 @@
             "losses": 64,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 262,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/69/221911365-avatar.jpg"
         },
         {
             "blizzard_id": 144560599,
@@ -3850,9 +3850,9 @@
             "losses": 12,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/215/144560599-avatar.jpg"
         },
         {
             "blizzard_id": 187522074,
@@ -3864,9 +3864,9 @@
             "losses": 45,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/26/187522074-avatar.jpg"
         },
         {
             "blizzard_id": 191071797,
@@ -3878,9 +3878,9 @@
             "losses": 49,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 105,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/53/191071797-avatar.jpg"
         },
         {
             "blizzard_id": 85732626,
@@ -3892,9 +3892,9 @@
             "losses": 25,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/18/85732626-avatar.jpg"
         },
         {
             "blizzard_id": 146222906,
@@ -3906,9 +3906,9 @@
             "losses": 183,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 102,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/58/146222906-avatar.jpg"
         },
         {
             "blizzard_id": 104907687,
@@ -3920,9 +3920,9 @@
             "losses": 19,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 261,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/167/104907687-avatar.jpg"
         },
         {
             "blizzard_id": 221735618,
@@ -3934,9 +3934,9 @@
             "losses": 33,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/194/221735618-avatar.jpg"
         },
         {
             "blizzard_id": 191750577,
@@ -3948,9 +3948,9 @@
             "losses": 26,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/177/191750577-avatar.jpg"
         },
         {
             "blizzard_id": 223143029,
@@ -3976,9 +3976,9 @@
             "losses": 10,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 71,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/81/187736145-avatar.jpg"
         },
         {
             "blizzard_id": 217858620,
@@ -3990,9 +3990,9 @@
             "losses": 14,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/60/217858620-avatar.jpg"
         },
         {
             "blizzard_id": 162877407,
@@ -4004,9 +4004,9 @@
             "losses": 16,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 262,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/223/162877407-avatar.jpg"
         },
         {
             "blizzard_id": 164337144,
@@ -4032,9 +4032,9 @@
             "losses": 53,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 11,
+            "spec_id": 103,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/106/189886826-avatar.jpg"
         },
         {
             "blizzard_id": 181403297,
@@ -4046,9 +4046,9 @@
             "losses": 15,
             "faction_name": "HORDE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/161/181403297-avatar.jpg"
         },
         {
             "blizzard_id": 96228003,
@@ -4060,9 +4060,9 @@
             "losses": 10,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/163/96228003-avatar.jpg"
         },
         {
             "blizzard_id": 151157077,
@@ -4074,9 +4074,9 @@
             "losses": 7,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 12,
+            "spec_id": 577,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/85/151157077-avatar.jpg"
         },
         {
             "blizzard_id": 175897639,
@@ -4088,9 +4088,9 @@
             "losses": 17,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 6,
+            "spec_id": 252,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/39/175897639-avatar.jpg"
         },
         {
             "blizzard_id": 189223948,
@@ -4102,9 +4102,9 @@
             "losses": 21,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/12/189223948-avatar.jpg"
         },
         {
             "blizzard_id": 188126170,
@@ -4116,9 +4116,9 @@
             "losses": 36,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/218/188126170-avatar.jpg"
         },
         {
             "blizzard_id": 222791188,
@@ -4130,9 +4130,9 @@
             "losses": 8,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/20/222791188-avatar.jpg"
         },
         {
             "blizzard_id": 193161307,
@@ -4144,9 +4144,9 @@
             "losses": 33,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/91/193161307-avatar.jpg"
         },
         {
             "blizzard_id": 194432379,
@@ -4158,9 +4158,9 @@
             "losses": 11,
             "faction_name": "HORDE",
             "realm": "goldrinn",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 9,
+            "spec_id": 265,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/goldrinn/123/194432379-avatar.jpg"
         },
         {
             "blizzard_id": 217066923,
@@ -4172,9 +4172,9 @@
             "losses": 43,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 1,
+            "spec_id": 72,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/171/217066923-avatar.jpg"
         },
         {
             "blizzard_id": 159313415,
@@ -4186,9 +4186,9 @@
             "losses": 16,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 7,
+            "spec_id": 264,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/7/159313415-avatar.jpg"
         },
         {
             "blizzard_id": 192010348,
@@ -4200,9 +4200,9 @@
             "losses": 47,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/108/192010348-avatar.jpg"
         },
         {
             "blizzard_id": 148107430,
@@ -4214,9 +4214,9 @@
             "losses": 116,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 5,
+            "spec_id": 256,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/166/148107430-avatar.jpg"
         },
         {
             "blizzard_id": 192754883,
@@ -4228,9 +4228,9 @@
             "losses": 15,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 259,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/195/192754883-avatar.jpg"
         },
         {
             "blizzard_id": 190486777,
@@ -4242,9 +4242,9 @@
             "losses": 10,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 2,
+            "spec_id": 70,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/249/190486777-avatar.jpg"
         },
         {
             "blizzard_id": 193153403,
@@ -4256,9 +4256,9 @@
             "losses": 15,
             "faction_name": "ALLIANCE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 4,
+            "spec_id": 259,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/123/193153403-avatar.jpg"
         },
         {
             "blizzard_id": 156412712,
@@ -4270,9 +4270,9 @@
             "losses": 27,
             "faction_name": "HORDE",
             "realm": "azralon",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 268,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/azralon/40/156412712-avatar.jpg"
         },
         {
             "blizzard_id": 150104599,
@@ -4284,9 +4284,9 @@
             "losses": 45,
             "faction_name": "ALLIANCE",
             "realm": "nemesis",
-            "class_id": null,
-            "spec_id": null,
-            "avatar_icon": null
+            "class_id": 10,
+            "spec_id": 270,
+            "avatar_icon": "https://render.worldofwarcraft.com/us/character/nemesis/23/150104599-avatar.jpg"
         }
     ]
 }
