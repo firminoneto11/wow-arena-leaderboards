@@ -95,7 +95,7 @@ class FetchWowMediaHandler:
 
                 continue
 
-            which_data = "profile data" if endpoint_data["which"] == "profile" else "media data"
+            which_data = f"{endpoint_data['which']} data"
             create_task(
                 self.logger.warning(
                     f"The server did not returned an OK response while fetching {which_data} for the "

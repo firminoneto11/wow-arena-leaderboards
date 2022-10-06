@@ -1,4 +1,5 @@
 from typing import Final
+from pathlib import Path
 
 
 # Endpoint to request access tokens
@@ -62,3 +63,6 @@ MAX_RETRIES: Final[int] = 5
 
 # Setting for the recurrence time of the fetching process (In seconds)
 UPDATE_EVERY: Final[int] = 15
+
+# Directory outside of src
+BASE_DIR = Path(__file__).resolve().parent.parent.parent

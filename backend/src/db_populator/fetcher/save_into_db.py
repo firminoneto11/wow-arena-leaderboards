@@ -2,8 +2,8 @@ from asyncio import sleep
 
 import pandas as pd
 
-from db_populator.fetcher.fetch_pvp_data import PvpDataType
 from db_populator.schemas import WowClassSchema, WowSpecsSchema
+from db_populator.fetcher.fetch_pvp_data import PvpDataType
 from shared import Logger
 
 

@@ -1,8 +1,8 @@
 from asyncio import to_thread as as_async
 import logging
 
-from .types import FileHandlersInterface
 from .filters import LogFilter
+from .handlers import Handler
 
 
 class Logger:
@@ -21,7 +21,7 @@ class Logger:
         *,
         name: str,
         fmt: logging.Formatter | None = None,
-        file_handlers: list[FileHandlersInterface] | None = None,
+        file_handlers: list[Handler] | None = None,
     ) -> None:
 
         # Creating the log format to be used. Format options can be found at:
@@ -37,16 +37,15 @@ class Logger:
 
         # Setting the file handlers of the logger. A file handler can have different levels set, that way is possible to have a file
         # handler that only writes to the error log file in case of errors for example.
-        if file_handlers is not None:
-            for handler in file_handlers:
-                _handler, _level, lock_log_level = handler["handler"], handler["level"], handler["lock_log_level"]
+        if file_handlers:
+            for fh in file_handlers:
 
-                if lock_log_level:
-                    _handler.addFilter(filter=LogFilter(level=_level))
+                if fh.log_only_one_level:
+                    fh.file_handler.addFilter(filter=LogFilter(level=fh.level))
 
-                _handler.setLevel(level=_level)
-                _handler.setFormatter(fmt=fmt)
-                self._logger.addHandler(_handler)
+                fh.file_handler.setLevel(level=fh.level)
+                fh.file_handler.setFormatter(fmt=fmt)
+                self._logger.addHandler(fh.file_handler)
 
         # Adding a stream handler to spit the logs out in the console as well
         stream_handler = logging.StreamHandler()

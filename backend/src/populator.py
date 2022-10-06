@@ -4,10 +4,8 @@ from db_populator import UPDATE_EVERY, fetch_blizzard_api, get_global_logger
 from shared import run_main, CouldNotExecuteError
 
 
-async def main():
+async def main(logger=get_global_logger()):
     """Entrypoint of this service."""
-
-    logger = get_global_logger()
 
     # Loop that will be running forever to keep the database up to date with blizzard's data
     while True:
