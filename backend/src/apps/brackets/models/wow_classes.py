@@ -1,21 +1,16 @@
 import orm as models
-from database.connection_layer import objects
-from datetime import datetime
+
+from .base import get_default_fields
+from database import engine
 
 
 class WowClasses(models.Model):
     tablename = "wow_classes"
-    registry = objects
+    registry = engine
     fields = {
-        "id": models.Integer(primary_key=True, index=True),
-        "blizz_id": models.Integer(),
-        "class_name": models.String(max_length=50),
-        "class_icon": models.Text(),
-        "updated_at": models.DateTime(default=lambda: datetime.now()),
+        **get_default_fields(),
+        # Required Fields
+        "blizzard_id": models.BigInteger(),
+        "name": models.String(max_length=50),
+        "icon_url": models.Text(),
     }
-
-
-async def create_wow_class(**kwargs):
-    blizz_id = kwargs.get("blizz_id")
-    defaults = {**kwargs, "updated_at": datetime.now()}
-    await WowClasses.objects.update_or_create(blizz_id=blizz_id, defaults=defaults)

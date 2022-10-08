@@ -1,11 +1,14 @@
 import orm as models
-from database.connection_layer import objects
+
+from .base import get_default_fields
+from database import engine
 
 
 class Sessions(models.Model):
     tablename = "sessions"
-    registry = objects
+    registry = engine
     fields = {
-        "id": models.Integer(primary_key=True, index=True),
+        **get_default_fields(),
+        # Required Fields
         "session": models.Integer(unique=True),
     }
