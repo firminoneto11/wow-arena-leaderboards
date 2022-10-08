@@ -8,6 +8,6 @@ def get_default_fields() -> dict:
         # PK
         "id": models.BigInteger(primary_key=True),
         # With defaults
-        "created_at": models.DateTime(default=lambda: datetime.utcnow()),
-        "updated_at": models.DateTime(default=lambda: datetime.utcnow()),
+        "created_at": models.DateTime(default=datetime.now),
+        "updated_at": models.DateTime(default=datetime.now),
     }
