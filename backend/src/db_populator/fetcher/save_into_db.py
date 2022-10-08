@@ -40,7 +40,8 @@ class ToDatabase:
         # Creating an engine to be used by threads
         await self._make_engine()
 
-        await gather(self.save_wow_classes(), self.save_wow_specs())
+        # await gather(self.save_wow_classes(), self.save_wow_specs())
+        await self.save_wow_classes()
 
         # Closing the engine
         await self._close_engine()
@@ -124,22 +125,59 @@ class ToDatabase:
             rows_affected = self.engine.execute(f"DELETE FROM {table} WHERE blizzard_id IN {ids};").rowcount
             self.logger.info(f"{rows_affected} rows deleted successfully from '{table}' table!")
 
+        sql = f"SELECT * FROM {original_table} ORDER BY blizzard_id ASC;"
         has_data: int = self.engine.execute(f"SELECT COUNT(*) FROM {original_table};").fetchone()[0]
 
         if has_data:
-            # TODO: Check the differences between whats in the database and what isn't
-            # TODO: Update the data that already is in the DB
-            # TODO: Create the data that isn't in the DB
-            # TODO: Delete the data that is in the DB but not in the DF
-            dfc = df.copy()
-            dfc["created_at"] = datetime.now()
-            dfc["updated_at"] = datetime.now()
-            dfc.to_sql(con=self.engine, method="multi", name=temp_table, if_exists="replace")
-            update(data_frame=dfc, tt=temp_table, ot=original_table)
+            # Saving the data from the api into a temporary table
+            df_copy = df.copy()
+            df_copy["created_at"] = datetime.now()
+            df_copy["updated_at"] = datetime.now()
+            df_copy.index += 1
+            df_copy.to_sql(con=self.engine, method="multi", name=temp_table, if_exists="replace", index="id")
+
+            df_copy.set_index("blizzard_id", inplace=True)
+            df_copy.drop(columns=["created_at", "updated_at"], inplace=True)
+
+            # Creating a DataFrame based on the data that already is saved on DB
+            in_db_already = (
+                pd.read_sql(sql=sql, con=self.engine, index_col="blizzard_id")
+                .drop(columns=["id", "created_at", "updated_at"])
+                .convert_dtypes()
+            )
+
+            # Creating a list of 'blizzard_id' that are in the api data, but aren't in the database, meaning that they'll have to be
+            # INSERTED
+            if to_create := [idx for idx in df_copy.index.tolist() if idx not in in_db_already.index.tolist()]:
+                ids = to_create.copy()
+                to_create = df_copy.loc[to_create]
+                to_create.reset_index(inplace=True)
+                create(data_frame=to_create, table=original_table)
+                df_copy.drop(labels=ids, inplace=True)
+
+            to_update = []
+            to_delete = []
+
+            # TODO: Test 'delete' function
+            # TODO: Create a DataFrame to be updated instead of indexes
+
+            for (blizzard_id, row) in in_db_already.iterrows():
+                series_in_db = row.convert_dtypes()
+                try:
+                    series_from_api: pd.Series = df_copy.loc[blizzard_id]
+                except:
+                    to_delete.append(int(blizzard_id))
+                else:
+                    if not series_from_api.equals(other=series_in_db):
+                        to_update.append(blizzard_id)
+
+            # if to_delete:
+            #     delete(ids=tuple(to_delete), table=original_table)
+
         else:
             create(data_frame=df.copy(), table=original_table)
 
-        return pd.read_sql(sql=f"SELECT * FROM {original_table};", con=self.engine, index_col="id")
+        return pd.read_sql(sql=sql, con=self.engine, index_col="id")
 
     async def save(self, df: pd.DataFrame, temp_table: str, original_table: str) -> pd.DataFrame:
         return await as_async(self._save, df=df, temp_table=temp_table, original_table=original_table)
