@@ -40,25 +40,20 @@ class ToDatabase:
         # Creating an engine to be used by threads
         await self._make_engine()
 
-        # await gather(self.save_wow_classes(), self.save_wow_specs())
-        await self.save_wow_classes()
+        await gather(self.save_wow_classes(), self.save_wow_specs())
 
         # Closing the engine
         await self._close_engine()
 
     async def _make_engine(self) -> None:
-        url = self.DB_URL
-
         def make_engine() -> Engine:
-            return create_engine(url=url)
+            return create_engine(url=self.DB_URL)
 
         self.engine = await as_async(make_engine)
 
     async def _close_engine(self) -> None:
-        engine = self.engine
-
         def close_engine() -> None:
-            return engine.dispose()
+            return self.engine.dispose()
 
         return await as_async(close_engine)
 
@@ -69,8 +64,8 @@ class ToDatabase:
             clause = f"{col} = tt.{col}"
             if idx:
                 clause = ", " + clause
-            if col != "created_at":
-                fields_to_update.append(clause)
+            fields_to_update.append(clause)
+        fields_to_update.append(f", updated_at = '{datetime.now().isoformat(sep=' ')}'")
         fields_to_update = "".join(fields_to_update)
         sql += fields_to_update
 
@@ -109,35 +104,32 @@ class ToDatabase:
 
             self.logger.sInfo(f"Created {rows_affected} rows successfully into '{table}' table!")
 
-        def update(data_frame: pd.DataFrame, tt: str, ot: str) -> None:
-            data_frame["updated_at"] = datetime.now().isoformat(sep=" ")
-            cols: list[str] = data_frame.columns.to_list()
+        def update(cols: list[str], tt: str, ot: str) -> None:
 
             self.logger.sInfo(f"Updating '{ot}' table...")
 
             update_sql = self._compile_update_sql(temp_table=tt, original_table=ot, cols=cols)
             rows_affected = self.engine.execute(update_sql).rowcount
 
-            self.logger.sInfo(f"'{ot}' table updated successfully on {rows_affected} rows!")
+            self.logger.sInfo(f"{rows_affected} rows updated successfully on '{ot}' table!")
 
         def delete(ids: tuple[int], table: str) -> None:
-            self.logger.info(f"Deleting {len(ids)} rows from '{table}' table...")
-            rows_affected = self.engine.execute(f"DELETE FROM {table} WHERE blizzard_id IN {ids};").rowcount
-            self.logger.info(f"{rows_affected} rows deleted successfully from '{table}' table!")
+
+            self.logger.sInfo(f"Deleting {len(ids)} rows from '{table}' table...")
+
+            delete_sql = f"DELETE FROM {table} WHERE blizzard_id IN {ids};"
+            rows_affected = self.engine.execute(delete_sql).rowcount
+
+            self.logger.sInfo(f"{rows_affected} rows deleted successfully from '{table}' table!")
 
         sql = f"SELECT * FROM {original_table} ORDER BY blizzard_id ASC;"
-        has_data: int = self.engine.execute(f"SELECT COUNT(*) FROM {original_table};").fetchone()[0]
 
-        if has_data:
+        if self.engine.execute(f"SELECT COUNT(*) FROM {original_table};").fetchone()[0]:
             # Saving the data from the api into a temporary table
             df_copy = df.copy()
-            df_copy["created_at"] = datetime.now()
-            df_copy["updated_at"] = datetime.now()
             df_copy.index += 1
             df_copy.to_sql(con=self.engine, method="multi", name=temp_table, if_exists="replace", index="id")
-
             df_copy.set_index("blizzard_id", inplace=True)
-            df_copy.drop(columns=["created_at", "updated_at"], inplace=True)
 
             # Creating a DataFrame based on the data that already is saved on DB
             in_db_already = (
@@ -154,25 +146,34 @@ class ToDatabase:
                 to_create.reset_index(inplace=True)
                 create(data_frame=to_create, table=original_table)
                 df_copy.drop(labels=ids, inplace=True)
+                del to_create
+                del ids
 
-            to_update = []
+            has_to_update = False
             to_delete = []
 
-            # TODO: Test 'delete' function
-            # TODO: Create a DataFrame to be updated instead of indexes
+            # df_copy.drop(labels=[1, 2, 3], inplace=True)  # Test 'delete()'
+            # df_copy["name"] = "Invoker"  # Test 'update()'
 
             for (blizzard_id, row) in in_db_already.iterrows():
-                series_in_db = row.convert_dtypes()
                 try:
                     series_from_api: pd.Series = df_copy.loc[blizzard_id]
-                except:
+                except KeyError:
                     to_delete.append(int(blizzard_id))
-                else:
-                    if not series_from_api.equals(other=series_in_db):
-                        to_update.append(blizzard_id)
+                    continue
 
-            # if to_delete:
-            #     delete(ids=tuple(to_delete), table=original_table)
+                if not has_to_update:
+                    series_in_db = row.convert_dtypes()
+                    if not series_from_api.equals(other=series_in_db):
+                        has_to_update = True
+
+            # If there's at least one of them changed, all rows will be updated!
+            if has_to_update:
+                cols = df_copy.reset_index().columns.to_list()
+                update(cols=cols, ot=original_table, tt=temp_table)
+
+            if to_delete:
+                delete(ids=tuple(to_delete), table=original_table)
 
         else:
             create(data_frame=df.copy(), table=original_table)
