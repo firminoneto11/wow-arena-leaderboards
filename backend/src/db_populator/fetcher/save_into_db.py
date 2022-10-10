@@ -117,7 +117,11 @@ class ToDatabase:
 
             self.logger.sInfo(f"Deleting {len(ids)} rows from '{table}' table...")
 
-            delete_sql = f"DELETE FROM {table} WHERE blizzard_id IN {ids};"
+            if len(ids) > 1:
+                delete_sql = f"DELETE FROM {table} WHERE blizzard_id IN {ids};"
+            else:
+                delete_sql = f"DELETE FROM {table} WHERE blizzard_id = {ids[0]};"
+
             rows_affected = self.engine.execute(delete_sql).rowcount
 
             self.logger.sInfo(f"{rows_affected} rows deleted successfully from '{table}' table!")
