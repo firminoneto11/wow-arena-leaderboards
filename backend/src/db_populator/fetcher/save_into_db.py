@@ -156,9 +156,6 @@ class ToDatabase:
             has_to_update = False
             to_delete = []
 
-            # df_copy.drop(labels=[1, 2, 3], inplace=True)  # Test 'delete()'
-            # df_copy["name"] = "Invoker"  # Test 'update()'
-
             for (blizzard_id, row) in in_db_already.iterrows():
                 try:
                     series_from_api: pd.Series = df_copy.loc[blizzard_id]
@@ -178,6 +175,8 @@ class ToDatabase:
 
             if to_delete:
                 delete(ids=tuple(to_delete), table=original_table)
+
+            del to_delete
 
         else:
             create(data_frame=df.copy(), table=original_table)

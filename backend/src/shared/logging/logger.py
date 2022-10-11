@@ -17,11 +17,7 @@ class Logger:
     _logger: logging.Logger
 
     def __init__(
-        self,
-        *,
-        name: str,
-        fmt: logging.Formatter | None = None,
-        file_handlers: list[Handler] | None = None,
+        self, *, name: str, fmt: logging.Formatter | None = None, file_handlers: list[Handler] | None = None
     ) -> None:
 
         # Creating the log format to be used. Format options can be found at:

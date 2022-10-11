@@ -32,8 +32,8 @@ class Runner:
         self.event_loop.run_forever()
 
     def close_loop(self) -> None:
-        set_event_loop(loop=None)
         self.event_loop.close()
+        set_event_loop(loop=None)
         self.logger.sInfo("Successfully shutdown the service.")
 
     def exception_handler(self, context: dict) -> None:
