@@ -1,1 +1,2 @@
-from .connection_layer import engine
+from .connection_layer import engine, db
+from .create_default_data import create_default_data

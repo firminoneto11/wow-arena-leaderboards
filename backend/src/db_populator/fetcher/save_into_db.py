@@ -1,7 +1,6 @@
 from asyncio import create_task, gather, to_thread as as_async
 from datetime import datetime
 from typing import Final
-from enum import Enum
 
 from decouple import config as get_env_var
 from sqlalchemy import create_engine
@@ -10,13 +9,8 @@ import pandas as pd
 
 from db_populator.schemas import WowClassSchema, WowSpecsSchema, PvpDataSchema
 from db_populator.fetcher.fetch_pvp_data import PvpDataType
+from apps.brackets.models.brackets import BracketsEnum
 from shared import Logger
-
-
-class BracketsEnum(Enum):
-    _2s = "2s"
-    _3s = "3s"
-    rbg = "rbg"
 
 
 class ToDatabase:
@@ -26,7 +20,7 @@ class ToDatabase:
     pvp_data: PvpDataType
     wow_classes: list[WowClassSchema]
     wow_specs: list[WowSpecsSchema]
-    DB_URL: Final[str] = get_env_var("DATABASE_URL").replace("asyncpg", "psycopg2")
+    DB_URL: Final[str] = get_env_var("DATABASE_URL").replace("{driver}", "+psycopg2")
 
     def __init__(
         self, logger: Logger, pvp_data: PvpDataType, wow_classes: list[WowClassSchema], wow_specs: list[WowSpecsSchema]
