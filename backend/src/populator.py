@@ -11,7 +11,7 @@ async def main(logger=get_global_logger()):
     while True:
         try:
             await fetch_blizzard_api(logger=logger)
-        except CouldNotExecuteError as err:
+        except (CouldNotExecuteError, AssertionError) as err:
             create_task(
                 logger.critical(
                     f"The execution of the '{fetch_blizzard_api.__name__}' coroutine could not finish. Details:"

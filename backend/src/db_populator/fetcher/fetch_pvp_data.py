@@ -19,17 +19,17 @@ class FetchHandler:
 
     logger: Logger
     access_token: str
+    latest_session: int
+    brackets: list[str]
 
-    def __init__(self, logger: Logger, access_token: str) -> None:
+    def __init__(self, logger: Logger, access_token: str, latest_session: int, brackets: list[str]) -> None:
         self.logger = logger
         self.access_token = access_token
+        self.latest_session = latest_session
+        self.brackets = brackets
 
     async def __call__(self) -> PvpDataType:
-        _2s, _3s, rbg = await gather(
-            self.fetch_data(session=33, bracket="2v2"),
-            self.fetch_data(session=33, bracket="3v3"),
-            self.fetch_data(session=33, bracket="rbg"),
-        )
+        _2s, _3s, rbg = await gather(*[self.fetch_data(bracket=bracket) for bracket in self.brackets])
 
         return {
             "_2s": self.clean_data(raw_data=_2s),
@@ -37,16 +37,16 @@ class FetchHandler:
             "rbg": self.clean_data(raw_data=rbg),
         }
 
-    def refactor_endpoint(self, session: int, bracket: str) -> str:
+    def refactor_endpoint(self, bracket: str) -> str:
         return (
-            PVP_RATING_API.replace("{session}", str(session))
+            PVP_RATING_API.replace("{session}", str(self.latest_session))
             .replace("{bracket}", bracket)
             .replace("{accessToken}", self.access_token)
         )
 
-    async def fetch_data(self, session: int, bracket: str) -> list[dict]:
+    async def fetch_data(self, bracket: str) -> list[dict]:
 
-        endpoint = self.refactor_endpoint(session=session, bracket=bracket)
+        endpoint = self.refactor_endpoint(bracket=bracket)
 
         async with AsyncClient(timeout=TIMEOUT) as client:
 
@@ -91,9 +91,9 @@ class FetchHandler:
 
 
 @re_try(MAX_RETRIES)
-async def fetch_pvp_data(logger: Logger, access_token: str) -> PvpDataType:
+async def fetch_pvp_data(logger: Logger, access_token: str, latest_session: int, brackets: list[str]) -> PvpDataType:
     await logger.info("2: Fetching wow pvp data...")
-    handler = FetchHandler(logger=logger, access_token=access_token)
+    handler = FetchHandler(logger=logger, access_token=access_token, latest_session=latest_session, brackets=brackets)
     response = await handler()
     await logger.info("Wow pvp data fetched successfully!")
     return response

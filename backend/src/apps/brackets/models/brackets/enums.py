@@ -2,6 +2,6 @@ from enum import Enum
 
 
 class BracketsEnum(Enum):
-    _2s = "2s"
-    _3s = "3s"
+    _2s = "2v2"
+    _3s = "3v3"
     rbg = "rbg"

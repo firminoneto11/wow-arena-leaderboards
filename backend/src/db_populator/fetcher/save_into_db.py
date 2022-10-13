@@ -9,7 +9,7 @@ import pandas as pd
 
 from db_populator.schemas import WowClassSchema, WowSpecsSchema, PvpDataSchema
 from db_populator.fetcher.fetch_pvp_data import PvpDataType
-from apps.brackets.models.brackets import BracketsEnum
+from apps.brackets.models import BracketsEnum
 from shared import Logger
 
 
@@ -205,6 +205,9 @@ class ToDatabase:
         await self.save(df=df, temp_table="wow_specs_temp", original_table="wow_specs")
 
     async def save_pvp_data(self) -> None:
+
+        # TODO: A bug will arise when accessing 'BracketsEnum[bracket].value'
+
         df = {prop: [] for prop in PvpDataSchema.props()}
         df["bracket"] = []
 
