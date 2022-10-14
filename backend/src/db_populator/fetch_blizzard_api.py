@@ -3,7 +3,7 @@ from asyncio import gather, sleep, create_task
 from shared import Logger
 from .constants import DELAY
 from .fetcher import (
-    get_config_data,
+    get_latest_session,
     fetch_token,
     fetch_pvp_data,
     fetch_wow_classes,
@@ -18,18 +18,14 @@ from .utils import dump_data, read_data
 
 async def fetch_blizzard_api(logger: Logger) -> None:
 
-    latest_session, brackets = await get_config_data()
-
-    brackets.sort()
+    latest_session = await get_latest_session()
 
     # Fetching the access token in order to make the other requests
     # response = await fetch_token(logger=logger)
 
     # Fetching pvp data, wow classes's data and wow specs's data concurrently
     # pvp_data, wow_classes, wow_specs = await gather(
-    #     fetch_pvp_data(
-    #         logger=logger, access_token=response.access_token, latest_session=latest_session, brackets=brackets
-    #     ),
+    #     fetch_pvp_data(logger=logger, access_token=response.access_token, latest_session=latest_session),
     #     fetch_wow_classes(logger=logger, access_token=response.access_token),
     #     fetch_wow_specs(logger=logger, access_token=response.access_token),
     # )
@@ -44,4 +40,4 @@ async def fetch_blizzard_api(logger: Logger) -> None:
     # Fetching the wow players's media
     # pvp_data = await fetch_wow_media(logger=logger, access_token=response.access_token, pvp_data=pvp_data)
 
-    create_task(save(logger=logger, pvp_data=pvp_data, wow_classes=wow_classes, wow_specs=wow_specs))
+    # create_task(save(logger=logger, pvp_data=pvp_data, wow_classes=wow_classes, wow_specs=wow_specs))

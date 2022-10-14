@@ -1,43 +1,8 @@
 [
     {
-        "blizzard_id": 1,
-        "name": "Warrior",
-        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_warrior.jpg"
-    },
-    {
-        "blizzard_id": 2,
-        "name": "Paladin",
-        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_paladin.jpg"
-    },
-    {
         "blizzard_id": 3,
         "name": "Hunter",
         "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_hunter.jpg"
-    },
-    {
-        "blizzard_id": 4,
-        "name": "Rogue",
-        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_rogue.jpg"
-    },
-    {
-        "blizzard_id": 5,
-        "name": "Priest",
-        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_priest.jpg"
-    },
-    {
-        "blizzard_id": 6,
-        "name": "Death Knight",
-        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_deathknight_classicon.jpg"
-    },
-    {
-        "blizzard_id": 7,
-        "name": "Shaman",
-        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_shaman.jpg"
-    },
-    {
-        "blizzard_id": 8,
-        "name": "Mage",
-        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_mage.jpg"
     },
     {
         "blizzard_id": 9,
@@ -45,18 +10,53 @@
         "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_warlock.jpg"
     },
     {
-        "blizzard_id": 10,
-        "name": "Monk",
-        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_monk.jpg"
-    },
-    {
         "blizzard_id": 11,
         "name": "Druid",
         "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_druid.jpg"
     },
     {
+        "blizzard_id": 8,
+        "name": "Mage",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_mage.jpg"
+    },
+    {
+        "blizzard_id": 6,
+        "name": "Death Knight",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/spell_deathknight_classicon.jpg"
+    },
+    {
         "blizzard_id": 12,
         "name": "Demon Hunter",
         "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_demonhunter.jpg"
+    },
+    {
+        "blizzard_id": 10,
+        "name": "Monk",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_monk.jpg"
+    },
+    {
+        "blizzard_id": 5,
+        "name": "Priest",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_priest.jpg"
+    },
+    {
+        "blizzard_id": 2,
+        "name": "Paladin",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_paladin.jpg"
+    },
+    {
+        "blizzard_id": 4,
+        "name": "Rogue",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_rogue.jpg"
+    },
+    {
+        "blizzard_id": 7,
+        "name": "Shaman",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_shaman.jpg"
+    },
+    {
+        "blizzard_id": 1,
+        "name": "Warrior",
+        "icon_url": "https://render.worldofwarcraft.com/us/icons/56/classicon_warrior.jpg"
     }
 ]

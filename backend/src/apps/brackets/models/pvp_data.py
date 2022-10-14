@@ -1,7 +1,6 @@
 import orm as models
 
 from .base import get_default_fields
-from .brackets import Brackets
 from .sessions import Sessions
 from .wow_classes import WowClasses
 from .wow_specs import WowSpecs
@@ -23,10 +22,10 @@ class PvpData(models.Model):
         "losses": models.Integer(),
         "faction_name": models.String(max_length=50),
         "realm": models.String(max_length=50),
+        "bracket": models.String(max_length=10),
         # Optional Fields
         "avatar_icon": models.Text(allow_blank=True),
         # FK's - Required
-        "bracket": models.ForeignKey(to=Brackets, on_delete=models.CASCADE),
         "session": models.ForeignKey(to=Sessions, on_delete=models.CASCADE),
         # Fk's - Optionals
         "wow_class": models.ForeignKey(to=WowClasses, allow_null=True),

@@ -4,6 +4,7 @@ from asyncio import gather
 from httpx import AsyncClient, ConnectError, ConnectTimeout
 
 from db_populator.constants import TIMEOUT, BRAZILIAN_REALMS, PVP_RATING_API, MAX_RETRIES
+from apps.brackets.models import BracketsEnum
 from shared import Logger, re_try
 from ..schemas import PvpDataSchema
 from ..exceptions import CouldNotFetchError
@@ -20,16 +21,18 @@ class FetchHandler:
     logger: Logger
     access_token: str
     latest_session: int
-    brackets: list[str]
 
-    def __init__(self, logger: Logger, access_token: str, latest_session: int, brackets: list[str]) -> None:
+    def __init__(self, logger: Logger, access_token: str, latest_session: int) -> None:
         self.logger = logger
         self.access_token = access_token
         self.latest_session = latest_session
-        self.brackets = brackets
 
     async def __call__(self) -> PvpDataType:
-        _2s, _3s, rbg = await gather(*[self.fetch_data(bracket=bracket) for bracket in self.brackets])
+
+        brackets: list[str] = [BracketsEnum[el].value for el in BracketsEnum._member_names_]
+        brackets.sort()
+
+        _2s, _3s, rbg = await gather(*[self.fetch_data(bracket=bracket) for bracket in brackets])
 
         return {
             "_2s": self.clean_data(raw_data=_2s),
@@ -91,9 +94,9 @@ class FetchHandler:
 
 
 @re_try(MAX_RETRIES)
-async def fetch_pvp_data(logger: Logger, access_token: str, latest_session: int, brackets: list[str]) -> PvpDataType:
+async def fetch_pvp_data(logger: Logger, access_token: str, latest_session: int) -> PvpDataType:
     await logger.info("2: Fetching wow pvp data...")
-    handler = FetchHandler(logger=logger, access_token=access_token, latest_session=latest_session, brackets=brackets)
+    handler = FetchHandler(logger=logger, access_token=access_token, latest_session=latest_session)
     response = await handler()
     await logger.info("Wow pvp data fetched successfully!")
     return response
