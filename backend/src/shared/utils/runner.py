@@ -119,7 +119,7 @@ class Runner:
         # TODO: Test in Linux environments
 
         def _signal_callback(sig: signals_module.Signals):
-            self.event_loop.run_until_complete(self.shutdown_handler(signal=sig))
+            return self.event_loop.run_until_complete(self.shutdown_handler(signal=sig))
 
         # Collecting the signals that will be used
         SHUTDOWN_SIGNALS: Final[tuple[signals_module.Signals]] = (signals_module.SIGTERM, signals_module.SIGINT)
