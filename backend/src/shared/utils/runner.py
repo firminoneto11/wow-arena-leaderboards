@@ -1,9 +1,8 @@
 from asyncio import all_tasks, current_task, get_event_loop, AbstractEventLoop, gather
 from asyncio.events import set_event_loop
 from typing import Coroutine, Final
+import signal as signals_module
 from platform import system
-from signal import Signals
-import signal
 
 from decouple import config as get_env_var
 
@@ -17,6 +16,7 @@ class Runner:
     event_loop: AbstractEventLoop
     CUR_OS: Final[str] = system().upper()
     WINDOWS: Final[str] = "WINDOWS"
+    IS_DEV: Final[bool] = get_env_var("IS_DEV", default=True, cast=bool)
 
     def __init__(self, main_coroutine: Coroutine) -> None:
         self.main_coroutine = main_coroutine
@@ -63,7 +63,7 @@ class Runner:
         # Stopping the event loop
         self.event_loop.stop()
 
-    async def shutdown_handler(self, signal: Signals | None = None, by_exception: bool = False) -> None:
+    async def shutdown_handler(self, signal: signals_module.Signals | None = None, by_exception: bool = False) -> None:
 
         msg = "Gathering tasks to cancel and shutting down..."
 
@@ -73,7 +73,7 @@ class Runner:
         await self.logger.info(msg)
 
         # Collecting the remaining tasks
-        remaining_tasks = [t for t in all_tasks(loop=self.event_loop) if t is not current_task()]
+        remaining_tasks = [t for t in all_tasks(loop=self.event_loop) if t is not current_task(self.event_loop)]
 
         if not remaining_tasks:
             return await self.finish_loop()
@@ -104,45 +104,63 @@ class Runner:
 
         return await self.finish_loop()
 
+    def set_loop_configs(self) -> None:
+
+        # Setting the event's loop debug level
+        if self.IS_DEV:
+            self.event_loop.set_debug(enabled=True)
+            return
+
+        # Setting the event's loop global exception handler (Avoiding massive crashes on production)
+        self.event_loop.set_exception_handler(handler=self.exception_handler)
+
+    def set_signal_handlers(self) -> None:
+
+        # TODO: Test in Linux environments
+
+        def _signal_callback(sig: signals_module.Signals):
+            self.event_loop.run_until_complete(self.shutdown_handler(signal=sig))
+
+        # Collecting the signals that will be used
+        SHUTDOWN_SIGNALS: Final[tuple[signals_module.Signals]] = (signals_module.SIGTERM, signals_module.SIGINT)
+
+        # Adding a signal handler for each signal
+        for signal in SHUTDOWN_SIGNALS:
+            self.event_loop.add_signal_handler(
+                sig=signal,
+                callback=_signal_callback
+                # callback=lambda sig=signal: self.event_loop.run_until_complete(self.shutdown_handler(signal=sig)),
+            )
+
     def __call__(self) -> None:
 
         # Creating a new event loop
         self.event_loop = get_event_loop()
 
-        IS_DEV: bool = get_env_var("IS_DEV", default=True, cast=bool)
-        if IS_DEV:
-            # Setting the event's loop debug level
-            self.event_loop.set_debug(enabled=True)
-        else:
-            # Setting the event's loop global exception handler (Avoiding massive crashes on production)
-            self.event_loop.set_exception_handler(handler=self.exception_handler)
-
-        # Adding a signal handler for each signal (Only for non Windows platforms)
-        if self.CUR_OS != self.WINDOWS:
-
-            # TODO: Test in Linux environments
-
-            # Collecting the signals that will be used
-            SHUTDOWN_SIGNALS: Final[tuple[Signals]] = (signal.SIGTERM, signal.SIGINT)
-
-            for _signal in SHUTDOWN_SIGNALS:
-                self.event_loop.add_signal_handler(
-                    sig=_signal,
-                    callback=lambda sig=_signal: self.event_loop.run_until_complete(self.shutdown_handler(signal=sig)),
-                )
-
         if self.CUR_OS == self.WINDOWS:
+
+            # Setting some configurations on the loop
+            self.set_loop_configs()
+
+            # Running it
             try:
                 self.start_loop()
             except KeyboardInterrupt:
                 self.event_loop.run_until_complete(self.shutdown_handler())
             finally:
                 self.close_loop()
-        else:
-            try:
-                self.start_loop()
-            finally:
-                self.close_loop()
+
+            return
+
+        # Setting some configurations on the loop
+        self.set_loop_configs()
+        self.set_signal_handlers()
+
+        # Running it
+        try:
+            self.start_loop()
+        finally:
+            self.close_loop()
 
 
 def run_main(coroutine: Coroutine) -> None:
