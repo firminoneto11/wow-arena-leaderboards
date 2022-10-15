@@ -24,7 +24,7 @@ class Logger:
         # https://docs.python.org/3/library/logging.html#logrecord-attributes
         if fmt is None:
             fmt = logging.Formatter(
-                fmt="%(levelname)s - %(name)s - %(asctime)s,%(msecs)d - %(message)s", datefmt="%d/%m/%Y %H:%M:%S"
+                fmt="[%(levelname)s] [%(name)s] [%(asctime)s,%(msecs)d] -> %(message)s", datefmt="%d/%m/%Y %H:%M:%S"
             )
 
         # Creating or getting a logger object, and setting its level
