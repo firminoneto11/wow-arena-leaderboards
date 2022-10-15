@@ -1,35 +1,25 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
+import { Fragment } from 'react';
+
+import { Table } from './components/Table';
+
 import './App.css';
 
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Fragment>
+      <div className='flex justify-evenly'>
+        <ul className="menu menu-horizontal bg-base-100 rounded-box p-2">
+          <li><button className={`btn btn-primary rounded box btn-wide`}>2s</button></li>
+          <li><button className={`btn rounded box btn-wide`}>3s</button></li>
+          <li><button className={`btn btn-primary rounded box btn-wide`}>RBG</button></li>
+        </ul>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div className="artboard artboard-horizontal phone-6" style={{ margin: 'auto' }}>
+        <Table />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
-}
+    </Fragment >
+  );
 
-export default App
+}
