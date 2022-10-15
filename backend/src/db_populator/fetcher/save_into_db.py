@@ -8,8 +8,8 @@ from sqlalchemy.engine import Engine
 import pandas as pd
 
 from db_populator.schemas import WowClassSchema, WowSpecsSchema, PvpDataSchema
+from apps.brackets.models import BracketsEnum, WowClasses, WowSpecs
 from db_populator.fetcher.fetch_pvp_data import PvpDataType
-from apps.brackets.models import BracketsEnum
 from shared import Logger
 
 
@@ -18,17 +18,24 @@ class ToDatabase:
     engine: Engine
     logger: Logger
     pvp_data: PvpDataType
+    latest_session_id: int
     wow_classes: list[WowClassSchema]
     wow_specs: list[WowSpecsSchema]
     DB_URL: Final[str] = get_env_var("DATABASE_URL").replace("{driver}", "+psycopg2")
 
     def __init__(
-        self, logger: Logger, pvp_data: PvpDataType, wow_classes: list[WowClassSchema], wow_specs: list[WowSpecsSchema]
+        self,
+        logger: Logger,
+        pvp_data: PvpDataType,
+        wow_classes: list[WowClassSchema],
+        wow_specs: list[WowSpecsSchema],
+        latest_session_id: int,
     ) -> None:
         self.logger = logger
         self.pvp_data = pvp_data
         self.wow_classes = wow_classes
         self.wow_specs = wow_specs
+        self.latest_session_id = latest_session_id
 
     async def __call__(self) -> None:
         # Creating an engine to be used by threads
@@ -190,7 +197,7 @@ class ToDatabase:
 
         df = pd.DataFrame(data=df).convert_dtypes()
 
-        await self.save(df=df, temp_table="wow_classes_temp", original_table="wow_classes")
+        await self.save(df=df, temp_table=WowClasses.tablename + "_temp", original_table=WowClasses.tablename)
 
     async def save_wow_specs(self) -> None:
         df = {prop: [] for prop in WowSpecsSchema.props()}
@@ -202,7 +209,7 @@ class ToDatabase:
 
         df = pd.DataFrame(data=df).convert_dtypes()
 
-        await self.save(df=df, temp_table="wow_specs_temp", original_table="wow_specs")
+        await self.save(df=df, temp_table=WowSpecs.tablename + "_temp", original_table=WowSpecs.tablename)
 
     async def save_pvp_data(self) -> None:
 
@@ -226,9 +233,19 @@ class ToDatabase:
 
 
 async def save(
-    logger: Logger, pvp_data: PvpDataType, wow_classes: list[WowClassSchema], wow_specs: list[WowSpecsSchema]
+    logger: Logger,
+    pvp_data: PvpDataType,
+    wow_classes: list[WowClassSchema],
+    wow_specs: list[WowSpecsSchema],
+    latest_session_id: int,
 ) -> None:
     create_task(logger.info("Saving data into database..."))
-    handler = ToDatabase(logger=logger, pvp_data=pvp_data, wow_classes=wow_classes, wow_specs=wow_specs)
+    handler = ToDatabase(
+        logger=logger,
+        pvp_data=pvp_data,
+        wow_classes=wow_classes,
+        wow_specs=wow_specs,
+        latest_session_id=latest_session_id,
+    )
     await handler()
     await logger.info("Data saved successfully!")

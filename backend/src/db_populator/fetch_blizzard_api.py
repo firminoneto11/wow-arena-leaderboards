@@ -18,7 +18,7 @@ from .utils import dump_data, read_data
 
 async def fetch_blizzard_api(logger: Logger) -> None:
 
-    latest_session = await get_latest_session()
+    latest_session_id, latest_session = await get_latest_session()
 
     # Fetching the access token in order to make the other requests
     # response = await fetch_token(logger=logger)
@@ -40,4 +40,12 @@ async def fetch_blizzard_api(logger: Logger) -> None:
     # Fetching the wow players's media
     # pvp_data = await fetch_wow_media(logger=logger, access_token=response.access_token, pvp_data=pvp_data)
 
-    # create_task(save(logger=logger, pvp_data=pvp_data, wow_classes=wow_classes, wow_specs=wow_specs))
+    create_task(
+        save(
+            logger=logger,
+            pvp_data=pvp_data,
+            wow_classes=wow_classes,
+            wow_specs=wow_specs,
+            latest_session_id=latest_session_id,
+        )
+    )
