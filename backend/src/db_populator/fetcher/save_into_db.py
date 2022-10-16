@@ -9,7 +9,6 @@ import pandas as pd
 
 from db_populator.schemas import WowClassSchema, WowSpecsSchema, PvpDataSchema
 from apps.brackets.models import BracketsEnum, WowClasses, WowSpecs
-from db_populator.fetcher.fetch_pvp_data import PvpDataType
 from shared import Logger
 
 
@@ -17,8 +16,8 @@ class ToDatabase:
 
     engine: Engine
     logger: Logger
-    pvp_data: PvpDataType
     latest_session_id: int
+    pvp_data: list[PvpDataSchema]
     wow_classes: list[WowClassSchema]
     wow_specs: list[WowSpecsSchema]
     DB_URL: Final[str] = get_env_var("DATABASE_URL").replace("{driver}", "+psycopg2")
@@ -26,7 +25,7 @@ class ToDatabase:
     def __init__(
         self,
         logger: Logger,
-        pvp_data: PvpDataType,
+        pvp_data: list[PvpDataSchema],
         wow_classes: list[WowClassSchema],
         wow_specs: list[WowSpecsSchema],
         latest_session_id: int,
@@ -41,7 +40,13 @@ class ToDatabase:
         # Creating an engine to be used by threads
         await self._make_engine()
 
-        await gather(self.save_wow_classes(), self.save_wow_specs())
+        # await gather(
+        #     self.save_wow_classes(),
+        #     self.save_wow_specs(),
+        #     self.save_pvp_data(),
+        # )
+
+        await self.save_pvp_data()
 
         # Closing the engine
         await self._close_engine()
@@ -213,7 +218,7 @@ class ToDatabase:
 
     async def save_pvp_data(self) -> None:
 
-        # TODO: A bug will arise when accessing 'BracketsEnum[bracket].value'
+        # TODO: Fix the method
 
         df = {prop: [] for prop in PvpDataSchema.props()}
         df["bracket"] = []
@@ -229,12 +234,14 @@ class ToDatabase:
 
         df = pd.DataFrame(data=df).convert_dtypes()
 
+        print(df)
+
         # await self.save(df=df, temp_table="pvp_data_temp")
 
 
 async def save(
     logger: Logger,
-    pvp_data: PvpDataType,
+    pvp_data: list[PvpDataSchema],
     wow_classes: list[WowClassSchema],
     wow_specs: list[WowSpecsSchema],
     latest_session_id: int,

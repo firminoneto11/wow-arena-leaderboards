@@ -11,6 +11,8 @@ class PvpDataSchema(BaseSchema):
     losses: int
     faction_name: str
     realm: str
-    class_id: int | None
-    spec_id: int | None
+    bracket: str
     avatar_icon: str | None
+    session: int | None
+    wow_class: int | None
+    wow_spec: int | None

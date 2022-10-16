@@ -1,4 +1,4 @@
-from .config_data import get_latest_session
+from .utils import get_latest_session
 
 from .fetch_api_token import fetch_token
 

@@ -5,16 +5,17 @@ from os import mkdir
 import json
 
 from ..schemas import PvpDataSchema, WowClassSchema, WowSpecsSchema
-from ..fetcher.fetch_pvp_data import PvpDataType
 from ..constants import BASE_DIR
 
 
-async def dump_data(pvp_data: PvpDataType, wow_classes: list[WowClassSchema], wow_specs: list[WowSpecsSchema]) -> None:
+async def dump_data(
+    pvp_data: list[PvpDataSchema], wow_classes: list[WowClassSchema], wow_specs: list[WowSpecsSchema]
+) -> None:
     """Dumps data to a json file"""
 
     def write_to_json(data, filename: Path) -> None:
         with open(file=filename, mode="w", encoding="utf-8") as f:
-            f.write(json.dumps(data))
+            f.write(json.dumps(data, indent=4))
 
     def make_dir(directory: Path) -> None:
         if not exists(directory):
@@ -22,11 +23,7 @@ async def dump_data(pvp_data: PvpDataType, wow_classes: list[WowClassSchema], wo
 
     _wow_classes = [el.dict() for el in wow_classes]
     _wow_specs = [el.dict() for el in wow_specs]
-    _pvp_data = {
-        "_2s": [el.dict() for el in pvp_data["_2s"]],
-        "_3s": [el.dict() for el in pvp_data["_3s"]],
-        "rbg": [el.dict() for el in pvp_data["rbg"]],
-    }
+    _pvp_data = [el.dict() for el in pvp_data]
 
     JSON_DIR = BASE_DIR / "json_data"
 
@@ -38,32 +35,28 @@ async def dump_data(pvp_data: PvpDataType, wow_classes: list[WowClassSchema], wo
     )
 
 
-async def read_data() -> tuple[PvpDataType, list[WowClassSchema], list[WowSpecsSchema]]:
+async def read_data() -> tuple[list[PvpDataSchema], list[WowClassSchema], list[WowSpecsSchema]]:
     """Reads data from json files"""
 
-    def read_pvp_data(path: Path) -> PvpDataType:
-        with open(file=path, mode="r", encoding="utf-8") as f:
+    def read_pvp_data(filename: Path) -> list[PvpDataSchema]:
+        with open(file=filename, mode="r", encoding="utf-8") as f:
             json_data = json.load(fp=f)
-            return {
-                "_2s": [PvpDataSchema(**el) for el in json_data["_2s"]],
-                "_3s": [PvpDataSchema(**el) for el in json_data["_3s"]],
-                "rbg": [PvpDataSchema(**el) for el in json_data["rbg"]],
-            }
+            return [PvpDataSchema(**el) for el in json_data]
 
-    def read_wow_classes_data(path: Path) -> list[WowClassSchema]:
-        with open(file=path, mode="r", encoding="utf-8") as f:
+    def read_wow_classes_data(filename: Path) -> list[WowClassSchema]:
+        with open(file=filename, mode="r", encoding="utf-8") as f:
             json_data = json.load(fp=f)
             return [WowClassSchema(**el) for el in json_data]
 
-    def read_wow_specs_data(path: Path) -> list[WowSpecsSchema]:
-        with open(file=path, mode="r", encoding="utf-8") as f:
+    def read_wow_specs_data(filename: Path) -> list[WowSpecsSchema]:
+        with open(file=filename, mode="r", encoding="utf-8") as f:
             json_data = json.load(fp=f)
             return [WowSpecsSchema(**el) for el in json_data]
 
     JSON_DIR = BASE_DIR / "json_data"
 
     return await gather(
-        as_async(read_pvp_data, JSON_DIR / "pvp_data.json"),
-        as_async(read_wow_classes_data, JSON_DIR / "wow_classes.json"),
-        as_async(read_wow_specs_data, JSON_DIR / "wow_specs.json"),
+        as_async(read_pvp_data, filename=JSON_DIR / "pvp_data.json"),
+        as_async(read_wow_classes_data, filename=JSON_DIR / "wow_classes.json"),
+        as_async(read_wow_specs_data, filename=JSON_DIR / "wow_specs.json"),
     )

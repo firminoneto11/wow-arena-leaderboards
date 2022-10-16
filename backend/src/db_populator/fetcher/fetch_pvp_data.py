@@ -1,4 +1,3 @@
-from typing import TypedDict
 from asyncio import gather
 
 from httpx import AsyncClient, ConnectError, ConnectTimeout
@@ -8,12 +7,6 @@ from apps.brackets.models import BracketsEnum
 from shared import Logger, re_try
 from ..schemas import PvpDataSchema
 from ..exceptions import CouldNotFetchError
-
-
-class PvpDataType(TypedDict):
-    _2s: list[PvpDataSchema]
-    _3s: list[PvpDataSchema]
-    rbg: list[PvpDataSchema]
 
 
 class FetchHandler:
@@ -27,18 +20,19 @@ class FetchHandler:
         self.access_token = access_token
         self.latest_session = latest_session
 
-    async def __call__(self) -> PvpDataType:
+    async def __call__(self) -> list[PvpDataSchema]:
 
-        brackets: list[str] = [BracketsEnum[el].value for el in BracketsEnum._member_names_]
-        brackets.sort()
+        _2s, _3s, rbg = await gather(
+            self.fetch_data(bracket=BracketsEnum._2s.value),
+            self.fetch_data(bracket=BracketsEnum._3s.value),
+            self.fetch_data(bracket=BracketsEnum.rbg.value),
+        )
 
-        _2s, _3s, rbg = await gather(*[self.fetch_data(bracket=bracket) for bracket in brackets])
-
-        return {
-            "_2s": self.clean_data(raw_data=_2s),
-            "_3s": self.clean_data(raw_data=_3s),
-            "rbg": self.clean_data(raw_data=rbg),
-        }
+        return [
+            *self.clean_data(raw_data=_2s, bracket=BracketsEnum._2s.value),
+            *self.clean_data(raw_data=_3s, bracket=BracketsEnum._3s.value),
+            *self.clean_data(raw_data=rbg, bracket=BracketsEnum.rbg.value),
+        ]
 
     def refactor_endpoint(self, bracket: str) -> str:
         return (
@@ -71,7 +65,7 @@ class FetchHandler:
             # await self.logger.warning(message)
             raise CouldNotFetchError("The server did not returned an OK response while fetching the pvp data.")
 
-    def clean_data(self, raw_data: list[dict]) -> list[PvpDataSchema]:
+    def clean_data(self, raw_data: list[dict], bracket: str) -> list[PvpDataSchema]:
         return list(
             map(
                 lambda el: PvpDataSchema(
@@ -84,9 +78,11 @@ class FetchHandler:
                     losses=el["season_match_statistics"]["lost"],
                     faction_name=el["faction"]["type"],
                     realm=el["character"]["realm"]["slug"],
-                    class_id=None,
-                    spec_id=None,
+                    bracket=bracket,
                     avatar_icon=None,
+                    session=self.latest_session,
+                    wow_class=None,
+                    wow_spec=None,
                 ),
                 raw_data,
             )
@@ -94,7 +90,7 @@ class FetchHandler:
 
 
 @re_try(MAX_RETRIES)
-async def fetch_pvp_data(logger: Logger, access_token: str, latest_session: int) -> PvpDataType:
+async def fetch_pvp_data(logger: Logger, access_token: str, latest_session: int) -> list[PvpDataSchema]:
     await logger.info("2: Fetching wow pvp data...")
     handler = FetchHandler(logger=logger, access_token=access_token, latest_session=latest_session)
     response = await handler()

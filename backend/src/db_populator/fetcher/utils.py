@@ -4,7 +4,8 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from decouple import config as get_env_var
 from sqlalchemy import text
 
-from apps.brackets.models import Sessions
+from apps.brackets.models import Sessions, BracketsEnum
+from ..schemas import PvpDataSchema
 
 
 async def get_latest_session() -> tuple[int, int]:
@@ -33,3 +34,17 @@ async def get_latest_session() -> tuple[int, int]:
 
     return 1, 33
     return latest_session_id, latest_session
+
+
+def filter_pvp_data_list(data: list[PvpDataSchema]) -> list[list[PvpDataSchema]]:
+    _2s, _3s, rbg = [], [], []
+
+    for player in data:
+        if player.bracket == BracketsEnum._2s.value:
+            _2s.append(player)
+        elif player.bracket == BracketsEnum._3s.value:
+            _3s.append(player)
+        elif player.bracket == BracketsEnum.rbg.value:
+            rbg.append(player)
+
+    return [_2s, _3s, rbg]
