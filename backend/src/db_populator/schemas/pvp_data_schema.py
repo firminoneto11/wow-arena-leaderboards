@@ -12,7 +12,7 @@ class PvpDataSchema(BaseSchema):
     faction_name: str
     realm: str
     bracket: str
-    avatar_icon: str | None
-    session: int | None
-    wow_class: int | None
-    wow_spec: int | None
+    session: int
+    avatar_icon: str | None = None
+    wow_class: int | None = None
+    wow_spec: int | None = None

@@ -79,10 +79,10 @@ class FetchHandler:
                     faction_name=el["faction"]["type"],
                     realm=el["character"]["realm"]["slug"],
                     bracket=bracket,
-                    avatar_icon=None,
+                    # avatar_icon=None,
                     session=self.latest_session,
-                    wow_class=None,
-                    wow_spec=None,
+                    # wow_class=None,
+                    # wow_spec=None,
                 ),
                 raw_data,
             )

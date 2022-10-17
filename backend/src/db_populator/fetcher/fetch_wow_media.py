@@ -110,22 +110,22 @@ class FetchWowMediaHandler:
                     create_task(self.fetch(endpoint_data=endpoint_data, client=client)) for endpoint_data in endpoints
                 ]
                 return await self.fetch_and_process(tasks=tasks)
-            else:
-                tasks, count = [], 0
-                for endpoint_data in endpoints:
 
-                    if count == REQUESTS_PER_SEC and tasks:
-                        await self.logger.info(f"Dispatching {len(tasks)} requests")
-                        await self.fetch_and_process(tasks=tasks)
-                        await sleep(DELAY)
-                        tasks, count = [], 0
+            tasks, count = [], 0
+            for endpoint_data in endpoints:
 
-                    tasks.append(create_task(self.fetch(endpoint_data=endpoint_data, client=client)))
-                    count += 1
-
-                if tasks:
+                if count == REQUESTS_PER_SEC and tasks:
                     await self.logger.info(f"Dispatching {len(tasks)} requests")
                     await self.fetch_and_process(tasks=tasks)
+                    await sleep(DELAY)
+                    tasks, count = [], 0
+
+                tasks.append(create_task(self.fetch(endpoint_data=endpoint_data, client=client)))
+                count += 1
+
+            if tasks:
+                await self.logger.info(f"Dispatching {len(tasks)} requests")
+                await self.fetch_and_process(tasks=tasks)
 
     async def __call__(self) -> list[PvpDataSchema]:
 

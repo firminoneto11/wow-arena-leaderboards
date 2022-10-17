@@ -5,7 +5,7 @@ from typing import Final
 from decouple import config as get_env_var
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
-import pandas as pd
+import pandas as pd, numpy as np
 
 from db_populator.schemas import WowClassSchema, WowSpecsSchema, PvpDataSchema
 from apps.brackets.models import BracketsEnum, WowClasses, WowSpecs
@@ -40,13 +40,9 @@ class ToDatabase:
         # Creating an engine to be used by threads
         await self._make_engine()
 
-        # await gather(
-        #     self.save_wow_classes(),
-        #     self.save_wow_specs(),
-        #     self.save_pvp_data(),
-        # )
+        wow_classes, wow_specs = await gather(self.save_wow_classes(), self.save_wow_specs())
 
-        await self.save_pvp_data()
+        await self.save_pvp_data(wow_classes_df=wow_classes, wow_specs_df=wow_specs)
 
         # Closing the engine
         await self._close_engine()
@@ -166,6 +162,8 @@ class ToDatabase:
                 try:
                     series_from_api: pd.Series = df_copy.loc[blizzard_id]
                 except KeyError:
+                    # If 'KeyError' is raised, that means that the given 'blizzard_id' was removed from the API, therefore, has to be
+                    # removed from here as well
                     to_delete.append(int(blizzard_id))
                     continue
 
@@ -187,12 +185,12 @@ class ToDatabase:
         else:
             create(data_frame=df.copy(), table=original_table)
 
-        return pd.read_sql(sql=sql, con=self.engine, index_col="id")
+        return pd.read_sql(sql=sql, con=self.engine)
 
     async def save(self, df: pd.DataFrame, temp_table: str, original_table: str) -> pd.DataFrame:
         return await as_async(self._save, df=df, temp_table=temp_table, original_table=original_table)
 
-    async def save_wow_classes(self) -> None:
+    async def save_wow_classes(self) -> pd.DataFrame:
         df = {prop: [] for prop in WowClassSchema.props()}
 
         for wc in self.wow_classes:
@@ -202,9 +200,9 @@ class ToDatabase:
 
         df = pd.DataFrame(data=df).convert_dtypes()
 
-        await self.save(df=df, temp_table=WowClasses.tablename + "_temp", original_table=WowClasses.tablename)
+        return await self.save(df=df, temp_table=WowClasses.tablename + "_temp", original_table=WowClasses.tablename)
 
-    async def save_wow_specs(self) -> None:
+    async def save_wow_specs(self) -> pd.DataFrame:
         df = {prop: [] for prop in WowSpecsSchema.props()}
 
         for wc in self.wow_specs:
@@ -214,25 +212,45 @@ class ToDatabase:
 
         df = pd.DataFrame(data=df).convert_dtypes()
 
-        await self.save(df=df, temp_table=WowSpecs.tablename + "_temp", original_table=WowSpecs.tablename)
+        return await self.save(df=df, temp_table=WowSpecs.tablename + "_temp", original_table=WowSpecs.tablename)
 
-    async def save_pvp_data(self) -> None:
+    async def save_pvp_data(self, wow_classes_df: pd.DataFrame, wow_specs_df: pd.DataFrame) -> None:
 
-        # TODO: Fix the method
+        wow_classes_map = wow_classes_df.copy()[["blizzard_id", "id"]].set_index("blizzard_id")
+        wow_classes_map = {int(el[0]): int(el[1]) for el in wow_classes_map.iterrows()}
+
+        wow_specs_map = wow_specs_df.copy()[["blizzard_id", "id"]].set_index("blizzard_id")
+        wow_specs_map = {int(el[0]): int(el[1]) for el in wow_specs_map.iterrows()}
 
         df = {prop: [] for prop in PvpDataSchema.props()}
-        df["bracket"] = []
 
-        for bracket in self.pvp_data:
-            bracket_val: str = BracketsEnum[bracket].value
-            bracket_data: list[PvpDataSchema] = self.pvp_data[bracket]
-            for el in bracket_data:
-                el_dict = el.dict()
-                for key in el_dict:
-                    df[key].append(el_dict[key])
-                df["bracket"].append(bracket_val)
+        for player in self.pvp_data:
+            data_dict = player.dict()
+            for key in data_dict:
+                if key == "session":
+                    df[key].append(self.latest_session_id)
+                elif key == "wow_class":
+                    df[key].append(wow_classes_map.get(player.wow_class))
+                elif key == "wow_specs":
+                    df[key].append(wow_specs_map.get(player.wow_spec))
+                elif key == "realm":
+                    df[key].append(player.realm.title())
+                else:
+                    df[key].append(data_dict[key])
 
         df = pd.DataFrame(data=df).convert_dtypes()
+
+        # TODO: Find out how to replace <NA> for None
+
+        def _inner(series: pd.Series):
+            name = series.name
+            if series.hasnans:
+                indexes = series.loc[series.isnull()].index.to_list()
+                for idx in indexes:
+                    df[name][idx] = None
+                    print(df[name][idx])
+
+        df.apply(_inner)
 
         print(df)
 
