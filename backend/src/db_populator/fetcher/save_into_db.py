@@ -5,10 +5,10 @@ from typing import Final
 from decouple import config as get_env_var
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
-import pandas as pd, numpy as np
+import pandas as pd
 
 from db_populator.schemas import WowClassSchema, WowSpecsSchema, PvpDataSchema
-from apps.brackets.models import BracketsEnum, WowClasses, WowSpecs
+from apps.brackets.models import WowClasses, WowSpecs, PvpData
 from shared import Logger
 
 
@@ -83,7 +83,7 @@ class ToDatabase:
         sql = f"INSERT INTO {table} {_cols} VALUES "
         values = []
         for (idx, row) in enumerate(rows):
-            clause = str(row)
+            clause = str(row).replace("None", "null")
             if idx:
                 clause = ", " + clause
             values.append(clause)
@@ -231,7 +231,7 @@ class ToDatabase:
                     df[key].append(self.latest_session_id)
                 elif key == "wow_class":
                     df[key].append(wow_classes_map.get(player.wow_class))
-                elif key == "wow_specs":
+                elif key == "wow_spec":
                     df[key].append(wow_specs_map.get(player.wow_spec))
                 elif key == "realm":
                     df[key].append(player.realm.title())
@@ -239,22 +239,16 @@ class ToDatabase:
                     df[key].append(data_dict[key])
 
         df = pd.DataFrame(data=df).convert_dtypes()
+        df.replace({pd.NA: None}, inplace=True)
 
-        # TODO: Find out how to replace <NA> for None
+        # TODO: Remove this later
+        # timestamp = datetime.now().isoformat(sep=" ")
+        # self.engine.execute(
+        #     f"INSERT INTO {Sessions.tablename} (created_at, updated_at, session) "
+        #     f"VALUES ('{timestamp}', '{timestamp}', 33);"
+        # )
 
-        def _inner(series: pd.Series):
-            name = series.name
-            if series.hasnans:
-                indexes = series.loc[series.isnull()].index.to_list()
-                for idx in indexes:
-                    df[name][idx] = None
-                    print(df[name][idx])
-
-        df.apply(_inner)
-
-        print(df)
-
-        # await self.save(df=df, temp_table="pvp_data_temp")
+        await self.save(df=df, temp_table=PvpData.tablename + "_temp", original_table=PvpData.tablename)
 
 
 async def save(
