@@ -12,7 +12,7 @@ api = FastAPI()
 api.add_middleware(**cors_middleware_config)
 
 # Including routers
-api.include_router(brackets_router)
+api.include_router(router=brackets_router, prefix="/api")
 
 
 # Startup and shutdown event handlers

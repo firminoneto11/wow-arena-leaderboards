@@ -1,1 +1,1 @@
-from .data_controller import DataController
+from .brackets_controller import BracketsController

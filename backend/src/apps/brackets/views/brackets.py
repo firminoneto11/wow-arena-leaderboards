@@ -1,8 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 
-from ..controllers import DataController
+from ..controllers import BracketsController
 
 
 router = APIRouter(tags=["Brackets"])
 
-router.get("/data/{bracket}/")(DataController.handle)
+
+@router.get("/{bracket}/")
+async def handle(request: Request, bracket: str):
+    handler = BracketsController(req=request, bracket=bracket)
+    return await handler()
