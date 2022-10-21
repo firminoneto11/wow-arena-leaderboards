@@ -31,3 +31,34 @@ class PvpData(models.Model):
         "wow_class": models.ForeignKey(to=WowClasses, allow_null=True, on_delete=models.SET_NULL),
         "wow_spec": models.ForeignKey(to=WowSpecs, allow_null=True, on_delete=models.SET_NULL),
     }
+
+    # Types
+    blizzard_id: int
+    name: str
+    global_rank: int
+    cr: int
+    played: int
+    wins: int
+    losses: int
+    faction_name: str
+    realm: str
+    bracket: str
+    session: Sessions
+    avatar_icon: str | None = None
+    wow_class: WowClasses | None = None
+    wow_spec: WowSpecs | None = None
+
+    @property
+    def asDict(self) -> dict:
+
+        data = self.__dict__
+
+        data["session"] = self.session.session
+
+        if self.wow_class:
+            data["wow_class"] = self.wow_class.asDict
+
+        if self.wow_spec:
+            data["wow_spec"] = self.wow_spec.asDict
+
+        return data

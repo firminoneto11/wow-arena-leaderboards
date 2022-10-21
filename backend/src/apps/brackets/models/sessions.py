@@ -12,3 +12,6 @@ class Sessions(models.Model):
         # Required Fields
         "session": models.Integer(unique=True),
     }
+
+    # Types
+    session: int

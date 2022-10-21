@@ -14,3 +14,16 @@ class WowSpecs(models.Model):
         "name": models.String(max_length=50),
         "icon_url": models.Text(),
     }
+
+    # Types
+    blizzard_id: int
+    name: str
+    icon_url: str
+
+    @property
+    def asDict(self) -> dict:
+        return {
+            "blizzard_id": self.blizzard_id,
+            "name": self.name,
+            "icon_url": self.icon_url,
+        }
