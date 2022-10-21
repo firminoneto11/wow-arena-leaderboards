@@ -31,9 +31,6 @@ class BracketsController:
             .all()
         )
 
-        # TODO: Change ORM to use 'ormar'
-        # https://collerek.github.io/ormar/
-
         queryset[0].asDict
 
         return

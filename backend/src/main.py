@@ -1,30 +1,32 @@
 from fastapi import FastAPI
 
-from middleware import cors_middleware_config
 from apps import brackets_router
-from database import engine, database, create_default_data
+from middleware import cors_middleware_config
+from database import db_engine
 
 
 # Instantiating the FastAPI
-api = FastAPI()
+app = FastAPI()
 
 # Adding CORS middleware to it
-api.add_middleware(**cors_middleware_config)
+app.add_middleware(**cors_middleware_config)
 
 # Including routers
-api.include_router(router=brackets_router, prefix="/api")
+app.include_router(router=brackets_router, prefix="/api")
 
 
 # Startup and shutdown event handlers
 
 
-@api.on_event("startup")
+@app.on_event("startup")
 async def startup() -> None:
-    await engine.create_all()
-    await database.connect()
-    await create_default_data()
+    await db_engine.create_all()
+
+    if not db_engine.db.is_connected:
+        await db_engine.db.connect()
 
 
-@api.on_event("shutdown")
+@app.on_event("shutdown")
 async def shutdown() -> None:
-    await database.disconnect()
+    if db_engine.db.is_connected:
+        await db_engine.db.disconnect()

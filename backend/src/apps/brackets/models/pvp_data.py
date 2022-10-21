@@ -1,64 +1,35 @@
-import orm as models
+from ormar import ReferentialAction as actions
+import ormar as models
 
-from .base import get_default_fields
+from .base import BaseModel
+
 from .sessions import Sessions
 from .wow_classes import WowClasses
 from .wow_specs import WowSpecs
-from database import engine
 
 
-class PvpData(models.Model):
-    tablename = "pvp_data"
-    registry = engine
-    fields = {
-        **get_default_fields(),
-        # Required Fields
-        "blizzard_id": models.BigInteger(),
-        "name": models.String(max_length=50),
-        "global_rank": models.Integer(),
-        "cr": models.Integer(),
-        "played": models.Integer(),
-        "wins": models.Integer(),
-        "losses": models.Integer(),
-        "faction_name": models.String(max_length=50),
-        "realm": models.String(max_length=50),
-        "bracket": models.String(max_length=10),
-        # FK's - Required
-        "session": models.ForeignKey(to=Sessions, on_delete=models.CASCADE),
-        # Optional Fields
-        "avatar_icon": models.Text(allow_null=True),
-        # Fk's - Optionals
-        "wow_class": models.ForeignKey(to=WowClasses, allow_null=True, on_delete=models.SET_NULL),
-        "wow_spec": models.ForeignKey(to=WowSpecs, allow_null=True, on_delete=models.SET_NULL),
-    }
+class PvpData(BaseModel):
+    class Meta:
+        tablename = "pvp_data"
 
-    # Types
-    blizzard_id: int
-    name: str
-    global_rank: int
-    cr: int
-    played: int
-    wins: int
-    losses: int
-    faction_name: str
-    realm: str
-    bracket: str
-    session: Sessions
-    avatar_icon: str | None = None
-    wow_class: WowClasses | None = None
-    wow_spec: WowSpecs | None = None
+    # Required Fields
+    blizzard_id: int = models.BigInteger()
+    name: str = models.String(max_length=50)
+    global_rank: int = models.Integer()
+    cr: int = models.Integer()
+    played: int = models.Integer()
+    wins: int = models.Integer()
+    losses: int = models.Integer()
+    faction_name: str = models.String(max_length=50)
+    realm: str = models.String(max_length=50)
+    bracket: str = models.String(max_length=10)
 
-    @property
-    def asDict(self) -> dict:
+    # FK's - Required
+    session: Sessions = models.ForeignKey(to=Sessions, ondelete=actions.CASCADE)
 
-        data = self.__dict__
+    # Optional Fields
+    avatar_icon: str | None = models.Text(allow_null=True)
 
-        data["session"] = self.session.session
-
-        if self.wow_class:
-            data["wow_class"] = self.wow_class.asDict
-
-        if self.wow_spec:
-            data["wow_spec"] = self.wow_spec.asDict
-
-        return data
+    # Fk's - Optionals
+    wow_class: WowClasses | None = models.ForeignKey(to=WowClasses, allow_null=True, ondelete=actions.SET_NULL)
+    wow_spec: WowSpecs | None = models.ForeignKey(to=WowSpecs, allow_null=True, ondelete=actions.SET_NULL)

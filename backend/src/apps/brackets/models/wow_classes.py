@@ -1,29 +1,12 @@
-import orm as models
+import ormar as models
 
-from .base import get_default_fields
-from database import engine
+from .base import BaseModel
 
 
-class WowClasses(models.Model):
-    tablename = "wow_classes"
-    registry = engine
-    fields = {
-        **get_default_fields(),
-        # Required Fields
-        "blizzard_id": models.BigInteger(),
-        "name": models.String(max_length=50),
-        "icon_url": models.Text(),
-    }
+class WowClasses(BaseModel):
+    class Meta:
+        tablename = "wow_classes"
 
-    # Types
-    blizzard_id: int
-    name: str
-    icon_url: str
-
-    @property
-    def asDict(self) -> dict:
-        return {
-            "blizzard_id": self.blizzard_id,
-            "name": self.name,
-            "icon_url": self.icon_url,
-        }
+    blizzard_id: int = models.BigInteger()
+    name: str = models.String(max_length=50)
+    icon_url: str = models.Text()

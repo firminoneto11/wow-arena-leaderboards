@@ -1,13 +1,16 @@
 from datetime import datetime
 
-import orm as models
+import ormar as models
+
+from database import db_engine
 
 
-def get_default_fields() -> dict:
-    return {
-        # PK
-        "id": models.BigInteger(primary_key=True),
-        # With defaults
-        "created_at": models.DateTime(default=datetime.now),
-        "updated_at": models.DateTime(default=datetime.now),
-    }
+class BaseModel(models.Model):
+    class Meta:
+        abstract = True
+        metadata = db_engine.metadata
+        database = db_engine.db
+
+    id: int = models.BigInteger(primary_key=True)
+    created_at: datetime = models.DateTime(default=datetime.now)
+    updated_at: datetime = models.DateTime(default=datetime.now)

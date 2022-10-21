@@ -1,17 +1,10 @@
-import orm as models
+import ormar as models
 
-from .base import get_default_fields
-from database import engine
+from .base import BaseModel
 
 
-class Sessions(models.Model):
-    tablename = "sessions"
-    registry = engine
-    fields = {
-        **get_default_fields(),
-        # Required Fields
-        "session": models.Integer(unique=True),
-    }
+class Sessions(BaseModel):
+    class Meta:
+        tablename = "sessions"
 
-    # Types
-    session: int
+    session: int = models.Integer(unique=True)
