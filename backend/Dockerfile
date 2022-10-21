@@ -16,3 +16,5 @@ WORKDIR /api/src
 
 # Cria um process manager a partir do Gunicorn e ele spawna 4 workers onde cada Worker é um Uvicorn contendo um processo isolado da API
 CMD [ "gunicorn", "main:app", "--workers 4", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind 0.0.0.0:80" ]
+
+# gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:80

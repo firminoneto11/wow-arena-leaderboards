@@ -12,6 +12,6 @@ router = APIRouter(tags=["Brackets"])
     response_model=list[PvpDataAPISchema],
     status_code=200,
 )
-async def bracket(request: Request, bracket: str):
-    handler = BracketsController(req=request, bracket=bracket)
+async def bracket(req: Request, bracket: str):
+    handler = BracketsController(req=req, bracket=bracket)
     return await handler()
