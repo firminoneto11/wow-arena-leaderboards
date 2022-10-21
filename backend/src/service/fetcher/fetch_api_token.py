@@ -1,8 +1,9 @@
 from decouple import config as get_env_var
 from httpx import AsyncClient, ConnectError, ConnectTimeout
 
-from db_populator.constants import TIMEOUT, BLIZZARD_TOKENS_URL, MAX_RETRIES
-from shared import Logger, re_try
+from shared import Logger
+from ..decorators import re_try
+from ..constants import TIMEOUT, BLIZZARD_TOKENS_URL, MAX_RETRIES
 from ..schemas import OAuthTokenData  # , OAuthTokenError
 from ..exceptions import CouldNotFetchError
 

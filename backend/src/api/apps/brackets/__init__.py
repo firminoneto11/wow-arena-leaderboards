@@ -1,4 +1,3 @@
-from .views import brackets_router
 from .models import (
     BracketsEnum,
     Sessions,
@@ -6,3 +5,4 @@ from .models import (
     WowSpecs,
     PvpData,
 )
+from .views import brackets_router

@@ -28,8 +28,8 @@ class PvpData(BaseModel):
     session: Sessions = models.ForeignKey(to=Sessions, ondelete=actions.CASCADE)
 
     # Optional Fields
-    avatar_icon: str | None = models.Text(allow_null=True)
+    avatar_icon: str | None = models.Text(nullable=True)
 
     # Fk's - Optionals
-    wow_class: WowClasses | None = models.ForeignKey(to=WowClasses, allow_null=True, ondelete=actions.SET_NULL)
-    wow_spec: WowSpecs | None = models.ForeignKey(to=WowSpecs, allow_null=True, ondelete=actions.SET_NULL)
+    wow_class: WowClasses | None = models.ForeignKey(to=WowClasses, nullable=True, ondelete=actions.SET_NULL)
+    wow_spec: WowSpecs | None = models.ForeignKey(to=WowSpecs, nullable=True, ondelete=actions.SET_NULL)

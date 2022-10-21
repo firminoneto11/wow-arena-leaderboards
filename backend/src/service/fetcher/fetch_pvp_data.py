@@ -2,9 +2,10 @@ from asyncio import gather
 
 from httpx import AsyncClient, ConnectError, ConnectTimeout
 
-from db_populator.constants import TIMEOUT, BRAZILIAN_REALMS, PVP_RATING_API, MAX_RETRIES
-from apps.brackets.models import BracketsEnum
-from shared import Logger, re_try
+from api.apps.brackets import BracketsEnum
+from shared import Logger
+from ..decorators import re_try
+from ..constants import TIMEOUT, BRAZILIAN_REALMS, PVP_RATING_API, MAX_RETRIES
 from ..schemas import PvpDataSchema
 from ..exceptions import CouldNotFetchError
 

@@ -2,8 +2,9 @@ from asyncio import gather
 
 from httpx import AsyncClient, ConnectError, ConnectTimeout
 
-from db_populator.constants import MAX_RETRIES, TIMEOUT, ALL_SPECS_API, SPEC_MEDIA_API
-from shared import Logger, re_try
+from shared import Logger
+from ..decorators import re_try
+from ..constants import MAX_RETRIES, TIMEOUT, ALL_SPECS_API, SPEC_MEDIA_API
 from ..schemas import WowSpecsSchema
 from ..exceptions import CouldNotFetchError
 

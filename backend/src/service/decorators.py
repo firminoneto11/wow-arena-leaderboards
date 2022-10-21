@@ -2,9 +2,10 @@ from asyncio import sleep, create_task
 from typing import Coroutine
 from functools import wraps
 
-from db_populator.exceptions import CouldNotFetchError
-from db_populator.constants import DELAY
-from ..exceptions import CouldNotExecuteError
+from .utils import get_global_logger
+from .exceptions import CouldNotFetchError, CouldNotExecuteError
+from .constants import DELAY
+
 
 # TODO: Check if the coroutine has to be re created, because it was awaited already
 # TODO: An Exception should be raised when the 'number_of_tries' is not enough to execute the coroutine
@@ -18,8 +19,6 @@ def re_try(number_of_tries: int, /):
     def _re_try(coroutine: Coroutine, /):
         @wraps(coroutine)
         async def decorator(*args, **kwargs):
-
-            from db_populator import get_global_logger
 
             logger = get_global_logger()
             latest_exception = None

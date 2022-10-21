@@ -21,7 +21,7 @@ class GlobalLogger:
 
     def setup(self) -> None:
 
-        LOGS_DIR = BASE_DIR / "logs" / "db_populator"
+        LOGS_DIR = BASE_DIR / "logs" / "service"
         if not exists(LOGS_DIR):
             makedirs(LOGS_DIR)
 
@@ -40,7 +40,7 @@ class GlobalLogger:
         ]
 
         # Creating a logger with a custom name and the file handler
-        self._logger = Logger(name="Populator Logs", file_handlers=handlers)
+        self._logger = Logger(name="Service Logs", file_handlers=handlers)
 
     @property
     def logger(self) -> Logger:

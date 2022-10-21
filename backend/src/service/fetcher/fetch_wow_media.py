@@ -5,8 +5,8 @@ from itertools import chain
 
 from httpx import AsyncClient, ConnectError, ConnectTimeout
 
-from shared import Logger, re_try
-from db_populator.constants import (
+from shared import Logger
+from ..constants import (
     PROFILE_API,
     CHAR_MEDIA_API,
     TIMEOUT,
@@ -14,6 +14,7 @@ from db_populator.constants import (
     REQUESTS_PER_SEC,
     MAX_RETRIES,
 )
+from ..decorators import re_try
 from ..exceptions import CouldNotFetchError
 from .utils import filter_pvp_data_list
 from ..schemas import PvpDataSchema
@@ -86,8 +87,7 @@ class FetchWowMediaHandler:
     async def fetch_and_process(self, tasks: list[Task]) -> None:
         as_completed_generator: Iterator[Future[tuple[dict, EndpointDataInterface] | None]] = as_completed(tasks)
         for future in as_completed_generator:
-            contents = await future
-            if contents:
+            if contents := await future:
 
                 data, endpoint_data = contents
                 unique_player = self.unique_players_map[endpoint_data["blizzard_id"]]

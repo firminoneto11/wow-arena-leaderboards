@@ -7,8 +7,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 import pandas as pd
 
-from db_populator.schemas import WowClassSchema, WowSpecsSchema, PvpDataSchema
-from apps.brackets.models import WowClasses, WowSpecs, PvpData
+from ..schemas import WowClassSchema, WowSpecsSchema, PvpDataSchema
+from api.apps.brackets import WowClasses, WowSpecs, PvpData
 from shared import Logger
 
 
@@ -200,7 +200,9 @@ class ToDatabase:
 
         df = pd.DataFrame(data=df).convert_dtypes()
 
-        return await self.save(df=df, temp_table=WowClasses.tablename + "_temp", original_table=WowClasses.tablename)
+        return await self.save(
+            df=df, temp_table=WowClasses.Meta.tablename + "_temp", original_table=WowClasses.Meta.tablename
+        )
 
     async def save_wow_specs(self) -> pd.DataFrame:
         df = {prop: [] for prop in WowSpecsSchema.props()}
@@ -212,7 +214,9 @@ class ToDatabase:
 
         df = pd.DataFrame(data=df).convert_dtypes()
 
-        return await self.save(df=df, temp_table=WowSpecs.tablename + "_temp", original_table=WowSpecs.tablename)
+        return await self.save(
+            df=df, temp_table=WowSpecs.Meta.tablename + "_temp", original_table=WowSpecs.Meta.tablename
+        )
 
     async def save_pvp_data(self, wow_classes_df: pd.DataFrame, wow_specs_df: pd.DataFrame) -> None:
 
@@ -241,14 +245,7 @@ class ToDatabase:
         df = pd.DataFrame(data=df).convert_dtypes()
         df.replace({pd.NA: None}, inplace=True)
 
-        # TODO: Remove this later
-        # timestamp = datetime.now().isoformat(sep=" ")
-        # self.engine.execute(
-        #     f"INSERT INTO {Sessions.tablename} (created_at, updated_at, session) "
-        #     f"VALUES ('{timestamp}', '{timestamp}', 33);"
-        # )
-
-        await self.save(df=df, temp_table=PvpData.tablename + "_temp", original_table=PvpData.tablename)
+        await self.save(df=df, temp_table=PvpData.Meta.tablename + "_temp", original_table=PvpData.Meta.tablename)
 
 
 async def save(
