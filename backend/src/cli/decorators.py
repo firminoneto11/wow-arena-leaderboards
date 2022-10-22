@@ -1,15 +1,19 @@
-from asyncio import get_running_loop
+from typing import Callable, TypeVar as Generic
 from typing import Coroutine
 from functools import wraps
 
-from shared import Event
+from shared import emit_event
 
 
-def close_event_loop_after_execution(coroutine: Coroutine) -> None:
+_Coroutine = Generic("_Coroutine", bound=Coroutine)
+_Callable = Generic("_Callable", bound=Callable)
+
+
+def close_event_loop_after_execution(coroutine: type[_Callable]) -> type[_Coroutine]:
     @wraps(coroutine)
     async def inner(*args, **kwargs):
         coroutine_return = await coroutine(*args, **kwargs)
-        get_running_loop().register_event(item=Event(name="cli-shutdown"))
+        emit_event(name="cli-shutdown")
         return coroutine_return
 
     return inner

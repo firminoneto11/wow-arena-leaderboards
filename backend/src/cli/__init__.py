@@ -29,13 +29,13 @@ def execute_from_command_line(command: str) -> None:
     valid_commands = ["migrate", "service", "shell", "createnewsession", "runserver"]
     match command:
         case "migrate":
-            return run_coroutine(migrate)
+            return run_coroutine(migrate())
         case "service":
-            return run_coroutine(service)
+            return run_coroutine(service())
         case "shell":
-            return run_coroutine(shell)
+            return shell()
         case "createnewsession":
-            return run_coroutine(create_new_session)
+            return run_coroutine(create_new_session())
         case "runserver":
             return runserver()
         case _:

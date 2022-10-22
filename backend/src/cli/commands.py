@@ -1,7 +1,9 @@
 from asyncio import sleep, create_task, to_thread as as_async
 
-from uvicorn import run
+from uvicorn import run as run_asgi_app
 from rich import print as r_print
+from traitlets.config import Config
+import IPython
 
 # Application imports
 from api.apps.brackets import models
@@ -57,12 +59,19 @@ async def service():
         await sleep(UPDATE_EVERY)
 
 
-@close_event_loop_after_execution
-async def shell() -> None:
-    async with DbConnection():
-        # TODO: Find out how to spin up a ipython shell here
-        ...
+def shell() -> None:
+    shell_configs = Config()
+    shell_configs.InteractiveShellApp.exec_lines = [
+        "from api.apps.brackets import models",
+        "from database import db_engine",
+        "if not db_engine.db.is_connected: await db_engine.db.connect()",
+    ]
+
+    IPython.start_ipython(config=shell_configs, argv=[])
+
+    # TODO: Check how to execute the line of code bellow after the shell finishes it's execution.
+    # "if db_engine.db.is_connected: await db_engine.db.disconnect()",
 
 
 def runserver() -> None:
-    run("asgi:app", log_level="info", reload=True)
+    run_asgi_app("asgi:app", log_level="info", reload=True)
