@@ -1,26 +1,15 @@
-from asyncio import all_tasks, current_task, get_event_loop, AbstractEventLoop, gather, Queue
+from asyncio import all_tasks, current_task, get_event_loop, gather, Queue
 from asyncio.events import set_event_loop
 from typing import Coroutine, Final
-from dataclasses import dataclass
 import signal as signals_module
 from signal import Signals
 from platform import system
 
 from decouple import config as get_env_var
 
-from .logging import Logger
-
-
-@dataclass
-class Event:
-    name: str
-
-
-class EventLoop(AbstractEventLoop):
-    events_queue: Queue[Event]
-
-    def register_event(self, item: Event) -> None:
-        ...
+from .event import Event
+from .event_loop import EventLoop
+from ..logging import Logger
 
 
 class Runner:
@@ -206,8 +195,3 @@ class Runner:
                 )
 
         return await self.finish_loop()
-
-
-def run_coroutine(coroutine: Coroutine) -> None:
-    runner = Runner(main_coroutine=coroutine)
-    return runner()
