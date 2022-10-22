@@ -1,8 +1,13 @@
-*.db
 __pycache__
+*.db
 *.env
+*.log
+venv/
+logs/
+.vscode/
+.idea/
+node_modules/
+json_data/
 Dockerfile
 .dockerignore
 .gitignore
-fetcher.Dockerfile
-.vscode

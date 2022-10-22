@@ -1,20 +1,21 @@
-FROM python:3.10
+FROM python:3.10-slim
 
-RUN mkdir /api
+ENV PYTHONUNBUFFERED 1
 
-WORKDIR /api
+ENV PYTHONDONTWRITEBYTECODE 1
 
-COPY requirements.txt .
+RUN mkdir /etc/api
 
-RUN pip install --no-cache-dir --upgrade -r requirements.txt .
+WORKDIR /etc/api
+
+COPY requirements/prod.txt .
+
+RUN pip install --no-cache-dir --upgrade -r prod.txt
 
 COPY src .
 
-WORKDIR /api/src
+WORKDIR /etc/api/src
 
-# CMD [ "uvicorn", "main:api" ]
-
-# Cria um process manager a partir do Gunicorn e ele spawna 4 workers onde cada Worker é um Uvicorn contendo um processo isolado da API
-CMD [ "gunicorn", "main:app", "--workers 4", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind 0.0.0.0:80" ]
+CMD [ "gunicorn", "asgi:app", "--workers 4", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind 0.0.0.0:80" ]
 
 # gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:80
