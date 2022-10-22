@@ -2,7 +2,6 @@ from ormar import ReferentialAction as actions
 import ormar as models
 
 from .base import BaseModel
-
 from .sessions import Sessions
 from .wow_classes import WowClasses
 from .wow_specs import WowSpecs
@@ -25,11 +24,25 @@ class PvpData(BaseModel):
     bracket: str = models.String(max_length=10)
 
     # FK's - Required
-    session: Sessions = models.ForeignKey(to=Sessions, ondelete=actions.CASCADE)
+    session: Sessions = models.ForeignKey(
+        to=Sessions,
+        ondelete=actions.CASCADE,
+        skip_reverse=True,
+    )
 
     # Optional Fields
     avatar_icon: str | None = models.Text(nullable=True)
 
     # Fk's - Optionals
-    wow_class: WowClasses | None = models.ForeignKey(to=WowClasses, nullable=True, ondelete=actions.SET_NULL)
-    wow_spec: WowSpecs | None = models.ForeignKey(to=WowSpecs, nullable=True, ondelete=actions.SET_NULL)
+    wow_class: WowClasses | None = models.ForeignKey(
+        to=WowClasses,
+        nullable=True,
+        ondelete=actions.SET_NULL,
+        skip_reverse=True,
+    )
+    wow_spec: WowSpecs | None = models.ForeignKey(
+        to=WowSpecs,
+        nullable=True,
+        ondelete=actions.SET_NULL,
+        skip_reverse=True,
+    )

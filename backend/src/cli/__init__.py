@@ -37,7 +37,7 @@ def execute_from_command_line(command: str) -> None:
         case "createnewsession":
             return run_coroutine(create_new_session)
         case "runserver":
-            return run_coroutine(runserver)
+            return runserver()
         case _:
             r_print("A valid command was not provided. Valid options are:")
             r_print(valid_commands)

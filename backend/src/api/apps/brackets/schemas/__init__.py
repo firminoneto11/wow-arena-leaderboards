@@ -1,1 +1,0 @@
-from .pvp_data_api_schema import PvpDataAPISchema

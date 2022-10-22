@@ -2,7 +2,6 @@ from fastapi import Request
 
 from ..models import PvpData, BracketsEnum
 from .exceptions import InvalidBracketError
-from ..schemas import PvpDataAPISchema
 
 
 class BracketsController:
@@ -18,21 +17,14 @@ class BracketsController:
     def validate_bracket(self) -> None:
         if self.bracket not in self.valid_brackets:
             raise InvalidBracketError(
-                status_code=400,
+                status_code=404,
                 detail=f"Invalid bracket name. Valid bracket names are: {', '.join(self.valid_brackets)}",
             )
 
-    async def __call__(self) -> list[PvpDataAPISchema]:
-        queryset: list[PvpData] = (
+    async def __call__(self) -> list[PvpData]:
+        return (
             await PvpData.objects.filter(bracket=self.bracket)
-            .select_related("session")
-            .select_related("wow_class")
-            .select_related("wow_spec")
+            .select_related(["session", "wow_class", "wow_spec"])
+            .order_by("-cr")
             .all()
         )
-
-        queryset[0].asDict
-
-        return
-
-        return list(map(lambda element: element.to_dict(), queryset))

@@ -1,6 +1,6 @@
 from asyncio import sleep, create_task, to_thread as as_async
 
-from uvicorn import Server, Config
+from uvicorn import run
 from rich import print as r_print
 
 # Application imports
@@ -64,8 +64,5 @@ async def shell() -> None:
         ...
 
 
-@close_event_loop_after_execution
-async def runserver() -> None:
-    server_configs = Config("asgi:app", log_level="info", reload=True)
-    server = Server(server_configs)
-    await server.serve()
+def runserver() -> None:
+    run("asgi:app", log_level="info", reload=True)

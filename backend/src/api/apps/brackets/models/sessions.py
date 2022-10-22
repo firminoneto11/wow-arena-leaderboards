@@ -9,5 +9,5 @@ class Sessions(BaseModel):
 
     session: int = models.Integer(unique=True)
 
-    def dict(self) -> dict:
+    def dict(self, *args, **kwargs) -> dict:
         return super().dict(include={"session"})
