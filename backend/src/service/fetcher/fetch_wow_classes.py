@@ -61,8 +61,6 @@ class FetchWowClassesHandler:
                 return self.format_api_data(data=response.json())
 
             # TODO: Check how the non 200 response is returned
-            # message = "The server did not returned an OK response while fetching the wow classes's data."
-            # await self.logger.warning(message)
             raise CouldNotFetchError(
                 "The server did not returned an OK response while fetching the wow classes's data."
             )
@@ -84,8 +82,6 @@ class FetchWowClassesHandler:
                 return blizzard_id, response.json()["assets"][0]["value"]
 
             # TODO: Check how the non 200 response is returned
-            # message = f"The server did not returned an OK response while fetching the icon for the wow class of id {blizzard_id}."
-            # await self.logger.warning(message)
             raise CouldNotFetchError(
                 f"The server did not returned an OK response while fetching the icon for the wow class of id {blizzard_id}."
             )

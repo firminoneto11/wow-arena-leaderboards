@@ -92,6 +92,9 @@ class ToDatabase:
         return sql
 
     def _save(self, df: pd.DataFrame, temp_table: str, original_table: str) -> pd.DataFrame:
+
+        # TODO: Check why the saving process is duplicating data
+
         def create(data_frame: pd.DataFrame, table: str) -> None:
             data_frame["created_at"] = datetime.now().isoformat(sep=" ")
             data_frame["updated_at"] = datetime.now().isoformat(sep=" ")

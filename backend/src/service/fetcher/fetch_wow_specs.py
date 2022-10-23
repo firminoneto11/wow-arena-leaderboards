@@ -55,6 +55,7 @@ class FetchWowSpecsHandler:
             if response.status_code == 200:
                 return self.format_returned_api_data(data=response.json())
 
+            # TODO: Check how the non 200 response is returned
             raise CouldNotFetchError("The server did not returned an OK response while fetching the wow specs's data")
 
     def format_returned_api_data(self, data: dict) -> list[WowSpecsSchema]:
@@ -76,6 +77,7 @@ class FetchWowSpecsHandler:
             if response.status_code == 200:
                 return blizzard_id, response.json()["assets"][0]["value"]
 
+            # TODO: Check how the non 200 response is returned
             raise CouldNotFetchError(
                 f"The server did not returned an OK response while fetching the icon for the wow spec of id {blizzard_id}."
             )

@@ -62,8 +62,6 @@ class FetchHandler:
                 )
 
             # TODO: Check how the non 200 response is returned
-            # message = "The server did not returned an OK response while fetching the pvp data."
-            # await self.logger.warning(message)
             raise CouldNotFetchError("The server did not returned an OK response while fetching the pvp data.")
 
     def clean_data(self, raw_data: list[dict], bracket: str) -> list[PvpDataSchema]:
