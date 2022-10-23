@@ -12,9 +12,7 @@ class BracketsController:
 
     def __init__(self, req: Request, bracket: str) -> None:
         self.req, self.bracket = req, bracket
-        self.validate_bracket()
 
-    def validate_bracket(self) -> None:
         if self.bracket not in self.valid_brackets:
             raise InvalidBracketError(
                 status_code=404,
