@@ -27,7 +27,16 @@ async def migrate() -> None:
 @close_event_loop_after_execution
 async def create_new_session() -> None:
     async with DbConnection():
-        session = await as_async(input, "Insert the session number: ")
+
+        try:
+            session = await as_async(input, "Insert the session number or 'q' to exit: ")
+        except EOFError:
+            r_print("Invalid input!")
+            return await create_new_session()
+
+        if session.strip().lower() == "q":
+            return
+
         try:
             await models.Sessions.objects.create(session=session)
         except Exception as err:
