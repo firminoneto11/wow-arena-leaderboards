@@ -1,28 +1,30 @@
 from asyncio import all_tasks, current_task, get_event_loop, gather, AbstractEventLoop
-from typing import Final
 from asyncio.events import set_event_loop
-from signal import Signals
+from typing import Final, Awaitable, TypeVar
 from platform import system
+from signal import Signals
 import signal as signal_module
 
 from decouple import config as get_env_var
 
 from ..logging import Logger
-from .events import get_events_queue
-from .types import _Coroutine
+from .events import get_events_queue, EventTypes
+
+
+_AwaitableReturnType = TypeVar("_AwaitableReturnType")
 
 
 class Runner:
 
     event_loop: AbstractEventLoop
-    main_coroutine: type[_Coroutine]
+    main_coroutine: Awaitable[_AwaitableReturnType]
     logger: Logger
     CUR_OS: Final[str] = system().upper()
     WINDOWS: Final[str] = "WINDOWS"
     IS_DEV: Final[bool] = get_env_var("IS_DEV", default=True, cast=bool)
     should_log: bool = True
 
-    def __init__(self, main_coroutine: type[_Coroutine]) -> None:
+    def __init__(self, main_coroutine: Awaitable[_AwaitableReturnType]) -> None:
         self.main_coroutine = main_coroutine
         self.logger = Logger(name="Event Loop logs")
 
@@ -78,9 +80,9 @@ class Runner:
 
         # TODO: Test in Linux environments
 
-        def _signal_callback(sig: Signals):
+        def _signal_callback(sig: Signals) -> None:
             coroutine = self.shutdown(signal=sig)
-            return self.event_loop.run_until_complete(coroutine)
+            self.event_loop.run_until_complete(coroutine)
 
         SHUTDOWN_SIGNALS: Final[tuple[Signals]] = (signal_module.SIGTERM, signal_module.SIGINT)
 
@@ -140,8 +142,7 @@ class Runner:
             await self.logger.info(f"Cancelling {len(remaining_tasks)} tasks.")
 
         # Cancelling them
-        for task in remaining_tasks:
-            task.cancel()
+        [task.cancel() for task in remaining_tasks]
 
         # -- Finishing the remaining tasks --
         # If 'return_exceptions' is True, exceptions in the tasks are treated the same as successful results, and gathered in the result
@@ -152,21 +153,21 @@ class Runner:
         for task in remaining_tasks:
             if task.cancelled():
                 continue
-            if task.exception() is not None:
+            if task_exception := task.exception():
                 self.event_loop.call_exception_handler(
                     {
-                        "message": "unhandled exception during asyncio.run() shutdown",
-                        "exception": task.exception(),
+                        "message": "Unhandled exception during event loop shutdown",
+                        "exception": task_exception,
                         "task": task,
                     }
                 )
 
-        return await finish_loop(loop=self.event_loop)
+        await finish_loop(loop=self.event_loop)
 
     async def listen_for_events(self) -> None:
         queue = get_events_queue()
         while True:
-            item = await queue.get()
-            if item.name == "cli-shutdown":
+            event = await queue.get()
+            if event.name == EventTypes.CLI_SHUTDOWN.value:
                 self.should_log = False
                 return await self.shutdown()
