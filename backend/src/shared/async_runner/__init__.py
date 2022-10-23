@@ -1,7 +1,2 @@
-from .runner import Runner
-from .events import emit_event
-from .types import _Coroutine
-
-
-def run_coroutine(coroutine: type[_Coroutine]):
-    return Runner(main_coroutine=coroutine)()
+from .executer import run_coroutine
+from .events import emit_event, EventTypes
