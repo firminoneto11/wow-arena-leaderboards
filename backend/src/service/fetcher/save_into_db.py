@@ -36,17 +36,6 @@ class ToDatabase:
         self.wow_specs = wow_specs
         self.latest_session_id = latest_session_id
 
-    async def __call__(self) -> None:
-        # Creating an engine to be used by threads
-        await self._make_engine()
-
-        wow_classes, wow_specs = await gather(self.save_wow_classes(), self.save_wow_specs())
-
-        await self.save_pvp_data(wow_classes_df=wow_classes, wow_specs_df=wow_specs)
-
-        # Closing the engine
-        await self._close_engine()
-
     async def _make_engine(self) -> None:
         def make_engine() -> Engine:
             return create_engine(url=self.DB_URL)
@@ -59,139 +48,16 @@ class ToDatabase:
 
         return await as_async(close_engine)
 
-    def _compile_update_sql(self, temp_table: str, original_table: str, cols: list[str]) -> str:
-        sql = f"UPDATE {original_table} ot SET "
-        fields_to_update = []
-        for (idx, col) in enumerate(cols):
-            clause = f"{col} = tt.{col}"
-            if idx:
-                clause = ", " + clause
-            fields_to_update.append(clause)
-        fields_to_update.append(f", updated_at = '{datetime.now().isoformat(sep=' ')}'")
-        fields_to_update = "".join(fields_to_update)
-        sql += fields_to_update
+    async def __call__(self) -> None:
+        # Creating an engine to be used by threads
+        await self._make_engine()
 
-        _cols = ", ".join(cols)
-        subquery = f"(SELECT {_cols} FROM {temp_table}) tt"
+        wow_classes, wow_specs = await gather(self.save_wow_classes(), self.save_wow_specs())
 
-        sql += f" FROM {subquery} WHERE ot.blizzard_id = tt.blizzard_id;"
+        # await self.save_pvp_data(wow_classes_df=wow_classes, wow_specs_df=wow_specs)
 
-        return sql
-
-    def _compile_insert_sql(self, table: str, cols: list[str], rows: list[tuple]) -> str:
-        _cols = str(tuple(cols)).replace("'", "")
-        sql = f"INSERT INTO {table} {_cols} VALUES "
-        values = []
-        for (idx, row) in enumerate(rows):
-            clause = str(row).replace("None", "null")
-            if idx:
-                clause = ", " + clause
-            values.append(clause)
-        sql += "".join(values) + ";"
-
-        return sql
-
-    def _save(self, df: pd.DataFrame, temp_table: str, original_table: str) -> pd.DataFrame:
-
-        # TODO: Check why the saving process is duplicating data
-
-        def create(data_frame: pd.DataFrame, table: str) -> None:
-            data_frame["created_at"] = datetime.now().isoformat(sep=" ")
-            data_frame["updated_at"] = datetime.now().isoformat(sep=" ")
-
-            cols: list[str] = data_frame.columns.to_list()
-            rows = [tuple([series[col] for col in cols]) for (_, series) in data_frame.iterrows()]
-
-            self.logger.sInfo(f"Creating {len(rows)} rows from scratch into '{table}' table...")
-
-            insert_sql = self._compile_insert_sql(table=table, cols=cols, rows=rows)
-            rows_affected = self.engine.execute(insert_sql).rowcount
-
-            self.logger.sInfo(f"Created {rows_affected} rows successfully into '{table}' table!")
-
-        def update(cols: list[str], tt: str, ot: str) -> None:
-
-            self.logger.sInfo(f"Updating '{ot}' table...")
-
-            update_sql = self._compile_update_sql(temp_table=tt, original_table=ot, cols=cols)
-            rows_affected = self.engine.execute(update_sql).rowcount
-
-            self.logger.sInfo(f"{rows_affected} rows updated successfully on '{ot}' table!")
-
-        def delete(ids: tuple[int], table: str) -> None:
-
-            self.logger.sInfo(f"Deleting {len(ids)} rows from '{table}' table...")
-
-            if len(ids) > 1:
-                delete_sql = f"DELETE FROM {table} WHERE blizzard_id IN {ids};"
-            else:
-                delete_sql = f"DELETE FROM {table} WHERE blizzard_id = {ids[0]};"
-
-            rows_affected = self.engine.execute(delete_sql).rowcount
-
-            self.logger.sInfo(f"{rows_affected} rows deleted successfully from '{table}' table!")
-
-        sql = f"SELECT * FROM {original_table} ORDER BY blizzard_id ASC;"
-
-        if self.engine.execute(f"SELECT COUNT(*) FROM {original_table};").fetchone()[0]:
-            # Saving the data from the api into a temporary table
-            df_copy = df.copy()
-            df_copy.index += 1
-            df_copy.to_sql(con=self.engine, method="multi", name=temp_table, if_exists="replace", index="id")
-            df_copy.set_index("blizzard_id", inplace=True)
-
-            # Creating a DataFrame based on the data that already is saved on DB
-            in_db_already = (
-                pd.read_sql(sql=sql, con=self.engine, index_col="blizzard_id")
-                .drop(columns=["id", "created_at", "updated_at"])
-                .convert_dtypes()
-            )
-
-            # Creating a list of 'blizzard_id' that are in the api data, but aren't in the database, meaning that they'll have to be
-            # INSERTED
-            if to_create := [idx for idx in df_copy.index.tolist() if idx not in in_db_already.index.tolist()]:
-                ids = to_create.copy()
-                to_create = df_copy.loc[to_create]
-                to_create.reset_index(inplace=True)
-                create(data_frame=to_create, table=original_table)
-                df_copy.drop(labels=ids, inplace=True)
-                del to_create
-                del ids
-
-            has_to_update = False
-            to_delete = []
-
-            for (blizzard_id, row) in in_db_already.iterrows():
-                try:
-                    series_from_api: pd.Series = df_copy.loc[blizzard_id]
-                except KeyError:
-                    # If 'KeyError' is raised, that means that the given 'blizzard_id' was removed from the API, therefore, has to be
-                    # removed from here as well
-                    to_delete.append(int(blizzard_id))
-                    continue
-
-                if not has_to_update:
-                    series_in_db = row.convert_dtypes()
-                    if not series_from_api.equals(other=series_in_db):
-                        has_to_update = True
-
-            # If there's at least one of them changed, all rows will be updated!
-            if has_to_update:
-                cols = df_copy.reset_index().columns.to_list()
-                update(cols=cols, ot=original_table, tt=temp_table)
-
-            if to_delete:
-                delete(ids=tuple(to_delete), table=original_table)
-
-            del to_delete
-
-        else:
-            create(data_frame=df.copy(), table=original_table)
-
-        return pd.read_sql(sql=sql, con=self.engine)
-
-    async def save(self, df: pd.DataFrame, temp_table: str, original_table: str) -> pd.DataFrame:
-        return await as_async(self._save, df=df, temp_table=temp_table, original_table=original_table)
+        # Closing the engine
+        await self._close_engine()
 
     async def save_wow_classes(self) -> pd.DataFrame:
         df = {prop: [] for prop in WowClassSchema.props()}
@@ -204,7 +70,10 @@ class ToDatabase:
         df = pd.DataFrame(data=df).convert_dtypes()
 
         return await self.save(
-            df=df, temp_table=WowClasses.Meta.tablename + "_temp", original_table=WowClasses.Meta.tablename
+            df=df,
+            temp_table=WowClasses.Meta.tablename + "_temp",
+            original_table=WowClasses.Meta.tablename,
+            which="classes_n_specs",
         )
 
     async def save_wow_specs(self) -> pd.DataFrame:
@@ -218,7 +87,10 @@ class ToDatabase:
         df = pd.DataFrame(data=df).convert_dtypes()
 
         return await self.save(
-            df=df, temp_table=WowSpecs.Meta.tablename + "_temp", original_table=WowSpecs.Meta.tablename
+            df=df,
+            temp_table=WowSpecs.Meta.tablename + "_temp",
+            original_table=WowSpecs.Meta.tablename,
+            which="classes_n_specs",
         )
 
     async def save_pvp_data(self, wow_classes_df: pd.DataFrame, wow_specs_df: pd.DataFrame) -> None:
@@ -248,7 +120,268 @@ class ToDatabase:
         df = pd.DataFrame(data=df).convert_dtypes()
         df.replace({pd.NA: None}, inplace=True)
 
-        await self.save(df=df, temp_table=PvpData.Meta.tablename + "_temp", original_table=PvpData.Meta.tablename)
+        await self.save(
+            df=df,
+            temp_table=PvpData.Meta.tablename + "_temp",
+            original_table=PvpData.Meta.tablename,
+            which="pvp_data",
+        )
+
+    async def save(self, df: pd.DataFrame, temp_table: str, original_table: str, which: str) -> pd.DataFrame:
+        match which:
+            case "classes_n_specs":
+                return await as_async(
+                    self._save_classes_n_specs,
+                    df=df,
+                    temp_table=temp_table,
+                    original_table=original_table,
+                )
+            case "pvp_data":
+                return await as_async(
+                    self._save_pvp_data,
+                    df=df,
+                    temp_table=temp_table,
+                    original_table=original_table,
+                )
+
+    def _save_classes_n_specs(self, df: pd.DataFrame, temp_table: str, original_table: str) -> pd.DataFrame:
+        """Saves the data related to WowClasses and WowSpecs instances"""
+
+        def compile_update_sql(temp: str, original: str, columns: list[str]) -> str:
+            query, fields_to_update = f"UPDATE {original} original SET ", []
+            for (idx, col) in enumerate(columns):
+                clause = f"{col} = temp.{col}"
+                if idx:
+                    clause = ", " + clause
+                fields_to_update.append(clause)
+            fields_to_update.append(f", updated_at = '{datetime.now().isoformat(sep=' ')}'")
+            fields_to_update = "".join(fields_to_update)
+            query += fields_to_update
+            query += f" FROM {temp} temp WHERE original.blizzard_id = temp.blizzard_id;"
+
+            return query
+
+        def compile_insert_sql(table: str, columns: list[str], rows: list[tuple]) -> str:
+            _columns = str(tuple(columns)).replace("'", "")
+            query, values = f"INSERT INTO {table} {_columns} VALUES ", []
+            for (idx, row) in enumerate(rows):
+                clause = str(row).replace("None", "null")
+                if idx:
+                    clause = ", " + clause
+                values.append(clause)
+            query += "".join(values) + ";"
+
+            return sql
+
+        def create(data_frame: pd.DataFrame, table: str) -> None:
+            data_frame["created_at"] = datetime.now().isoformat(sep=" ")
+            data_frame["updated_at"] = datetime.now().isoformat(sep=" ")
+
+            cols: list[str] = data_frame.columns.to_list()
+            rows = [tuple([series[col] for col in cols]) for (_, series) in data_frame.iterrows()]
+
+            self.logger.sInfo(f"Creating {len(rows)} rows from scratch into '{table}' table...")
+            insert_sql = compile_insert_sql(table=table, columns=cols, rows=rows)
+            rows_affected: int = self.engine.execute(insert_sql).rowcount
+            self.logger.sInfo(f"Created {rows_affected} rows successfully into '{table}' table!")
+
+        def update(cols: list[str], temp: str, original: str) -> None:
+            self.logger.sInfo(f"Updating '{original}' table...")
+            update_sql = compile_update_sql(temp=temp, original=original, columns=cols)
+            rows_affected: int = self.engine.execute(update_sql).rowcount
+            self.logger.sInfo(f"{rows_affected} rows updated successfully on '{original}' table!")
+
+        def delete(ids: tuple[int], table: str) -> None:
+            self.logger.sInfo(f"Deleting {len(ids)} rows from '{table}' table...")
+            if len(ids) > 1:
+                delete_sql = f"DELETE FROM {table} WHERE blizzard_id IN {ids};"
+            else:
+                delete_sql = f"DELETE FROM {table} WHERE blizzard_id = {ids[0]};"
+            rows_affected: int = self.engine.execute(delete_sql).rowcount
+            self.logger.sInfo(f"{rows_affected} rows deleted successfully from '{table}' table!")
+
+        sql = f"SELECT * FROM {original_table} ORDER BY blizzard_id ASC;"
+
+        if self.engine.execute(f"SELECT COUNT(*) FROM {original_table};").fetchone()[0]:
+
+            # Saving the data from the api into a temporary table
+            df_from_api = df.copy()
+            df_from_api.index += 1
+            df_from_api.to_sql(con=self.engine, method="multi", name=temp_table, if_exists="replace", index="id")
+            df_from_api.set_index("blizzard_id", inplace=True)
+
+            # Creating a DataFrame based on the data that already is saved on DB
+            df_from_db = (
+                pd.read_sql(sql=sql, con=self.engine, index_col="blizzard_id")
+                .drop(columns=["id", "created_at", "updated_at"])
+                .convert_dtypes()
+                .replace({pd.NA: None})
+            )
+
+            # Creating a list of 'blizzard_id' that are in the api data, but aren't in the database, meaning that they'll have to be
+            # INSERTED
+            if to_create := [idx for idx in df_from_api.index.tolist() if idx not in df_from_db.index.tolist()]:
+                df_to_insert = df_from_api.loc[to_create].reset_index()
+                create(data_frame=df_to_insert, table=original_table)
+                df_from_api.drop(labels=to_create, inplace=True)
+
+                # TODO: Check how to merge 'df_to_insert' into 'df_from_db'
+
+                del df_to_insert
+                del to_create
+
+            has_to_update, to_delete = False, []
+
+            for (blizzard_id, row) in df_from_db.iterrows():
+                try:
+                    series_from_api: pd.Series = df_from_api.loc[blizzard_id]
+                except KeyError:
+                    # If 'KeyError' is raised, that means that the given 'blizzard_id' was removed from the API, therefore, has to be
+                    # removed from here as well
+                    to_delete.append(int(blizzard_id))
+                    continue
+
+                if not has_to_update:
+                    series_in_db = row.convert_dtypes().replace({pd.NA: None})
+                    if not series_from_api.equals(other=series_in_db):
+                        has_to_update = True
+
+            # Checking if there are any items to be deleted and doing so if true
+            if to_delete:
+                delete(ids=tuple(to_delete), table=original_table)
+                del to_delete
+
+            # If at least one of them changed, all rows will be updated!
+            if has_to_update:
+                cols: list[str] = df_from_api.reset_index().columns.to_list()
+                update(cols=cols, temp=temp_table, original=original_table)
+                del cols
+
+        else:
+            create(data_frame=df.copy(), table=original_table)
+
+        return pd.read_sql(sql=sql, con=self.engine)
+
+    # TODO: Refactor this method for PvpData model
+    def _save_pvp_data(self, df: pd.DataFrame, temp_table: str, original_table: str) -> pd.DataFrame:
+        def _compile_update_sql(temp: str, original: str, cols: list[str]) -> str:
+            _sql = f"UPDATE {original} original SET "
+            fields_to_update = []
+            for (idx, col) in enumerate(cols):
+                clause = f"{col} = temp.{col}"
+                if idx:
+                    clause = ", " + clause
+                fields_to_update.append(clause)
+            fields_to_update.append(f", updated_at = '{datetime.now().isoformat(sep=' ')}'")
+            fields_to_update = "".join(fields_to_update)
+            _sql += fields_to_update
+            _sql += (
+                f" FROM {temp} temp WHERE original.blizzard_id = temp.blizzard_id AND original.bracket = temp.bracket;"
+            )
+
+            return _sql
+
+        def _compile_insert_sql(table: str, cols: list[str], rows: list[tuple]) -> str:
+            _cols = str(tuple(cols)).replace("'", "")
+            sql = f"INSERT INTO {table} {_cols} VALUES "
+            values = []
+            for (idx, row) in enumerate(rows):
+                clause = str(row).replace("None", "null")
+                if idx:
+                    clause = ", " + clause
+                values.append(clause)
+            sql += "".join(values) + ";"
+
+            return sql
+
+        def create(data_frame: pd.DataFrame, table: str) -> None:
+            data_frame["created_at"] = datetime.now().isoformat(sep=" ")
+            data_frame["updated_at"] = datetime.now().isoformat(sep=" ")
+
+            cols: list[str] = data_frame.columns.to_list()
+            rows = [tuple([series[col] for col in cols]) for (_, series) in data_frame.iterrows()]
+
+            self.logger.sInfo(f"Creating {len(rows)} rows from scratch into '{table}' table...")
+            insert_sql = _compile_insert_sql(table=table, cols=cols, rows=rows)
+            rows_affected = self.engine.execute(insert_sql).rowcount
+            self.logger.sInfo(f"Created {rows_affected} rows successfully into '{table}' table!")
+
+        def update(cols: list[str], temp: str, original: str) -> None:
+            self.logger.sInfo(f"Updating '{original}' table...")
+            update_sql = _compile_update_sql(temp_table=temp, original_table=original, cols=cols)
+            rows_affected = self.engine.execute(update_sql).rowcount
+            self.logger.sInfo(f"{rows_affected} rows updated successfully on '{original}' table!")
+
+        def delete(ids: tuple[int], table: str) -> None:
+            self.logger.sInfo(f"Deleting {len(ids)} rows from '{table}' table...")
+            if len(ids) > 1:
+                delete_sql = f"DELETE FROM {table} WHERE blizzard_id IN {ids};"
+            else:
+                delete_sql = f"DELETE FROM {table} WHERE blizzard_id = {ids[0]};"
+            rows_affected = self.engine.execute(delete_sql).rowcount
+            self.logger.sInfo(f"{rows_affected} rows deleted successfully from '{table}' table!")
+
+        sql = f"SELECT * FROM {original_table} ORDER BY blizzard_id ASC;"
+
+        if self.engine.execute(f"SELECT COUNT(*) FROM {original_table};").fetchone()[0]:
+            # Saving the data from the api into a temporary table
+            df_copy = df.copy()
+            df_copy.index += 1
+            df_copy.to_sql(con=self.engine, method="multi", name=temp_table, if_exists="replace", index="id")
+            df_copy.set_index("blizzard_id", inplace=True)
+
+            # Creating a DataFrame based on the data that already is saved on DB
+            in_db_already = (
+                pd.read_sql(sql=sql, con=self.engine, index_col="id")
+                .drop(columns=["created_at", "updated_at"])
+                .convert_dtypes()
+                .replace({pd.NA: None})
+            )
+
+            in_db_already_2s = in_db_already["bracket"] == "2v2"
+
+            has_to_update, to_delete = False, []
+
+            for (blizzard_id, row) in in_db_already.iterrows():
+                try:
+                    series_from_api: pd.Series = df_copy.loc[blizzard_id]
+                except KeyError:
+                    # If 'KeyError' is raised, that means that the given 'blizzard_id' was removed from the API, therefore, has to be
+                    # removed from here as well
+                    to_delete.append(int(blizzard_id))
+                    continue
+
+                if not has_to_update:
+                    series_in_db = row.convert_dtypes().replace({pd.NA: None})
+                    if not series_from_api.equals(other=series_in_db):
+                        has_to_update = True
+
+            # Checking if there are any items to be deleted
+            if to_delete:
+                # delete(ids=tuple(to_delete), table=original_table)
+                del to_delete
+
+            # If at least one of them changed, all rows will be updated!
+            if has_to_update:
+                cols = df_copy.reset_index().columns.to_list()
+                # update(cols=cols, original=original_table, temp=temp_table)
+                del cols
+
+            # Creating a list of 'blizzard_id' that are in the api data, but aren't in the database, meaning that they'll have to be
+            # INSERTED
+            if to_create := [idx for idx in df_copy.index.tolist() if idx not in in_db_already.index.tolist()]:
+                ids = to_create.copy()
+                to_create = df_copy.loc[to_create]
+                to_create.reset_index(inplace=True)
+                # create(data_frame=to_create, table=original_table)
+                df_copy.drop(labels=ids, inplace=True)
+                del to_create
+                del ids
+
+        else:
+            create(data_frame=df.copy(), table=original_table)
+
+        return pd.read_sql(sql=sql, con=self.engine)
 
 
 async def save(
