@@ -37,16 +37,10 @@ class ToDatabase:
         self.latest_session_id = latest_session_id
 
     async def _make_engine(self) -> None:
-        def make_engine() -> Engine:
-            return create_engine(url=self.DB_URL)
-
-        self.engine = await as_async(make_engine)
+        self.engine = await as_async(create_engine, url=self.DB_URL)
 
     async def _close_engine(self) -> None:
-        def close_engine() -> None:
-            return self.engine.dispose()
-
-        return await as_async(close_engine)
+        await as_async(self.engine.dispose)
 
     async def __call__(self) -> None:
         # Creating an engine to be used by threads
