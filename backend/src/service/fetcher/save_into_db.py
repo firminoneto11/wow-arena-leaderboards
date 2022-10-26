@@ -165,7 +165,7 @@ class ToDatabase:
                 values.append(clause)
             query += "".join(values) + ";"
 
-            return sql
+            return query
 
         def create(data_frame: pd.DataFrame, table: str) -> None:
             data_frame["created_at"] = datetime.now().isoformat(sep=" ")
@@ -194,19 +194,17 @@ class ToDatabase:
             rows_affected: int = self.engine.execute(delete_sql).rowcount
             self.logger.sInfo(f"{rows_affected} rows deleted successfully from '{table}' table!")
 
-        sql = f"SELECT * FROM {original_table} ORDER BY blizzard_id ASC;"
+        read_original_table_sql = f"SELECT * FROM {original_table} ORDER BY blizzard_id ASC;"
 
         if self.engine.execute(f"SELECT COUNT(*) FROM {original_table};").fetchone()[0]:
 
-            # Saving the data from the api into a temporary table
+            # Changing the index to be the blizzard_id field
             df_from_api = df.copy()
-            df_from_api.index += 1
-            df_from_api.to_sql(con=self.engine, method="multi", name=temp_table, if_exists="replace", index="id")
             df_from_api.set_index("blizzard_id", inplace=True)
 
             # Creating a DataFrame based on the data that already is saved on DB
             df_from_db = (
-                pd.read_sql(sql=sql, con=self.engine, index_col="blizzard_id")
+                pd.read_sql(sql=read_original_table_sql, con=self.engine, index_col="blizzard_id")
                 .drop(columns=["id", "created_at", "updated_at"])
                 .convert_dtypes()
                 .replace({pd.NA: None})
@@ -216,10 +214,12 @@ class ToDatabase:
             # INSERTED
             if to_create := [idx for idx in df_from_api.index.tolist() if idx not in df_from_db.index.tolist()]:
                 df_to_insert = df_from_api.loc[to_create].reset_index()
-                create(data_frame=df_to_insert, table=original_table)
-                df_from_api.drop(labels=to_create, inplace=True)
 
-                # TODO: Check how to merge 'df_to_insert' into 'df_from_db'
+                # Creating the data in the target table
+                create(data_frame=df_to_insert, table=original_table)
+
+                # Dropping the data created from 'df_from_api' data frame because it won't be needed anymore
+                df_from_api.drop(labels=to_create, inplace=True)
 
                 del df_to_insert
                 del to_create
@@ -236,25 +236,32 @@ class ToDatabase:
                     continue
 
                 if not has_to_update:
-                    series_in_db = row.convert_dtypes().replace({pd.NA: None})
-                    if not series_from_api.equals(other=series_in_db):
+                    series_from_db = row.convert_dtypes().replace({pd.NA: None})
+                    if not series_from_api.equals(other=series_from_db):
                         has_to_update = True
 
             # Checking if there are any items to be deleted and doing so if true
             if to_delete:
+                # Deleting the data from the target table
                 delete(ids=tuple(to_delete), table=original_table)
+
                 del to_delete
 
             # If at least one of them changed, all rows will be updated!
             if has_to_update:
-                cols: list[str] = df_from_api.reset_index().columns.to_list()
-                update(cols=cols, temp=temp_table, original=original_table)
-                del cols
+                df_from_api.reset_index(inplace=True)
+                df_from_api.index += 1
+                df_from_api.to_sql(con=self.engine, method="multi", name=temp_table, if_exists="replace", index="id")
+
+                # Updating the target table and dropping the temporary table
+                update(cols=df_from_api.columns.to_list(), temp=temp_table, original=original_table)
+                self.engine.execute(f"DROP TABLE {temp_table};")
 
         else:
+            # Creating the data in the target table
             create(data_frame=df.copy(), table=original_table)
 
-        return pd.read_sql(sql=sql, con=self.engine)
+        return pd.read_sql(sql=read_original_table_sql, con=self.engine)
 
     # TODO: Refactor this method for PvpData model
     def _save_pvp_data(self, df: pd.DataFrame, temp_table: str, original_table: str) -> pd.DataFrame:
