@@ -323,12 +323,13 @@ class ToDatabase:
         return pd.read_sql(sql=read_target_table_sql, con=self.engine)
 
     def _save_pvp_data(self, df: pd.DataFrame, temp_table: str, original_table: str) -> pd.DataFrame:
-        # TODO: Refactor this method for PvpData model
 
-        def compile_update_sql(temp: str, original: str, columns: list[str]) -> str:
-            query, fields_to_update = f"UPDATE {original} original SET ", []
+        read_target_table_sql = f"SELECT * FROM {original_table} ORDER BY blizzard_id ASC;"
+
+        def compile_update_sql(temporary: str, target: str, columns: list[str]) -> str:
+            query, fields_to_update = f"UPDATE {target} target SET ", []
             for (idx, col) in enumerate(columns):
-                clause = f"{col} = temp.{col}"
+                clause = f"{col} = temporary.{col}"
                 if idx:
                     clause = ", " + clause
                 fields_to_update.append(clause)
@@ -336,39 +337,13 @@ class ToDatabase:
             fields_to_update = "".join(fields_to_update)
             query += fields_to_update
             query += (
-                f" FROM {temp} temp WHERE original.blizzard_id = temp.blizzard_id AND original.bracket = temp.bracket;"
+                f" FROM {temporary} temporary WHERE "
+                f"target.blizzard_id = temporary.blizzard_id AND target.bracket = temporary.bracket;"
             )
 
             return query
 
-        def create(data_frame: pd.DataFrame, table: str) -> None:
-            data_frame["created_at"] = datetime.now().isoformat(sep=" ")
-            data_frame["updated_at"] = datetime.now().isoformat(sep=" ")
-
-            cols: list[str] = data_frame.columns.to_list()
-            rows = [tuple([series[col] for col in cols]) for (_, series) in data_frame.iterrows()]
-
-            self.logger.sInfo(f"Creating {len(rows)} rows from scratch into '{table}' table...")
-            insert_sql = compile_insert_sql(table=table, cols=cols, rows=rows)
-            rows_affected = self.engine.execute(insert_sql).rowcount
-            self.logger.sInfo(f"Created {rows_affected} rows successfully into '{table}' table!")
-
-        def update(cols: list[str], temp: str, original: str) -> None:
-            self.logger.sInfo(f"Updating '{original}' table...")
-            update_sql = compile_update_sql(temp_table=temp, original_table=original, cols=cols)
-            rows_affected = self.engine.execute(update_sql).rowcount
-            self.logger.sInfo(f"{rows_affected} rows updated successfully on '{original}' table!")
-
-        def delete(ids: tuple[int], table: str) -> None:
-            self.logger.sInfo(f"Deleting {len(ids)} rows from '{table}' table...")
-            if len(ids) > 1:
-                delete_sql = f"DELETE FROM {table} WHERE blizzard_id IN {ids};"
-            else:
-                delete_sql = f"DELETE FROM {table} WHERE blizzard_id = {ids[0]};"
-            rows_affected = self.engine.execute(delete_sql).rowcount
-            self.logger.sInfo(f"{rows_affected} rows deleted successfully from '{table}' table!")
-
-        sql = f"SELECT * FROM {original_table} ORDER BY blizzard_id ASC;"
+        # TODO: Refactor this method for PvpData model
 
         if self.engine.execute(f"SELECT COUNT(*) FROM {original_table};").fetchone()[0]:
             # Saving the data from the api into a temporary table
@@ -379,7 +354,7 @@ class ToDatabase:
 
             # Creating a DataFrame based on the data that already is saved on DB
             in_db_already = (
-                pd.read_sql(sql=sql, con=self.engine, index_col="id")
+                pd.read_sql(sql=read_target_table_sql, con=self.engine, index_col="id")
                 .drop(columns=["created_at", "updated_at"])
                 .convert_dtypes()
                 .replace({pd.NA: None})
@@ -428,7 +403,7 @@ class ToDatabase:
         else:
             create(data_frame=df.copy(), table=original_table)
 
-        return pd.read_sql(sql=sql, con=self.engine)
+        return pd.read_sql(sql=read_target_table_sql, con=self.engine)
 
 
 async def save(
