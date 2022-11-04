@@ -322,9 +322,9 @@ class ToDatabase:
 
         return pd.read_sql(sql=read_target_table_sql, con=self.engine)
 
-    def _save_pvp_data(self, df: pd.DataFrame, temp_table: str, original_table: str) -> pd.DataFrame:
+    def _save_pvp_data(self, df: pd.DataFrame, temporary_table: str, target_table: str) -> pd.DataFrame:
 
-        read_target_table_sql = f"SELECT * FROM {original_table} ORDER BY blizzard_id ASC;"
+        read_target_table_sql = f"SELECT * FROM {target_table} ORDER BY blizzard_id ASC;"
 
         def compile_update_sql(temporary: str, target: str, columns: list[str]) -> str:
             query, fields_to_update = f"UPDATE {target} target SET ", []
@@ -343,13 +343,14 @@ class ToDatabase:
 
             return query
 
-        # TODO: Refactor this method for PvpData model
+        if self.engine.execute(f"SELECT COUNT(*) FROM {target_table};").fetchone()[0]:
 
-        if self.engine.execute(f"SELECT COUNT(*) FROM {original_table};").fetchone()[0]:
+            # TODO: Refactor this method for PvpData model
+
             # Saving the data from the api into a temporary table
             df_copy = df.copy()
             df_copy.index += 1
-            df_copy.to_sql(con=self.engine, method="multi", name=temp_table, if_exists="replace", index="id")
+            df_copy.to_sql(con=self.engine, method="multi", name=temporary_table, if_exists="replace", index="id")
             df_copy.set_index("blizzard_id", inplace=True)
 
             # Creating a DataFrame based on the data that already is saved on DB
@@ -359,8 +360,6 @@ class ToDatabase:
                 .convert_dtypes()
                 .replace({pd.NA: None})
             )
-
-            in_db_already_2s = in_db_already["bracket"] == "2v2"
 
             has_to_update, to_delete = False, []
 
@@ -400,8 +399,12 @@ class ToDatabase:
                 del to_create
                 del ids
 
+            # -- | --
+
         else:
-            create(data_frame=df.copy(), table=original_table)
+            # Creating the data in the target table
+            kwargs = {"logger": self.logger, "engine": self.engine, "target": target_table, "data_frame": df.copy()}
+            create(kwargs=kwargs)
 
         return pd.read_sql(sql=read_target_table_sql, con=self.engine)
 
