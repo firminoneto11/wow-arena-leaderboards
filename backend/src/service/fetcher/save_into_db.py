@@ -345,21 +345,33 @@ class ToDatabase:
 
         if self.engine.execute(f"SELECT COUNT(*) FROM {target_table};").fetchone()[0]:
 
-            # TODO: Refactor this method for PvpData model
-
-            # Saving the data from the api into a temporary table
-            df_copy = df.copy()
-            df_copy.index += 1
-            df_copy.to_sql(con=self.engine, method="multi", name=temporary_table, if_exists="replace", index="id")
-            df_copy.set_index("blizzard_id", inplace=True)
+            # Changing the index to be the blizzard_id field
+            df_from_api = df.copy()
+            df_from_api.set_index("blizzard_id", inplace=True)
 
             # Creating a DataFrame based on the data that already is saved on DB
-            in_db_already = (
-                pd.read_sql(sql=read_target_table_sql, con=self.engine, index_col="id")
-                .drop(columns=["created_at", "updated_at"])
+            df_from_db = (
+                pd.read_sql(sql=read_target_table_sql, con=self.engine, index_col="blizzard_id")
+                .drop(columns=["id", "created_at", "updated_at"])
                 .convert_dtypes()
                 .replace({pd.NA: None})
             )
+
+            # Saving the data from the api into a temporary table
+            # df_copy = df.copy()
+            # df_copy.index += 1
+            # df_copy.to_sql(con=self.engine, method="multi", name=temporary_table, if_exists="replace", index="id")
+            # df_copy.set_index("blizzard_id", inplace=True)
+
+            # Creating a DataFrame based on the data that already is saved on DB
+            # in_db_already = (
+            #     pd.read_sql(sql=read_target_table_sql, con=self.engine, index_col="id")
+            #     .drop(columns=["created_at", "updated_at"])
+            #     .convert_dtypes()
+            #     .replace({pd.NA: None})
+            # )
+
+            # TODO: Refactor this method for PvpData model
 
             has_to_update, to_delete = False, []
 
