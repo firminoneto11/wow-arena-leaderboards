@@ -375,9 +375,9 @@ class ToDatabase:
 
             has_to_update, to_delete = False, []
 
-            for (blizzard_id, row) in in_db_already.iterrows():
+            for (blizzard_id, row) in df_from_db.iterrows():
                 try:
-                    series_from_api: pd.Series = df_copy.loc[blizzard_id]
+                    series_from_api: pd.Series = df_from_api.loc[blizzard_id]
                 except KeyError:
                     # If 'KeyError' is raised, that means that the given 'blizzard_id' was removed from the API, therefore, has to be
                     # removed from here as well
