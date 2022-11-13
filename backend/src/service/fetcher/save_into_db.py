@@ -396,18 +396,18 @@ class ToDatabase:
 
             # If at least one of them changed, all rows will be updated!
             if has_to_update:
-                cols = df_copy.reset_index().columns.to_list()
+                cols = df_from_api.reset_index().columns.to_list()
                 # update(cols=cols, original=original_table, temp=temp_table)
                 del cols
 
             # Creating a list of 'blizzard_id' that are in the api data, but aren't in the database, meaning that they'll have to be
             # INSERTED
-            if to_create := [idx for idx in df_copy.index.tolist() if idx not in in_db_already.index.tolist()]:
+            if to_create := [idx for idx in df_from_api.index.tolist() if idx not in df_from_db.index.tolist()]:
                 ids = to_create.copy()
-                to_create = df_copy.loc[to_create]
+                to_create = df_from_api.loc[to_create]
                 to_create.reset_index(inplace=True)
                 # create(data_frame=to_create, table=original_table)
-                df_copy.drop(labels=ids, inplace=True)
+                df_from_api.drop(labels=ids, inplace=True)
                 del to_create
                 del ids
 
