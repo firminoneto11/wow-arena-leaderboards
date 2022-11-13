@@ -2,7 +2,7 @@ ormar==0.12.0
 asyncpg==0.27.0
 psycopg2-binary==2.9.5
 python-decouple==3.6
-fastapi==0.86.0
+fastapi==0.87.0
 httpx==0.23.0
 uvicorn==0.19.0
 pandas==1.5.1
