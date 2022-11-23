@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request
 
-from ..controllers import BracketsController
-from ..schemas.response import BracketsResponseSchema
+from .controllers import BracketsController
+from .schemas import BracketsResponseSchema
 
 
 router = APIRouter(tags=["Brackets"])

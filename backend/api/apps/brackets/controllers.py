@@ -1,6 +1,6 @@
 from fastapi import Request
 
-from ..models import PvpData, BracketsEnum
+from .models import PvpData, BracketsEnum
 from .exceptions import InvalidBracketError
 
 

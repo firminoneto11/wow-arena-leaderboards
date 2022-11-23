@@ -1,4 +1,4 @@
-from ..models import PvpData, Sessions
+from .models import PvpData, Sessions
 
 
 class BracketsResponseSchema(
