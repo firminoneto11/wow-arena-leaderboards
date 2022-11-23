@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-from .middleware import cors_middleware_config
-from .apps import brackets_router
+from ..middleware import cors_middleware_config
+from ..apps import brackets_router
 from database import db_engine
 
 

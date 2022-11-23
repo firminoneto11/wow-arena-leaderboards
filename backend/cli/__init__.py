@@ -1,6 +1,6 @@
 from rich import print as r_print
 
-from shared import run_coroutine
+from ..shared import run_coroutine
 from .commands import (
     migrate,
     service,
