@@ -17,7 +17,11 @@ class Logger:
     _logger: logging.Logger
 
     def __init__(
-        self, *, name: str, fmt: logging.Formatter | None = None, file_handlers: list[Handler] | None = None
+        self,
+        *,
+        name: str,
+        fmt: logging.Formatter | None = None,
+        handlers: list[Handler] = [],
     ) -> None:
 
         # Creating the log format to be used. Format options can be found at:
@@ -33,15 +37,13 @@ class Logger:
 
         # Setting the file handlers of the logger. A file handler can have different levels set, that way is possible to have a file
         # handler that only writes to the error log file in case of errors for example.
-        if file_handlers:
-            for fh in file_handlers:
+        for handler in handlers:
+            if handler.log_only_one_level:
+                handler.file_handler.addFilter(filter=LogFilter(level=handler.level))
 
-                if fh.log_only_one_level:
-                    fh.file_handler.addFilter(filter=LogFilter(level=fh.level))
-
-                fh.file_handler.setLevel(level=fh.level)
-                fh.file_handler.setFormatter(fmt=fmt)
-                self._logger.addHandler(fh.file_handler)
+            handler.file_handler.setLevel(level=handler.level)
+            handler.file_handler.setFormatter(fmt=fmt)
+            self._logger.addHandler(handler.file_handler)
 
         # Adding a stream handler to spit the logs out in the console as well
         stream_handler = logging.StreamHandler()

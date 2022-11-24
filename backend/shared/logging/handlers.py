@@ -6,4 +6,4 @@ from dataclasses import dataclass
 class Handler:
     file_handler: FileHandler
     level: int
-    log_only_one_level: bool = True
+    log_only_one_level: bool = False
