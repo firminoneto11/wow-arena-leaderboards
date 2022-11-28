@@ -1,4 +1,5 @@
-from logging import LogRecord
+from logging import LogRecord, FileHandler
+from dataclasses import dataclass
 
 
 class LogFilter:
@@ -13,3 +14,10 @@ class LogFilter:
 
     def filter(self, record: LogRecord) -> bool:
         return self.level == record.levelno
+
+
+@dataclass
+class Handler:
+    file_handler: FileHandler
+    level: int
+    log_only_one_level: bool = False

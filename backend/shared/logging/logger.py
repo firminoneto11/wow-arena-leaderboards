@@ -1,39 +1,41 @@
 from asyncio import to_thread as as_async
-import logging
+from functools import lru_cache
+from os.path import exists
+from os import makedirs
+import logging as python_logging
 
-from .filters import LogFilter
-from .handlers import Handler
+from .utils import LogFilter, Handler
 
 
 class Logger:
     """
     This Logger class is a nice wrapper around the regular Logger from the logging module. We can easily instantiate new loggers with it
-    and also makes the log action asynchronous, because sometimes logging involves work with IO operations. There's also a sync api.
+    and also makes the log action asynchronous, because logging involves working with IO operations. There's also a sync api.
 
     The logger's level will always be DEBUG, but it is possible to set multiple file handlers to log different levels to different files.
     The stream handler's level will always be INFO
     """
 
-    _logger: logging.Logger
+    _logger: python_logging.Logger
 
     def __init__(
         self,
         *,
         name: str,
-        fmt: logging.Formatter | None = None,
+        fmt: python_logging.Formatter | None = None,
         handlers: list[Handler] = [],
     ) -> None:
 
         # Creating the log format to be used. Format options can be found at:
         # https://docs.python.org/3/library/logging.html#logrecord-attributes
         if fmt is None:
-            fmt = logging.Formatter(
+            fmt = python_logging.Formatter(
                 fmt="[%(levelname)s] [%(name)s] [%(asctime)s,%(msecs)d] -> %(message)s", datefmt="%d/%m/%Y %H:%M:%S"
             )
 
         # Creating or getting a logger object, and setting its level
-        self._logger = logging.getLogger(name=name)
-        self._logger.setLevel(level=logging.DEBUG)  # Always DEBUG
+        self._logger = python_logging.getLogger(name=name)
+        self._logger.setLevel(level=python_logging.DEBUG)  # Always DEBUG
 
         # Setting the file handlers of the logger. A file handler can have different levels set, that way is possible to have a file
         # handler that only writes to the error log file in case of errors for example.
@@ -46,8 +48,8 @@ class Logger:
             self._logger.addHandler(handler.file_handler)
 
         # Adding a stream handler to spit the logs out in the console as well
-        stream_handler = logging.StreamHandler()
-        stream_handler.setLevel(level=logging.INFO)  # Always INFO
+        stream_handler = python_logging.StreamHandler()
+        stream_handler.setLevel(level=python_logging.INFO)  # Always INFO
         stream_handler.setFormatter(fmt=fmt)
         self._logger.addHandler(stream_handler)
 
@@ -90,3 +92,26 @@ class Logger:
 
     def sException(self, *args, **kwargs) -> None:
         self._logger.exception(*args, **kwargs)
+
+
+def _get_logger(name: str) -> Logger:
+    from api.config.settings import LOGS_DIR
+
+    if not exists(LOGS_DIR):
+        makedirs(LOGS_DIR)
+
+    # Creating the file handlers for the logger
+    handlers = [
+        Handler(
+            file_handler=python_logging.FileHandler(filename=LOGS_DIR / f"{name}.log"),
+            level=python_logging.DEBUG,
+        ),
+    ]
+
+    # Creating a logger with a custom name and the file handler and returning it
+    return Logger(name=name, handlers=handlers)
+
+
+@lru_cache(maxsize=10)
+def get_logger(name: str) -> Logger:
+    return _get_logger(name=name)
