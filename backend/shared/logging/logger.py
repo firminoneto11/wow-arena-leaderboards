@@ -28,7 +28,7 @@ class Logger:
 
         # Creating the log format to be used. Format options can be found at:
         # https://docs.python.org/3/library/logging.html#logrecord-attributes
-        if fmt is None:
+        if fmt is None:  # pragma: no branch
             fmt = python_logging.Formatter(
                 fmt="[%(levelname)s] [%(name)s] [%(asctime)s,%(msecs)d] -> %(message)s", datefmt="%d/%m/%Y %H:%M:%S"
             )
@@ -40,7 +40,7 @@ class Logger:
         # Setting the file handlers of the logger. A file handler can have different levels set, that way is possible to have a file
         # handler that only writes to the error log file in case of errors for example.
         for handler in handlers:
-            if handler.log_only_one_level:
+            if handler.log_only_one_level:  # pragma: no cover
                 handler.file_handler.addFilter(filter=LogFilter(level=handler.level))
 
             handler.file_handler.setLevel(level=handler.level)
@@ -49,7 +49,7 @@ class Logger:
 
         # Adding a stream handler to spit the logs out in the console as well
         stream_handler = python_logging.StreamHandler()
-        stream_handler.setLevel(level=python_logging.INFO)  # Always INFO
+        stream_handler.setLevel(level=python_logging.INFO)  # Always INFO to avoid spam in the stdout
         stream_handler.setFormatter(fmt=fmt)
         self._logger.addHandler(stream_handler)
 
