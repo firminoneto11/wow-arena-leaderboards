@@ -1,7 +1,6 @@
 from asyncio import sleep, create_task, to_thread as as_async
 
 from uvicorn import run as run_asgi_app
-from rich import print as r_print
 from traitlets.config import Config
 import IPython
 
@@ -21,7 +20,7 @@ from .context_managers import DbConnection
 @close_event_loop_after_execution
 async def migrate() -> None:
     await db_engine.create_all()
-    r_print("Migrations completed successfully!")
+    print("Migrations completed successfully!")
 
 
 @close_event_loop_after_execution
@@ -31,7 +30,7 @@ async def create_new_session() -> None:
         try:
             session = await as_async(input, "Insert the session number or 'q' to exit: ")
         except EOFError:
-            r_print("Invalid input!")
+            print("Invalid input!")
             return await create_new_session()
 
         if session.strip().lower() == "q":
@@ -40,10 +39,10 @@ async def create_new_session() -> None:
         try:
             await models.Sessions.objects.create(session=session)
         except Exception as err:
-            r_print(f"An error occurred while creating the session '{session}':")
-            r_print(err)
+            print(f"An error occurred while creating the session '{session}':")
+            print(err)
         else:
-            r_print("New session created successfully!")
+            print("New session created successfully!")
 
 
 @close_event_loop_after_execution
@@ -83,4 +82,4 @@ def shell() -> None:
 
 
 def runserver() -> None:
-    run_asgi_app("asgi:app", log_level="info", reload=True)
+    run_asgi_app("api.config.application:app", log_level="info", reload=True)

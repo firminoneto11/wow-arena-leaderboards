@@ -1,5 +1,3 @@
-from rich import print as r_print
-
 from ..shared import run_coroutine
 from .commands import (
     migrate,
@@ -39,6 +37,6 @@ def execute_from_command_line(command: str) -> None:
         case "runserver":
             return runserver()
         case _:
-            r_print("A valid command was not provided. Valid options are:")
-            r_print(valid_commands)
+            print("A valid command was not provided. Valid options are:")
+            print(valid_commands)
             return
