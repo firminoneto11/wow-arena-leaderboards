@@ -7,3 +7,4 @@ logs/
 .vscode/
 .idea/
 node_modules/
+env.toml
