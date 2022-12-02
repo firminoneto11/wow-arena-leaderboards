@@ -3,8 +3,12 @@ ifeq (upgrade,$(firstword $(MAKECMDGOALS)))
   $(eval $(UPGRADE_ARGS):;@:)
 endif
 
+# -- Running Code --
+
 dev:
 	python -B -u manage.py runserver
+
+# -- Coverage --
 
 # cov:
 # 	coverage run --rcfile=coverage.toml -m pytest
@@ -14,21 +18,21 @@ dev:
 # 	coverage run --rcfile=coverage.toml -m pytest
 # 	coverage html --rcfile=coverage.toml
 
-# rep:
-# 	coverage report --rcfile=coverage.toml
-
 # -- Dependencies Management --
 
-pip:
+upip:
 	python -m pip install --no-cache-dir --upgrade pip
+
+pout:
+	pip list --outdated
 
 upgrade:
 	pip install --no-cache-dir --upgrade --upgrade-strategy eager $(UPGRADE_ARGS)
 
-install-dev:
+idev:
 	pip install --no-cache-dir -r requirements/dev.txt
 
-install-prod:
+iprod:
 	pip install --no-cache-dir -r requirements/prod.txt
 
 # --
