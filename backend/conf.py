@@ -1,10 +1,10 @@
-from dynaconf import Dynaconf
+from typing import Final as _Final
 
 
-def _get_lazy_settings() -> Dynaconf:
-    from api.config.settings import env_configs
+def _get_lazy_settings():
+    from api.config import settings
 
-    return env_configs
+    return settings
 
 
-env_configs = _get_lazy_settings()
+settings: _Final = _get_lazy_settings()
