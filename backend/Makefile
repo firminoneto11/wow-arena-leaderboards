@@ -23,7 +23,7 @@ dev:
 upip:
 	python -m pip install --no-cache-dir --upgrade pip
 
-pout:
+out:
 	pip list --outdated
 
 upgrade:
