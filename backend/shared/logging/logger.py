@@ -112,6 +112,6 @@ def _get_logger(name: str) -> Logger:
     return Logger(name=name, handlers=handlers)
 
 
-@lru_cache(maxsize=10)
+@lru_cache(maxsize=50)
 def get_logger(name: str) -> Logger:
     return _get_logger(name=name)
