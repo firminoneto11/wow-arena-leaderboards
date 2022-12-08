@@ -5,6 +5,7 @@ from os import makedirs
 import logging as python_logging
 
 from .utils import LogFilter, Handler
+from conf import settings
 
 
 class Logger:
@@ -95,15 +96,14 @@ class Logger:
 
 
 def _get_logger(name: str) -> Logger:
-    from api.config.settings import LOGS_DIR
 
-    if not exists(LOGS_DIR):
-        makedirs(LOGS_DIR)
+    if not exists(settings.LOGS_DIR):
+        makedirs(settings.LOGS_DIR)
 
     # Creating the file handlers for the logger
     handlers = [
         Handler(
-            file_handler=python_logging.FileHandler(filename=LOGS_DIR / f"{name}.log"),
+            file_handler=python_logging.FileHandler(filename=settings.LOGS_DIR / f"{name}.log"),
             level=python_logging.DEBUG,
         ),
     ]
