@@ -8,6 +8,9 @@ endif
 dev:
 	python -B -u manage.py runserver
 
+init:
+	python -B -u manage.py init
+
 # -- Coverage --
 
 # cov:

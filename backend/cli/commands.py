@@ -1,7 +1,10 @@
 # from asyncio import sleep, create_task, to_thread as as_async
+from os import system
 
 # from traitlets.config import Config
 from uvicorn import run as run_app
+
+from conf import settings
 
 # import IPython
 
@@ -84,3 +87,11 @@ from uvicorn import run as run_app
 
 def runserver() -> None:
     run_app("api.config.app:app", log_level="info", reload=True)
+
+
+def init_db() -> None:
+    migrations_folder, tortoise_conf = str(settings.BASE_DIR / "migrations"), "api.conf"
+
+    init_command = f"aerich init -t  --location {migrations_folder}"
+
+    system(init_command)
