@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from decouple import config as get_env_var
 from sqlalchemy import text
 
-from api.apps.brackets import Sessions, BracketsEnum
+from api.apps.core import Sessions, BracketsEnum
 from ..schemas import PvpDataSchema
 
 

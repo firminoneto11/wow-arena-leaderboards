@@ -1,5 +1,3 @@
-from .enums import BracketsEnum
-
 from .sessions import Sessions
 
 from .wow_classes import WowClasses

@@ -1,6 +1,7 @@
 tortoise-orm==0.19.2
-asyncpg==0.27.0
-psycopg2-binary==2.9.5
+aerich==0.7.1
+# asyncpg==0.27.0
+# psycopg2-binary==2.9.5
 fastapi==0.88.0
 httpx==0.23.1
 uvicorn==0.20.0

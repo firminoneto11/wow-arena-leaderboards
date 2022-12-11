@@ -20,7 +20,7 @@ dev:
 
 # -- Dependencies Management --
 
-upip:
+pip:
 	python -m pip install --no-cache-dir --upgrade pip
 
 out:

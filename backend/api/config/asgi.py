@@ -1,32 +1,30 @@
 from fastapi import FastAPI
 
+from api.apps.core.views import router as core_router
 from ..middleware import cors_middleware_config
-from ..apps import brackets_router
-from database import db_engine
+from conf import settings
 
 
 async def startup() -> None:
-    if not db_engine.db.is_connected:
-        await db_engine.db.connect()
+    ...
 
 
 async def shutdown() -> None:
-    if db_engine.db.is_connected:
-        await db_engine.db.disconnect()
+    ...
 
 
 def get_asgi_application() -> FastAPI:
 
     # Instantiating the FastAPI
-    application = FastAPI()
+    app = FastAPI(debug=settings.ENV.debug, title="Arena LeaderBoards API")
 
     # Adding CORS middleware to it
-    application.add_middleware(**cors_middleware_config)
+    app.add_middleware(**cors_middleware_config)
 
     # Including routers
-    application.include_router(router=brackets_router, prefix="/api")
+    app.include_router(router=core_router)
 
-    application.on_event("startup")(startup)
-    application.on_event("shutdown")(shutdown)
+    app.on_event("startup")(startup)
+    app.on_event("shutdown")(shutdown)
 
-    return application
+    return app

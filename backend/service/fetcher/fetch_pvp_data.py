@@ -2,7 +2,7 @@ from asyncio import gather
 
 from httpx import AsyncClient, ConnectError, ConnectTimeout
 
-from api.apps.brackets import BracketsEnum
+from api.apps.core import BracketsEnum
 from shared import Logger
 from ..decorators import re_try
 from ..constants import TIMEOUT, BRAZILIAN_REALMS, PVP_RATING_API, MAX_RETRIES

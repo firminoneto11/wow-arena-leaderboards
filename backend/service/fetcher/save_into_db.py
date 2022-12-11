@@ -8,7 +8,7 @@ from sqlalchemy.engine import Engine
 import pandas as pd
 
 from ..schemas import WowClassSchema, WowSpecsSchema, PvpDataSchema
-from api.apps.brackets import WowClasses, WowSpecs, PvpData
+from api.apps.core import WowClasses, WowSpecs, PvpData
 from shared import Logger
 
 
