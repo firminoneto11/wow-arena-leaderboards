@@ -8,8 +8,8 @@ endif
 dev:
 	python -B -u manage.py runserver
 
-init:
-	python -B -u manage.py init
+initmigrations:
+	python -B -u manage.py initmigrations
 
 # -- Coverage --
 
