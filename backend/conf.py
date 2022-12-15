@@ -2,7 +2,7 @@ from typing import Final as _Final
 
 
 def _get_lazy_settings():
-    from api.config import settings
+    from api.conf import settings
 
     return settings
 
