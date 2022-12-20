@@ -4,6 +4,14 @@ from pathlib import Path as _Path
 from dynaconf import Dynaconf as _Dynaconf
 
 
+def _add_migrations_app(tortoise_conf: dict) -> dict:
+    # The 'aerich.models' module needs to be added in the first app's model list
+    first_key = list(tortoise_conf["apps"])[0]
+    tortoise_conf["apps"][first_key]["models"].append("aerich.models")
+
+    return tortoise_conf
+
+
 # Base directory of the project
 BASE_DIR: _Final = _Path(__file__).resolve().parent.parent.parent
 
@@ -40,18 +48,15 @@ ENV: _Final = _Dynaconf(envvar_prefix=ENV_PREFIX, settings_files=SETTINGS_FILES)
 DATABASE_URL: _Final[str] = ENV.database_url
 
 
-TORTOISE_ORM = {
-    "connections": {"default": DATABASE_URL},
-    "apps": {
-        app: {
-            "models": [f"{APPS_MODULE}.{app}.models"],
-            "default_connection": "default",
-        }
-        for app in INSTALLED_APPS
-    },
-}
-
-
-# The 'aerich.models' module has to be added only in the first one
-first_key = list(TORTOISE_ORM["apps"])[0]
-TORTOISE_ORM["apps"][first_key]["models"].append("aerich.models")
+TORTOISE_ORM = _add_migrations_app(
+    tortoise_conf={
+        "connections": {"default": DATABASE_URL},
+        "apps": {
+            app: {
+                "models": [f"{APPS_MODULE}.{app}.models"],
+                "default_connection": "default",
+            }
+            for app in INSTALLED_APPS
+        },
+    }
+)
