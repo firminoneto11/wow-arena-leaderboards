@@ -1,16 +1,18 @@
-from .commands import runserver, initmigrations
+from .commands import runserver, MigrationsHandler
 
 
 def execute_from_command_line(command: str) -> None:
     """
-    'runserver':
-        Runs the development server\n
+    'runserver': Runs the development server
 
-    'initmigrations':
-        Initializes the ORM
+    'initdb': Initializes the ORM - This command is very destructive since it completely resets the database and initializes a new ORM schema from scratch.
+
+    'migrations': Generates the sql changes based on the models to be migrated.
+
+    'migrate': Migrate the newly created sql changes against the database.
     """
 
-    valid_commands = ["runserver", "initmigrations"]
+    valid_commands = ["runserver", "initdb", "migrations", "migrate"]
 
     if command not in valid_commands:
         raise RuntimeError(f"Invalid command chosen. Valid options are: {valid_commands!r}")
@@ -18,5 +20,5 @@ def execute_from_command_line(command: str) -> None:
     match command:
         case "runserver":
             return runserver()
-        case "initmigrations":
-            return initmigrations()
+        case "initdb" | "migrations" | "migrate":
+            return MigrationsHandler.handle(choice=command)
