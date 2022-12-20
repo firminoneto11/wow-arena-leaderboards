@@ -3,6 +3,10 @@ ifeq (upgrade,$(firstword $(MAKECMDGOALS)))
   $(eval $(UPGRADE_ARGS):;@:)
 endif
 
+# -- Creating Environment --
+venv:
+	python3.11 -m venv venv
+
 # -- Running Code --
 
 dev:
@@ -29,13 +33,13 @@ pip:
 out:
 	pip list --outdated
 
-upgrade:
-	pip install --no-cache-dir --upgrade --upgrade-strategy eager $(UPGRADE_ARGS)
-
 idev:
 	pip install --no-cache-dir -r requirements/dev.txt
 
 iprod:
 	pip install --no-cache-dir -r requirements/prod.txt
+
+upgrade:
+	pip install --no-cache-dir --upgrade --upgrade-strategy eager $(UPGRADE_ARGS)
 
 # --
