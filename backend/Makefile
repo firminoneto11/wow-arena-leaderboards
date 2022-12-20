@@ -7,13 +7,21 @@ endif
 venv:
 	python3.11 -m venv venv
 
-# -- Running Code --
-
+# -- CLI Commands --
 dev:
 	python -B -u manage.py runserver
 
-initmigrations:
-	python -B -u manage.py initmigrations
+initdb:
+	python -B -u manage.py initdb
+
+migrations:
+	python -B -u manage.py migrations
+
+migrate:
+	python -B -u manage.py migrate
+
+help:
+	python -B -u manage.py --help
 
 # -- Coverage --
 
@@ -26,7 +34,6 @@ initmigrations:
 # 	coverage html --rcfile=coverage.toml
 
 # -- Dependencies Management --
-
 pip:
 	python -m pip install --no-cache-dir --upgrade pip
 
