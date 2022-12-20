@@ -1,8 +1,9 @@
-# from asyncio import sleep, create_task, to_thread as as_async
+from asyncio import run
 from os import system
 
-# from traitlets.config import Config
+from tortoise.connection import connections
 from uvicorn import run as run_app
+from aerich import Command
 
 from conf import settings
 
@@ -86,12 +87,17 @@ from conf import settings
 
 
 def runserver() -> None:
-    run_app("api.config.app:app", log_level="info", reload=True)
+    run_app("api.conf.app:app", log_level="info", reload=True)
 
 
-def init_db() -> None:
-    migrations_folder, tortoise_conf = str(settings.BASE_DIR / "migrations"), "api.conf"
+def initmigrations() -> None:
+    async def handler(location: str, app: str) -> None:
+        command = Command(tortoise_config=settings.TORTOISE_ORM, location=location, app=app)
+        await command.init_db(safe=True)
+        await connections.close_all()
 
-    init_command = f"aerich init -t  --location {migrations_folder}"
+    migrations_folder = (settings.BASE_DIR / "migrations").as_posix()
 
-    system(init_command)
+    system(f"rm -rf {migrations_folder} *.db*")
+
+    run(handler(location=migrations_folder, app=list(settings.TORTOISE_ORM["apps"])[0]))
