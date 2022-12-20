@@ -1,4 +1,4 @@
-from .commands import runserver, init_db
+from .commands import runserver, initmigrations
 
 
 def execute_from_command_line(command: str) -> None:
@@ -6,11 +6,11 @@ def execute_from_command_line(command: str) -> None:
     'runserver':
         Runs the development server\n
 
-    'init':
+    'initmigrations':
         Initializes the ORM
     """
 
-    valid_commands = ["runserver", "init"]
+    valid_commands = ["runserver", "initmigrations"]
 
     if command not in valid_commands:
         raise RuntimeError(f"Invalid command chosen. Valid options are: {valid_commands!r}")
@@ -18,5 +18,5 @@ def execute_from_command_line(command: str) -> None:
     match command:
         case "runserver":
             return runserver()
-        case "init":
-            return init_db()
+        case "initmigrations":
+            return initmigrations()
