@@ -1,3 +1,4 @@
+from typing import Final
 from asyncio import run
 from os import system
 
@@ -90,14 +91,38 @@ def runserver() -> None:
     run_app("api.conf.app:app", log_level="info", reload=True)
 
 
-def initmigrations() -> None:
-    async def handler(location: str, app: str) -> None:
-        command = Command(tortoise_config=settings.TORTOISE_ORM, location=location, app=app)
-        await command.init_db(safe=True)
-        await connections.close_all()
+class MigrationsHandler:
+    MIGRATIONS_FOLDER: Final = (settings.BASE_DIR / "api" / "migrations").as_posix()
+    FIRST_APP: Final[str] = list(settings.TORTOISE_ORM["apps"])[0]
 
-    migrations_folder = (settings.BASE_DIR / "migrations").as_posix()
+    @classmethod
+    def _hard_reset(cls) -> None:
+        system(f"rm -rf {cls.MIGRATIONS_FOLDER} *.db*")
 
-    system(f"rm -rf {migrations_folder} *.db*")
+    @classmethod
+    async def _async_handler(cls, choice: str) -> None:
+        command = Command(tortoise_config=settings.TORTOISE_ORM, location=cls.MIGRATIONS_FOLDER, app=cls.FIRST_APP)
+        try:
+            match choice:
+                case "initdb":
+                    cls._hard_reset()
+                    await command.init_db(safe=True)
+                case "migrations":
+                    await command.init()
+                    if migrations := await command.migrate():
+                        print(f"Migrations created:\n{migrations!r}")
+                    else:
+                        print("No changes detected.")
+                case "migrate":
+                    await command.init()
+                    if migrated := await command.upgrade():
+                        print(f"Migrations applied: {migrated!r}")
+                    else:
+                        print("No migrations to apply.")
+        finally:
+            if connections.all():
+                await connections.close_all()
 
-    run(handler(location=migrations_folder, app=list(settings.TORTOISE_ORM["apps"])[0]))
+    @classmethod
+    def handle(cls, choice: str) -> None:
+        run(cls._async_handler(choice=choice))
