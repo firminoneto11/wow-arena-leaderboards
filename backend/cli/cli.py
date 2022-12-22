@@ -5,11 +5,12 @@ def execute_from_command_line(command: str) -> None:
     """
     'runserver': Runs the development server
 
-    'initdb': Initializes the ORM - This command is very destructive since it completely resets the database and initializes a new ORM schema from scratch.
+    'initdb': Initializes the ORM - This command is very destructive since it completely resets the database, removes the migrations
+    directory and initializes a new ORM schema from scratch.
 
     'migrations': Generates the sql changes based on the models to be migrated.
 
-    'migrate': Migrate the newly created sql changes against the database.
+    'migrate': Migrates the newly created sql changes against the database.
     """
 
     valid_commands = ["runserver", "initdb", "migrations", "migrate"]

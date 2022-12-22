@@ -92,21 +92,21 @@ def runserver() -> None:
 
 
 class MigrationsHandler:
-    MIGRATIONS_FOLDER: Final = (settings.BASE_DIR / "api" / "migrations").as_posix()
-    FIRST_APP: Final[str] = list(settings.TORTOISE_ORM["apps"])[0]
+    _MIGRATIONS_FOLDER: Final = (settings.BASE_DIR / "api" / "migrations").as_posix()
+    _FIRST_APP: Final[str] = list(settings.TORTOISE_ORM["apps"])[0]
 
     @classmethod
     def _hard_reset(cls) -> None:
-        system(f"rm -rf {cls.MIGRATIONS_FOLDER} *.db*")
+        system(f"rm -rf {cls._MIGRATIONS_FOLDER} *.db*")
 
     @classmethod
-    async def _async_handler(cls, choice: str) -> None:
-        command = Command(tortoise_config=settings.TORTOISE_ORM, location=cls.MIGRATIONS_FOLDER, app=cls.FIRST_APP)
+    async def _handle(cls, choice: str) -> None:
+        command = Command(tortoise_config=settings.TORTOISE_ORM, location=cls._MIGRATIONS_FOLDER, app=cls._FIRST_APP)
         try:
             match choice:
                 case "initdb":
                     cls._hard_reset()
-                    await command.init_db(safe=True)
+                    await command.init_db(safe=False)
                 case "migrations":
                     await command.init()
                     if migrations := await command.migrate():
@@ -125,4 +125,4 @@ class MigrationsHandler:
 
     @classmethod
     def handle(cls, choice: str) -> None:
-        run(cls._async_handler(choice=choice))
+        run(cls._handle(choice=choice))
