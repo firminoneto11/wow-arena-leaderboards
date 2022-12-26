@@ -1,7 +1,5 @@
-from typer import run
-
-from cli import execute_from_command_line
+from cli import cli
 
 
 if __name__ == "__main__":
-    run(execute_from_command_line)
+    cli()
