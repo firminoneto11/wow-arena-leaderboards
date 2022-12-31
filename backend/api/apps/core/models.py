@@ -64,6 +64,7 @@ class PvpData(BaseModel):
         on_delete=fields.SET_NULL,
         related_name="ladder_data",
     )
+
     wow_spec: WowSpecs | None = fields.ForeignKeyField(
         model_name="core.WowSpecs",
         null=True,
