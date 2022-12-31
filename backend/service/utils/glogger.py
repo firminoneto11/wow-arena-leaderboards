@@ -2,11 +2,12 @@ from os.path import exists, join
 from os import makedirs
 import logging
 
-from shared import Logger, Handler
+from shared.logging.utils import Handler
+from shared.logging import Logger
 from ..constants import BASE_DIR
 
 
-class GlobalLogger:
+class GLogger:
 
     _logger: Logger = None
 
@@ -46,6 +47,6 @@ class GlobalLogger:
     def logger(self) -> Logger:
         return self._logger
 
-
-def get_global_logger() -> Logger:
-    return GlobalLogger().logger
+    @classmethod
+    def get_instance(cls) -> Logger:
+        cls().logger
